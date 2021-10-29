@@ -1,0 +1,29 @@
+---------------------- HELPERS -------------------------------
+--local helper = require("helper")
+--local nnoremap = helper.nnoremap
+--
+--vim.g.startify_lists = {
+--  {type = "files", header = {"   MRU"}},
+--  {type = "dir", header = {"   Current Directory " .. vim.fn.getcwd()}},
+--  {type = "sessions", header = {"   Sessions"}},
+--  {type = "bookmarks", header = {"   Bookmarks"}},
+--  {type = "commands", header = {"   Commands"}}
+--}
+--
+--vim.g.startify_bookmarks = {
+--  {i = "~/.config/nvim/init.lua"},
+--  {c = "~/Code/config/dotfiles"},
+--  {w = "~/vimwiki"},
+--  {z = "~/.zshrc"}
+--}
+--
+--vim.g.startify_change_to_vcs_root = 1 -- change to the root of git repo
+--
+---- vim.g.startify_session_dir = "~/.config/nvim/session"
+---- nnoremap("<leader>ss", ":SSave[!]<CR>") -- save a session
+---- nnoremap("<leader>sl", ":SLoad<CR>") -- load a session
+---- nnoremap("<leader>sd", ":SDelete[!]<CR>") -- delete a session
+---- nnoremap("<leader>sc", ":SClose<CR>") -- close a session
+---- 
+---- vim.g.startify_session_delete_buffers = 1
+---- vim.g.startify_enable_special = 0 -- disable empty buffer and quit
