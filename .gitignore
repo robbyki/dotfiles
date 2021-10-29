@@ -79,3 +79,7 @@ motivate/
 workplace-tmp/
 xterm-256color-italic.terminfo/
 *.log
+nvim/plugin/packer_compiled.lua
+
+nvim/plugin/packer_compiled.lua
+nvim/plugin/packer_compiled.lua

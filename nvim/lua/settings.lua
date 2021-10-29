@@ -117,7 +117,7 @@ vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })
 vim.cmd([[hi! link LspReferenceText CursorColumn]])
 vim.cmd([[hi! link LspReferenceRead CursorColumn]])
 vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
-vim.cmd([[hi Normal ctermbg=none]])
+-- vim.cmd([[hi Normal ctermbg=none]])
 
 vim.cmd([[hi! link LspSagaFinderSelection CursorColumn]])
 vim.cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
