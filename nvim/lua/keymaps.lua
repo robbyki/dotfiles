@@ -89,6 +89,9 @@ set_keymap("n", "<leader>dso", [[<cmd>lua require"dap".step_over()<CR>]], opts)
 set_keymap("n", "<leader>dsi", [[<cmd>lua require"dap".step_into()<CR>]], opts)
 set_keymap("n", "<leader>dl", [[<cmd>lua require"dap".run_last()<CR>]], opts)
 
+-- telescope project
+set_keymap('n', '<leader>fp', [[<cmd>lua require('telescope').extensions.project.project({})<cr>]], opts)
+
 -- TODO fix this
 -- Terminal window navigation
 --vim.cmd([[
@@ -146,7 +149,7 @@ set_keymap("n", "<leader>xml", ":%!xmllint --format -<cr>", opts)
 set_keymap("n", "<leader>fo", ":copen<cr>", opts)
 set_keymap("n", "<leader>fc", ":cclose<cr>", opts)
 set_keymap("n", "<leader>fn", ":cnext<cr>", opts)
-set_keymap("n", "<leader>fp", ":cprevious<cr>", opts)
+-- set_keymap("n", "<leader>fp", ":cprevious<cr>", opts)
 set_keymap("n", "<leader>tv", ":new | :te<cr>", opts)
 
 set_keymap("n", "<leader>o", ":ToggleOnly<CR>", opts)

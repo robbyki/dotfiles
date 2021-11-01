@@ -4,6 +4,16 @@ local actions = require('telescope.actions')
 -- '--color=never',
 require('telescope').load_extension('media_files')
 require('telescope').load_extension('fzy_native')
+require('telescope').setup {
+  extensions = {
+    project = {
+      base_dirs = {
+        {'~/dev/git-projects'}
+      },
+      hidden_files = true -- default: false
+    }
+  }
+}
 require('telescope').load_extension('project')
 require('telescope').setup {
     defaults = {

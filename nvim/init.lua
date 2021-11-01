@@ -55,9 +55,4 @@ require("nvim-treesitter.configs").setup({
 })
 
 require("trouble").setup({})
-
--- vim.g.onedark_style = 'deep'
 require('onedark').setup()
-
-
--- require('config.nvim-lsp-ui').setup() wow. again. 
