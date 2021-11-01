@@ -18,7 +18,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Dotfiles location
-DOTFILES="~/.dotfiles"
+DOTFILES="$HOME/.dotfiles"
 
 export FZF_TMUX_OPTS="-p 85%,65%"
 export FZF_BASE="$HOME/.fzf"

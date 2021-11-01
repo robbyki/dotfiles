@@ -104,10 +104,10 @@ set_keymap("n", "<leader>dl", [[<cmd>lua require"dap".run_last()<CR>]], opts)
 --]])
 
 vim.cmd([[
-  nnoremap <silent> <M-k> : resize -2<CR>
-  nnoremap <silent> <M-j> : resize +2<CR>
-  nnoremap <silent> <M-h> : vertical resize -2<CR>
-  nnoremap <silent> <M-l> : vertical resize +2<CR>
+  nnoremap <silent> <C-Up> : resize -2<CR>
+  nnoremap <silent> <C-Down> : resize +2<CR>
+  nnoremap <silent> <C-Left> : vertical resize -2<CR>
+  nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
 -- better indenting
@@ -148,7 +148,8 @@ set_keymap("n", "<leader>fc", ":cclose<cr>", opts)
 set_keymap("n", "<leader>fn", ":cnext<cr>", opts)
 set_keymap("n", "<leader>fp", ":cprevious<cr>", opts)
 set_keymap("n", "<leader>tv", ":new | :te<cr>", opts)
-set_keymap("n", "<leader>tv", ":new | :te<cr>", opts)
+
+set_keymap("n", "<leader>o", ":ToggleOnly<CR>", opts)
 
 set_keymap('n', '<leader>ev', ":vs $MYVIMRC<CR>", opts)
 set_keymap('n', '<leader>sv', ":luafile $MYVIMRC<CR>:echo 'Reloaded vimrc!'<CR>", opts)

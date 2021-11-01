@@ -17,6 +17,9 @@ return require("packer").startup(function(use)
   -- packe itself
   use 'wbthomason/packer.nvim'
 
+  use 'numtostr/bufonly.nvim'
+  use 'caenrique/nvim-maximize-window-toggle'
+
   -- LSP
   use 'nvim-lua/lsp_extensions.nvim'
   use 'neovim/nvim-lspconfig'
