@@ -17,8 +17,7 @@ return require("packer").startup(function(use)
   -- packe itself
   use 'wbthomason/packer.nvim'
 
-  use 'numtostr/bufonly.nvim'
-  use 'caenrique/nvim-maximize-window-toggle'
+  use 'folke/zen-mode.nvim'
 
   -- LSP
   use 'nvim-lua/lsp_extensions.nvim'
@@ -35,10 +34,7 @@ return require("packer").startup(function(use)
   --         { "neovim/nvim-lspconfig" },
   --     },
   -- })
-
  
-  use 'github/copilot.vim'
-
   use 'nvim-lua/popup.nvim'
 
   use 'tpope/vim-eunuch'
@@ -63,17 +59,19 @@ return require("packer").startup(function(use)
   -- Coding
   use 'lukas-reineke/indent-blankline.nvim'
   use 'windwp/nvim-autopairs'
+  use 'github/copilot.vim'
 
   -- Dashboard
   use 'glepnir/dashboard-nvim'
 
   -- Cosmetics
+  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
   use 'navarasu/onedark.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'ryanoasis/vim-devicons'
   use 'norcalli/nvim-colorizer.lua'
   use 'junegunn/rainbow_parentheses.vim'
-  use({ 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} })
+  -- use({ 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} })
 
   -- Git
   use({
@@ -90,7 +88,8 @@ return require("packer").startup(function(use)
   use 'phaazon/hop.nvim'
   use 'karb94/neoscroll.nvim'
   use 'max397574/better-escape.nvim'
-
+  use 'numtostr/bufonly.nvim'
+  use 'caenrique/nvim-maximize-window-toggle'
   -- Peeking
   use 'nacro90/numb.nvim'
 

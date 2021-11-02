@@ -8,7 +8,7 @@ set_keymap('n', '<Space>', '<NOP>', opts)
 -- set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', opts)
 
 -- explorer
-set_keymap('n', '<Leader>tr', ':NvimTreeToggle<CR>', opts)
+set_keymap('n', '\\', ':NvimTreeToggle<CR>', opts)
 
 -- better window movement
 --set_keymap('n', '<C-h>', '<C-w>h', { silent = true })
@@ -35,6 +35,7 @@ set_keymap('n', '<leader>sau', [[<cmd>lua require('telescope.builtin').find_file
 set_keymap('n', '<Leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR>]], opts)
 set_keymap('n', '<Leader>bb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
 set_keymap('n', '<Leader>sd', [[<cmd>lua require('telescope.builtin').find_files{ cwd = "~/dev" }<CR>]], opts)
+set_keymap('n', '<leader>fp', [[<cmd>lua require('telescope').extensions.project.project({})<cr>]], opts)
 
 -- LSP
 --vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -88,9 +89,6 @@ set_keymap("n", "<leader>dt", [[<cmd>lua require"dap".toggle_breakpoint()<CR>]],
 set_keymap("n", "<leader>dso", [[<cmd>lua require"dap".step_over()<CR>]], opts)
 set_keymap("n", "<leader>dsi", [[<cmd>lua require"dap".step_into()<CR>]], opts)
 set_keymap("n", "<leader>dl", [[<cmd>lua require"dap".run_last()<CR>]], opts)
-
--- telescope project
-set_keymap('n', '<leader>fp', [[<cmd>lua require('telescope').extensions.project.project({})<cr>]], opts)
 
 -- TODO fix this
 -- Terminal window navigation
@@ -148,15 +146,14 @@ set_keymap("n", "<leader>h", ":nohlsearch<cr>", opts)
 set_keymap("n", "<leader>xml", ":%!xmllint --format -<cr>", opts)
 set_keymap("n", "<leader>fo", ":copen<cr>", opts)
 set_keymap("n", "<leader>fc", ":cclose<cr>", opts)
-set_keymap("n", "<leader>fn", ":cnext<cr>", opts)
+-- set_keymap("n", "<leader>fn", ":cnext<cr>", opts)
 -- set_keymap("n", "<leader>fp", ":cprevious<cr>", opts)
-set_keymap("n", "<leader>tv", ":new | :te<cr>", opts)
+-- set_keymap("n", "<leader>tv", ":new | :te<cr>", opts)
 
 set_keymap("n", "<leader>o", ":ToggleOnly<CR>", opts)
 
 set_keymap('n', '<leader>ev', ":vs $MYVIMRC<CR>", opts)
 set_keymap('n', '<leader>sv', ":luafile $MYVIMRC<CR>:echo 'Reloaded vimrc!'<CR>", opts)
-
 
 -- completion
 set_keymap('i', '<S-Tab>', [[pumvisible() ? '<C-p>' : '<Tab>']], { expr = true })

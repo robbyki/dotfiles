@@ -68,4 +68,4 @@ nvim_tree.setup {
   }
 }
 
-vim.api.nvim_set_keymap('n', '<c-n>', ':NvimTreeToggle<cr>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<c-n>', ':NvimTreeToggle<cr>', { noremap = true, silent = true })

@@ -47,13 +47,8 @@ map p
 map v
 map x
 map y
+map r
 
-map DD delete
-map U unselect
-map C clear
-map R reload
-map p paste
-map P paste-async
 
 cmd paste-async &{{
     set -- $(cat ~/.local/share/lf/files)
@@ -72,49 +67,48 @@ cmd paste-async &{{
     rm ~/.local/share/lf/files
     lf -remote "send clear"
 }}
-map x cut
-map y copy
 
+map C clear
+map DD delete
+map P paste-async
+map R reload
+map R reload
+map U unselect
+map ch chmod
+map dd trash
 map f broot_jump
-
-# go to mappings
-map gd cd ~/dev
 map gD cd ~/Downloads
-map gp. cd ~/Pictures
+map gc cd ~/.config/
+map gd cd ~/dev
 map gn cd ~/.config/nvim
+map gp. cd ~/Pictures
 map gpt cd ~/dev/git-projects/aide-template
 map gpu cd ~/dev/git-projects/aide-utilities
 map gtr cd ~/.local/share/Trash/files
-
-map dd trash
-map tc clear_trash
-map tr restore_trash
-map gc cd ~/.config/
-map r rename
-map R reload
 map md mkdir
 map mf mkfile
 map mr sudomkfile
-map ch chmod
+map p paste
+map rm sudorm
+map rr rename
 map ss stripspace
-#map D delete
-
-# select
+map tc clear_trash
+map tr restore_trash
 map vs push :glob-select<space>*.
 map vu push :glob-unselect<space>*.
-
-# File Openers
-map ee $$EDITOR "$f"                            # open file in editor
-#map ee $nvim "$f"                            # open file in editor
-# map ec edit_config                              # edit & source lfrc
-map erc $$EDITOR ~/.config/nvim/init.lua            # open nvim config
-#map ea $nvim ~/.config/alacritty/alacritty.yml            # open nvim config
-map ea $$EDITOR ~/.config/alacritty/alacritty.yml            # open nvim config
+map x cut
+map y copy
+map ee $$EDITOR "$f"
 map g/ :fzf_select
 map gj :fzf_jump
 map gf :fzf_loc
 map gF :fzf
 map au %du -chD ${(f)fx} | tail -1
+
+#map ee $nvim "$f"                            # open file in editor
+# map ec edit_config                              # edit & source lfrc
+# map erc $$EDITOR ~/.config/nvim/init.lua            # open nvim config
+# map ea $$EDITOR ~/.config/alacritty/alacritty.yml            # open nvim config
 
 cmd help $lf -doc| ~/.config/lf/less.sh
 
@@ -260,6 +254,16 @@ cmd fzf_select ${{
             fzf +m --header='Select file/directory') || return 0
     file="$(echo "$file" | sed 's/"/\\"/g')"
     lf -remote "send $id select \"$file\""
+}}
+
+cmd sudorm %{{
+	printf "sure (yes/no)"
+	read ans
+	if [[ $ans == 'yes' ]];then
+		sudo rm -r $f
+	else
+		exit
+	fi
 }}
 
 # define a custom 'rename' command without prompt for overwrite

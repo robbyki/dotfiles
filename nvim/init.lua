@@ -11,6 +11,7 @@ require('globals')
 require('keymaps')
 require('settings')
 
+require('zen-mode').setup()
 require('config.nvim-lsp').setup()
 require('config.nvim-cmp').setup()
 require('config.nvim-telescope')
@@ -54,5 +55,6 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+require("bufferline").setup{}
 require("trouble").setup({})
 require('onedark').setup()
