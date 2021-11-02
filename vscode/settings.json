@@ -242,5 +242,6 @@
   //   "editor.lineHighlightBackground": "#00000000",
   //   "editor.lineHighlightBorder": "#9292ac"
   // },
-  "workbench.colorTheme": "One Dark Pro Darker"
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "editor.inlineSuggest.enabled": true
 }

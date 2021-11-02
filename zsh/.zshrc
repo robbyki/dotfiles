@@ -64,7 +64,6 @@ PATH=$PATH:${JAVA_HOME}/bin
 PATH=$PATH:${MVN_HOME}/bin
 PATH=$PATH:${GIT_HOME}/bin
 PATH=$PATH:${GO_HOME}/bin
-# PATH=$PATH:${HOME}/.cargo/bin
 PATH=$PATH:${IBMCLOUD_HOME}
 PATH=$PATH:${HOME}/tools/lua-language-server/bin/Linux
 PATH=$PATH:${HOME}/.yarn/bin
@@ -112,7 +111,6 @@ timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
-
 
 find-alias(){ alias | grep ${1} }
 
@@ -205,11 +203,11 @@ export BAT_THEME="OneHalfDark"
 # Quick configs
 alias zshconfig="$EDITOR $DOTFILES/zsh/.zshrc"
 alias nvimconfig="$EDITOR $DOTFILES/nvim/init.lua"
-# alias codeconfig="$EDITOR $DOTFILES/vscode/.config/Code/User/settings.json"
+alias codeconfig="$EDITOR $DOTFILES/vscode/settings.json"
 alias alacrittyconfig="$EDITOR $DOTFILES/alacritty/alacritty.yml"
+alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 # alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 # alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
-alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 # alias i3config="$EDITOR $DOTFILES/i3/.config/i3/config"
 
 alias kval='kubeval'
@@ -227,7 +225,6 @@ alias prmi='podman images -q | xargs podman rmi'
 alias di='docker images'
 alias grepo='gh grepo'
 alias tlint=tekton-lint
-#alias tlint='{HOME}/node_modules/.bin/tekton-lint'
 alias hg='history | grep'
 alias cb='clipboard'
 alias klint='kube-linter lint'

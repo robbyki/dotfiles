@@ -72,14 +72,19 @@ map C clear
 map DD delete
 map P paste-async
 map R reload
-map R reload
 map U unselect
+map au %du -chD ${(f)fx} | tail -1
 map ch chmod
 map dd trash
+map ee $$EDITOR "$f"
 map f broot_jump
+map g/ :fzf_select
 map gD cd ~/Downloads
+map gF :fzf
 map gc cd ~/.config/
 map gd cd ~/dev
+map gf :fzf_loc
+map gj :fzf_jump
 map gn cd ~/.config/nvim
 map gp. cd ~/Pictures
 map gpt cd ~/dev/git-projects/aide-template
@@ -98,12 +103,6 @@ map vs push :glob-select<space>*.
 map vu push :glob-unselect<space>*.
 map x cut
 map y copy
-map ee $$EDITOR "$f"
-map g/ :fzf_select
-map gj :fzf_jump
-map gf :fzf_loc
-map gF :fzf
-map au %du -chD ${(f)fx} | tail -1
 
 #map ee $nvim "$f"                            # open file in editor
 # map ec edit_config                              # edit & source lfrc
