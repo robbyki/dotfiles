@@ -239,7 +239,8 @@ cmd open ${{
 #	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | feh -aio 2>/dev/null | lf-select ;;
 	image/*) feh -aio $f ;;
 	audio/*) mpv --audio-display=no $f ;;
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+  "mp4"|"mkv"|"webm"|"flv")
+					vlc $f 1>/dev/null 2>&1 &;;
 	application/pdf|application/vnd*|application/epub*) setsid -f okular $fx >/dev/null 2>&1 ;;
         *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac

@@ -279,15 +279,18 @@
   "vscode-kubernetes.helm-path.linux": "/usr/local/bin/helm",
   "vscode-kubernetes.minikube-path.linux": "/usr/local/bin/minikube",
   "vscode-kubernetes.kubectl-path": "/usr/local/bin/kubectl",
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 3,
   "go.toolsManagement.autoUpdate": true,
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
     "*": true,
     "yaml": false,
     "plaintext": false,
-    "markdown": false
+    "markdown": true
   },
   "workbench.colorTheme": "One Dark Pro Darker",
-  "vim.enableNeovim": true
+  "vim.enableNeovim": true,
+  "editor.minimap.enabled": false,
+  "workbench.editor.untitled.hint": "hidden",
+  "files.defaultLanguage": "markdown"
 }
