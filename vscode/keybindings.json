@@ -63,15 +63,15 @@
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"
   },
-  {
-    "command": "-vscode-neovim.send",
-    "key": "ctrl+p"
-  },
-  {
-    "key": "ctrl+p",
-    "command": "-vscode-neovim.history-up-cmdline",
-    "when": "neovim.mode == 'cmdline_normal'"
-  },
+  // {
+  //   "command": "-vscode-neovim.send",
+  //   "key": "ctrl+p"
+  // },
+  // {
+  //   "key": "ctrl+p",
+  //   "command": "-vscode-neovim.history-up-cmdline",
+  //   "when": "neovim.mode == 'cmdline_normal'"
+  // },
   {
     "key": "ctrl+p",
     "command": "-workbench.action.quickOpenSelectPrevious",
@@ -82,11 +82,11 @@
     "command": "-list.focusUp",
     "when": "listFocus && !inputFocus"
   },
-  {
-    "key": "ctrl+p",
-    "command": "-list.focusUp",
-    "when": "inReferenceSearchEditor && neovim.mode == 'normal'"
-  },
+  // {
+  //   "key": "ctrl+p",
+  //   "command": "-list.focusUp",
+  //   "when": "inReferenceSearchEditor && neovim.mode == 'normal'"
+  // },
   {
     "key": "ctrl+shift+o",
     "command": "workbench.panel.output.focus"
@@ -104,4 +104,10 @@
     "key": "ctrl+alt+meta+n",
     "command": "-welcome.showNewFileEntries"
   }
+  // {
+  //   "command": "vscode-neovim.compositeEscape1",
+  //   "key": "j",
+  //   "when": "neovim.mode == insert && editorTextFocus",
+  //   "args": "j"
+  // }
 ]
