@@ -35,6 +35,8 @@ require('config.nvim-octo')
 require('config.nvim-statusline').setup()
 require('numb').setup()
 require('better_escape').setup()
+-- require('config.nvim-tabout')
+
 -- require('config.nvim-whichkey').setup()
 --require('config.nvim-quickscope')
 --require('config.nvim-numb')

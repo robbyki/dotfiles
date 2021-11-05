@@ -19,6 +19,7 @@ return require("packer").startup(function(use)
 
   use 'folke/zen-mode.nvim'
 
+
   -- LSP
   use 'nvim-lua/lsp_extensions.nvim'
   use 'neovim/nvim-lspconfig'
@@ -35,6 +36,8 @@ return require("packer").startup(function(use)
   --     },
   -- })
  
+  use {'mattn/vim-gist', requires = {'mattn/webapi-vim'}}
+
   use 'nvim-lua/popup.nvim'
 
   use 'tpope/vim-eunuch'

@@ -406,7 +406,7 @@ tmux_conf_update_plugins_on_reload=true
 
 # -- custom variables ----------------------------------------------------------
 
-# set -g @plugin 'nocode99/tmux-vpn-status'
+set -g @plugin 'nocode99/tmux-vpn-status'
 # set -g @plugin 'xamut/tmux-weather'
 
 # to define a custom #{foo} variable, define a POSIX shell function between the

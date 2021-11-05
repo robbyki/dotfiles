@@ -11,14 +11,14 @@ set_keymap('n', '<Space>', '<NOP>', opts)
 set_keymap('n', '\\', ':NvimTreeToggle<CR>', opts)
 
 -- better window movement
---set_keymap('n', '<C-h>', '<C-w>h', { silent = true })
+-- set_keymap('i', '<C-CR>', '<C-O>o', { silent = true })
 --set_keymap('n', '<C-j>', '<C-w>j', { silent = true })
 --set_keymap('n', '<C-k>', '<C-w>k', { silent = true })
 --set_keymap('n', '<C-l>', '<C-w>l', { silent = true })
 
-vim.api.nvim_set_keymap('n', '<leader>hq', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>hc', '<cmd>lua require("harpoon.mark").clear_all()<CR>', { noremap = true, silent = true})
+set_keymap('n', '<leader>hq', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { noremap = true, silent = true})
+set_keymap('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<CR>', { noremap = true, silent = true})
+set_keymap('n', '<leader>hc', '<cmd>lua require("harpoon.mark").clear_all()<CR>', { noremap = true, silent = true})
 
 --telescope (finder)
 set_keymap('n', '<leader>sf', [[<Cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], opts)
@@ -92,6 +92,7 @@ set_keymap("n", "<leader>dl", [[<cmd>lua require"dap".run_last()<CR>]], opts)
 
 -- TODO fix this
 -- Terminal window navigation
+vim.cmd([[inoremap <C-l> <C-O>o]])
 --vim.cmd([[
 --  tnoremap <C-h> <C-\><C-N><C-w>h
 --  tnoremap <C-j> <C-\><C-N><C-w>j
