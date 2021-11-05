@@ -31,6 +31,12 @@ vim.cmd('colorscheme onedark')
 
 local indent = 2
 
+vim.g.gist_api_url = 'http://github.ibm.com/api/v3'
+vim.g.gist_per_page_limit = 100
+vim.g.gist_clip_command = 'xclip -selection clipboard'
+vim.g.gist_open_browser_after_post = 1
+vim.g.gist_show_privates = 1
+
 -- global
 vim.o.cursorline = true
 vim.o.ruler = true
