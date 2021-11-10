@@ -101,7 +101,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # I like listing things after I cd
 cdl() { cd "$@" && ll; }
 
-autoload -U compinit && compinit
 
 #autoload compinit
 #compinit -i
@@ -151,7 +150,7 @@ source $HOME/.config/broot/launcher/bash/br
 #source <(oc completion zsh)
 #source <(kubectl completion zsh)
 #source /usr/local/IBM_Cloud_CLI/autocomplete/zsh_autocomplete
-#source <(yq shell-completion zsh)
+source <(yq shell-completion zsh)
 #source <(tkn completion zsh)
 #source <(minikube completion zsh)
 #complete -o nospace -C /usr/local/bin/odo odo
@@ -469,3 +468,6 @@ z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
 ##[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/mc mc
+autoload -U compinit && compinit
