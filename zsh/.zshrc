@@ -1,16 +1,11 @@
 #figlet "do not go gentle into that good night"
-motivate
+#motivate
 #neofetch
 
 ##[[ $TMUX = "" ]] && export TERM="xterm-256color"
 
 ##if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 ##  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-##fi
-
-## Tekton cli
-##if [ ! -f "${fpath[1]}/_tkn" ]; then
-##	command -v tkn >/dev/null 2>&1 && tkn completion zsh > "${fpath[1]}/_tkn"
 ##fi
 
 ## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -30,6 +25,9 @@ setopt appendhistory
 setopt INC_APPEND_HISTORY        
 setopt nobeep
 
+source $HOME/dev/git-projects/enhancd/init.sh
+export ENHANCD_FILTER=fzf
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export HISTFILESIZE=
@@ -39,7 +37,7 @@ export SAVEHIST=1000000
 export VISUAL="/usr/local/bin/nvim"
 export EDITOR="/usr/local/bin/nvim"
 export SUDO_EDITOR="/usr/local/bin/nvim"
-export MYVIMRC=$HOME/.config/nvim/init.lua
+#export MYVIMRC=$HOME/.config/nvim/init.lua
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
@@ -79,8 +77,8 @@ zstyle :prompt:pure:git:stash show yes
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
 
 plugins=(
-  minikube
-  docker
+#  minikube
+#  docker
   git 
   zsh-autosuggestions 
   zsh-syntax-highlighting 
@@ -92,7 +90,7 @@ plugins=(
   fzf 
   fzf-zsh-plugin
   jfrog 
-  kubectl
+#  kubectl
   alias-tips
   tmux
 )
@@ -138,7 +136,7 @@ fzf_then_open_in_editor() {
 zle -N fzf_then_open_in_editor
 bindkey "^O" fzf_then_open_in_editor
 
-fzf-open-file-or-dir() {
+fzf-open-file-current-dir() {
   local cmd="fd -tf -HL --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
   local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
   if [ -f "$out" ]; then
@@ -148,8 +146,8 @@ fzf-open-file-or-dir() {
     zle reset-prompt
   fi
 }
-zle     -N   fzf-open-file-or-dir
-bindkey '^P' fzf-open-file-or-dir
+zle     -N   fzf-open-file-current-dir
+bindkey '^P' fzf-open-file-current-dir
 
 fpath=($HOME/.local/share/zsh/completions $fpath)
 
@@ -158,13 +156,11 @@ complete -o nospace -C /usr/local/bin/mc mc
 source $(dirname $(gem which colorls))/tab_complete.sh
 source ~/.fzf/shell/completion.zsh
 source $HOME/.config/broot/launcher/bash/br
-#source <(oc completion zsh)
 #source <(kubectl completion zsh)
 #source /usr/local/IBM_Cloud_CLI/autocomplete/zsh_autocomplete
 #source <(tkn completion zsh)
 #source <(minikube completion zsh)
 #complete -o nospace -C /usr/local/bin/odo odo
-# make completion work with kubecolor
 #compdef kubecolor=kubectl
 
 # FZF Configuration
@@ -183,7 +179,10 @@ z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
 
 autoload -U +X bashcompinit && bashcompinit
 autoload -U compinit && compinit
+compinit -i
 
 bindkey -s "^[o" 'lfcd\n'
 bindkey '^ ' autosuggest-accept
 bindkey -a '^ ' autosuggest-accept
+
+source <(oc completion zsh)

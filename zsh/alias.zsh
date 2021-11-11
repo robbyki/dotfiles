@@ -26,6 +26,7 @@ alias downloads="cdl ~/Downloads"
 #alias -s {md,markdown}='glow' # I have no idea what this does
 
 # system
+alias tarx='tar xvzf'
 alias t='tmux'
 alias am='alsamixer'
 #alias beaver='GTK_THEME=Adwaita:light dbeaver-ce'
@@ -113,7 +114,6 @@ alias rvwu='gh rvwu 2>/dev/null'
 # k8s
 #alias kb='kubecolor'
 #alias kbaf='kb apply -f'
-#alias kbaf='kb get notes'
 #alias kbcf='kb create -f'
 #alias kbd='kb describe'
 #alias kbdp='kb describe pod'
@@ -171,36 +171,36 @@ alias lst="ls -tr"
 #alias lk='lookatme'
 
 # openshift oc
-#alias ocaf='oc apply -f'
-#alias occf='oc create -f'
-#alias occs='oc create secret'
-#alias ocd='oc describe'
-#alias ocgd='oc get deployments'
-#alias ocgn='oc get nodes'
-#alias ocgp='oc get pods'
-#alias ocgs='oc get secrets'
-#alias ocl='oc logs'
-#alias oclf='oc logs --follow'
-#alias ocrf='oc replace --force -f'
+alias ocaf='oc apply -f'
+alias occf='oc create -f'
+alias occs='oc create secret'
+alias ocd='oc describe'
+alias ocgd='oc get deployments'
+alias ocgn='oc get nodes'
+alias ocgp='oc get pods'
+alias ocgs='oc get secrets'
+alias ocl='oc logs'
+alias oclf='oc logs --follow'
+alias ocrf='oc replace --force -f'
 
 # tekton
-#alias tknhs='tkn hub search'
-#alias tknit='tkn hub install task'
-#alias tknpl='tkn pipeline list'
-#alias tknplf='tkn pipelinerun logs --last -f'
-#alias tknps='tkn pipeline start'
-#alias tkntd='tkn task describe'
-#alias tkntlf='tkn taskrun logs --last -f'
-#alias tknts='tkn task start'
-#alias tlint=tekton-lint
+alias tknhs='tkn hub search'
+alias tknit='tkn hub install task'
+alias tknpl='tkn pipeline list'
+alias tknplf='tkn pipelinerun logs --last -f'
+alias tknps='tkn pipeline start'
+alias tkntd='tkn task describe'
+alias tkntlf='tkn taskrun logs --last -f'
+alias tknts='tkn task start'
+alias tlint=tekton-lint
 
 # yamls
-#alias ylint='yamllint'
-## alias y='yq eval -C'
-#type yq > /dev/null && alias yq='yq -C'
-#alias -g @yml='| yq eval -P'
-#alias -g @yaml='| yq eval -P'
-#alias -g @json='| jq'
+alias ylint='yamllint'
+# alias y='yq eval -C'
+type yq > /dev/null && alias yq='yq -C'
+alias -g @yml='| yq eval -P'
+alias -g @yaml='| yq eval -P'
+alias -g @json='| jq'
 
 #alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
 
@@ -223,6 +223,14 @@ fde(){ fd . -e ${1} ${2} }
 #mcddpls(){
 #mc ls cosddp/dev-ai-staging/${1}
 #}
+
+go-to-local-bin(){
+sudo mv $1 /usr/local/bin/$1
+}
+
+go-to-completions(){
+sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
+}
 
 mcdmls(){
 mc ls dm/${1}
