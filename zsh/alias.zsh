@@ -171,17 +171,17 @@ alias lst="ls -tr"
 #alias lk='lookatme'
 
 # openshift oc
-alias ocaf='oc apply -f'
-alias occf='oc create -f'
-alias occs='oc create secret'
-alias ocd='oc describe'
-alias ocgd='oc get deployments'
-alias ocgn='oc get nodes'
-alias ocgp='oc get pods'
-alias ocgs='oc get secrets'
-alias ocl='oc logs'
-alias oclf='oc logs --follow'
-alias ocrf='oc replace --force -f'
+#alias ocaf='oc apply -f'
+#alias occf='oc create -f'
+#alias occs='oc create secret'
+#alias ocd='oc describe'
+#alias ocgd='oc get deployments'
+#alias ocgn='oc get nodes'
+#alias ocgp='oc get pods'
+#alias ocgs='oc get secrets'
+#alias ocl='oc logs'
+#alias oclf='oc logs --follow'
+#alias ocrf='oc replace --force -f'
 
 # tekton
 alias tknhs='tkn hub search'
@@ -309,3 +309,5 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+cdl() { cd "$@" && ll; }

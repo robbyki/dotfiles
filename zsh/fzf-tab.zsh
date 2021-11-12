@@ -1,3 +1,4 @@
+enable-fzf-tab
 setopt glob_dots
 zstyle ':completion:*' special-dirs true
 # zinit light ~/projects/forks/fzf-tab

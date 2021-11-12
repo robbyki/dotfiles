@@ -10,10 +10,7 @@
 
 ## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 ##[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#
 
-export ZSH="/home/robbyk/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -77,8 +74,7 @@ zstyle :prompt:pure:git:stash show yes
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
 
 plugins=(
-#  minikube
-#  docker
+  oc
   git 
   zsh-autosuggestions 
   zsh-syntax-highlighting 
@@ -90,12 +86,9 @@ plugins=(
   fzf 
   fzf-zsh-plugin
   jfrog 
-#  kubectl
   alias-tips
   tmux
 )
-
-source $ZSH/oh-my-zsh.sh
 
 function options() {
     PLUGIN_PATH="$HOME/.oh-my-zsh/plugins/"
@@ -116,13 +109,21 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # I like listing things after I cd
-cdl() { cd "$@" && ll; }
 
 # I had to do this to fix weird timeouts I was having with my tmux client auto terminating
 export TMOUT=0
 
 export BAT_THEME="OneHalfDark"
 
+# FZF Configuration
+export FZF_TMUX_OPTS="-p 85%,65%"
+export FZF_BASE="$HOME/.fzf"
+export FZF_DEFAULT_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview '(bat --style=numbers --color=always {} || cat {} || tree -NC {}) 2> /dev/null | head -200'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --exact"
+export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
+export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
 
 # ctrl-O to open a file with fzf into nvim
 fzf_then_open_in_editor() {
@@ -149,40 +150,34 @@ fzf-open-file-current-dir() {
 zle     -N   fzf-open-file-current-dir
 bindkey '^P' fzf-open-file-current-dir
 
-fpath=($HOME/.local/share/zsh/completions $fpath)
+export ZSH="/home/robbyk/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(
+  git
+  zsh-autosuggestions 
+  zsh-syntax-highlighting 
+  dnf 
+  bgnotify 
+  fzf-tab 
+  vscode 
+  zsh-256color 
+  fzf 
+  fzf-zsh-plugin
+  jfrog 
+  alias-tips
+  tmux
+)
 
-# autocompletions
-complete -o nospace -C /usr/local/bin/mc mc
-source $(dirname $(gem which colorls))/tab_complete.sh
-source ~/.fzf/shell/completion.zsh
-source $HOME/.config/broot/launcher/bash/br
-#source <(kubectl completion zsh)
-#source /usr/local/IBM_Cloud_CLI/autocomplete/zsh_autocomplete
-#source <(tkn completion zsh)
-#source <(minikube completion zsh)
-#complete -o nospace -C /usr/local/bin/odo odo
-#compdef kubecolor=kubectl
-
-# FZF Configuration
-export FZF_TMUX_OPTS="-p 85%,65%"
-export FZF_BASE="$HOME/.fzf"
-export FZF_DEFAULT_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview '(bat --style=numbers --color=always {} || cat {} || tree -NC {}) 2> /dev/null | head -200'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --exact"
-export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
-export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
+source $ZSH/oh-my-zsh.sh
+autoload -U compinit && compinit
+source <(oc completion zsh)
+source <(kubectl completion zsh)
+source <(tkn completion zsh)
 
 enable-fzf-tab
 
 z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
 
-autoload -U +X bashcompinit && bashcompinit
-autoload -U compinit && compinit
-compinit -i
-
 bindkey -s "^[o" 'lfcd\n'
 bindkey '^ ' autosuggest-accept
 bindkey -a '^ ' autosuggest-accept
-
-source <(oc completion zsh)
