@@ -10,6 +10,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 source $HOME/dev/git-projects/enhancd/init.sh
+export DOTFILES="$HOME/.dotfiles"
 export ENHANCD_FILTER=fzf
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
 setopt appendhistory
@@ -49,7 +50,6 @@ PATH=$PATH:${HOME}/.config/rofi/bin
 PATH=$PATH:${HOME}/node_modules/.bin
 export PATH
 export GOPATH=${HOME}/go
-DOTFILES="$HOME/.dotfiles"
 zle_highlight+=(paste:none)
 zstyle :prompt:pure:git:stash show yes
 pasteinit() {
@@ -102,3 +102,6 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
+
+export DOTFILES="$HOME/.dotfiles"
+

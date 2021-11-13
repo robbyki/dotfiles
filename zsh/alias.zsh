@@ -1,4 +1,6 @@
 # Quick files
+export EDITOR="/usr/local/bin/nvim"
+export DOTFILES="$HOME/.dotfiles"
 alias zshconfig="$EDITOR $DOTFILES/zsh/.zshrc"
 alias aliasconfig="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabconfig="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
