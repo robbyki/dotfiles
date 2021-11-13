@@ -204,7 +204,7 @@ alias -g @json='| jq'
 
 #alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
 
-unalias grv
+#unalias grv
 
 timezsh() {
   shell=${1-$SHELL}

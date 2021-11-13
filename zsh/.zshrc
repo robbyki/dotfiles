@@ -1,31 +1,18 @@
-#figlet "do not go gentle into that good night"
-#motivate
-#neofetch
-
-##[[ $TMUX = "" ]] && export TERM="xterm-256color"
-
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+export ZSH="/home/robbyk/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting dnf vscode jfrog tmux alias-tips zsh-256color oc fzf-tab)
+autoload -U compinit && compinit
+source <(kubectl completion zsh)
+source <(tkn completion zsh)
+source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-zstyle ':omz:update' mode auto      # update automatically without asking
-
-setopt appendhistory
-setopt INC_APPEND_HISTORY        
-setopt nobeep
-
 source $HOME/dev/git-projects/enhancd/init.sh
 export ENHANCD_FILTER=fzf
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
+setopt appendhistory
 export HISTFILESIZE=
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
@@ -45,7 +32,6 @@ export IBMCLOUD_TRACE=false
 export IBMCLOUD_HOME=/usr/local/IBM_Cloud_CLI
 export IBMCLOUD_COLOR=true
 export GO_HOME=$HOME/go
-
 PATH=$PATH:/opt
 PATH=$PATH:/opt/bin
 PATH=$PATH:/usr/bin/local
@@ -62,68 +48,23 @@ PATH=$PATH:${HOME}/.config/yarn/global/node_modules/.bin
 PATH=$PATH:${HOME}/.config/rofi/bin
 PATH=$PATH:${HOME}/node_modules/.bin
 export PATH
-
 export GOPATH=${HOME}/go
-
 DOTFILES="$HOME/.dotfiles"
-
 zle_highlight+=(paste:none)
 zstyle :prompt:pure:git:stash show yes
-
-export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
-
-plugins=(
-  oc
-  git 
-  zsh-autosuggestions 
-  zsh-syntax-highlighting 
-  dnf 
-  bgnotify 
-  fzf-tab 
-  vscode 
-  zsh-256color 
-  fzf 
-  fzf-zsh-plugin
-  jfrog 
-  alias-tips
-  tmux
-)
-
-function options() {
-    PLUGIN_PATH="$HOME/.oh-my-zsh/plugins/"
-    for plugin in $plugins; do
-        echo "\n\nPlugin: $plugin"; grep -r "^function \w*" $PLUGIN_PATH$plugin | awk '{print $2}' | sed 's/()//'| tr '\n' ', '; grep -r "^alias" $PLUGIN_PATH$plugin | awk '{print $2}' | sed 's/=.*//' |  tr '\n' ', '
-    done
-}
-
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
   zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
 }
-
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
-
-# I like listing things after I cd
-
+z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
 # I had to do this to fix weird timeouts I was having with my tmux client auto terminating
 export TMOUT=0
-
 export BAT_THEME="OneHalfDark"
-
-# FZF Configuration
-export FZF_TMUX_OPTS="-p 85%,65%"
-export FZF_BASE="$HOME/.fzf"
-export FZF_DEFAULT_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview '(bat --style=numbers --color=always {} || cat {} || tree -NC {}) 2> /dev/null | head -200'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --exact"
-export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
-export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
-
 # ctrl-O to open a file with fzf into nvim
 fzf_then_open_in_editor() {
     file="$(__fsel)"
@@ -134,8 +75,6 @@ fzf_then_open_in_editor() {
     zle accept-line
 }
 zle -N fzf_then_open_in_editor
-bindkey "^O" fzf_then_open_in_editor
-
 fzf-open-file-current-dir() {
   local cmd="fd -tf -HL --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
   local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
@@ -146,37 +85,20 @@ fzf-open-file-current-dir() {
     zle reset-prompt
   fi
 }
-zle     -N   fzf-open-file-current-dir
-bindkey '^P' fzf-open-file-current-dir
-
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(
-  git
-  zsh-autosuggestions 
-  zsh-syntax-highlighting 
-  dnf 
-  bgnotify 
-  fzf-tab 
-  vscode 
-  zsh-256color 
-  fzf 
-  fzf-zsh-plugin
-  jfrog 
-  alias-tips
-  tmux
-)
-
-source $ZSH/oh-my-zsh.sh
-autoload -U compinit && compinit
-source <(oc completion zsh)
-source <(kubectl completion zsh)
-source <(tkn completion zsh)
-
-enable-fzf-tab
-
-z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
-
+zle -N fzf-open-file-current-dir
 bindkey -s "^[o" 'lfcd\n'
 bindkey '^ ' autosuggest-accept
 bindkey -a '^ ' autosuggest-accept
+bindkey "^O" fzf_then_open_in_editor
+bindkey '^P' fzf-open-file-current-dir
+# FZF Configuration
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_TMUX_OPTS="-p 85%,65%"
+export FZF_BASE="$HOME/.fzf"
+export FZF_DEFAULT_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always --line-range :500 {}" --ansi --height 60% --layout=reverse --border'
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'  --preview-window=up:40%"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
+export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
