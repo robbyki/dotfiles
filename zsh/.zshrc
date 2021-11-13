@@ -1,10 +1,11 @@
 export ZSH="/home/robbyk/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting dnf vscode jfrog tmux alias-tips zsh-256color oc fzf-tab)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting dnf vscode jfrog tmux alias-tips zsh-256color fzf-tab)
 autoload -U compinit && compinit
 source <(kubectl completion zsh)
 source <(tkn completion zsh)
+source <(oc completion zsh)
 source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -104,4 +105,4 @@ export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
 
 export DOTFILES="$HOME/.dotfiles"
-
+#compdef kubecolor=kubectl
