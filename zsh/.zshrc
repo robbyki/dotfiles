@@ -1,7 +1,7 @@
-export ZSH="/home/robbyk/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting dnf vscode jfrog tmux alias-tips zsh-256color fzf-tab)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting dnf vscode jfrog tmux alias-tips zsh-256color fzf-tab zsh-secrets)
 autoload -U compinit && compinit
 source <(kubectl completion zsh)
 source <(tkn completion zsh)
@@ -16,15 +16,15 @@ export ENHANCD_FILTER=fzf
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
 export HISTFILESIZE=
 export HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt share_history appendhistory inc_append_history hist_ignore_space hist_ignore_all_dups hist_reduce_blanks extended_history
 HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
 HISTCONTROL='ignoreboth';
 export VISUAL="/usr/local/bin/nvim"
 export EDITOR="/usr/local/bin/nvim"
 export SUDO_EDITOR="/usr/local/bin/nvim"
-#export MYVIMRC=$HOME/.config/nvim/init.lua
+export MYVIMRC=$HOME/.config/nvim/init.lua
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
@@ -79,7 +79,7 @@ fzf_then_open_in_editor() {
 }
 zle -N fzf_then_open_in_editor
 fzf-open-file-current-dir() {
-  local cmd="fd -tf -HL --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
+  local cmd="fd -tf -HL --no-ignore --exclude={'.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
   local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
   if [ -f "$out" ]; then
     $EDITOR "$out" < /dev/tty
@@ -106,5 +106,4 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
 export DOTFILES="$HOME/.dotfiles"
-
-source /home/robbyk/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br

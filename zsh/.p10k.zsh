@@ -74,6 +74,7 @@
     public_ip             # public IP address
     ip                    # ip address and bandwidth usage for a specified network interface
     kubecontext
+    prompt_secrets
 
     # proxy                 # system-wide http/https/ftp proxy
     # battery               # internal battery
@@ -179,6 +180,12 @@
     # End filler on the edge of the screen if there are no right segments on the first line.
     typeset -g POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='%{%}'
   fi
+
+  function prompt_secrets() {
+  if [[ -n "$SESSION_SECRETS" ]]; then
+    p10k segment -f 3 -t "🔒"
+  fi
+  }
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.

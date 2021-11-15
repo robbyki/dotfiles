@@ -1,6 +1,7 @@
 # Quick files
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
+
 alias zshconfig="$EDITOR $DOTFILES/zsh/.zshrc"
 alias aliasconfig="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabconfig="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
@@ -11,10 +12,8 @@ alias tmuxconfig="$EDITOR $DOTFILES/tmux/.tmux.conf"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
-#alias i3config="$EDITOR $DOTFILES/i3/.config/i3/config"
-#alias appconf="$EDITOR src/main/resources/application.conf"
 alias rkeeweb='copy ~/Documents/notes/webex-rkee.txt'
-#alias util='cdl $HOME/dev/git-projects/aide-utilities'
+alias util='cdl $HOME/dev/git-projects/aide-utilities'
 alias temp='cdl $HOME/dev/git-projects/aide-template/'
 alias nv='cdl $HOME/.dotfiles/nvim'
 alias dev='cdl $HOME/dev/'
@@ -24,6 +23,7 @@ alias downloads="cdl ~/Downloads"
 #alias -s {md,markdown}='glow' # I have no idea what this does
 
 # system
+alias ssibm='secrets source ibm-secrets'
 alias tarx='tar xvzf'
 alias t='tmux'
 alias am='alsamixer'
@@ -35,6 +35,8 @@ alias cls='clear'
 alias copy='xclip -sel c <'
 alias fp='flatpak'
 alias hg='history | grep'
+alias envg='env | grep'
+alias h='`history | sed "s/^ *[^ ]* *//" | sort | uniq | fzf`'
 alias mkdir='mkdir -pv'
 alias mv='mv -iv'
 alias mytemp='curl wttr.in'
@@ -50,7 +52,6 @@ alias sus="systemctl suspend"
 alias hib="systemctl hibernate"
 alias off="systemctl poweroff"
 alias reb="systemctl reboot"
-alias h='`history | sed "s/^ *[^ ]* *//" | sort | uniq | fzf`'
 
 # argo
 #alias acc='argo cron create'
@@ -82,12 +83,13 @@ alias blrv='bloop run --verbose'
 
 # scala
 alias fix="scalafix"
-#alias fmt="scalafmt"
+alias fmt="scalafmt"
 alias sbi='sbt -Dbloop.export-jar-classifiers=sources bloopInstall'
 alias bb="$EDITOR build.sbt"
 alias bd="$EDITOR project/Dependencies.scala"
 alias bp="$EDITOR project/plugins.sbt"
 alias refconf="$EDITOR src/main/resources/reference.conf"
+alias appconf="$EDITOR src/main/resources/application.conf"
 
 # finders
 alias fa='find-alias'
@@ -102,16 +104,17 @@ alias lg='lazygit'
 alias rvwt='gh rvwt 2>/dev/null'
 alias rvwu='gh rvwu 2>/dev/null'
 
-#alias glow='glow -p'
+alias glow='glow -p'
 
 # cloud
 #alias ic='ibmcloud'
 #alias iccr-rm='ic cr image-rm'
 
 # artifactory
-#alias jfdls="jfrog rt search \"txo-aide-team-cio-docker-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
-#alias jfmls="jfrog rt search \"txo-aide-team-cio-maven-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
-#alias jfsls="jfrog rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
+alias jf=jfrog
+alias jfdls="jfrog rt search \"txo-aide-team-cio-docker-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
+alias jfmls="jfrog rt search \"txo-aide-team-cio-maven-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
+alias jfsls="jfrog rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 
 # k8s
 #alias kubectl=kubecolor
@@ -135,7 +138,7 @@ alias kx='kubectx'
 alias mk='minikube'
 
 # containers
-#alias docker=podman
+alias docker=podman
 alias pcls='podman container ls'
 alias pd=podman
 alias pi='podman images'
@@ -144,11 +147,10 @@ alias ppull='podman pull'
 alias prc='podman rm $(podman ps -aq)'
 alias prmi='podman images -q | xargs podman rmi'
 #alias psc='podman stop $(docker ps -aq)'
-#alias di='docker images'
-#alias docker='/usr/bin/docker'
-#alias drmi='docker images -q | xargs docker rmi'
-#alias drmif='docker rmi --force $(docker images -q)'
-#alias docker-reset='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+alias di='docker images'
+alias drmi='docker images -q | xargs docker rmi'
+alias drmif='docker rmi --force $(docker images -q)'
+alias docker-reset='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias lzd='lazydocker'
 
 # keepassxc

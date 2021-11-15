@@ -75,46 +75,46 @@
 #  *) git log --color=always $word ;;
 #  esac'
 
-enable-fzf-tab
-setopt glob_dots
-zstyle ':completion:*' special-dirs true
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags '--preview-window=down:3:wrap'
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[[ $group == "[process ID]" ]] && ps -p $word -o comm="" -w -w'
-zstyle ':fzf-tab:complete:kill:*' popup-pad 0 3
-zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'r=$realpath; ([[ -f $r ]] && bat --style=numbers --color=always $r) || ([[ -d $r ]] && tree -C $r | less) || (echo $r 2> /dev/null | head -200)'
-zstyle ':fzf-tab:complete:nvim:argument-rest' fzf-flags '--preview-window=nohidden,right:50%:wrap'
-zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-preview "git --git-dir=$UPDATELOCAL_GITDIR/\${word}/.git log --color --date=short --pretty=format:'%Cgreen%cd %h %Creset%s %Cred%d%Creset ||%b' ..FETCH_HEAD 2>/dev/null"
-zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-flags '--preview-window=down:5:wrap'
-#zstyle ':fzf-tab:complete:(exa|cd):*' popup-pad 30 0
-zstyle ':fzf-tab:*' popup-pad 60 0
-zstyle ':fzf-tab:complete:(exa|cd|cd_):*' fzf-flags '--preview-window=nohidden,right:60%:wrap'
-zstyle ':fzf-tab:complete:(exa|cd|cd_):*' fzf-preview '[[ -d $realpath ]] && exa -T --color=always $(readlink -f $realpath)'
-zstyle ':fzf-tab:complete:(cp|rm|mv|bat):argument-rest' fzf-preview 'r=$(readlink -f $realpath); bat --color=always -- $r || exa --color=always -- $r'
-zstyle ':fzf-tab:*' fzf-bindings 'enter:accept,backward-eof:abort'   # enter as accept, abort deleting empty
-zstyle ':fzf-tab:*' print-query ctrl-c        # use input as result when ctrl-c
-zstyle ':fzf-tab:*' accept-line space         # accept selected entry on space
-zstyle ':fzf-tab:*' prefix ''                 # no dot prefix
-zstyle ':fzf-tab:*' switch-group ',' '.'      # switch between header groups
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-# zstyle ':fzf-tab:*' single-group color header # single header is shown
-zstyle ':fzf-tab:*' fzf-pad 4                 # increased because of fzf border
-# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' use-cache true
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' completer _complete _match _list _ignored _correct _approximate
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' ignore-parents parent pwd
-zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
-zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
-zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-zstyle ':completion:*:git-checkout:*' sort false
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*:exa' file-sort modification
-zstyle ':completion:*:exa' sort false
-zstyle ':completion:*:manuals' separate-sections true
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+#enable-fzf-tab
+#setopt glob_dots
+#zstyle ':completion:*' special-dirs true
+#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+#zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags '--preview-window=down:3:wrap'
+#zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[[ $group == "[process ID]" ]] && ps -p $word -o comm="" -w -w'
+#zstyle ':fzf-tab:complete:kill:*' popup-pad 0 3
+#zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'r=$realpath; ([[ -f $r ]] && bat --style=numbers --color=always $r) || ([[ -d $r ]] && tree -C $r | less) || (echo $r 2> /dev/null | head -200)'
+#zstyle ':fzf-tab:complete:nvim:argument-rest' fzf-flags '--preview-window=nohidden,right:50%:wrap'
+#zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-preview "git --git-dir=$UPDATELOCAL_GITDIR/\${word}/.git log --color --date=short --pretty=format:'%Cgreen%cd %h %Creset%s %Cred%d%Creset ||%b' ..FETCH_HEAD 2>/dev/null"
+#zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-flags '--preview-window=down:5:wrap'
+##zstyle ':fzf-tab:complete:(exa|cd):*' popup-pad 30 0
+#zstyle ':fzf-tab:*' popup-pad 60 0
+#zstyle ':fzf-tab:complete:(exa|cd|cd_):*' fzf-flags '--preview-window=nohidden,right:60%:wrap'
+#zstyle ':fzf-tab:complete:(exa|cd|cd_):*' fzf-preview '[[ -d $realpath ]] && exa -T --color=always $(readlink -f $realpath)'
+#zstyle ':fzf-tab:complete:(cp|rm|mv|bat):argument-rest' fzf-preview 'r=$(readlink -f $realpath); bat --color=always -- $r || exa --color=always -- $r'
+#zstyle ':fzf-tab:*' fzf-bindings 'enter:accept,backward-eof:abort'   # enter as accept, abort deleting empty
+#zstyle ':fzf-tab:*' print-query ctrl-c        # use input as result when ctrl-c
+#zstyle ':fzf-tab:*' accept-line space         # accept selected entry on space
+#zstyle ':fzf-tab:*' prefix ''                 # no dot prefix
+#zstyle ':fzf-tab:*' switch-group ',' '.'      # switch between header groups
+#zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+## zstyle ':fzf-tab:*' single-group color header # single header is shown
+#zstyle ':fzf-tab:*' fzf-pad 4                 # increased because of fzf border
+## zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*' use-cache true
+#zstyle ':completion:*' verbose yes
+#zstyle ':completion:*' accept-exact '*(N)'
+#zstyle ':completion:*' completer _complete _match _list _ignored _correct _approximate
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+#zstyle ':completion:*' ignore-parents parent pwd
+#zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
+#zstyle ':completion:*:match:*' original only
+#zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+#zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+#zstyle ':completion:*:git-checkout:*' sort false
+#zstyle ':completion:*:descriptions' format '[%d]'
+#zstyle ':completion:*:exa' file-sort modification
+#zstyle ':completion:*:exa' sort false
+#zstyle ':completion:*:manuals' separate-sections true
+#zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
+#zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
