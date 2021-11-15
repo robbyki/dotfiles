@@ -14,11 +14,13 @@ source $HOME/dev/git-projects/enhancd/init.sh
 export DOTFILES="$HOME/.dotfiles"
 export ENHANCD_FILTER=fzf
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
-setopt appendhistory
 export HISTFILESIZE=
 export HISTFILE=~/.zsh_history
-export HISTSIZE=1000000
-export SAVEHIST=1000000
+HISTSIZE=10000
+SAVEHIST=10000
+setopt share_history appendhistory inc_append_history hist_ignore_space hist_ignore_all_dups hist_reduce_blanks extended_history
+HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
+HISTCONTROL='ignoreboth';
 export VISUAL="/usr/local/bin/nvim"
 export EDITOR="/usr/local/bin/nvim"
 export SUDO_EDITOR="/usr/local/bin/nvim"
@@ -27,7 +29,7 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
 #export MVN_HOME=/usr/local/apache-maven-3.6.3
-#export STEWARD_DIR=$HOME/dev/scala-steward/
+export STEWARD_DIR=$HOME/dev/scala-steward/
 export GH_HOST=github.ibm.com
 export GH_EDITOR=/usr/local/bin/nvim
 export IBMCLOUD_TRACE=false
@@ -90,7 +92,7 @@ zle -N fzf-open-file-current-dir
 bindkey -s "^[o" 'lfcd\n'
 bindkey '^ ' autosuggest-accept
 bindkey -a '^ ' autosuggest-accept
-bindkey "^O" fzf_then_open_in_editor
+bindkey '^O' fzf_then_open_in_editor
 bindkey '^P' fzf-open-file-current-dir
 # FZF Configuration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -103,6 +105,6 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
-
 export DOTFILES="$HOME/.dotfiles"
-#compdef kubecolor=kubectl
+
+source /home/robbyk/.config/broot/launcher/bash/br

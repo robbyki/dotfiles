@@ -4,17 +4,6 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
-  "vim.insertModeKeyBindings": [
-    {
-      "before": [
-        "j",
-        "j"
-      ],
-      "after": [
-        "<Esc>"
-      ]
-    }
-  ],
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.duration": 200,
   "vim.highlightedyank.color": "#f1fa8c",
@@ -41,9 +30,17 @@
   ],
   "vim.leader": ",",
   "vim.handleKeys": {
+    "<C-w>": false,
     "<C-a>": false,
     "<C-f>": true
   },
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.settings.editor": "json",
+  "window.zoomLevel": 2,
+  "editor.fontFamily": "Operator Mono SSm Lig Book",
+  "terminal.integrated.fontFamily": "Operator Mono SSm Lig Book",
+  "editor.fontLigatures": true,
+  "security.workspace.trust.untrustedFiles": "open",
   "yaml.format.enable": true,
   "yaml.schemaStore.enable": true,
   "yaml.completion": true,
@@ -80,6 +77,7 @@
     "**/.fdk/**": true,
     "**/.ammonite": true
   },
+  "redhat.telemetry.enabled": true,
   "files.exclude": {
     "**/.bloop": false,
     "**/.git/objects/**": true,
@@ -115,6 +113,8 @@
     "**/.bloop/**": true,
     "**/.metals/**": true
   },
+  "tabnine.experimentalAutoImports": true,
+  "workbench.iconTheme": "vscode-icons",
   "metals.sbtScript": "/usr/bin/sbt",
   "metals.serverVersion": "0.10.9",
   "metals.javaHome": "/usr/lib/jvm/java-11-openjdk",
@@ -147,7 +147,7 @@
       }
     }
   ],
-  "github-enterprise.uri": "https://github.ibm.com",
+  "github-enterprise.uri": "https://github.ibm.com/api/v3",
   "githubIssues.queries": [
     {
       "label": "My Issues",
@@ -161,15 +161,12 @@
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
-  "gist.defaultPrivate": true,
   "editor.tabSize": 2,
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "off",
   "editor.rulers": [
     100
   ],
-  "editor.fontFamily": "Operator Mono SSm Book",
-  "editor.fontLigatures": true,
   "editor.renderControlCharacters": true,
   "editor.minimap.scale": 2,
   "editor.detectIndentation": true,
@@ -210,7 +207,7 @@
   },
   "[Log]": {
     "editor.fontSize": 12,
-    "editor.fontFamily": "Operator Mono SSm Book",
+    "editor.fontFamily": "Operator Mono SSm Lig Book",
     "editor.wordWrap": "off"
   },
   "[jsonc]": {
@@ -221,19 +218,15 @@
   "workbench.editor.decorations.badges": true,
   "workbench.editor.decorations.colors": true,
   "workbench.editor.showTabs": true,
-  "workbench.settings.editor": "json",
-  "workbench.iconTheme": "material-icon-theme",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.inheritEnv": true,
-  // "terminal.integrated.fontFamily": "MesloLGS NF",
-  "terminal.integrated.fontFamily": "Operator Mono SSm Book",
-  "terminal.integrated.defaultProfile.linux": "tmux",
   "terminal.explorerKind": "external",
+  "terminal.integrated.defaultProfile.linux": "tmux",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.sendKeybindingsToShell": true,
   "terminal.external.linuxExec": "alacritty",
   "terminal.integrated.fontSize": 12,
-  "debug.console.fontFamily": "Operator Mono SSm Book",
+  "debug.console.fontFamily": "Operator Mono SSm Lig Book",
   "debug.console.wordWrap": false,
   "debug.console.fontSize": 12,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -247,39 +240,10 @@
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   "output.smartScroll.enabled": true,
-  // "maven.executable.path": "/usr/local/apache-maven-3.6.3/bin/mvn",
-  // "maven.terminal.useJavaHome": true,
-  // "open-in-browser.default": "Chrome",
-  // "todo-tree.regex.regex": "(//|#|<!--|;|/?\\*|^)\\s*($TAGS)",
-  // "todo-tree.general.tags": [
-  //   "todo",
-  //   "TODO",
-  //   "FIXME"
-  // ],
-  "telemetry.telemetryLevel": "all",
   "rewrap.wrappingColumn": 80,
-  "redhat.telemetry.enabled": true,
-  "vsicons.dontShowNewVersionMessage": true,
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  // "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
-  // "vscode-neovim.neovimInitVimPaths.linux": "/home/robbyk/.dotfiles/nvim/init.lua",
-  "tabnine.experimentalAutoImports": true,
-  "vs-kubernetes": {
-    "vscode-kubernetes.minikube-path.linux": "$HOME/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
-  },
-  "projectManager.git.baseFolders": [
-    "~/dev/git-projects/"
-  ],
-  "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
-  "openshiftConnector.crcBinaryLocation": "/usr/local/bin/crc",
-  "openshiftConnector.crcPullSecretPath": "$HOME/Documents/openshift/pull-secret.txt",
-  "openshiftConnector.searchForToolsInPath": true,
-  "vscode-kubernetes.helm-path.linux": "/usr/local/bin/helm",
-  "vscode-kubernetes.minikube-path.linux": "/usr/local/bin/minikube",
-  "vscode-kubernetes.kubectl-path": "/usr/local/bin/kubectl",
-  "window.zoomLevel": 2,
   "go.toolsManagement.autoUpdate": true,
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
@@ -288,9 +252,6 @@
     "plaintext": false,
     "markdown": true
   },
-  "workbench.colorTheme": "One Dark Pro Darker",
-  "vim.enableNeovim": true,
-  "editor.minimap.enabled": false,
-  "workbench.editor.untitled.hint": "hidden",
-  "files.defaultLanguage": "markdown"
+  "files.defaultLanguage": "markdown",
+  "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl"
 }

@@ -13,13 +13,9 @@ alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 #alias i3config="$EDITOR $DOTFILES/i3/.config/i3/config"
 #alias appconf="$EDITOR src/main/resources/application.conf"
-#alias bb="$EDITOR build.sbt"
-#alias bd="$EDITOR project/Dependencies.scala"
-#alias bp="$EDITOR project/plugins.sbt"
-#alias refconf="$EDITOR src/main/resources/reference.conf"
-#alias rkeeweb='copy ~/Documents/notes/webex-rkee.txt'
+alias rkeeweb='copy ~/Documents/notes/webex-rkee.txt'
 #alias util='cdl $HOME/dev/git-projects/aide-utilities'
-#alias temp='cdl $HOME/dev/git-projects/aide-template/'
+alias temp='cdl $HOME/dev/git-projects/aide-template/'
 alias nv='cdl $HOME/.dotfiles/nvim'
 alias dev='cdl $HOME/dev/'
 alias dots="cdl $DOTFILES"
@@ -73,21 +69,25 @@ alias h='`history | sed "s/^ *[^ ]* *//" | sort | uniq | fzf`'
 #alias aw='argo watch'
 
 # bloop
-#alias bl='bloop'
-#alias blc='bloop compile'
-#alias blcr='bloop compile root --verbose'
-#alias blcv='bloop compile --verbose'
-#alias bld='buildah'
-#alias blp='bloop projects'
-#alias blrd='bloop run root -m com.ibm.cio.DemoCos'
-#alias blrm='bloop run root -m'
-#alias blrr='bloop run root'
-#alias blrv='bloop run --verbose'
+alias bl='bloop'
+alias blc='bloop compile'
+alias blcr='bloop compile root --verbose'
+alias blcv='bloop compile --verbose'
+alias bld='buildah'
+alias blp='bloop projects'
+alias blrd='bloop run root -m com.ibm.cio.DemoCos'
+alias blrm='bloop run root -m'
+alias blrr='bloop run root'
+alias blrv='bloop run --verbose'
 
 # scala
-#alias fix="scalafix"
+alias fix="scalafix"
 #alias fmt="scalafmt"
-#alias sbi='sbt -Dbloop.export-jar-classifiers=sources bloopInstall'
+alias sbi='sbt -Dbloop.export-jar-classifiers=sources bloopInstall'
+alias bb="$EDITOR build.sbt"
+alias bd="$EDITOR project/Dependencies.scala"
+alias bp="$EDITOR project/plugins.sbt"
+alias refconf="$EDITOR src/main/resources/reference.conf"
 
 # finders
 alias fa='find-alias'
@@ -136,20 +136,20 @@ alias mk='minikube'
 
 # containers
 #alias docker=podman
-#alias pcls='podman container ls'
-#alias pd=podman
-#alias pi='podman images'
-#alias pprune='podman system prune --all --force'
-#alias ppull='podman pull'
-#alias prc='podman rm $(podman ps -aq)'
-#alias prmi='podman images -q | xargs podman rmi'
+alias pcls='podman container ls'
+alias pd=podman
+alias pi='podman images'
+alias pprune='podman system prune --all --force'
+alias ppull='podman pull'
+alias prc='podman rm $(podman ps -aq)'
+alias prmi='podman images -q | xargs podman rmi'
 #alias psc='podman stop $(docker ps -aq)'
 #alias di='docker images'
 #alias docker='/usr/bin/docker'
 #alias drmi='docker images -q | xargs docker rmi'
 #alias drmif='docker rmi --force $(docker images -q)'
 #alias docker-reset='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
-#alias lzd='lazydocker'
+alias lzd='lazydocker'
 
 # keepassxc
 alias kpass='/usr/bin/keepassxc-cli'
@@ -175,17 +175,17 @@ alias lst="ls -tr"
 #alias lk='lookatme'
 
 # openshift oc
-#alias ocaf='oc apply -f'
-#alias occf='oc create -f'
-#alias occs='oc create secret'
-#alias ocd='oc describe'
-#alias ocgd='oc get deployments'
-#alias ocgn='oc get nodes'
-#alias ocgp='oc get pods'
-#alias ocgs='oc get secrets'
-#alias ocl='oc logs'
-#alias oclf='oc logs --follow'
-#alias ocrf='oc replace --force -f'
+alias ocaf='oc apply -f'
+alias occf='oc create -f'
+alias occs='oc create secret'
+alias ocd='oc describe'
+alias ocgd='oc get deployments'
+alias ocgn='oc get nodes'
+alias ocgp='oc get pods'
+alias ocgs='oc get secrets'
+alias ocl='oc logs'
+alias oclf='oc logs --follow'
+alias ocrf='oc replace --force -f'
 
 # tekton
 alias tknhs='tkn hub search'
@@ -274,14 +274,14 @@ function gclonecd {
 }
 
 ## colorize oc commands
-#ocy() {
-#  oc --output yaml $@ | yq eval --colors 
-#}
-#
-#occ() {
-#  oc $@ | yq eval --colors -P
-#}
-#
+ocy() {
+  oc --output yaml $@ | yq eval --colors 
+}
+
+occ() {
+  oc $@ | yq eval --colors -P
+}
+
 #lfcd
 LFCD="$HOME/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
