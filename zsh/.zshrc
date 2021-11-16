@@ -6,11 +6,12 @@ autoload -U compinit && compinit
 source <(kubectl completion zsh)
 source <(tkn completion zsh)
 source <(oc completion zsh)
+source $ZSH/completions/bash_autocomplete
 source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-source $HOME/dev/git-projects/enhancd/init.sh
+source $HOME/dev/enhancd/init.sh
 export DOTFILES="$HOME/.dotfiles"
 export ENHANCD_FILTER=fzf
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
@@ -18,7 +19,19 @@ export HISTFILESIZE=
 export HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
-setopt share_history appendhistory inc_append_history hist_ignore_space hist_ignore_all_dups hist_reduce_blanks extended_history
+setopt bang_hist              # Treat the '!' character specially during expansion
+setopt inc_append_history     # Write to the history file immediately, not when the shell exits
+setopt share_history          # Share history between all sessions
+setopt hist_expire_dups_first # Expire a duplicate event first when trimming history
+setopt hist_ignore_dups       # Do not record an event that was just recorded again
+setopt hist_ignore_all_dups   # Delete an old recorded event if a new event is a duplicate
+setopt hist_find_no_dups      # Do not display a previously found event
+setopt hist_ignore_space      # Do not record an event starting with a space
+setopt hist_reduce_blanks     # Remove superfluous blanks from commands added to history
+setopt hist_save_no_dups      # Do not write a duplicate event to the history file
+setopt hist_verify            # Do not execute immediately upon history expansion
+setopt extended_history       # Show timestamp in history
+zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # Do not store failed commands to history
 HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
 HISTCONTROL='ignoreboth';
 export VISUAL="/usr/local/bin/nvim"
@@ -33,8 +46,9 @@ export STEWARD_DIR=$HOME/dev/scala-steward/
 export GH_HOST=github.ibm.com
 export GH_EDITOR=/usr/local/bin/nvim
 export IBMCLOUD_TRACE=false
-export IBMCLOUD_HOME=/usr/local/IBM_Cloud_CLI
 export IBMCLOUD_COLOR=true
+export IBMCLOUD_VERSION_CHECK=true
+# export IBMCLOUD_HOME=/usr/local/IBM_Cloud_CLI
 export GO_HOME=$HOME/go
 PATH=$PATH:/opt
 PATH=$PATH:/opt/bin
@@ -45,7 +59,7 @@ PATH=$PATH:${JAVA_HOME}/bin
 PATH=$PATH:${MVN_HOME}/bin
 PATH=$PATH:${GIT_HOME}/bin
 PATH=$PATH:${GO_HOME}/bin
-PATH=$PATH:${IBMCLOUD_HOME}
+# PATH=$PATH:${IBMCLOUD_HOME}
 PATH=$PATH:${HOME}/tools/lua-language-server/bin/Linux
 PATH=$PATH:${HOME}/.yarn/bin
 PATH=$PATH:${HOME}/.config/yarn/global/node_modules/.bin
@@ -107,3 +121,10 @@ export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
 export DOTFILES="$HOME/.dotfiles"
 source $HOME/.config/broot/launcher/bash/br
+autoload -U +X bashcompinit && bashcompinit
+#export number of processors on linux
+if [ -f /proc/cpuinfo ]; then
+	export NUM_OF_CORES=$(grep processor /proc/cpuinfo | wc -l)
+else
+	export NUM_OF_CORES=1
+fi

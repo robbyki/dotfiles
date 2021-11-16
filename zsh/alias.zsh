@@ -23,6 +23,9 @@ alias downloads="cdl ~/Downloads"
 #alias -s {md,markdown}='glow' # I have no idea what this does
 
 # system
+alias sd='secrets decrypt'
+alias se='secrets encrypt'
+alias ssrc='secrets source'
 alias ssibm='secrets source ibm-secrets'
 alias tarx='tar xvzf'
 alias t='tmux'
@@ -107,8 +110,8 @@ alias rvwu='gh rvwu 2>/dev/null'
 alias glow='glow -p'
 
 # cloud
-#alias ic='ibmcloud'
-#alias iccr-rm='ic cr image-rm'
+alias ic='ibmcloud'
+alias iccr-rm='ic cr image-rm'
 
 # artifactory
 alias jf=jfrog
@@ -254,12 +257,12 @@ mcdmlogs(){
 mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
 }
 
-mkcdir ()
+mkcdir()
 {
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
-
+ 
 function gclonecd {
   local dir
   if [[ $# -eq 2 ]]; then

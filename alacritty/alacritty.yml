@@ -3,6 +3,7 @@ window:
   decorations: full
   startup_mode: Fullscreen
   title: Alacritty
+  draw_bold_text_with_bright_colors: true
 font:
   ligatures: true
   size: 14
@@ -15,7 +16,7 @@ font:
   italic:
     family: OperatorMonoSSmLig Nerd Font
     style: Book Italic
-use_thin_strokes: false
+  use_thin_strokes: false
 key_bindings:
   - key: V
     mods: Control|Alt
@@ -46,3 +47,7 @@ colors:
     magenta: "0x906cff"
     cyan: "0x63f2f1"
     white: "0xa6b3cc"
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0
+live_config_reload: true

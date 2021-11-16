@@ -8,7 +8,7 @@ require('telescope').setup {
   extensions = {
     project = {
       base_dirs = {
-        {'~/dev/git-projects'}
+        {'~/dev'}
       },
       hidden_files = true -- default: false
     }
