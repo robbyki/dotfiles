@@ -1,4 +1,5 @@
 # Quick files
+# don't know why I need to have this here.
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
@@ -22,11 +23,13 @@ alias downloads="cdl ~/Downloads"
 
 #alias -s {md,markdown}='glow' # I have no idea what this does
 
-# system
+# gpg secrets with zsh secrets
 alias sd='secrets decrypt'
 alias se='secrets encrypt'
 alias ssrc='secrets source'
 alias ssibm='secrets source ibm-secrets'
+
+# system
 alias tarx='tar xvzf'
 alias t='tmux'
 alias am='alsamixer'
@@ -57,20 +60,20 @@ alias off="systemctl poweroff"
 alias reb="systemctl reboot"
 
 # argo
-#alias acc='argo cron create'
-#alias acd='argo cron delete'
-#alias acg='argo cron get'
-#alias acli='argo cron list'
-#alias aclint='argo cron lint'
-#alias ad='argo delete'
-#alias ada='argo delete --all'
-#alias adc='argo delete --completed'
-#alias ali='argo list'
-#alias alint='argo lint'
-#alias alo='argo logs'
-#alias as='argo submit'
-#alias asw='argo submit --watch'
-#alias aw='argo watch'
+alias acc='argo cron create'
+alias acd='argo cron delete'
+alias acg='argo cron get'
+alias acli='argo cron list'
+alias aclint='argo cron lint'
+alias ad='argo delete'
+alias ada='argo delete --all'
+alias adc='argo delete --completed'
+alias ali='argo list'
+alias alint='argo lint'
+alias alo='argo logs'
+alias as='argo submit'
+alias asw='argo submit --watch'
+alias aw='argo watch'
 
 # bloop
 alias bl='bloop'
@@ -166,7 +169,7 @@ alias la="colorls -lA"
 alias lad="la --sort-dirs"
 alias lag="la --git-status"
 alias less='less -FSRXc'
-alias ll="la -tr"
+alias ll="la -tr --git-status"
 alias lld="ll --sort-dirs"
 alias llg="ll --git-status"
 alias llt="ll -tr"
