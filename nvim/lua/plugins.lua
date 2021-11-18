@@ -19,6 +19,7 @@ return require("packer").startup(function(use)
 
   use 'folke/zen-mode.nvim'
 
+  use 'haya14busa/incsearch.vim'
 
   -- LSP
   use 'nvim-lua/lsp_extensions.nvim'

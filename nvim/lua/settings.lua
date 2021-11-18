@@ -31,13 +31,15 @@ vim.cmd('colorscheme onedark')
 
 local indent = 2
 
-vim.g.gist_api_url = 'http://github.ibm.com/api/v3'
-vim.g.gist_per_page_limit = 100
-vim.g.gist_clip_command = 'xclip -selection clipboard'
-vim.g.gist_open_browser_after_post = 1
-vim.g.gist_show_privates = 1
+-- this doesn't seem to work very well
+--vim.g.gist_api_url = 'http://github.ibm.com/api/v3'
+--vim.g.gist_per_page_limit = 100
+--vim.g.gist_clip_command = 'xclip -selection clipboard'
+--vim.g.gist_open_browser_after_post = 1
+--vim.g.gist_show_privates = 1
 
 -- global
+vim.opt.incsearch = true
 vim.o.cursorline = true
 vim.o.ruler = true
 vim.o.rulerformat = [[%-14.(%l,%c   %o%)]]
@@ -80,6 +82,13 @@ vim.bo.shiftwidth = indent
 vim.bo.softtabstop = indent
 vim.bo.tabstop = indent
 
+vim.g['incsearch#auto_nohlsearch'] = 1
+vim.api.nvim_set_keymap('','n','<Plug>(incsearch-nohl-n)', {})
+vim.api.nvim_set_keymap('','N','<Plug>(incsearch-nohl-N)', {})
+vim.api.nvim_set_keymap('','*','<Plug>(incsearch-nohl-*)', {})
+vim.api.nvim_set_keymap('','#','<Plug>(incsearch-nohl-#)', {})
+vim.api.nvim_set_keymap('','g*','<Plug>(incsearch-nohl-g*)', {})
+vim.api.nvim_set_keymap('','g#','<Plug>(incsearch-nohl-g#)', {})
 ------------------------------------
 ---- COMMANDS ----------------------
 ------------------------------------

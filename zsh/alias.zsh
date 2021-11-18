@@ -103,8 +103,9 @@ alias fa='find-alias'
 alias fdf='fd --no-ignore --list-details --hidden'
 
 # git
-alias gccd='gclonecd'
-alias gcl='gh gist clone'
+alias ghibm='gh fzrepo'
+alias gistcl='gh gist clone'
+alias giste='gist-edit'
 alias grepo='gh grepo'
 alias gtemp='gh gct'
 alias lg='lazygit'
@@ -267,7 +268,7 @@ mkcdir()
       cd -P -- "$1"
 }
  
-function gclonecd {
+function gccd {
   local dir
   if [[ $# -eq 2 ]]; then
     git clone -- $1 $2 || return
