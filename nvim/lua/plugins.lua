@@ -36,8 +36,6 @@ return require("packer").startup(function(use)
   --     },
   -- })
  
-  use {'mattn/vim-gist', requires = {'mattn/webapi-vim'}}
-
   use 'nvim-lua/popup.nvim'
 
   use 'tpope/vim-eunuch'

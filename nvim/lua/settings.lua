@@ -20,7 +20,7 @@ vim.g.bullets_enabled_file_types = {
   'text',
 }
 
-vim.g.metals_server_version = "0.10.8"
+vim.g.metals_server_version = "0.10.9+49-60d74a51-SNAPSHOT"
 
 vim.g.glow_binary_path = "/usr/local/bin"
 

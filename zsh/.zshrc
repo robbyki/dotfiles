@@ -27,6 +27,7 @@ autoload -U compinit && compinit
 source <(kubectl completion zsh)
 source <(tkn completion zsh)
 source <(oc completion zsh)
+source <(minikube completion zsh)
 source $ZSH/completions/bash_autocomplete
 source $HOME/.config/broot/launcher/bash/br
 autoload -U +X bashcompinit && bashcompinit
