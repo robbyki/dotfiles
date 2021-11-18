@@ -21,20 +21,23 @@ set_keymap('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<CR>', 
 set_keymap('n', '<leader>hc', '<cmd>lua require("harpoon.mark").clear_all()<CR>', { noremap = true, silent = true})
 
 --telescope (finder)
-set_keymap('n', '<leader>sf', [[<Cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], opts)
-set_keymap('n', '<leader>sb', [[<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], opts)
-set_keymap('n', '<leader>sh', [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
-set_keymap('n', '<leader>st', [[<Cmd>lua require('telescope.builtin').tags()<CR>]], opts)
+set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>]], opts)
+set_keymap('n', '<leader>sat', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/dev/ibm-projects/aide-template", hidden = true })<CR>]], opts)
+set_keymap('n', '<leader>sau', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/dev/ibm-projects/aide-utilities", hidden = true })<CR>]], opts)
+set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/.dotfiles/", hidden = true })<CR>]], opts)
+set_keymap('n', '<Leader>sD', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/dev", hidden = true })<CR>]], opts)
+-- just be mindful with this one since it has to look through a pretty large dir
+set_keymap('n', '<Leader>FF', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "$HOME", hidden = true })<CR>]], opts)
+
+set_keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], opts)
+set_keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
+set_keymap('n', '<leader>sT', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
 set_keymap('n', '<leader>ss', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], opts)
 set_keymap('n', '<leader>sg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opts)
 set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
-set_keymap('n', '<leader>sn', [[<cmd>lua require('telescope.builtin').find_files{ cwd = "~/.config/nvim" }<CR>]], opts)
-set_keymap('n', '<leader>sat', [[<cmd>lua require('telescope.builtin').find_files{ cwd = "~/dev/git-projects/aide-template" }<CR>]], opts)
-set_keymap('n', '<leader>sau', [[<cmd>lua require('telescope.builtin').find_files{ cwd = "~/dev/git-projects/aide-utilities" }<CR>]], opts)
 set_keymap('n', '<Leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR>]], opts)
 set_keymap('n', '<Leader>bb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
-set_keymap('n', '<Leader>sd', [[<cmd>lua require('telescope.builtin').find_files{ cwd = "~/dev" }<CR>]], opts)
 set_keymap('n', '<leader>fp', [[<cmd>lua require('telescope').extensions.project.project({})<cr>]], opts)
 
 -- LSP

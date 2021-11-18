@@ -20,6 +20,7 @@ alias nv='cdl $HOME/.dotfiles/nvim'
 alias dev='cdl $HOME/dev/'
 alias dots="cdl $DOTFILES"
 alias downloads="cdl ~/Downloads"
+alias docs="cdl ~/Documents"
 
 #alias -s {md,markdown}='glow' # I have no idea what this does
 

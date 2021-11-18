@@ -1,4 +1,4 @@
--- local cmd = vim.cmd
+-- local emd = vim.cmd
 -- local fn = vim.fn
 -- local g = vim.g
 -- local f = require("functions")
@@ -35,7 +35,7 @@ require('config.nvim-octo')
 require('config.nvim-statusline').setup()
 require('numb').setup()
 require('better_escape').setup()
--- require('config.nvim-tabout')
+-- require('config.nvim-incsearch')
 
 -- require('config.nvim-whichkey').setup()
 --require('config.nvim-quickscope')

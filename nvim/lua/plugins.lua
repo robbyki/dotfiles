@@ -147,6 +147,9 @@ return require("packer").startup(function(use)
   -- Keymappings
   use 'folke/which-key.nvim'
   use 'dkarter/bullets.vim'
+  -- use 'haya14busa/incsearch.vim'
+  -- use 'haya14busa/incsearch-easymotion.vim'
+  -- use 'haya14busa/incsearch-fuzzy.vim'
 
   --use({ "kevinhwang91/nvim-bqf" })
   --use({ "liuchengxu/vista.vim" })

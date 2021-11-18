@@ -24,6 +24,7 @@ require('telescope').setup {
             '--line-number',
             '--column',
             '--smart-case',
+	    '--hidden'
         },
         prompt_prefix = "❯ ",
         -- prompt_prefix = " ",
@@ -35,7 +36,7 @@ require('telescope').setup {
         layout_strategy = "horizontal",
         layout_config = {horizontal = {mirror = false}, vertical = {mirror = false}},
         file_sorter = require'telescope.sorters'.get_fzy_sorter,
-        file_ignore_patterns = { "target", "node_modules", "parser.c", "ScalaResources", "lua-language-server" },
+        file_ignore_patterns = {".git", "cache", "target", "node_modules", "parser.c", "ScalaResources", "lua-language-server" },
         path_diplay = true,
         winblend = 0,
 --        layout_config.width = 0.75,
