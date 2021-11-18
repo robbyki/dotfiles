@@ -1,20 +1,57 @@
+# oh-my-zsh settings
 export ZSH="$HOME/.oh-my-zsh"
+
+# powerlevel10k settings prompt {{{
 ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting dnf vscode jfrog tmux alias-tips zsh-256color fzf-tab zsh-secrets)
+# }}}
+
+# {{{ zsh-plugins 
+plugins=(
+  git 
+  zsh-autosuggestions 
+  zsh-syntax-highlighting 
+  dnf 
+  vscode 
+  jfrog 
+  tmux 
+  alias-tips 
+  zsh-256color 
+  fzf-tab 
+  zsh-secrets
+)
+# }}}
+
+# {{{ completions
 autoload -U compinit && compinit
 source <(kubectl completion zsh)
 source <(tkn completion zsh)
 source <(oc completion zsh)
 source $ZSH/completions/bash_autocomplete
+source $HOME/.config/broot/launcher/bash/br
+autoload -U +X bashcompinit && bashcompinit
+# }}}
+
 source $ZSH/oh-my-zsh.sh
+
+# {{{ nvm settings
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# }}}
+
+# {{{ better cd
 source $HOME/dev/enhancd/init.sh
-export DOTFILES="$HOME/.dotfiles"
 export ENHANCD_FILTER=fzf
+# }}}
+
+# export DOTFILES="$HOME/.dotfiles"
+
+# {{{ alias helper
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
+# }}}
+
+# {{{ history settings
 export HISTFILESIZE=
 export HISTFILE=~/.zsh_history
 HISTSIZE=100000
@@ -34,6 +71,9 @@ setopt extended_history       # Show timestamp in history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # Do not store failed commands to history
 HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
 HISTCONTROL='ignoreboth';
+# }}}
+
+# {{{ application path settings
 export VISUAL="/usr/local/bin/nvim"
 export EDITOR="/usr/local/bin/nvim"
 export SUDO_EDITOR="/usr/local/bin/nvim"
@@ -41,14 +81,12 @@ export MYVIMRC=$HOME/.config/nvim/init.lua
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
-#export MVN_HOME=/usr/local/apache-maven-3.6.3
 export STEWARD_DIR=$HOME/dev/scala-steward/
 export GH_HOST=github.ibm.com
 export GH_EDITOR=/usr/local/bin/nvim
 export IBMCLOUD_TRACE=false
 export IBMCLOUD_COLOR=true
 export IBMCLOUD_VERSION_CHECK=true
-# export IBMCLOUD_HOME=/usr/local/IBM_Cloud_CLI
 export GO_HOME=$HOME/go
 PATH=$PATH:/opt
 PATH=$PATH:/opt/bin
@@ -59,7 +97,6 @@ PATH=$PATH:${JAVA_HOME}/bin
 PATH=$PATH:${MVN_HOME}/bin
 PATH=$PATH:${GIT_HOME}/bin
 PATH=$PATH:${GO_HOME}/bin
-# PATH=$PATH:${IBMCLOUD_HOME}
 PATH=$PATH:${HOME}/tools/lua-language-server/bin/Linux
 PATH=$PATH:${HOME}/.yarn/bin
 PATH=$PATH:${HOME}/.config/yarn/global/node_modules/.bin
@@ -67,6 +104,9 @@ PATH=$PATH:${HOME}/.config/rofi/bin
 PATH=$PATH:${HOME}/node_modules/.bin
 export PATH
 export GOPATH=${HOME}/go
+# }}}
+
+# {{{ easier pasting
 zle_highlight+=(paste:none)
 zstyle :prompt:pure:git:stash show yes
 pasteinit() {
@@ -78,10 +118,15 @@ pastefinish() {
 }
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
-z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
+# }}}
+
 # I had to do this to fix weird timeouts I was having with my tmux client auto terminating
 export TMOUT=0
+
+# color scheme for bat viewer
 export BAT_THEME="OneHalfDark"
+
+# {{{ fzf settings
 # ctrl-O to open a file with fzf into nvim
 fzf_then_open_in_editor() {
     file="$(__fsel)"
@@ -108,8 +153,9 @@ bindkey '^ ' autosuggest-accept
 bindkey -a '^ ' autosuggest-accept
 bindkey '^O' fzf_then_open_in_editor
 bindkey '^P' fzf-open-file-current-dir
-# FZF Configuration
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 export FZF_TMUX_OPTS="-p 85%,65%"
 export FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
@@ -119,10 +165,10 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
-export DOTFILES="$HOME/.dotfiles"
-source $HOME/.config/broot/launcher/bash/br
-autoload -U +X bashcompinit && bashcompinit
+# }}}
+
 #export number of processors on linux
+# cpuinfo
 if [ -f /proc/cpuinfo ]; then
 	export NUM_OF_CORES=$(grep processor /proc/cpuinfo | wc -l)
 else

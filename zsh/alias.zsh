@@ -324,3 +324,5 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 cdl() { cd "$@" && ll; }
+
+z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
