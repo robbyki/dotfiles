@@ -1,8 +1,8 @@
-# Quick files
 # don't know why I need to have this here.
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
+# Quick files
 alias zshconfig="$EDITOR $DOTFILES/zsh/.zshrc"
 alias aliasconfig="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabconfig="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
@@ -11,8 +11,6 @@ alias codeconfig="$EDITOR $DOTFILES/vscode/settings.json"
 alias alacrittyconfig="$EDITOR $DOTFILES/alacritty/alacritty.yml"
 alias tmuxconfig="$EDITOR $DOTFILES/tmux/.tmux.conf"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
-#alias roficonfig="$EDITOR $DOTFILES/rofi/config"
-#alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 alias rkeeweb='copy ~/Documents/notes/webex-rkee.txt'
 alias util='cdl $HOME/dev/ibm-projects/aide-utilities'
 alias temp='cdl $HOME/dev/ibm-projects/aide-template/'
@@ -21,10 +19,10 @@ alias dev='cdl $HOME/dev/'
 alias dots="cdl $DOTFILES"
 alias downloads="cdl ~/Downloads"
 alias docs="cdl ~/Documents"
+#alias roficonfig="$EDITOR $DOTFILES/rofi/config"
+#alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 
-#alias -s {md,markdown}='glow' # I have no idea what this does
-
-# gpg secrets with zsh secrets
+# gpg secrets with zsh secrets to have some sort of protection on a per-shell basis
 alias sd='secrets decrypt'
 alias se='secrets encrypt'
 alias ssrc='secrets source'
@@ -42,13 +40,11 @@ alias cls='clear'
 alias copy='xclip -sel c <'
 alias fp='flatpak'
 alias hg='history | grep'
-alias envg='env | grep'
 alias h='`history | sed "s/^ *[^ ]* *//" | sort | uniq | fzf`'
+alias envg='env | grep'
 alias mkdir='mkdir -pv'
 alias mv='mv -iv'
 alias mytemp='curl wttr.in'
-#alias dr="rofi -show drun"
-#alias r="rofi -theme Arc-Dark -show window"
 alias update='dnfu'
 alias vi='/usr/local/bin/nvim'
 alias vim='/usr/local/bin/nvim'
@@ -59,6 +55,8 @@ alias sus="systemctl suspend"
 alias hib="systemctl hibernate"
 alias off="systemctl poweroff"
 alias reb="systemctl reboot"
+#alias dr="rofi -show drun"
+#alias r="rofi -theme Arc-Dark -show window"
 
 # argo
 alias acc='argo cron create'
@@ -102,13 +100,19 @@ alias appconf="$EDITOR src/main/resources/application.conf"
 alias fa='find-alias'
 alias fdf='fd --no-ignore --list-details --hidden'
 
+alias lg='lazygit'
 # git
+
+# gist
 alias ghibm='gh fzrepo'
 alias gistcl='gh gist clone'
-alias giste='gist-edit'
+alias gistcr='gh gist create'
+alias gistdel='gh gist delete'
+alias giste='gh gist edit'
+alias gistl='gh gist list -L 10'
+alias gistv='gh gist view'
 alias grepo='gh grepo'
 alias gtemp='gh gct'
-alias lg='lazygit'
 alias rvwt='gh rvwt 2>/dev/null'
 alias rvwu='gh rvwu 2>/dev/null'
 
@@ -227,6 +231,9 @@ timezsh() {
 
 find-alias(){ alias | grep ${1} }
 
+# a bunch of really ugly functions that could use a lot of improvements
+
+# delete any target directory recursively in a jvm project. helpful for debugging.
 delete-target() { 
 find . -type d -name target -prune -exec rm -r {} + 
 }
@@ -246,10 +253,12 @@ go-to-completions(){
 sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
 }
 
+# use mc to list all files in cos dm location
 mcdmls(){
 mc ls dm/${1}
 }
 
+# use mc to list files in dm location. seriously needs to pamaterized.
 mcdmfiles(){
 mc $1 dm/datamaze-dev-analytics-sp-files/${2}
 }
@@ -262,28 +271,14 @@ mcdmlogs(){
 mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
 }
 
+# cd into dir after creating it. 
 mkcdir()
 {
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
  
-function gccd {
-  local dir
-  if [[ $# -eq 2 ]]; then
-    git clone -- $1 $2 || return
-    dir=$2
-  else
-    git clone -- $1 || return
-    dir=${1:t}
-  fi
-  dir2=${1##*/}
-  basefolder="${dir2%.git}"
-  builtin cd $basefolder
-  ls -l
-}
-
-## colorize oc commands
+# colorize oc commands
 ocy() {
   oc --output yaml $@ | yq eval --colors 
 }
@@ -324,6 +319,8 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
+# run `ll` after running cd into dir.
 cdl() { cd "$@" && ll; }
 
+# easier way to edit and reload zshrc file after opening
 z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
