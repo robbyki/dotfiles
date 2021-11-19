@@ -25,7 +25,7 @@
 	# A popular flag is the `g` one which displays git related info.
 	#
 	# default_flags:
-        default_flags: gIS
+        default_flags: ghIS
 
 	###############################################################
 	# Date/Time format
@@ -168,16 +168,14 @@
 		{
 			invocation: edit
 			shortcut: e
-			execution: "nvim -u ~/.config/nvim/init.vim +{line} {file}"
-#			execution: "$EDITOR +{line} {file}"
+			execution: "$EDITOR +{line} {file}"
 			leave_broot: false
 		}
-
-                		{
+          	{
 			invocation: edit
 			key: ctrl-e
 			shortcut: e
-			execution: "nvim -u ~/.config/nvim/init.vim +{line} {file}"
+			execution: "$EDITOR +{line} {file}"
 			leave_broot: false
                 }
 #		{
@@ -190,11 +188,11 @@
 
 		# A convenient shortcut to create new text files in
 		# the current directory or below
-		{
-			invocation: create {subpath}
-			execution: "nvim -u ~/.config/nvim/init.vim {directory}/{subpath}"
-			leave_broot: false
-		}
+#		{
+#			invocation: create {subpath}
+#			execution: "nvim -u ~/.config/nvim/init.vim {directory}/{subpath}"
+#			leave_broot: false
+#		}
 
 		{
 			invocation: git_diff
@@ -383,10 +381,10 @@
 	# uncomment and modify the next section if you want to color
 	# file name depending on their extension
 	#
-	# ext_colors: {
-	# 	png: rgb(255, 128, 75)
-	# 	rs: yellow
-	# }
+	ext_colors: {
+		png: rgb(255, 128, 75)
+		rs: yellow
+	}
 
 
 	###############################################################
