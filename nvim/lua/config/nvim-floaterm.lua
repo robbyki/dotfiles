@@ -1,8 +1,8 @@
 -- Floaterm
-vim.g.floaterm_keymap_toggle = '<F1>'
-vim.g.floaterm_keymap_next   = '<F2>'
-vim.g.floaterm_keymap_prev   = '<F3>'
-vim.g.floaterm_keymap_new    = '<F4>'
+vim.g.floaterm_keymap_toggle = '<Leader>t'
+vim.g.floaterm_keymap_new    = '<Leader>n'
+vim.g.floaterm_keymap_next   = '<Leader>`'
+vim.g.floaterm_keymap_prev   = '<Leader>`'
 vim.g.floaterm_title=''
 
 vim.g.floaterm_gitcommit='floaterm'

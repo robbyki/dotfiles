@@ -164,6 +164,13 @@ vim.cmd('highlight! Special cterm=italic, gui=italic')
 
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
 
+-- use vim for commit messages
+vim.cmd([[
+  if has('nvim') && executable('nvr')
+    let $GIT_EDITOR = "nvr --remote-wait +'set bufhidden=wipe'"
+  endif
+]])
+
 --TERMINAL = vim.fn.expand('$TERMINAL')
 --vim.bo.expandtab = true -- Converts tabs to spaces
 --vim.cmd('let &titleold="'..TERMINAL..'"')
