@@ -93,9 +93,12 @@ set_keymap("n", "<leader>dso", [[<cmd>lua require"dap".step_over()<CR>]], opts)
 set_keymap("n", "<leader>dsi", [[<cmd>lua require"dap".step_into()<CR>]], opts)
 set_keymap("n", "<leader>dl", [[<cmd>lua require"dap".run_last()<CR>]], opts)
 
+-- lazygit
+set_keymap('n', '<leader>gg',':LazyGit<CR>', opts)
+
 -- TODO fix this
 -- Terminal window navigation
-vim.cmd([[inoremap <C-l> <C-O>o]])
+-- vim.cmd([[inoremap <C-l> <C-O>o]])
 --vim.cmd([[
 --  tnoremap <C-h> <C-\><C-N><C-w>h
 --  tnoremap <C-j> <C-\><C-N><C-w>j
