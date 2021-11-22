@@ -20,15 +20,13 @@ set_keymap('n', '<leader>hq', [[<cmd>lua require("harpoon.ui").toggle_quick_menu
 set_keymap('n', '<leader>m',  [[<cmd>lua require("harpoon.mark").add_file()<CR>]], { noremap = true, silent = true})
 set_keymap('n', '<leader>hc', [[<cmd>lua require("harpoon.mark").clear_all()<CR>]], { noremap = true, silent = true})
 
---telescope (finder)
+--telescope (finders)
 set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>]], opts)
 set_keymap('n', '<Leader>sat',[[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/dev/ibm-projects/aide-template", hidden = true })<CR>]], opts)
 set_keymap('n', '<Leader>sau',[[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/dev/ibm-projects/aide-utilities", hidden = true })<CR>]], opts)
 set_keymap('n', '<Leader>sd', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/.dotfiles/", hidden = true })<CR>]], opts)
 set_keymap('n', '<Leader>sD', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/dev", hidden = true })<CR>]], opts)
--- just be mindful with this one since it has to look through a pretty large dir
 set_keymap('n', '<Leader>FF', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "$HOME", hidden = true })<CR>]], opts)
-
 set_keymap('n', '<Leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], opts)
 set_keymap('n', '<Leader>st', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
 set_keymap('n', '<Leader>sT', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
@@ -42,22 +40,17 @@ set_keymap('n', '<Leader>fp', [[<cmd>lua require('telescope').extensions.project
 
 -- nvim-lsp
 --vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+-- set_keymap('n', '<Leader>q',  ':MetalsRestartServer', opts)
+set_keymap('n', '<Leader>ca', [[<cmd>lua require"lspsaga.codeaction".code_action()<CR>]], opts)
+set_keymap('n', '<Leader>rn', [[<cmd>lua require"lspsaga.rename".rename()<CR>]], opts)
+set_keymap('n', '[c',         [[<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>]], opts)
+set_keymap('v', '<Leader>ca', [[<cmd>lua require"lspsaga.codeaction".range_code_action()<CR>]], opts)
+set_keymap('n', ']c',         [[<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>]], opts)
 set_keymap('n', '<Leader>ca', [[<cmd>lua vim.lsp.buf.code_action()<CR>]], opts)
 set_keymap('n', '<Leader>cl', [[<cmd>lua vim.lsp.codelens.run()<CR>]], opts)
-set_keymap('n', '<Leader>d',  [[<cmd>lua vim.diagnostic.setloclist()<CR>]], opts) -- buffer diagnostics only
-set_keymap('n', '<Leader>ld', [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]], opts)
-set_keymap('n', '<Leader>nd', [[<cmd>lua vim.diagnostic.goto_next()<CR>]], opts)
-set_keymap('n', '<Leader>pd', [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], opts)
+set_keymap('n', '<Leader>ln', [[<cmd>lua vim.lsp.diagnostic.get_line_diagnostics()<CR>]], opts)
 set_keymap('n', '<Leader>rn', [[<cmd>lua vim.lsp.buf.rename()<CR>]], opts)
 set_keymap('n', '<Leader>sh', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], opts)
-set_keymap('n', 'K',          [[<cmd>lua vim.lsp.buf.hover()<CR>]], opts)
-set_keymap('n', 'gds',        [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]], opts)
-set_keymap('n', 'gi',         [[<cmd>lua vim.lsp.buf.implementation()<CR>]], opts)
-set_keymap('n', 'gr',         [[<cmd>lua vim.lsp.buf.references()<CR>]], opts)
-set_keymap('n', 'gws',        [[<cmd>lua require"settings.telescope".lsp_workspace_symbols()<CR>]], opts)
-set_keymap('n', '<Leader>ca', [[<cmd>lua require"lspsaga.codeaction".code_action()<CR>]], opts)
-set_keymap('n', '<Leader>ln', [[<cmd>lua vim.lsp.diagnostic.get_line_diagnostics()<CR>]], opts)
-set_keymap('n', '<Leader>rn', [[<cmd>lua require"lspsaga.rename".rename()<CR>]], opts)
 set_keymap('n', '<space>D',   [[<cmd>lua vim.lsp.buf.type_definition()<CR>]], opts)
 set_keymap('n', '<space>e',   [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]], opts)
 set_keymap('n', '<space>f',   [[<cmd>lua vim.lsp.buf.formatting()<CR>]], opts)
@@ -65,18 +58,28 @@ set_keymap('n', '<space>gi',  [[<cmd>lua vim.lsp.buf.implementation()<CR>]], opt
 set_keymap('n', '<space>gr',  [[<cmd>lua vim.lsp.buf.references()<CR>]], opts)
 set_keymap('n', '<space>q',   [[<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>]], opts)
 set_keymap('n', '<space>wa',  [[<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]], opts)
-set_keymap('n', '[c',         [[<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>]], opts)
-set_keymap('n', ']c',         [[<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>]], opts)
+set_keymap('n', 'K',          [[<cmd>lua vim.lsp.buf.hover()<CR>]], opts)
 set_keymap('n', 'gd',         [[<cmd>lua vim.lsp.buf.definition()<CR>]], opts)
-set_keymap('n', 'gds',        [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]], opts)
-set_keymap('n', 'gws',        [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols()<CR>]], opts)
-set_keymap('v', '<Leader>ca', [[<cmd>lua require"lspsaga.codeaction".range_code_action()<CR>]], opts)
-set_keymap('n', '<Leader>q',  [[<cmd>lua RELOAD("metals").restart_server()<CR>]], opts)
-set_keymap('n', '<Leader>tt', [[<cmd>lua require("metals.tvp").toggle_tree_view()<CR>]], opts)
+set_keymap('n', 'gi',         [[<cmd>lua vim.lsp.buf.implementation()<CR>]], opts)
+set_keymap('n', 'gr',         [[<cmd>lua vim.lsp.buf.references()<CR>]], opts)
+set_keymap('n', '<Leader>d',  [[<cmd>lua vim.diagnostic.setloclist()<CR>]], opts) -- buffer diagnostics only
+set_keymap('n', '<Leader>ld', [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]], opts)
+set_keymap('n', '<Leader>nd', [[<cmd>lua vim.diagnostic.goto_next()<CR>]], opts)
+set_keymap('n', '<Leader>pd', [[<cmd>lua vim.diagnostic.goto_prev()<CR>]], opts)
+
+-- metals lsp
 set_keymap('n', '<Leader>tr', [[<cmd>lua require("metals.tvp").reveal_in_tree()<CR>]], opts)
+set_keymap('n', '<Leader>tt', [[<cmd>lua require("metals.tvp").toggle_tree_view()<CR>]], opts)
 set_keymap('n', '<Leader>ws', [[<cmd>lua require"metals".hover_worksheet()<CR>]], opts)
-set_keymap('n', '<Leader>a',  [[<cmd>lua require("metals").open_all_diagnostics()<CR>]], opts)
 set_keymap('v', 'K',          [[<Esc><cmd>lua require("metals").type_of_range()<CR>]], opts)
+set_keymap('n', '<Leader>a',  [[<cmd>lua require("metals").open_all_diagnostics()<CR>]], opts)
+
+-- telescope lsp
+set_keymap('n', 'gws',        [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols()<CR>]], opts)
+set_keymap('n', 'gds',        [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]], opts)
+set_keymap('n', 'gdws',       [[<cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>]], opts)
+-- set_keymap('n', 'gdws',       [[<cmd>lua require"telescope.builtin".lsp_references()<CR>]], opts)
+
 -- set_keymap("n", "<leader>st", [[<cmd>lua require("metals").toggle_setting("showImplicitArguments")<CR>]], opts)
 
 -- nvim-dap
