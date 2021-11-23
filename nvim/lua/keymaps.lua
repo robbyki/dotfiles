@@ -9,7 +9,7 @@ set_keymap('n', '<Space>', '<NOP>', opts)
 
 -- explorer
 set_keymap('n', '\\', ':NvimTreeToggle<CR>', opts)
-
+set_keymap("n", "q", "<Nop>", opts)
 -- better window movement
 -- set_keymap('i', '<C-CR>', '<C-O>o', { silent = true })
 --set_keymap('n', '<C-j>', '<C-w>j', { silent = true })
@@ -28,15 +28,16 @@ set_keymap('n', '<Leader>sd', [[<cmd>lua require('telescope.builtin').find_files
 set_keymap('n', '<Leader>sD', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "~/dev", hidden = true })<CR>]], opts)
 set_keymap('n', '<Leader>FF', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "$HOME", hidden = true })<CR>]], opts)
 set_keymap('n', '<Leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], opts)
-set_keymap('n', '<Leader>st', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
-set_keymap('n', '<Leader>sT', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
+-- set_keymap('n', '<Leader>st', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
+-- set_keymap('n', '<Leader>sT', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
 set_keymap('n', '<Leader>ss', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], opts)
 set_keymap('n', '<Leader>sg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opts)
 set_keymap('n', '<Leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 set_keymap('n', '<Leader>?',  [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
 set_keymap('n', '<Leader>gf', [[<cmd>lua require('telescope.builtin').git_files()<CR>]], opts)
+set_keymap('n', '<Leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<CR>]], opts)
 set_keymap('n', '<Leader>bb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
-set_keymap('n', '<Leader>fp', [[<cmd>lua require('telescope').extensions.project.project({})<cr>]], opts)
+set_keymap('n', '<Leader>fp', [[<cmd>lua require('telescope').extensions.project.project({})<CR>]], opts)
 
 -- nvim-lsp
 --vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -59,9 +60,9 @@ set_keymap('n', '<space>gr',  [[<cmd>lua vim.lsp.buf.references()<CR>]], opts)
 set_keymap('n', '<space>q',   [[<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>]], opts)
 set_keymap('n', '<space>wa',  [[<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]], opts)
 set_keymap('n', 'K',          [[<cmd>lua vim.lsp.buf.hover()<CR>]], opts)
-set_keymap('n', 'gd',         [[<cmd>lua vim.lsp.buf.definition()<CR>]], opts)
+set_keymap('n', '<Leader>gd',         [[<cmd>lua vim.lsp.buf.definition()<CR>]], opts)
 set_keymap('n', 'gi',         [[<cmd>lua vim.lsp.buf.implementation()<CR>]], opts)
-set_keymap('n', 'gr',         [[<cmd>lua vim.lsp.buf.references()<CR>]], opts)
+set_keymap('n', '<Leader>gr', [[<cmd>lua vim.lsp.buf.references()<CR>]], opts)
 set_keymap('n', '<Leader>d',  [[<cmd>lua vim.diagnostic.setloclist()<CR>]], opts) -- buffer diagnostics only
 set_keymap('n', '<Leader>ld', [[<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>]], opts)
 set_keymap('n', '<Leader>nd', [[<cmd>lua vim.diagnostic.goto_next()<CR>]], opts)
@@ -75,9 +76,12 @@ set_keymap('v', 'K',          [[<Esc><cmd>lua require("metals").type_of_range()<
 set_keymap('n', '<Leader>a',  [[<cmd>lua require("metals").open_all_diagnostics()<CR>]], opts)
 
 -- telescope lsp
-set_keymap('n', 'gws',        [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols()<CR>]], opts)
-set_keymap('n', 'gds',        [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]], opts)
-set_keymap('n', 'gdws',       [[<cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>]], opts)
+--set_keymap('n', 'gws',        [[<cmd>lua require"telescope.builtin".lsp_workspace_symbols()<CR>]], opts)
+--set_keymap('n', 'gds',        [[<cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>]], opts)
+--set_keymap('n', 'gdws',       [[<cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>]], opts)
+--set_keymap('n', 'gr',         [[<cmd>lua require"telescope.builtin".lsp_references()<CR>]], opts)
+--set_keymap('n', 'gd',         [[<cmd>lua require"telescope.builtin".lsp_definitions()<CR>]], opts)
+-- set_keymap('n', '<Leader>gc', [[<cmd>lua require"telescope.builtin".builtin()<CR>]], opts)
 -- set_keymap('n', 'gdws',       [[<cmd>lua require"telescope.builtin".lsp_references()<CR>]], opts)
 
 -- set_keymap("n", "<leader>st", [[<cmd>lua require("metals").toggle_setting("showImplicitArguments")<CR>]], opts)
