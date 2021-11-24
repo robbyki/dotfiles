@@ -39,6 +39,8 @@ return require("packer").startup(function(use)
  
   use 'nvim-lua/popup.nvim'
 
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
   use 'tpope/vim-eunuch'
 
   -- Show Diagnostics

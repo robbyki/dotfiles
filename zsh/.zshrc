@@ -139,10 +139,8 @@ fzf_then_open_in_editor() {
 }
 zle -N fzf_then_open_in_editor
 
-export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
-
 fzf-open-file-current-dir() {
-  local cmd=$FZF_DEFAULT_COMMAND
+  local cmd="fd -tf -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
   local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
   if [ -f "$out" ]; then
     $EDITOR "$out" < /dev/tty
@@ -152,6 +150,7 @@ fzf-open-file-current-dir() {
   zle reset-prompt
 }
 zle -N fzf-open-file-current-dir
+
 bindkey -s "^[o" 'lfcd\n'
 bindkey '^ ' autosuggest-accept
 bindkey -a '^ ' autosuggest-accept
@@ -162,7 +161,7 @@ bindkey '^P' fzf-open-file-current-dir
 
 # export FZF_TMUX_OPTS="-p 85%,65%"
 export FZF_BASE="$HOME/.fzf"
-export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND $HOME"
+export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_DEFAULT_OPTS="-i --no-mouse --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
