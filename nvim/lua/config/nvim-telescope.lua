@@ -1,16 +1,19 @@
-local actions = require('telescope.actions')
+local telescope = require("telescope")
+local telescope_actions = require("telescope.actions")
+-- local actions = require('telescope.actions')
 
 require('telescope').setup {
     defaults = {
         vimgrep_arguments = {
-            "rg",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-      	    "--hidden",
-            "--color=never"
+		"rg",
+	        "--with-filename",
+		"--no-heading",
+		"--line-number",
+		"--column",
+		"--hidden",
+		"--smart-case",
+		"--follow",
+		"--color=never",
         },
         prompt_prefix = "❯ ",
         -- prompt_prefix = " ",
@@ -59,17 +62,17 @@ require('telescope').setup {
         set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
         mappings = {
             i = {
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
-                ["<Esc>"] = actions.close,
-                ["<Tab>"] = actions.toggle_selection + actions.move_selection_next,
-                ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_previous,
+                ["<C-j>"] = telescope_actions.move_selection_next,
+                ["<C-k>"] = telescope_actions.move_selection_previous,
+                ["<Esc>"] = telescope_actions.close,
+                ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_next,
+                ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_previous,
                 -- ["<CR>"] = actions.select_default + actions.center
             },
             n = {
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
-                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                ["<C-j>"] = telescope_actions.move_selection_next,
+                ["<C-k>"] = telescope_actions.move_selection_previous,
+                ["<C-q>"] = telescope_actions.smart_send_to_qflist + telescope_actions.open_qflist,
             }
         },
     },
@@ -91,9 +94,18 @@ require('telescope').setup {
         }
     },
 }
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('media_files')
-require('telescope').load_extension('project')
+telescope.load_extension('fzf')
+telescope.load_extension('media_files')
+telescope.load_extension('project')
+telescope.load_extension("zoxide")
+telescope.load_extension("neoclip")
+
+require("neoclip").setup({
+	default_register = { "+", "*" },
+	filter = nil,
+	history = 1000,
+})
+
 -- require('telescope').load_extension('fzy_native')
 
 

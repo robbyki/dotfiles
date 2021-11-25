@@ -7,9 +7,10 @@ set_keymap('n', '<Space>', '<NOP>', opts)
 
 -- set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', opts)
 
--- explorer
 set_keymap('n', '\\', ':NvimTreeToggle<CR>', opts)
 set_keymap("n", "q", "<Nop>", opts)
+set_keymap("i", "<C-c>", "<Esc>", opts)
+
 -- better window movement
 -- set_keymap('i', '<C-CR>', '<C-O>o', { silent = true })
 --set_keymap('n', '<C-j>', '<C-w>j', { silent = true })

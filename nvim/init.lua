@@ -61,3 +61,15 @@ require("nvim-treesitter.configs").setup({
 require("bufferline").setup{}
 require("trouble").setup({})
 require('onedark').setup()
+require("todo-comments").setup({
+	keywords = {
+		TODO = { icon = " ", color = "error" },
+	},
+	highlight = {
+		keyword = "bg",
+		pattern = [[.*<(KEYWORDS)\s*]],
+	},
+	search = {
+		pattern = [[\b(KEYWORDS)]],
+	},
+})
