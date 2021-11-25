@@ -89,6 +89,8 @@ export IBMCLOUD_TRACE=false
 export IBMCLOUD_COLOR=true
 export IBMCLOUD_VERSION_CHECK=true
 export GO_HOME=$HOME/go
+export CARGO=$HOME/.cargo
+export GOPATH=${HOME}/go
 PATH=$PATH:/opt
 PATH=$PATH:/opt/bin
 PATH=$PATH:/usr/bin/local
@@ -103,8 +105,9 @@ PATH=$PATH:${HOME}/.yarn/bin
 PATH=$PATH:${HOME}/.config/yarn/global/node_modules/.bin
 PATH=$PATH:${HOME}/.config/rofi/bin
 PATH=$PATH:${HOME}/node_modules/.bin
+PATH=$PATH:$CARGO/bin
 export PATH
-export GOPATH=${HOME}/go
+
 # }}}
 
 # {{{ easier pasting

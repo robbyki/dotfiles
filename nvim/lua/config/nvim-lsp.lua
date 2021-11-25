@@ -124,11 +124,46 @@ M.setup = function()
   lsp_config.racket_langserver.setup({})
 
   lsp_config.gopls.setup({
-    cmd = { "gopls", "serve" },
-    settings = {
-      gopls = { analyses = { unusedparams = true }, staticcheck = true },
-    },
-  })
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		gopls = {
+			buildFlags = { "-tags=wireinject" },
+			experimentalTemplateSupport = true,
+			usePlaceholders = true,
+			codelenses = {
+				gc_details = true,
+				generate = true,
+				regenerate_cgo = true,
+				tidy = true,
+				upgrade_dependency = true,
+				vendor = true,
+				nilness = true,
+			},
+			analyses = {
+				fillreturns = true,
+				nonewvars = true,
+				shadow = true,
+				undeclaredname = true,
+				unreachable = true,
+				unusedparams = true,
+				unusedwrite = true,
+			},
+			gofumpt = true,
+			["local"] = "go.ngrok.com",
+			staticcheck = true,
+		},
+	},
+	flags = {
+		debounce_text_changes = 200,
+	},
+})
+  -- lsp_config.gopls.setup({
+  --   cmd = { "gopls", "serve" },
+  --   settings = {
+  --     gopls = { analyses = { unusedparams = true }, staticcheck = true },
+  --   },
+  -- })
 
   -- require("lspconfig").kotlin_language_server.setup({
   --   cmd = {

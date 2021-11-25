@@ -73,3 +73,19 @@ require("todo-comments").setup({
 		pattern = [[\b(KEYWORDS)]],
 	},
 })
+-- formatter
+require("formatter").setup({
+	filetype = {
+		lua = {
+			function()
+				return {
+					exe = "stylua",
+					args = {
+						"-",
+					},
+					stdin = true,
+				}
+			end,
+		},
+	},
+})
