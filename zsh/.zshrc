@@ -145,7 +145,8 @@ zle -N fzf_then_open_in_editor
 
 fzf-open-file-current-dir() {
   local cmd="fd -tf -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
-  local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
+  local out=$(eval "$cmd" | $(__fzfcmd) -m "$@")
+  # local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
   if [ -f "$out" ]; then
     $EDITOR "$out" < /dev/tty
   elif [ -d "$out" ]; then

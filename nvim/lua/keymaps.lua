@@ -22,6 +22,7 @@ set_keymap('n', '<leader>ha', [[<cmd>lua require("harpoon.mark").add_file()<CR>]
 set_keymap('n', '<leader>hc', [[<cmd>lua require("harpoon.mark").clear_all()<CR>]], { noremap = true, silent = true})
 
 --telescope (finders)
+-- TODO: add some zoxide mapping stuff to list and change directories
 set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>]], opts)
 set_keymap('n', '<Leader>FF', [[<cmd>lua require('telescope.builtin').find_files({ cwd = "$HOME", hidden = true })<CR>]], opts) -- this one is expensive
 set_keymap('n', '<Leader>sp', [[<cmd>lua require('telescope').extensions.project.project({})<CR>]], opts)
