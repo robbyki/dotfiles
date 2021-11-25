@@ -323,4 +323,4 @@ bindkey '^Z' fancy-ctrl-z
 cdl() { cd "$@" && ll; }
 
 # easier way to edit and reload zshrc file after opening
-z() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
+zrc() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }

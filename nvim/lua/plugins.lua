@@ -101,23 +101,3 @@ return require("packer").startup(function(use)
   use("folke/which-key.nvim")
   use("dkarter/bullets.vim")
 end)
-
-
-
-
-  -- use "haya14busa/incsearch-easymotion.vim"
-  -- use "haya14busa/incsearch-fuzzy.vim"
-
-  --use({ "kevinhwang91/nvim-bqf" })
-  --use({ "liuchengxu/vista.vim" })
-  --use({ "machakann/vim-sandwich" })
-  --use({ "ckipp01/stylua-nvim" })
-  --use({ "sheerun/vim-polyglot" })
-  --use({ "tpope/vim-fugitive" })
-  --use({ "tpope/vim-vinegar" })
-  --use({ "onsails/lspkind-nvim" })
-  --use({ "wlangstroth/vim-racket" })
---  use({ "karb94/neoscroll.nvim" })
---  Close buffer
---  use "moll/vim-bbye"
-

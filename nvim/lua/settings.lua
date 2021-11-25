@@ -21,6 +21,7 @@ vim.g.bullets_enabled_file_types = {
 }
 
 vim.g.metals_server_version = "0.10.9+49-60d74a51-SNAPSHOT"
+vim.g.metals_disabled_mode = true
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
@@ -67,7 +68,8 @@ vim.o.wildignore = ".git","*/node_modules/*","*/target/*",".metals",".bloop",".a
 vim.o.writebackup = false
 vim.o.guifont = "Operator Mono SSm Lig Book"
 vim.o.swapfile = false
-
+vim.o.list = true
+vim.o.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
 -- window
 vim.wo.cursorline = true
 vim.wo.number = true

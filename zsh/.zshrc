@@ -43,7 +43,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # {{{ better cd
 source $HOME/dev/enhancd/init.sh
-export ENHANCD_FILTER=fzf
+export ENHANCD_DOT_SHOW_FULLPATH=1
+export ENHANCD_FILTER=fzy:fzf
 # }}}
 
 # export DOTFILES="$HOME/.dotfiles"
@@ -168,6 +169,7 @@ export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaReso
 export FZF_DEFAULT_OPTS="-i --no-mouse --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
+export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 
 # export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always --line-range :500 {}" --ansi --height 60% --layout=reverse --border'
 # export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'  --preview-window=up:40%"
@@ -195,3 +197,7 @@ else
     export VISUAL="nvim"
     export EDITOR="nvim"
 fi
+
+# better cd
+eval "$(zoxide init zsh)"
+
