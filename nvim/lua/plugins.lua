@@ -10,6 +10,7 @@ require("packer").init({display = {auto_clean = false}})
 
 return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
+  use("McAuleyPenney/tidy.nvim")
   use("nvim-lua/popup.nvim")
   use("folke/zen-mode.nvim")
   use("haya14busa/incsearch.vim")
