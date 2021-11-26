@@ -88,11 +88,11 @@ require('telescope').setup {
            find_cmd = "rg",
         },
         -- apparently this would control where telescope opens the preview
-        -- project = {
-        --   base_dirs = {'~/dev'},
-        --   hidden_files = true,
-        --   display_type = "full"
-        -- }
+        project = {
+          -- base_dirs = {'~/dev'},
+          hidden_files = true,
+          display_type = "full"
+        }
     },
 }
 telescope.load_extension('fzf')
