@@ -6,19 +6,20 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # }}}
 
-# {{{ zsh-plugins 
+# {{{ zsh-plugins
 plugins=(
-  git 
-  zsh-autosuggestions 
-  zsh-syntax-highlighting 
-  dnf 
-  vscode 
-  jfrog 
-  tmux 
-  alias-tips 
-  zsh-256color 
-  fzf-tab 
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  dnf
+  vscode
+  jfrog
+  tmux
+  alias-tips
+  zsh-256color
+  fzf-tab
   zsh-secrets
+  flatpak
 )
 # }}}
 
@@ -201,4 +202,3 @@ fi
 
 # better cd
 eval "$(zoxide init zsh)"
-
