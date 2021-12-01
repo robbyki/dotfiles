@@ -36,6 +36,7 @@
 !local/
 !opt/
 !tools/
+*.log
 .cache/
 .cisco/
 .crc/
@@ -74,14 +75,10 @@ Pictures/
 Public/
 Templates/
 bin/
-lotus/
-motivate/
-workplace-tmp/
-xterm-256color-italic.terminfo/
-*.log
-nvim/plugin/packer_compiled.lua
-
-nvim/plugin/packer_compiled.lua
-nvim/plugin/packer_compiled.lua
 broot/launcher/bash/br
 broot/launcher/installed-v1
+lotus/
+motivate/
+nvim/plugin/packer_compiled.lua
+workplace-tmp/
+xterm-256color-italic.terminfo/
