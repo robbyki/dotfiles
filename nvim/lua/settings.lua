@@ -1,12 +1,3 @@
---local function opt(scope, key, value)
---  local scopes = { o = vim.o, b = vim.bo, w = vim.wo }
---  scopes[scope][key] = value
---  if scope ~= "o" then
---    scopes["o"][key] = value
---  end
---end
-
---local function set_option(...) vim.api.nvim_set_option(...) end
 vim.o.shortmess = string.gsub(vim.o.shortmess, "F", "") .. "c"
 vim.o.path = vim.o.path .. "**"
 
@@ -122,7 +113,6 @@ vim.cmd[[command! PS packadd packer.nvim | lua require('plugins').sync()]]
 vim.cmd[[command! PC packadd packer.nvim | lua require('plugins').clean()]]
 -- vim.cmd[[command! PackerCompile lua run_packer('compile')]]
 
---
 ------------------------------------
 ---- LSP Settings ------------------
 ------------------------------------
@@ -134,32 +124,9 @@ vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })
 vim.cmd([[hi! link LspReferenceText CursorColumn]])
 vim.cmd([[hi! link LspReferenceRead CursorColumn]])
 vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
--- vim.cmd([[hi Normal ctermbg=none]])
 
 vim.cmd([[hi! link LspSagaFinderSelection CursorColumn]])
 vim.cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
---
--- vim.g.startify_lists = {
---   {type = "files", header = {"   MRU"}},
---   {type = "dir", header = {"   Current Directory " .. vim.fn.getcwd()}},
---   {type = "sessions", header = {"   Sessions"}},
---   {type = "bookmarks", header = {"   Bookmarks"}},
---   {type = "commands", header = {"   Commands"}}
--- }
-
--- vim.g.startify_bookmarks = {
---   {il = "~/.config/nvim/init.lua"},
---   {iv = "~/.config/nvim/init.vim"},
---   {c = "~/.config/Code/User/settings.json"},
---   {a = "~/.config/alacritty/alacritty.yml"},
---   {z = "~/.zshrc"},
---   {l = "~/.config/lf/lfrc"},
---   {b = "~/.config/broot/conf.hjson"}
--- }
-
--- vim.g.startify_change_to_vcs_root = 1
--- vim.g.startify_fortune_use_unicode = 1
--- vim.g.webdevicons_enable_startify = 1
 
 vim.cmd('highlight! Comment cterm=italic, gui=italic') -- italic comments https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
 vim.cmd('highlight! Special cterm=italic, gui=italic')
@@ -173,6 +140,11 @@ vim.cmd([[
   endif
 ]])
 
+-- Need for symbol highlights to work correctly
+--vim.cmd([[hi! link LspReferenceText CursorColumn]])
+--vim.cmd([[hi! link LspReferenceRead CursorColumn]])
+--vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
+--vim.cmd([[hi! link LspCodeLens CursorColumn]])
 --TERMINAL = vim.fn.expand('$TERMINAL')
 --vim.bo.expandtab = true -- Converts tabs to spaces
 --vim.cmd('let &titleold="'..TERMINAL..'"')

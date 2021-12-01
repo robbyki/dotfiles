@@ -234,8 +234,8 @@ find-alias(){ alias | grep ${1} }
 # a bunch of really ugly functions that could use a lot of improvements
 
 # delete any target directory recursively in a jvm project. helpful for debugging.
-delete-target() { 
-find . -type d -name target -prune -exec rm -r {} + 
+delete-target() {
+find . -type d -name target -prune -exec rm -r {} +
 }
 
 # find files with extension in location given
@@ -271,16 +271,16 @@ mcdmlogs(){
 mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
 }
 
-# cd into dir after creating it. 
+# cd into dir after creating it.
 mkcdir()
 {
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
- 
+
 # colorize oc commands
 ocy() {
-  oc --output yaml $@ | yq eval --colors 
+  oc --output yaml $@ | yq eval --colors
 }
 
 occ() {
@@ -329,3 +329,8 @@ alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 # source ~/.zshrc
 alias sc="source $DOTFILES/zsh/.zshrc"
 # zrc() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
+
+alias headp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-output-0"
+alias speakers="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
+alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
+alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"

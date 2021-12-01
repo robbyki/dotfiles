@@ -93,6 +93,8 @@ export IBMCLOUD_VERSION_CHECK=true
 export GO_HOME=$HOME/go
 export CARGO=$HOME/.cargo
 export GOPATH=${HOME}/go
+export FNM=${HOME}/.fnm
+PATH=$PATH:${FNM}
 PATH=$PATH:/opt
 PATH=$PATH:/opt/bin
 PATH=$PATH:/usr/bin/local
@@ -111,6 +113,8 @@ PATH=$PATH:$CARGO/bin
 export PATH
 
 # }}}
+
+eval "`fnm env`"
 
 # {{{ easier pasting
 zle_highlight+=(paste:none)
@@ -202,3 +206,7 @@ fi
 
 # better cd
 eval "$(zoxide init zsh)"
+
+# fnm
+export PATH=/home/robbyk/.fnm:$PATH
+eval "`fnm env`"

@@ -36,7 +36,6 @@
   },
   "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.settings.editor": "json",
-  "window.zoomLevel": 2,
   "editor.fontFamily": "Operator Mono SSm Lig Book",
   "terminal.integrated.fontFamily": "Operator Mono SSm Lig Book",
   "editor.fontLigatures": true,
@@ -254,5 +253,6 @@
   },
   "files.defaultLanguage": "markdown",
   "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
-  "editor.smoothScrolling": true
+  "editor.smoothScrolling": true,
+  "window.zoomLevel": 3
 }

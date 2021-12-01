@@ -22,7 +22,8 @@ M.setup = function()
       "com.github.swagger.akka.javadsl",
       "akka.stream.javadsl",
     },
-    fallbackScalaVersion = "2.13.6",
+    superMethodLensesEnabled = true
+    -- fallbackScalaVersion = "2.13.6",
     --serverProperties = {
     --  "-Dmetals.scala-cli.launcher=/usr/local/bin/scala-cli",
     --},
@@ -35,33 +36,34 @@ M.setup = function()
 
   local dap = require("dap")
 
+
   dap.configurations.scala = {
     {
       type = "scala",
       request = "launch",
       name = "Run",
       metals = {
-        runType = "run",
-        args = { "firstArg", "secondArg", "thirdArg" },
-      },
+        runType = "run"
+      }
     },
     {
       type = "scala",
       request = "launch",
       name = "Test File",
       metals = {
-        runType = "testFile",
-      },
+        runType = "testFile"
+      }
     },
     {
       type = "scala",
       request = "launch",
       name = "Test Target",
       metals = {
-        runType = "testTarget",
-      },
+        runType = "testTarget"
+      }
     },
   }
+
 
   Metals_config.on_attach = function(client, bufnr)
     vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])

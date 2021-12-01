@@ -25,9 +25,148 @@ return require("packer").startup(function(use)
   use("tpope/vim-eunuch")
   use("mfussenegger/nvim-dap")
   use("andymass/vim-matchup")
+
+-- use({
+--         "nvim-treesitter/nvim-treesitter",
+--         config = function()
+--             require("nvim-treesitter.configs").setup({
+--
+--                 context_commentstring = {
+--                     enable = true,
+--                     enable_autocmd = false,
+--                 },
+--
+--                 ensure_installed = {
+--                     "bash",
+--                     "c",
+--                     "comment",
+--                     "cpp",
+--                     "css",
+--                     "dockerfile",
+--                     "fish",
+--                     "go",
+--                     "gomod",
+--                     "graphql",
+--                     "html",
+--                     "java",
+--                     "javascript",
+--                     "json",
+--                     "lua",
+--                     "python",
+--                     "regex",
+--                     "rst",
+--                     "rust",
+--                     "swift",
+--                     "toml",
+--                     "typescript",
+--                     "yaml",
+--                 },
+--
+--                 highlight = {
+--                     enable = true,
+--                 },
+--
+--                 indent = {
+--                     enable = true,
+--                     -- https://www.reddit.com/r/neovim/comments/l3mpiv/i_just_discovered_treesitter_was_the_reason_my/
+--                     disable = { "python" },
+--                 },
+--
+--                 incremental_selection = {
+--                     enable = true,
+--                     keymaps = {
+--                         init_selection = "gnn",
+--                         node_incremental = "grn",
+--                         scope_incremental = "grc",
+--                         node_decremental = "grm",
+--                     },
+--                 },
+--
+--                 -- vim-matchup config.
+--                 matchup = {
+--                     enable = true,
+--                 },
+--
+--                 refactor = {
+--                     smart_rename = {
+--                         enable = true,
+--                         keymaps = {
+--                             smart_rename = "grr",
+--                         },
+--                     },
+--                     highlight_definitions = {
+--                         enable = true,
+--                     },
+--                     -- highlight_current_scope = { enable = true }
+--                 },
+--
+--                 textobjects = {
+--                     select = {
+--                         enable = true,
+--                         keymaps = {
+--                             ["iF"] = {
+--                                 python = "(function_definition) @function",
+--                                 cpp = "(function_definition) @function",
+--                                 c = "(function_definition) @function",
+--                                 java = "(method_declaration) @function",
+--                             },
+--                             -- or you use the queries from supported languages with textobjects.scm
+--                             ["af"] = "@function.outer",
+--                             ["if"] = "@function.inner",
+--                             ["aC"] = "@class.outer",
+--                             ["iC"] = "@class.inner",
+--                             ["ac"] = "@conditional.outer",
+--                             ["ic"] = "@conditional.inner",
+--                             ["ae"] = "@block.outer",
+--                             ["ie"] = "@block.inner",
+--                             ["al"] = "@loop.outer",
+--                             ["il"] = "@loop.inner",
+--                             ["is"] = "@statement.inner",
+--                             ["as"] = "@statement.outer",
+--                             ["ad"] = "@comment.outer",
+--                             ["am"] = "@call.outer",
+--                             ["im"] = "@call.inner",
+--                         },
+--                     },
+--                 },
+--                 textsubjects = {
+--                     enable = true,
+--                     keymaps = {
+--                         ["."] = "textsubjects-smart",
+--                         [";"] = "textsubjects-container-outer",
+--                     },
+--                 },
+--             })
+--         end,
+--         event = { "BufEnter" },
+--         run = ":TSUpdate",
+--         requires = {
+--             { "nvim-treesitter/nvim-treesitter-textobjects" },
+--             -- https://github.com/windwp/nvim-ts-autotag
+--             { "JoosepAlviste/nvim-ts-context-commentstring" },
+--             { "RRethy/nvim-treesitter-textsubjects" },
+--             { "windwp/nvim-ts-autotag" },
+--         },
+--         wants = {
+--             "nvim-treesitter-textobjects",
+--             "nvim-treesitter-textsubjects",
+--             "nvim-ts-autotag",
+--             "nvim-ts-context-commentstring",
+--             "vim-matchup",
+--         },
+--     })
+
+
+	use {
+		"SmiteshP/nvim-gps",
+		requires = "nvim-treesitter/nvim-treesitter"
+	}
+
+	    -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   use("p00f/nvim-ts-rainbow")
   use("nvim-treesitter/playground")
+
   use("nvim-treesitter/completion-treesitter")
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("windwp/nvim-ts-autotag")
@@ -59,7 +198,7 @@ return require("packer").startup(function(use)
   use("caenrique/nvim-maximize-window-toggle")
   use("nacro90/numb.nvim")
   use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
-  use("voldikss/vim-floaterm")
+  -- use("voldikss/vim-floaterm")
   use("terrortylor/nvim-comment")
   use({
   	"numToStr/Comment.nvim",
@@ -96,8 +235,8 @@ return require("packer").startup(function(use)
   use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
   use({ "ellisonleao/glow.nvim" })
-  use({ "nvim-lualine/lualine.nvim", 
-  	requires = { "kyazdani42/nvim-web-devicons", opt = true }, 
+  use({ "nvim-lualine/lualine.nvim",
+  	requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
   use("folke/which-key.nvim")
   use("dkarter/bullets.vim")
