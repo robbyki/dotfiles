@@ -10,6 +10,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
   zsh-autosuggestions
+  zsh-better-npm-completion
   zsh-syntax-highlighting
   dnf
   vscode
@@ -93,12 +94,14 @@ export IBMCLOUD_VERSION_CHECK=true
 export GO_HOME=$HOME/go
 export CARGO=$HOME/.cargo
 export GOPATH=${HOME}/go
+export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
 PATH=$PATH:${FNM}
 PATH=$PATH:/opt
 PATH=$PATH:/opt/bin
 PATH=$PATH:/usr/bin/local
 PATH=$PATH:${HOME}/.local/bin
+PATH=$PATH:${NPM}/bin
 PATH=$PATH:${HOME}/.local/share/coursier/bin
 PATH=$PATH:${JAVA_HOME}/bin
 PATH=$PATH:${MVN_HOME}/bin
