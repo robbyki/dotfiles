@@ -11,14 +11,13 @@ require "config.colorizer"
 require "config.nvim-reloader"
 require "config.nvim-gitsigns"
 require "config.nvim-comment"
--- require('config.nvim-floaterm')
+require('config.nvim-floaterm')
 require "config.nvim-matchup"
 require "config.nvim-lspkind"
 require "config.nvim-gitblame"
 require "config.nvim-lightbulb"
 require "config.nvim-indentline"
 require "config.nvim-neoscroll"
-require "config.nvim-lsp-trouble"
 require "config.nvim-multi-cursor"
 require "config.nvim-dashboard"
 require "config.nvim-tree"
@@ -50,7 +49,7 @@ require("nvim-treesitter.configs").setup {
 }
 
 require("bufferline").setup {}
-require("trouble").setup {}
+-- require("trouble").setup {}
 require("onedark").setup()
 require("todo-comments").setup {
   keywords = {
