@@ -1,7 +1,17 @@
+custom_cursor_colors: true
 window:
   dynamic_padding: true
-  decorations: full
-  startup_mode: Fullscreen
+  decorations: none
+    # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  startup_mode: Windowed
   title: Alacritty
   draw_bold_text_with_bright_colors: true
 font:
@@ -26,6 +36,9 @@ key_bindings:
     mods: Control|Alt
     action: Copy
 colors:
+  cursor:
+   text: "0x000000"
+   cursor: "0xffffff"
   primary:
     background: "0x1b182c"
     foreground: "0xcbe3e7"
