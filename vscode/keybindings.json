@@ -103,6 +103,18 @@
   {
     "key": "ctrl+alt+meta+n",
     "command": "-welcome.showNewFileEntries"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "workbench.action.focusNextGroup"
+  },
+  {
+    "key": "ctrl+alt+f",
+    "command": "extension.advancedNewFile"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "-extension.advancedNewFile"
   }
   // {
   //   "command": "vscode-neovim.compositeEscape1",

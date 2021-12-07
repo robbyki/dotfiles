@@ -254,5 +254,5 @@
   "files.defaultLanguage": "markdown",
   "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
   "editor.smoothScrolling": true,
-  "window.zoomLevel": 3
+  "window.zoomLevel": 2
 }
