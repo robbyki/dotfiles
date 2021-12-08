@@ -19,6 +19,7 @@ alias dev='cdl $HOME/dev/'
 alias dots="cdl $DOTFILES"
 alias downloads="cdl ~/Downloads"
 alias docs="cdl ~/Documents"
+alias vids="cdl ~/Videos"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 
