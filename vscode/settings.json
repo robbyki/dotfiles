@@ -224,7 +224,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.sendKeybindingsToShell": true,
   "terminal.external.linuxExec": "alacritty",
-  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontSize": 11,
   "debug.console.fontFamily": "Operator Mono SSm Lig Book",
   "debug.console.wordWrap": false,
   "debug.console.fontSize": 12,
@@ -254,5 +254,5 @@
   "files.defaultLanguage": "markdown",
   "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
   "editor.smoothScrolling": true,
-  "window.zoomLevel": 2
+  "window.zoomLevel": 3
 }
