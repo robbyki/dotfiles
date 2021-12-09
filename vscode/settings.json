@@ -37,6 +37,7 @@
   "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.settings.editor": "json",
   "editor.fontFamily": "Operator Mono SSm Lig Book",
+  "editor.fontSize": 12,
   "terminal.integrated.fontFamily": "Operator Mono SSm Lig Book",
   "editor.fontLigatures": true,
   "security.workspace.trust.untrustedFiles": "open",
