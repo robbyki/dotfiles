@@ -88,7 +88,7 @@ M.setup = function()
             -- LSP diagnostics
             {
                 "diagnostics",
-                sources = { "nvim_lsp" },
+                sources = { "nvim_diagnostic" },
             },
         },
         lualine_y = {

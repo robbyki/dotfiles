@@ -37,16 +37,16 @@
     "key": "ctrl+alt+r",
     "command": "metals.build-import"
   },
-  {
-    "key": "tab",
-    "command": "selectNextSuggestion",
-    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
-  },
-  {
-    "key": "shift+tab",
-    "command": "selectPrevSuggestion",
-    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
-  },
+  // {
+  //   "key": "tab",
+  //   "command": "selectNextSuggestion",
+  //   "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  // },
+  // {
+  //   "key": "shift+tab",
+  //   "command": "selectPrevSuggestion",
+  //   "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  // },
   {
     "key": "alt+0",
     "command": "-workbench.action.lastEditorInGroup"
@@ -115,6 +115,27 @@
   {
     "key": "ctrl+alt+n",
     "command": "-extension.advancedNewFile"
+  },
+  {
+    "key": "ctrl+alt+w",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+pageup",
+    "command": "workbench.action.previousEditor",
+  },
+  {
+    "key": "ctrl+pagedown",
+    "command": "workbench.action.nextEditor",
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "-workbench.action.terminal.openNativeConsole",
+    "when": "!terminalFocus"
   }
   // {
   //   "command": "vscode-neovim.compositeEscape1",
