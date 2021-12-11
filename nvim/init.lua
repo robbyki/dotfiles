@@ -27,7 +27,7 @@ require("numb").setup()
 require("better_escape").setup()
 -- require('nvim-autopairs').setup()
 
--- require('config.nvim-whichkey').setup()
+require("which-key").setup()
 --require('config.nvim-quickscope')
 --require('config.nvim-numb')
 --require('config.nvim-hop')

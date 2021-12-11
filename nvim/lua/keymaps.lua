@@ -38,7 +38,7 @@ map('n', '<Leader>ss', [[<cmd>lua require('telescope.builtin').grep_string()<CR>
 map('n', '<Leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]])
 map('n', '<Leader>tt', [[<cmd>lua require('telescope.builtin').builtin()<CR>]])
 
--- lsp stuff...yes, I need to setup which key plugin before I love my mind.
+-- lsp stuff...yes, I need to setup which key plugin before I lose my mind.
 map('n', '<space>a',  [[<cmd>lua require("metals").open_all_diagnostics()<CR>]])
 map('n', '<space>ca', [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
 map('n', '<space>cl', [[<cmd>lua vim.lsp.codelens.run()<CR>]])
@@ -115,12 +115,8 @@ map('i', '<Tab>', [[pumvisible() ? '<C-n>' : '<Tab>']])
 map('n', '<Leader>gg',':LazyGit<CR>')
 
 
-
-
 -- map('n', '<Leader><Leader>p', [[<cmd>lua require"playground.utils".peek()<CR>]])
 -- map('n', '<Leader><Leader>s', [[<cmd>lua RELOAD("playground.semantic").generate()<CR>]])
-
--- lazygit
 
 -- set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', opts)
 

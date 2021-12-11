@@ -6,9 +6,9 @@
 -- }
 -- vim.g.which_key_sep = '→'
 -- vim.g.which_key_timeout = 100
--- 
+--
 -- local wk = require('whichkey_setup')
--- 
+--
 -- local keymap = {
 --     ['/'] = {'<Cmd>CommentToggle<CR>'                                                  , 'comment line'},
 --     ['.'] = {'<Cmd>e $MYVIMRC<CR>'                                                     , 'My VIMRC'},
@@ -149,9 +149,9 @@
 --         y     = {'<Cmd>FloatermNew ytop<CR>'                       , 'ytop'},
 --     }
 -- }
--- 
+--
 -- wk.register_keymap('leader', keymap)
--- 
+--
 -- -- VimScript
 -- vim.cmd([[
 --     function! SearchString()
@@ -161,5 +161,5 @@
 --         execute 'CtrlSF '.replacement
 --     endfunction
 -- ]])
--- 
--- 
+--
+--
