@@ -1,6 +1,6 @@
 local nvim_tree = require('nvim-tree')
 
-nvim_tree.setup {
+nvim_tree.setup({
   -- disables netrw completely
   disable_netrw       = true,
   -- hijack netrw window on startup
@@ -66,6 +66,6 @@ nvim_tree.setup {
     -- if true the tree will resize itself after opening a file
     auto_resize = true
   }
-}
+})
 
 -- vim.api.nvim_set_keymap('n', '<c-n>', ':NvimTreeToggle<cr>', { noremap = true, silent = true })

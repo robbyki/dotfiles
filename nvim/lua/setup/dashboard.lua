@@ -1,3 +1,4 @@
+require("setup.dashboard").setup()
 vim.g.dashboard_custom_header = {
     '',
      '⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣤⣴⣦⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ',

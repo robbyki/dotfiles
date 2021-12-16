@@ -5,21 +5,22 @@ vim.g.vim_markdown_conceal_code_blocks = 0
 vim.g.vim_markdown_conceal = 0
 
 vim.g.bullets_enabled_file_types = {
-  'gitcommit',
-  'markdown',
-  'pandoc',
-  'text',
+  "gitcommit",
+  "markdown",
+  "pandoc",
+  "text",
 }
 
-vim.g.metals_server_version = "0.10.9+67-2ccb27bf-SNAPSHOT"
+-- vim.g.metals_server_version = "0.10.9+67-2ccb27bf-SNAPSHOT"
 -- vim.g.metals_disabled_mode = true
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
 -- vim.g.background = "dark"
 
-vim.g.onedark_style = 'deep'
-vim.cmd('colorscheme onedark')
+--vim.g.onedark_style = 'deep'
+--vim.cmd("colorscheme onedark")
+--vim.cmd("colorscheme nightfox")
 
 local indent = 2
 
@@ -35,7 +36,7 @@ vim.opt.incsearch = true
 vim.o.cursorline = true
 vim.o.ruler = true
 vim.o.rulerformat = [[%-14.(%l,%c   %o%)]]
-vim.o.mouse = ''
+vim.o.mouse = ""
 vim.o.backup = false
 vim.o.clipboard = "unnamed"
 vim.o.completeopt = "menu,menuone,noselect,noinsert"
@@ -53,9 +54,9 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.termguicolors = true
 vim.o.title = true
-vim.o.titlestring="%<%F%=%l/%L - nvim"
+vim.o.titlestring = "%<%F%=%l/%L - nvim"
 vim.o.updatetime = 300
-vim.o.wildignore = ".git","*/node_modules/*","*/target/*",".metals",".bloop",".ammonite"
+vim.o.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloop", ".ammonite"
 vim.o.writebackup = false
 vim.o.guifont = "Operator Mono SSm Lig Book"
 vim.o.swapfile = false
@@ -77,24 +78,26 @@ vim.bo.shiftwidth = indent
 vim.bo.softtabstop = indent
 vim.bo.tabstop = indent
 
-vim.g['incsearch#auto_nohlsearch'] = 1
-vim.api.nvim_set_keymap('','n','<Plug>(incsearch-nohl-n)', {})
-vim.api.nvim_set_keymap('','N','<Plug>(incsearch-nohl-N)', {})
-vim.api.nvim_set_keymap('','*','<Plug>(incsearch-nohl-*)', {})
-vim.api.nvim_set_keymap('','#','<Plug>(incsearch-nohl-#)', {})
-vim.api.nvim_set_keymap('','g*','<Plug>(incsearch-nohl-g*)', {})
-vim.api.nvim_set_keymap('','g#','<Plug>(incsearch-nohl-g#)', {})
+vim.g["incsearch#auto_nohlsearch"] = 1
+vim.api.nvim_set_keymap("", "n", "<Plug>(incsearch-nohl-n)", {})
+vim.api.nvim_set_keymap("", "N", "<Plug>(incsearch-nohl-N)", {})
+vim.api.nvim_set_keymap("", "*", "<Plug>(incsearch-nohl-*)", {})
+vim.api.nvim_set_keymap("", "#", "<Plug>(incsearch-nohl-#)", {})
+vim.api.nvim_set_keymap("", "g*", "<Plug>(incsearch-nohl-g*)", {})
+vim.api.nvim_set_keymap("", "g#", "<Plug>(incsearch-nohl-g#)", {})
 ------------------------------------
 ---- COMMANDS ----------------------
 ------------------------------------
 --vim.cmd('set cursorline cursorcolumn')
-vim.cmd('set formatoptions-=cro')
-vim.cmd('autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o')
-vim.cmd('autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o')
-vim.cmd('autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o')
+vim.cmd("set formatoptions-=cro")
+vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd("autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd([[autocmd FileType markdown setlocal textwidth=80]])
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
-vim.cmd([[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
+vim.cmd(
+  [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
+)
 vim.cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]])
 vim.cmd([[autocmd TermOpen * startinsert]])
 
@@ -109,10 +112,10 @@ vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(
 vim.cmd([[augroup end]])
 
 -- vim.cmd[[command! PI lua run_packer('install')]]
-vim.cmd[[command! PU packadd packer.nvim | lua require('plugins').update()]]
-vim.cmd[[command! PI packadd packer.nvim | lua require('plugins').install()]]
-vim.cmd[[command! PS packadd packer.nvim | lua require('plugins').sync()]]
-vim.cmd[[command! PC packadd packer.nvim | lua require('plugins').clean()]]
+vim.cmd([[command! PU packadd packer.nvim | lua require('plugins').update()]])
+vim.cmd([[command! PI packadd packer.nvim | lua require('plugins').install()]])
+vim.cmd([[command! PS packadd packer.nvim | lua require('plugins').sync()]])
+vim.cmd([[command! PC packadd packer.nvim | lua require('plugins').clean()]])
 -- vim.cmd[[command! PackerCompile lua run_packer('compile')]]
 
 ------------------------------------
@@ -130,8 +133,8 @@ vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
 vim.cmd([[hi! link LspSagaFinderSelection CursorColumn]])
 vim.cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
 
-vim.cmd('highlight! Comment cterm=italic, gui=italic') -- italic comments https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
-vim.cmd('highlight! Special cterm=italic, gui=italic')
+vim.cmd("highlight! Comment cterm=italic, gui=italic") -- italic comments https://stackoverflow.com/questions/3494435/vimrc-make-comments-italic
+vim.cmd("highlight! Special cterm=italic, gui=italic")
 
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
 

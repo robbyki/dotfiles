@@ -1,4 +1,4 @@
-require('gitsigns').setup {
+require('gitsigns').setup({
     signs = {
       -- TODO add hl to colorscheme
       add          = {hl = 'GitSignsAdd'   , text = '▎', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
@@ -20,4 +20,4 @@ require('gitsigns').setup {
     sign_priority = 6,
     update_debounce = 200,
     status_formatter = nil -- Use default
-}
+})
