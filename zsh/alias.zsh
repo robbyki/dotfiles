@@ -20,6 +20,7 @@ alias dots="cdl $DOTFILES"
 alias downloads="cdl ~/Downloads"
 alias docs="cdl ~/Documents"
 alias vids="cdl ~/Videos"
+alias blog="cdl ~/dev/blog"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 
@@ -28,6 +29,7 @@ alias sd='secrets decrypt'
 alias se='secrets encrypt'
 alias ssrc='secrets source'
 alias ssibm='secrets source ibm-secrets'
+alias sdibm='secrets decrypt ibm-secrets'
 
 # system
 alias tarx='tar xvzf'

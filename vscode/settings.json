@@ -255,5 +255,6 @@
   "files.defaultLanguage": "markdown",
   "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
   "editor.smoothScrolling": true,
-  "window.zoomLevel": 2
+  "window.zoomLevel": 3,
+  "bracketPairColorizer.depreciation-notice": false
 }

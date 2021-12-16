@@ -42,6 +42,8 @@ return require("packer").startup(function(use)
     "SmiteshP/nvim-gps",
     requires = "nvim-treesitter/nvim-treesitter",
   }
+  use "yuezk/vim-js"
+  use "maxmellon/vim-jsx-pretty"
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }

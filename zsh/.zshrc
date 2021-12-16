@@ -213,3 +213,5 @@ eval "$(zoxide init zsh)"
 # fnm
 export PATH=/home/robbyk/.fnm:$PATH
 eval "`fnm env`"
+
+# export TEXMF=/usr/share/texlive/texmf-dist
