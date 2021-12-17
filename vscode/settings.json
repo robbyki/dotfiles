@@ -258,5 +258,5 @@
   "window.zoomLevel": 2,
   "bracketPairColorizer.depreciation-notice": false,
   "WhiteSource Advise.Diff.BaseBranch": "main",
-  "WhiteSource Advise.MinimumVulnerabilitySeverityLevel": "Medium"
+  "WhiteSource Advise.includeDevDependencies": true
 }

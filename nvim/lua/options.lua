@@ -11,7 +11,7 @@ vim.g.bullets_enabled_file_types = {
   "text",
 }
 
--- vim.g.metals_server_version = "0.10.9+67-2ccb27bf-SNAPSHOT"
+-- vim.g.metals_server_version = "0.10.9+176-3fbe9bd8-SNAPSHOT"
 -- vim.g.metals_disabled_mode = true
 
 vim.g.glow_binary_path = "/usr/local/bin"
