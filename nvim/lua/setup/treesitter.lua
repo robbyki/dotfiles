@@ -1,15 +1,32 @@
-require("nvim-treesitter.configs").setup {
-  query_linter = {
-    enable = true,
-    use_virtual_text = true,
-    lint_events = { "BufWrite", "CursorHold" },
-  },
+require("nvim-treesitter.configs").setup({
   ensure_installed = "all",
-  highlight = {
+  highlight = { enable = true, },
+  indent = { enable = true },
+  rainbow = {
     enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
   },
-  indent = { enable = true }
-}
+  autotag = {
+    enable = true,
+    filetypes = {
+      "scala",
+      "python",
+      "html",
+      "javascript",
+      "typescript",
+      "markdown",
+    },
+  },
+})
+
+  -- query_linter = {
+  --   enable = true,
+  --   use_virtual_text = true,
+  --   lint_events = { "BufWrite", "CursorHold" },
+  -- },
+
+
 
 -- require("nvim-treesitter.configs").setup({
 --   rainbow = {
@@ -41,7 +58,7 @@ require("nvim-treesitter.configs").setup {
 -- -- Setup treesitter
 -- local ts = require("nvim-treesitter.configs")
 -- ts.setup({ ensure_installed = "maintained", highlight = { enable = true } })
-
+--
 
 --require'nvim-treesitter.configs'.setup {
 --    ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages

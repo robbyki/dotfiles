@@ -1,9 +1,9 @@
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 vim.g.mapleader = ","
@@ -17,27 +17,42 @@ map("i", "<C-c>", "<Esc>")
 -- also helpful when running fuzzy grep with telescope from project root "<leader>sl"
 map("n", "<Leader>cd", [[<cmd>lua require'telescope'.extensions.zoxide.list{}<CR>]])
 
+-- Keep search results centred
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+map("n", "J", "mzJ`z")
+
 -- harpoon to quickly add files to a temporary directory per-session
 map("n", "<Leader>hm", [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>]])
 map("n", "<Leader>ha", [[<cmd>lua require("harpoon.mark").add_file()<CR>]])
 map("n", "<Leader>hc", [[<cmd>lua require("harpoon.mark").clear_all()<CR>]])
 
 --telescope (finders)
-map("n", "<Leader>?", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
-map("n", "<Leader>FF", [[<cmd>lua require('telescope.builtin').find_files({ cwd = "$HOME", hidden = true })<CR>]]) -- this one is expensive
-map("n", "<Leader>bb", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
-map("n", "<Leader>ff", [[<cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>]])
-map("n", "<Leader>gb", [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
-map("n", "<Leader>gf", [[<cmd>lua require('telescope.builtin').git_files()<CR>]])
-map("n", "<Leader>sb", [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
-map("n", "<Leader>sh", [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
-map("n", "<Leader>sl", [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
-map("n", "<Leader>sp", [[<cmd>lua require('telescope').extensions.project.project({})<CR>]])
-map("n", "<Leader>ss", [[<cmd>lua require('telescope.builtin').grep_string()<CR>]])
-map("n", "<Leader>st", [[<cmd>lua require('telescope.builtin').tags()<CR>]])
-map("n", "<Leader>tt", [[<cmd>lua require('telescope.builtin').builtin()<CR>]])
+map("n", "<leader>?", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]])
+map("n", "<leader>FF", [[<cmd>lua require('telescope.builtin').find_files({ cwd = "$HOME", hidden = true })<CR>]]) -- this one is expensive
+map("n", "<leader>bb", [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
+map("n", "<leader>ff", [[<cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>]])
+map("n", "<leader>gb", [[<cmd>lua require('telescope.builtin').git_branches()<CR>]])
+map("n", "<leader>gf", [[<cmd>lua require('telescope.builtin').git_files()<CR>]])
+map("n", "<leader>sb", [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
+map("n", "<leader>sh", [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
+map("n", "<leader>sl", [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
+map("n", "<leader>sp", [[<cmd>lua require('telescope').extensions.project.project({})<CR>]])
+map("n", "<leader>ss", [[<cmd>lua require('telescope.builtin').grep_string()<CR>]])
+map("n", "<leader>st", [[<cmd>lua require('telescope.builtin').tags()<CR>]])
+map("n", "<leader>tt", [[<cmd>lua require('telescope.builtin').builtin()<CR>]])
+map("n", "<leader>r",  [[<cmd>lua require("telescope.builtin").registers()<cr>]])
+map("n", "<leader>f",  [[<cmd>lua require("telescope").extensions.file_browser.file_browser()<CR>]])
 
--- map('n', '<Leader>tt', [[<cmd>lua require('telescope.builtin').builtin()<CR>]])
+map("n", "<leader>cn", [[<cmd>lua require("renamer").rename()<cr>]])
+map("v", "<leader>cn", [[<cmd>lua require("renamer").rename()<cr>]])
+
+-- Hop
+-- nice way to force myself from using stupid h and l movements
+map("n", "h", [[<cmd>lua require'hop'.hint_words()<cr>]])
+map("n", "l", [[<cmd>lua require'hop'.hint_lines()<cr>]])
+map("v", "h", [[<cmd>lua require'hop'.hint_words()<cr>]])
+map("v", "l", [[<cmd>lua require'hop'.hint_lines()<cr>]])
 
 -- lsp stuff...yes, I need to setup which key plugin before I lose my mind.
 map("n", "<space>a", [[<cmd>lua require("metals").open_all_diagnostics()<CR>]])
@@ -79,12 +94,12 @@ map("n", "<space>r", [[<cmd>lua require'telescope.builtin'.lsp_references()<CR>]
 map("n", "<space>ws", [[<cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>]])
 map("v", "<space>t", [[<Esc><cmd>lua require("metals").type_of_range()<CR>]])
 
-vim.cmd [[
+vim.cmd([[
   nnoremap <silent> <C-Up> : resize -2<CR>
   nnoremap <silent> <C-Down> : resize +2<CR>
   nnoremap <silent> <C-Left> : vertical resize -2<CR>
   nnoremap <silent> <C-Right> : vertical resize +2<CR>
-]]
+]])
 
 -- better indenting
 map("v", "<", "<gv")
@@ -115,6 +130,9 @@ map("i", "<Tab>", [[pumvisible() ? '<C-n>' : '<Tab>']])
 
 map("n", "<Leader>gg", ":LazyGit<CR>")
 
+map("n", "<esc>", ":noh<cr><esc>", { silent = true })
+
+map("n", "<leader>so", ":SymbolsOutline<cr>")
 -- map('n', '<Leader><Leader>p', [[<cmd>lua require"playground.utils".peek()<CR>]])
 -- map('n', '<Leader><Leader>s', [[<cmd>lua RELOAD("playground.semantic").generate()<CR>]])
 

@@ -82,3 +82,7 @@ motivate/
 nvim/plugin/packer_compiled.lua
 workplace-tmp/
 xterm-256color-italic.terminfo/
+node_modules/
+package-lock.json
+package.json
+packer_compiled

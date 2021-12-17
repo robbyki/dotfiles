@@ -103,11 +103,10 @@ alias appconf="$EDITOR src/main/resources/application.conf"
 alias fa='find-alias'
 alias fdf='fd --no-ignore --list-details --hidden'
 
+# git related
 alias lg='lazygit'
-# git
-
-# gist
 alias ghibm='gh fzrepo'
+alias ghdig='gh repo-fzf Digital-Business-Mgmt-Platform'
 alias gistcl='gh gist clone'
 alias gistcr='gh gist create'
 alias gistdel='gh gist delete'
