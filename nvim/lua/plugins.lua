@@ -163,9 +163,17 @@ return require("packer").startup({
 		use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })
 		use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
 		use({ "ellisonleao/glow.nvim" })
---		use({ "folke/which-key.nvim",
---      config = get_setup("which-key"),
---    })
+		-- Lua
+		use({
+			"folke/which-key.nvim",
+			config = function()
+				require("which-key").setup({
+					-- your configuration comes here
+					-- or leave it empty to use the default settings
+					-- refer to the configuration section below
+				})
+			end,
+		})
 		use({ "dkarter/bullets.vim" })
 		if packer_bootstrap then
 			require("packer").sync()
