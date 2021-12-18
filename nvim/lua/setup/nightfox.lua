@@ -11,9 +11,9 @@ nightfox.setup({
     functions = "italic,bold",
   },
   inverse = {
-    visual = true,
+    visual = false,
     search = true,
-    match_paren = true,
+    match_paren = false,
   },
 })
 nightfox.load()
