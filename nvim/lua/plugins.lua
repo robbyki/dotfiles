@@ -27,6 +27,7 @@ return require("packer").startup({
   function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
+    use({ "ptzz/lf.vim" })
     use({ "nathom/filetype.nvim", config = get_setup("filetype") })
     use({ "EdenEast/nightfox.nvim", config = get_setup("nightfox") })
     use({ "kyazdani42/nvim-web-devicons" })

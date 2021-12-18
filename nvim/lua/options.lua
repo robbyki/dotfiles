@@ -14,6 +14,10 @@ vim.g.bullets_enabled_file_types = {
 -- vim.g.metals_server_version = "0.10.9+176-3fbe9bd8-SNAPSHOT"
 -- vim.g.metals_disabled_mode = true
 
+vim.g.lf_map_keys = 0
+vim.g.floaterm_width = 0.9
+vim.g.floaterm_height = 0.9
+
 vim.g.glow_binary_path = "/usr/local/bin"
 
 -- vim.g.background = "dark"
@@ -70,6 +74,9 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
 vim.wo.wrap = false
+
+vim.g.lf_width = 0.9
+vim.g.lf_height = 0.9
 
 -- buffer
 vim.bo.expandtab = true
