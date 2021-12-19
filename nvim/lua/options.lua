@@ -18,7 +18,15 @@ vim.g.lf_map_keys = 0
 vim.g.floaterm_width = 0.9
 vim.g.floaterm_height = 0.9
 
+vim.g.hardtime_default_on = 1
+vim.g.hardtime_showmsg = 0
+vim.g.hardtime_maxcount = 0
+
 vim.g.glow_binary_path = "/usr/local/bin"
+
+vim.g.minimap_auto_start = 1
+
+
 
 -- vim.g.background = "dark"
 

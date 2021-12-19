@@ -27,6 +27,7 @@ return require("packer").startup({
   function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
+    use({ "takac/vim-hardtime" })
     use({ "ptzz/lf.vim" })
     use({ "nathom/filetype.nvim", config = get_setup("filetype") })
     use({ "EdenEast/nightfox.nvim", config = get_setup("nightfox") })
@@ -51,6 +52,7 @@ return require("packer").startup({
     use({ "kosayoda/nvim-lightbulb" })
     use({ "kabouzeid/nvim-lspinstall" })
     use({ "nvim-lua/lsp-status.nvim" })
+    use({ "wfxr/minimap.vim" })
     use({ "tpope/vim-eunuch" })
     use({ "mfussenegger/nvim-dap" })
     use({ "andymass/vim-matchup" })
@@ -167,7 +169,19 @@ return require("packer").startup({
     use({
       "folke/which-key.nvim",
       config = function()
-        require("which-key").setup()
+        require("which-key").setup({
+          plugins = {
+            presets = {
+              operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+              motions = false, -- adds help for motions
+              text_objects = false, -- help for text objects triggered after entering an operator
+              windows = false, -- default bindings on <c-w>
+              nav = false, -- misc bindings to work with windows
+              z = false, -- bindings for folds, spelling and others prefixed with z
+              g = false, -- bindings for prefixed with g
+            },
+          },
+        })
       end,
     })
     use({ "dkarter/bullets.vim" })

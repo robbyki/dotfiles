@@ -38,6 +38,10 @@ key_bindings:
 
 # Default colors
 colors:
+  cursor:
+   text: "0x000000"
+   cursor: "0x00ff00"
+   # cursor: "0xffffff"
   primary:
     background: '0x192330'
     foreground: '0xcdcecf'
