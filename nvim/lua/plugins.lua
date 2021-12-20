@@ -38,7 +38,6 @@ return require("packer").startup({
       event = "VimEnter",
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
     })
-    use({ "folke/zen-mode.nvim", config = get_setup("zen-mode") })
     use({
       "norcalli/nvim-colorizer.lua",
       event = "BufReadPre",
@@ -132,7 +131,7 @@ return require("packer").startup({
     use({ "kdheepak/lazygit.nvim" })
     use({ "sindrets/diffview.nvim" })
     use({ "pwntester/octo.nvim" })
-    use({ "karb94/neoscroll.nvim", config = get_setup("neoscroll") })
+    -- use({ "karb94/neoscroll.nvim", config = get_setup("neoscroll") })
     use({ "numtostr/bufonly.nvim" })
     use({ "caenrique/nvim-maximize-window-toggle" })
     use({ "nacro90/numb.nvim" })

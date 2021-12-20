@@ -1,9 +1,10 @@
+-- TODO fix these at some point
 -- Floaterm
-vim.g.floaterm_keymap_toggle = '<leader>t'
-vim.g.floaterm_keymap_new    = '<leader>n'
-vim.g.floaterm_keymap_next   = '<leader>`'
-vim.g.floaterm_keymap_prev   = '<leader>`'
-vim.g.floaterm_title=''
+-- vim.g.floaterm_keymap_toggle = '<leader>t'
+-- vim.g.floaterm_keymap_new    = '<leader>n'
+-- vim.g.floaterm_keymap_next   = '<leader>`'
+-- vim.g.floaterm_keymap_prev   = '<leader>`'
+-- vim.g.floaterm_title=''
 
 vim.g.floaterm_gitcommit='floaterm'
 vim.g.floaterm_shell='zsh'
