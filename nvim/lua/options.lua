@@ -24,7 +24,7 @@ vim.g.hardtime_maxcount = 0
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
-vim.g.minimap_auto_start = 1
+-- vim.g.minimap_auto_start = 1
 
 
 
