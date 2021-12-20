@@ -18,6 +18,7 @@ vim.g.floaterm_height = 0.9
 vim.g.hardtime_default_on = 1
 vim.g.hardtime_showmsg = 0
 vim.g.hardtime_maxcount = 0
+vim.g.hardtime_ignore_buffer_patterns = {"LuaTree", "alpha", "NvimTree", "fugitiveblame", "magit"}
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
