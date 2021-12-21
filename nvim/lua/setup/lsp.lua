@@ -20,10 +20,6 @@ Metals_config.settings = {
     "akka.stream.javadsl",
   },
   superMethodLensesEnabled = true
-  -- fallbackScalaVersion = "2.13.6",
-  --serverProperties = {
-  --  "-Dmetals.scala-cli.launcher=/usr/local/bin/scala-cli",
-  --},
 }
 
 Metals_config.init_options.statusBarProvider = "on"

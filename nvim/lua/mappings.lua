@@ -42,7 +42,7 @@ map("i", "<Tab>", [[pumvisible() ? '<C-n>' : '<Tab>']])
 map("n", "<esc>", ":noh<cr><esc>", { silent = true })
 map("n", "<leader>so", ":SymbolsOutline<cr>")
 
-map("n", "<Leader>so", [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]])
+-- map("n", "<Leader>so", [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]])
 
 -- begin which-key settings
 vim.g.which_key_display_names = {
@@ -61,7 +61,6 @@ wk.register({
   ["<leader><leader>b"] = { "<Cmd>lua require('telescope.builtin').builtin()<CR>", "telescope builtins" },
   ["<leader>?"] = { "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", "recent files" },
   ["<leader>r"] = { "<Cmd>lua require('renamer').rename()<CR>", "rename" },
-  -- ["<leader>z"] = { ":ZenMode<CR>", "zen mode" },
   ["<space>m"] = { ":MinimapToggle<CR>", "minimap toggle" },
   ["<leader><leader>l"] = { "<Cmd>lua require'hop'.hint_lines()<CR>", "hop by line" },
   ["<leader><leader>w"] = { "<Cmd>lua require'hop'.hint_words()<CR>", "hop by word" },
@@ -90,18 +89,22 @@ wk.register({
   },
   ["<leader>c"] = {
     name = "+code",
-    d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
+    -- d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
     f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
-    i = { "<Cmd>lua vim.lsp.buf.implementation()", "implementation" },
-    r = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
+    -- i = { "<Cmd>lua vim.lsp.buf.implementation()", "implementation" },
+    -- r = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
     n = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
     g = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "signature" },
     F = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add folder" },
     h = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "hover" },
+    i = { "<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>", "implementation" },
+    D = { "<Cmd>lua require'telescope.builtin'.diagnostics()<CR>", "diagnostics" },
+    a = { "<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>", "code actions" },
     s = { "<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>", "document symbols" },
     S = { "<Cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>", "workspace symbols" },
-    P = { "<Cmd>lua require'telescope.builtin'.lsp_references()<CR>", "references" },
-    D = { "<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>", "lsp definitions" },
+    r = { "<Cmd>lua require'telescope.builtin'.lsp_references()<CR>", "references" },
+    d = { "<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>", "lsp definitions" },
+    t = { "<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", "lsp type definitions" },
     m = { "<Cmd>lua require('metals').open_all_diagnostics()<CR>", "metals diagnostics" },
     H = { "<Cmd>lua require('metals').hover_worksheet()<CR>", "hover" },
   },
@@ -121,8 +124,6 @@ wk.register({
 -- map("n", "<space>nd", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
 -- map("n", "<space>pd", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])
 
--- S = { "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>", "workspace symbol" },
--- s = { "<Cmd>lua vim.lsp.buf.document_symbol()<CR>", "document symbol" },
 -- i = { "<Cmd>lua require('metals').toggle_setting('showImplicitArguments')<CR>", "show implicits" },
 -- w = { "<Cmd>lua require('metals').type_of_range()<CR>", "metals type of range" },
 -- w = { "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "line diagnostics" },
