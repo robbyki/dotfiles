@@ -18,7 +18,7 @@ vim.g.floaterm_height = 0.9
 vim.g.hardtime_default_on = 1
 vim.g.hardtime_showmsg = 0
 vim.g.hardtime_maxcount = 0
-vim.g.hardtime_ignore_buffer_patterns = {"LuaTree", "alpha", "NvimTree", "fugitiveblame", "magit"}
+vim.g.hardtime_ignore_buffer_patterns = { "LuaTree", "alpha", "NvimTree", "fugitiveblame", "magit" }
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
@@ -74,6 +74,11 @@ vim.bo.shiftwidth = indent
 vim.bo.softtabstop = indent
 vim.bo.tabstop = indent
 
+vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("")')
+vim.g.copilot_no_tab_map = true
+
+-- vim.api.nvim_exec([[imap <silent><script><expr> <C-e> copilot#Accept()]], true)
+
 vim.g["incsearch#auto_nohlsearch"] = 1
 vim.api.nvim_set_keymap("", "n", "<Plug>(incsearch-nohl-n)", {})
 vim.api.nvim_set_keymap("", "N", "<Plug>(incsearch-nohl-N)", {})
@@ -84,16 +89,19 @@ vim.api.nvim_set_keymap("", "g#", "<Plug>(incsearch-nohl-g#)", {})
 ------------------------------------
 ---- COMMANDS ----------------------
 ------------------------------------
---vim.cmd('set cursorline cursorcolumn')
+vim.cmd([[
+    augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
+augroup END]])
+
 vim.cmd("set formatoptions-=cro")
 vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd([[autocmd FileType markdown setlocal textwidth=80]])
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
-vim.cmd(
-  [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
-)
+vim.cmd([[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
 vim.cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]])
 vim.cmd([[autocmd TermOpen * startinsert]])
 

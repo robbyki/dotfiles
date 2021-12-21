@@ -131,7 +131,7 @@ return require("packer").startup({
     use({ "kdheepak/lazygit.nvim" })
     use({ "sindrets/diffview.nvim" })
     use({ "pwntester/octo.nvim" })
-    -- use({ "karb94/neoscroll.nvim", config = get_setup("neoscroll") })
+    use({ "karb94/neoscroll.nvim", config = get_setup("neoscroll") })
     use({ "numtostr/bufonly.nvim" })
     use({ "caenrique/nvim-maximize-window-toggle" })
     use({ "nacro90/numb.nvim" })
@@ -161,10 +161,58 @@ return require("packer").startup({
     use({ "AckslD/nvim-neoclip.lua" })
     use({ "ThePrimeagen/harpoon" })
     use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
-    use({ "github/copilot.vim" })
+    use({
+      "github/copilot.vim",
+      config = function()
+        vim.g.copilot_no_tab_map = true
+        vim.g.copilot_assume_mapped = true
+        vim.g.copilot_tab_fallback = "<Plug>(Tabout)"
+        vim.g.copilot_filetypes = {
+          ["*"] = false,
+          python = true,
+          lua = true,
+          go = true,
+          ql = true,
+          html = true,
+          javascript = true,
+          typescript = true,
+        }
+      end,
+    })
     use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
     use({ "ellisonleao/glow.nvim" })
+    -- use({
+    --   "folke/trouble.nvim",
+    --   requires = "kyazdani42/nvim-web-devicons",
+    --   config = function()
+    --     require("trouble").setup({
+    --       -- your configuration comes here
+    --       -- or leave it empty to use the default settings
+    --       -- refer to the configuration section below
+    --     })
+    --   end,
+    -- })
+    use({
+      "abecodes/tabout.nvim",
+      wants = { "nvim-treesitter" },
+      after = { "nvim-cmp", "copilot.vim" },
+      config = function()
+        require("tabout").setup({
+          completion = false,
+          ignore_beginning = false,
+          exclude = {},
+          tabouts = {
+            { open = "'", close = "'" },
+            { open = '"', close = '"' },
+            { open = "`", close = "`" },
+            { open = "(", close = ")" },
+            { open = "[", close = "]" },
+            { open = "{", close = "}" },
+          },
+        })
+      end,
+    })
     use({
       "folke/which-key.nvim",
       config = function()
@@ -198,55 +246,18 @@ return require("packer").startup({
     },
   },
 })
---use({ "navarasu/onedark.nvim" })
 -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
--- Lua
--- use {
---   "folke/trouble.nvim",
---   requires = "kyazdani42/nvim-web-devicons",
---   config = function()
---     require("trouble").setup {
---       -- your configuration comes here
---       -- or leave it empty to use the default settings
---       -- refer to the configuration section below
---     }
---   end,
--- }
-
 --use {
 --  "SmiteshP/nvim-gps",
 --  requires = "nvim-treesitter/nvim-treesitter",
 --}
-
 --   use {
 --   "RRethy/vim-illuminate",
 --   config = function()
 --     vim.g.Illuminate_ftblacklist = vim.list_extend(vim.fn.deepcopy(g.special_buffers), { "markdown" })
 --   end,
 -- }
---  use {
---    "abecodes/tabout.nvim",
---    wants = { "nvim-treesitter" },
---    after = { "nvim-cmp", "copilot.vim" },
---    config = function()
---      require("tabout").setup {
---        completion = false,
---        ignore_beginning = false,
---        exclude = {},
---        tabouts = {
---          { open = "'", close = "'" },
---          { open = '"', close = '"' },
---          { open = "`", close = "`" },
---          { open = "(", close = ")" },
---          { open = "[", close = "]" },
---          { open = "{", close = "}" },
---        },
---      }
---    end,
---  }
---use "max397574/better-escape.nvim"
 --use "mhartington/formatter.nvim"
--- SNIPPETS
 --use {
 --  "L3MON4D3/LuaSnip",
 --  after = "nvim-cmp",
@@ -262,26 +273,3 @@ return require("packer").startup({
 --    require("luasnip/loaders/from_vscode").lazy_load()
 --  end,
 --}
-
---use "famiu/nvim-reload"
---use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
---use { "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } }
---use "nvim-telescope/telescope-fzy-native.nvim"
--- use {
---   "github/copilot.vim",
---   config = function()
---     vim.g.copilot_no_tab_map = true
---     vim.g.copilot_assume_mapped = true
---     vim.g.copilot_tab_fallback = "<Plug>(Tabout)"
---     vim.g.copilot_filetypes = {
---       ["*"] = false,
---       python = true,
---       lua = true,
---       go = true,
---       ql = true,
---       html = true,
---       javascript = true,
---       typescript = true,
---     }
---   end,
--- }
