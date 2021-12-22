@@ -123,6 +123,7 @@ alias glow='glow -p'
 
 # cloud
 alias ic='ibmcloud'
+alias iclogin='IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login'
 alias iccr-rm='ic cr image-rm'
 
 # artifactory
@@ -134,18 +135,19 @@ alias jfsls="jfrog rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path +
 # k8s
 #alias kubectl=kubecolor
 #alias kb='kubecolor'
+alias kbc='kubecolor'
 alias kb='kubectl'
-alias kbaf='kb apply -f'
-alias kbcf='kb create -f'
+alias kbaf='kbc apply -f'
+alias kbcf='kbc create -f'
 alias kbd='kb describe'
-alias kbdp='kb describe pod'
-alias kbgd='kb get deployments'
-alias kbgp='kb get pods'
-alias kbgpi='kb get pipelines'
-alias kbgs='kb get secrets'
-alias kbl='kb logs'
-alias kblf='kb logs --follow'
-alias kbrf='kb replace --force -f'
+alias kbdp='kbc describe pod'
+alias kbgd='kbc get deployments'
+alias kbgp='kbc get pods'
+alias kbgpi='kbc get pipelines'
+alias kbgs='kbc get secrets'
+alias kbl='kbc logs'
+alias kblf='kbc logs --follow'
+alias kbrf='kbc replace --force -f'
 alias klint='kube-linter lint'
 alias kns='kubens'
 alias kval='kubeval'

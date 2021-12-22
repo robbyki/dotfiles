@@ -30,11 +30,11 @@ source <(kubectl completion zsh)
 source <(tkn completion zsh)
 source <(oc completion zsh)
 source <(minikube completion zsh)
-source $ZSH/completions/bash_autocomplete
+source $ZSH/completions/_ic
+source $ZSH/completions/_helm
 source $HOME/.config/broot/launcher/bash/br
 autoload -U +X bashcompinit && bashcompinit
 # }}}
-
 source $ZSH/oh-my-zsh.sh
 
 # {{{ nvm settings
@@ -213,5 +213,3 @@ eval "$(zoxide init zsh)"
 # fnm
 export PATH=/home/robbyk/.fnm:$PATH
 eval "`fnm env`"
-
-# export TEXMF=/usr/share/texlive/texmf-dist

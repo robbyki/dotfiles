@@ -19,7 +19,7 @@ Metals_config.settings = {
     "com.github.swagger.akka.javadsl",
     "akka.stream.javadsl",
   },
-  superMethodLensesEnabled = true
+  superMethodLensesEnabled = true,
 }
 
 Metals_config.init_options.statusBarProvider = "on"
@@ -35,24 +35,24 @@ dap.configurations.scala = {
     request = "launch",
     name = "Run",
     metals = {
-      runType = "run"
-    }
+      runType = "run",
+    },
   },
   {
     type = "scala",
     request = "launch",
     name = "Test File",
     metals = {
-      runType = "testFile"
-    }
+      runType = "testFile",
+    },
   },
   {
     type = "scala",
     request = "launch",
     name = "Test Target",
     metals = {
-      runType = "testTarget"
-    }
+      runType = "testTarget",
+    },
   },
 }
 
@@ -62,7 +62,7 @@ Metals_config.on_attach = function(client, bufnr)
   vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
   require("metals").setup_dap()
 end
-  -- sumneko lua
+-- sumneko lua
 lsp_config.sumneko_lua.setup({
   cmd = {
     "/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
@@ -82,7 +82,7 @@ lsp_config.sumneko_lua.setup({
         version = "LuaJIT", -- since using mainly for neovim
         path = vim.split(package.path, ";"),
       },
-      diagnostics = { globals = { "vim", "it", "describe", "before_each"} },
+      diagnostics = { globals = { "vim", "it", "describe", "before_each" } },
       workspace = {
         checkThirdParty = false,
         preloadFileSize = 10000,
@@ -97,8 +97,8 @@ lsp_config.sumneko_lua.setup({
   },
 })
 
-lsp_config.bashls.setup{ on_attach=on_attach }
-lsp_config.pyright.setup{ on_attach=on_attach }
+lsp_config.bashls.setup({ on_attach = on_attach })
+lsp_config.pyright.setup({ on_attach = on_attach })
 lsp_config.dockerls.setup({})
 lsp_config.html.setup({})
 lsp_config.jsonls.setup({
@@ -113,46 +113,59 @@ lsp_config.jsonls.setup({
 lsp_config.tsserver.setup({
   capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = function(client)
-  client.resolved_capabilities.document_formatting = false
-end,
+    client.resolved_capabilities.document_formatting = false
+  end,
 })
-lsp_config.yamlls.setup({})
+lsp_config.yamlls.setup({
+  filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
+  settings = {
+    yaml = {
+      schemas = {
+        schemaStore = {
+          enable = true,
+          url = "https://www.schemastore.org/api/json/catalog.json",
+        },
+        { kubernetes = "/*.yaml" },
+      },
+    },
+  },
+})
 lsp_config.racket_langserver.setup({})
 
 lsp_config.gopls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		gopls = {
-			buildFlags = { "-tags=wireinject" },
-			experimentalTemplateSupport = true,
-			usePlaceholders = true,
-			codelenses = {
-				gc_details = true,
-				generate = true,
-				regenerate_cgo = true,
-				tidy = true,
-				upgrade_dependency = true,
-				vendor = true,
-				nilness = true,
-			},
-			analyses = {
-				fillreturns = true,
-				nonewvars = true,
-				shadow = true,
-				undeclaredname = true,
-				unreachable = true,
-				unusedparams = true,
-				unusedwrite = true,
-			},
-			gofumpt = true,
-			["local"] = "go.ngrok.com",
-			staticcheck = true,
-		},
-	},
-	flags = {
-		debounce_text_changes = 200,
-	},
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    gopls = {
+      buildFlags = { "-tags=wireinject" },
+      experimentalTemplateSupport = true,
+      usePlaceholders = true,
+      codelenses = {
+        gc_details = true,
+        generate = true,
+        regenerate_cgo = true,
+        tidy = true,
+        upgrade_dependency = true,
+        vendor = true,
+        nilness = true,
+      },
+      analyses = {
+        fillreturns = true,
+        nonewvars = true,
+        shadow = true,
+        undeclaredname = true,
+        unreachable = true,
+        unusedparams = true,
+        unusedwrite = true,
+      },
+      gofumpt = true,
+      ["local"] = "go.ngrok.com",
+      staticcheck = true,
+    },
+  },
+  flags = {
+    debounce_text_changes = 200,
+  },
 })
 
 -- LSP Prevents inline buffer annotations
@@ -177,20 +190,20 @@ end
 
 vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]])
 
-  -- lsp_config.gopls.setup({
-  --   cmd = { "gopls", "serve" },
-  --   settings = {
-  --     gopls = { analyses = { unusedparams = true }, staticcheck = true },
-  --   },
-  -- })
+-- lsp_config.gopls.setup({
+--   cmd = { "gopls", "serve" },
+--   settings = {
+--     gopls = { analyses = { unusedparams = true }, staticcheck = true },
+--   },
+-- })
 
-  -- require("lspconfig").kotlin_language_server.setup({
-  --   cmd = {
-  --     "/Users/ckipp/Documents/kotlin-workspace/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
-  --   },
-  -- })
+-- require("lspconfig").kotlin_language_server.setup({
+--   cmd = {
+--     "/Users/ckipp/Documents/kotlin-workspace/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
+--   },
+-- })
 
-  -- lsp_config.elmls.setup({})
+-- lsp_config.elmls.setup({})
 
-  -- Uncomment for trace logs from neovim
-  --vim.lsp.set_log_level('trace')
+-- Uncomment for trace logs from neovim
+--vim.lsp.set_log_level('trace')

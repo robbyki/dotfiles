@@ -95,6 +95,7 @@ vim.cmd([[
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
 augroup END]])
 
+vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=yaml")
 vim.cmd("set formatoptions-=cro")
 vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
