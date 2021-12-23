@@ -30,9 +30,11 @@ alias se='secrets encrypt'
 alias ssrc='secrets source'
 alias ssibm='secrets source ibm-secrets'
 alias sdibm='secrets decrypt ibm-secrets'
+alias seibm='secrets encrypt ibm-secrets'
 
 # system
 alias tarx='tar xvzf'
+alias tarc='tar cvzf'
 alias t='tmux'
 alias am='alsamixer'
 #alias beaver='GTK_THEME=Adwaita:light dbeaver-ce'
