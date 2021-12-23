@@ -1,4 +1,3 @@
-# don't know why I need to have this here.
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
@@ -18,6 +17,7 @@ alias nv='cdl $HOME/.dotfiles/nvim'
 alias dev='cdl $HOME/dev/'
 alias dots="cdl $DOTFILES"
 alias downloads="cdl ~/Downloads"
+alias kubeconfig="$EDITOR ~/.kube/config"
 alias docs="cdl ~/Documents"
 alias vids="cdl ~/Videos"
 alias blog="cdl ~/dev/blog"
@@ -227,117 +227,11 @@ alias -g @yml='| yq eval -P'
 alias -g @yaml='| yq eval -P'
 alias -g @json='| jq'
 
-#alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
-
-#unalias grv
-
-timezsh() {
-  shell=${1-$SHELL}
-  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
-
-find-alias(){ alias | grep ${1} }
-
-# a bunch of really ugly functions that could use a lot of improvements
-
-# delete any target directory recursively in a jvm project. helpful for debugging.
-delete-target() {
-find . -type d -name target -prune -exec rm -r {} +
-}
-
-# find files with extension in location given
-fde(){ fd . -e ${1} ${2} }
-
-#mcddpls(){
-#mc ls cosddp/dev-ai-staging/${1}
-#}
-
-go-to-local-bin(){
-sudo mv $1 /usr/local/bin/$1
-}
-
-go-to-completions(){
-sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
-}
-
-# use mc to list all files in cos dm location
-mcdmls(){
-mc ls dm/${1}
-}
-
-# use mc to list files in dm location. seriously needs to pamaterized.
-mcdmfiles(){
-mc $1 dm/datamaze-dev-analytics-sp-files/${2}
-}
-
-mcdmjars(){
-mc $1 dm/datamaze-dev-analytics-sp-jars/${2}
-}
-
-mcdmlogs(){
-mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
-}
-
-# cd into dir after creating it.
-mkcdir()
-{
-    mkdir -p -- "$1" &&
-      cd -P -- "$1"
-}
-
-# colorize oc commands
-ocy() {
-  oc --output yaml $@ | yq eval --colors
-}
-
-occ() {
-  oc $@ | yq eval --colors -P
-}
-
-#lfcd
-LFCD="$HOME/.config/lf/lfcd.sh"
-if [ -f "$LFCD" ]; then
-    source "$LFCD"
-fi
-
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
-    fi
-}
-
-fancy-ctrl-z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
-
-# run `ll` after running cd into dir.
-cdl() { cd "$@" && ll; }
-
-# easier way to edit and reload zshrc file after opening
-# open ~/.zshrc in using the default editor specified in $EDITOR
 alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
-
-# source ~/.zshrc
-alias sc="source $DOTFILES/zsh/.zshrc"
-# zrc() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
+zrc() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
 
 alias headp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-output-0"
 alias speakers="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
+#alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
