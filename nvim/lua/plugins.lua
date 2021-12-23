@@ -163,20 +163,14 @@ return require("packer").startup({
     use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
     use({
       "github/copilot.vim",
+      required = {
+        "hrsh7th/cmp-copilot",
+      },
       config = function()
         vim.g.copilot_no_tab_map = true
         vim.g.copilot_assume_mapped = true
         vim.g.copilot_tab_fallback = "<Plug>(Tabout)"
-        vim.g.copilot_filetypes = {
-          ["*"] = false,
-          python = true,
-          lua = true,
-          go = true,
-          ql = true,
-          html = true,
-          javascript = true,
-          typescript = true,
-        }
+        vim.g.copilot_filetypes = { ["*"] = true, TelescopePrompt = false }
       end,
     })
     use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })
