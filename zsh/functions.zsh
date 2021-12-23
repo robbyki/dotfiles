@@ -155,3 +155,8 @@ bindkey '^Z' fancy-ctrl-z
 cdl() { cd "$@" && ll; }
 
 bindkey -s "^K" 'k9s^M'
+
+oc-del-cluster() {
+  ic oc cluster rm -f --cluster --force-delete-storage -c $1
+}
+
