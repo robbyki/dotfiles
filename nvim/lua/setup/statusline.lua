@@ -228,7 +228,7 @@ lualine.setup(config)
 -- local ll_options = {
 --     section_separators = { left = "", right = "" },
 --     component_separators = { left = "", right = "" },
---     theme = "nightfox",
+--     theme = "nordfox",
 --     disabled_filetypes = { "packer" },
 -- }
 --

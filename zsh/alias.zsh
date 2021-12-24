@@ -207,7 +207,7 @@ alias ocgs='oc get secrets'
 alias ocl='oc logs'
 alias oclf='oc logs --follow'
 alias ocrf='oc replace --force -f'
-
+alias ocls='ic oc cluster ls'
 # tekton
 alias tknhs='tkn hub search'
 alias tknit='tkn hub install task'

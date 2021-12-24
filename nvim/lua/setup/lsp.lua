@@ -97,7 +97,7 @@ lsp_config.sumneko_lua.setup({
   },
 })
 
-lsp_config.bashls.setup({ on_attach = on_attach })
+lsp_config.bashls.setup({ on_attach = on_attach, filetypes = { "sh", "zsh" } })
 lsp_config.pyright.setup({ on_attach = on_attach })
 lsp_config.dockerls.setup({})
 lsp_config.html.setup({})

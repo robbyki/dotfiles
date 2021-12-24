@@ -49,7 +49,6 @@ return require("packer").startup({
     use({ "glepnir/lspsaga.nvim" })
     use({ "onsails/lspkind-nvim" })
     use({ "kosayoda/nvim-lightbulb" })
-    use({ "kabouzeid/nvim-lspinstall" })
     use({ "nvim-lua/lsp-status.nvim" })
     use({ "wfxr/minimap.vim" })
     use({ "tpope/vim-eunuch" })
@@ -158,7 +157,12 @@ return require("packer").startup({
     use({ "nvim-telescope/telescope-project.nvim" })
     use({ "jvgrootveld/telescope-zoxide" })
     use({ "nvim-lua/plenary.nvim" })
-    use({ "AckslD/nvim-neoclip.lua" })
+    -- use({
+    --   "AckslD/nvim-neoclip.lua",
+    --   config = function()
+    --     require("neoclip").setup()
+    --   end,
+    -- })
     use({ "ThePrimeagen/harpoon" })
     use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
     use({

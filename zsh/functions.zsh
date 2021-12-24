@@ -156,7 +156,19 @@ cdl() { cd "$@" && ll; }
 
 bindkey -s "^K" 'k9s^M'
 
-oc-del-cluster() {
-  ic oc cluster rm -f --cluster --force-delete-storage -c $1
+ocdel() { 
+ 	ic oc cluster rm -f --force-delete-storage -c $1
 }
 
+occonf() {
+ 	ic oc cluster get -c $1
+}
+
+ocstatus() {
+ 	ic oc cluster config -c $1
+}
+
+# need to run `ssibm` before this for env variadles
+oclogin() {
+ 	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1
+}
