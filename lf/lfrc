@@ -31,8 +31,6 @@ map i $~/.config/lf/pv.sh $f | less -R
     fi
 }}
 
-#map i $~/.config/lf/pv.sh "$f" | ~/.config/lf/less.sh
-
 # disable
 map "'"
 map '"'
@@ -48,7 +46,6 @@ map v
 map x
 map y
 map r
-
 
 cmd paste-async &{{
     set -- $(cat ~/.local/share/lf/files)
@@ -78,13 +75,9 @@ map ch chmod
 map dd trash
 map ee $$EDITOR "$f"
 map f broot_jump
-map g/ :fzf_select
 map gD cd ~/Downloads
-map gF :fzf
 map gc cd ~/.config/
 map gd cd ~/dev
-map gf :fzf_loc
-map gj :fzf_jump
 map gn cd ~/.config/nvim
 map gp. cd ~/Pictures
 map gpt cd ~/dev/git-projects/aide-template
@@ -104,11 +97,15 @@ map vu push :glob-unselect<space>*.
 map x cut
 map y copy
 map cp copy-path
+map zi z_fzf
+map zj push :z<space>
 
-#map ee $nvim "$f"                            # open file in editor
-# map ec edit_config                              # edit & source lfrc
-# map erc $$EDITOR ~/.config/nvim/init.lua            # open nvim config
-# map ea $$EDITOR ~/.config/alacritty/alacritty.yml            # open nvim config
+# fzf mappings
+map gf :fzf
+map gF :fzf_jump
+
+# map g/ :fzf_select
+# map gf :fzf_loc
 
 cmd help $lf -doc| ~/.config/lf/less.sh
 
@@ -124,7 +121,6 @@ cmd broot_jump ${{
   lf -remote "send $id $cmd \"$res\""
 }}
 
-# custom functions
 cmd chmod ${{
   printf "Mode Bits: "
   read ans
@@ -156,56 +152,62 @@ cmd copy-path ${{
     cbp $f
 }}
 
+# jump to any directory
 cmd fzf_jump ${{
-   res="$(fd --type d -a -HL --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} . . | fzf --reverse --header='Jump to file')"
+   FZF_DEFAULT_COMMAND="$FZF_ALT_C_COMMAND" 
+   FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS"
+
+   res="$(fzf)"
+   cmd="cd"                                                       
+   lf -remote "send $id $cmd \"$res\""
+}}
+
+# jump to anything in directory
+cmd fzf ${{
+   FZF_DEFAULT_COMMAND="fd --follow --exclude .git --color=always"
+   FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS"
+
+   res="$(fzf)"
+
    if [ -f "$res" ]; then
      cmd="select"
    elif [ -d "$res" ]; then
-     cmd="cd"
+     cmd="cd"                                                       
    fi
-lf -remote "send $id $cmd \"$res\""
+
+   lf -remote "send $id $cmd \"$res\""
 }}
 
-cmd fzf_loc ${{
-    res=$(rg --files | fzf --reverse --header='Jump to location' --preview "bat {}")
-    if [ -f "$res" ]; then
-        cmd="select"
-    elif [ -d "$res" ]; then
-         cmd="cd"
-    fi
-    lf -remote "send $id $cmd \"$res\""
+# zoxide
+cmd z %lf -remote "send $id cd '$(zoxide query $1)'"
+
+cmd z_fzf ${{
+      res="$(zoxide query -i)"
+
+      if [ -f "$res" ]; then
+	cmd="select"
+      elif [ -d "$res" ]; then
+	cmd="cd"                                                       
+      fi
+
+      lf -remote "send $id $cmd \"$res\""
 }}
 
-cmd fzf ${{
-  res="$(sudo find / -maxdepth 3 | fzf --reverse --header='Jump to location')"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
+cmd z_add %zoxide add $f
+
+cmd yank-dirname ${{
+    dirname -- "$f" | tr -d '\n' | xclip -i -selection clipboard
 }}
 
-#cmd rg ${{
-#    res=$(rg --hidden -ilwL $1 | fzf --header='Jump to location' \
-#        --preview "bat {} | rg --color always -B3 -A3 $1")
-#    if [ -f "$res" ]; then
-#        cmd="select"
-#    elif [ -d "$res" ]; then
-#         cmd="cd"
-#    fi
-#    lf -remote "send $id $cmd \"$res\""
-#}}
+cmd yank-path ${{
+    echo "$fx" | xclip -i -selection clipboard
+}}
 
-#cmd fzf_jump ${{
-#  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
-#  if [ -f "$res" ]; then
-#    cmd="select"
-#  elif [ -d "$res" ]; then
-#    cmd="cd"
-#  fi
-#  lf -remote "send $id $cmd \"$res\""
-#}}
+cmd yank-basename ${{
+    echo "$fx" |
+      xargs -r -d '\n' basename -a -- |
+      xclip -i -selection clipboard
+}}
 
 # set internal field separator (IFS) to "\n" for shell commands
 # This is useful to automatically split file names in $fs and $fx properly
@@ -215,25 +217,11 @@ cmd fzf ${{
 set ifs "\n"
 
 map <enter> shell
-# execute current file (must be executable)
-#map x $$f
-#map X !$f
 
 # dedicated keys for file opener actions
 map o &mimeopen $f
 map O $mimeopen --ask $f
 
-# define a custom 'open' command
-# This command is called when current file is not a directory. You may want to
-# use either file extensions and/or mime types here. Below uses an editor for
-# text files and a file opener for the rest.
-#cmd open ${{
-#    test -L $f && f=$(readlink -f $f)
-#    case $(file --mime-type $f -b) in
-#        text/*) $EDITOR $fx;;
-#        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
-#    esac
-#}}
 
 # cmds/functions
 cmd open ${{
@@ -271,27 +259,6 @@ cmd sudorm %{{
 		exit
 	fi
 }}
-
-# define a custom 'rename' command without prompt for overwrite
-# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
-# map r push :rename<space>
-
-# make sure trash folder exists
-# %mkdir -p ~/.trash
-
-# move current file or selected files to trash folder
-# (also see 'man mv' for backup/overwrite options)
-#cmd trash %set -f; mv $fx ~/.trash
-
-# Trash cli bindings
-# define a custom 'delete' command
-#cmd delete ${{
-#    set -f
-#    printf "$fx\n"
-#    printf "delete?[y/n]"
-#    read ans
-#    [ $ans = "y" ] && rm -rf $fx
-#}}
 
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
@@ -343,14 +310,6 @@ cmd targz %tar cvzf "$f.tar.gz" "$f"
 cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
 
 cmd stripspace %stripspace "$f"
-#cmd delete ${{
-#    clear;
-#    set -f;
-#    printf '%s\n' $fx;
-#    printf '%s\n%s\n' ${(l.COLUMNS..-.)$(<<<-)} 'delete above files? [y/*]';
-#    [[ $(read -seq ) == y ]] && rm -rf $fx;
-#}}
-#map D           delete; reload
 
 cmd mkdir ${{
   printf "Directory Name: "
@@ -390,3 +349,110 @@ cmd restore_trash ${{
   trash-restore
 }}
 
+
+
+
+
+
+
+
+#cmd delete ${{
+#    clear;
+#    set -f;
+#    printf '%s\n' $fx;
+#    printf '%s\n%s\n' ${(l.COLUMNS..-.)$(<<<-)} 'delete above files? [y/*]';
+#    [[ $(read -seq ) == y ]] && rm -rf $fx;
+#}}
+#map D           delete; reload
+
+#map ee $nvim "$f"                            # open file in editor
+# map ec edit_config                              # edit & source lfrc
+# map erc $$EDITOR ~/.config/nvim/init.lua            # open nvim config
+# map ea $$EDITOR ~/.config/alacritty/alacritty.yml            # open nvim config
+
+#cmd fzf_jump ${{
+#   res="$(fd --type d -a -HL --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} . . | fzf --reverse --header='Jump to file')"
+#   if [ -f "$res" ]; then
+#     cmd="select"
+#   elif [ -d "$res" ]; then
+#     cmd="cd"
+#   fi
+#lf -remote "send $id $cmd \"$res\""
+#}}
+#
+#cmd fzf_loc ${{
+#    res=$(rg --files | fzf --reverse --header='Jump to location' --preview "bat {}")
+#    if [ -f "$res" ]; then
+#        cmd="select"
+#    elif [ -d "$res" ]; then
+#         cmd="cd"
+#    fi
+#    lf -remote "send $id $cmd \"$res\""
+#}}
+#
+#cmd fzf ${{
+#  res="$(sudo find / -maxdepth 3 | fzf --reverse --header='Jump to location')"
+#  if [ -f "$res" ]; then
+#    cmd="select"
+#  elif [ -d "$res" ]; then
+#    cmd="cd"
+#  fi
+#  lf -remote "send $id $cmd \"$res\""
+#}}
+
+#cmd rg ${{
+#    res=$(rg --hidden -ilwL $1 | fzf --header='Jump to location' \
+#        --preview "bat {} | rg --color always -B3 -A3 $1")
+#    if [ -f "$res" ]; then
+#        cmd="select"
+#    elif [ -d "$res" ]; then
+#         cmd="cd"
+#    fi
+#    lf -remote "send $id $cmd \"$res\""
+#}}
+
+#cmd fzf_jump ${{
+#  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+#  if [ -f "$res" ]; then
+#    cmd="select"
+#  elif [ -d "$res" ]; then
+#    cmd="cd"
+#  fi
+#  lf -remote "send $id $cmd \"$res\""
+#}}
+
+#map x $$f
+#map X !$f
+# define a custom 'open' command
+# This command is called when current file is not a directory. You may want to
+# use either file extensions and/or mime types here. Below uses an editor for
+# text files and a file opener for the rest.
+#cmd open ${{
+#    test -L $f && f=$(readlink -f $f)
+#    case $(file --mime-type $f -b) in
+#        text/*) $EDITOR $fx;;
+#        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+#    esac
+#}}
+# define a custom 'rename' command without prompt for overwrite
+# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+# map r push :rename<space>
+
+# make sure trash folder exists
+# %mkdir -p ~/.trash
+
+# move current file or selected files to trash folder
+# (also see 'man mv' for backup/overwrite options)
+#cmd trash %set -f; mv $fx ~/.trash
+
+# Trash cli bindings
+# define a custom 'delete' command
+#cmd delete ${{
+#    set -f
+#    printf "$fx\n"
+#    printf "delete?[y/n]"
+#    read ans
+#    [ $ans = "y" ] && rm -rf $fx
+#}}
+
+#map i $~/.config/lf/pv.sh "$f" | ~/.config/lf/less.sh

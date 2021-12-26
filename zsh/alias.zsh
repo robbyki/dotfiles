@@ -63,6 +63,9 @@ alias reb="systemctl reboot"
 #alias dr="rofi -show drun"
 #alias r="rofi -theme Arc-Dark -show window"
 
+#gatsby
+alias gat='gatsby'
+
 # argo
 alias acc='argo cron create'
 alias acd='argo cron delete'
