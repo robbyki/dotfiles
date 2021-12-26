@@ -104,7 +104,8 @@ local buttons = {
     button( "n", "  Nvim Config" , ':cd ~/.config/nvim | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>'),
     button( "i", "  IBM Projects" , ':cd ~/dev/ibm-projects | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>'),
     button( "a", "  AIDE", ':cd ~/dev/ibm-projects/aide-template | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>'),
-    button( "a", "  Documents", ':cd ~/Documents | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>'),
+    button( "d", "  Documents", ':cd ~/Documents | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>'),
+    button( "b", "  Blog", ':cd ~/dev/blog | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>'),
     button( "e", "  New file", ':ene <BAR> startinsert <CR>'),
     button( "q", "  Quit NVIM", ':qa<CR>')
   },
