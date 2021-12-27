@@ -110,11 +110,9 @@ PATH=$PATH:${GO_HOME}/bin
 PATH=$PATH:${HOME}/tools/lua-language-server/bin/Linux
 PATH=$PATH:${HOME}/.yarn/bin
 PATH=$PATH:${HOME}/.config/yarn/global/node_modules/.bin
-PATH=$PATH:${HOME}/.config/rofi/bin
 PATH=$PATH:${HOME}/node_modules/.bin
 PATH=$PATH:$CARGO/bin
 export PATH
-
 # }}}
 
 eval "`fnm env`"
