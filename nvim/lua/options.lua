@@ -24,6 +24,8 @@ vim.g.glow_binary_path = "/usr/local/bin"
 
 local indent = 2
 
+vim.cmd([[ highlight CopilotSuggestion guifg=#2e5d7d ctermfg=8 ]])
+
 -- global
 vim.opt.incsearch = true
 vim.o.cursorline = true
@@ -74,7 +76,7 @@ vim.bo.shiftwidth = indent
 vim.bo.softtabstop = indent
 vim.bo.tabstop = indent
 
-vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("")')
+vim.cmd('imap <silent><script><expr> <C-Q> copilot#Accept("")')
 vim.g.copilot_no_tab_map = true
 
 -- vim.api.nvim_exec([[imap <silent><script><expr> <C-e> copilot#Accept()]], true)

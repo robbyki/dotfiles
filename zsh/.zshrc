@@ -213,3 +213,5 @@ eval "$(zoxide init zsh)"
 # fnm
 export PATH=/home/robbyk/.fnm:$PATH
 eval "`fnm env`"
+
+export SBT_CREDENTIALS=$HOME/.sbt/.credentials
