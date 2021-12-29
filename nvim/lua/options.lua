@@ -22,6 +22,8 @@ vim.g.hardtime_ignore_buffer_patterns = { "LuaTree", "alpha", "NvimTree", "fugit
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
+vim.g.rainbow_active = 1
+
 local indent = 2
 
 vim.cmd([[ highlight CopilotSuggestion guifg=#2e5d7d ctermfg=8 ]])
@@ -109,6 +111,7 @@ vim.cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spell
 vim.cmd([[autocmd TermOpen * startinsert]])
 
 vim.cmd([[highlight LspDiagnosticsUnderlineWarning guifg=None]])
+-- vim.cmd([[hi Visual guifg=White guibg=LightBlue gui=none]])
 
 -- LSP
 vim.cmd([[augroup lsp]])

@@ -50,7 +50,6 @@ return require("packer").startup({
     use({ "onsails/lspkind-nvim" })
     use({ "kosayoda/nvim-lightbulb" })
     use({ "nvim-lua/lsp-status.nvim" })
-    use({ "wfxr/minimap.vim" })
     use({ "tpope/vim-eunuch" })
     use({ "mfussenegger/nvim-dap" })
     use({ "andymass/vim-matchup" })
@@ -97,6 +96,7 @@ return require("packer").startup({
       event = "BufReadPre",
       config = get_setup("gitsigns"),
     })
+    use("luochen1990/rainbow")
     use("p00f/nvim-ts-rainbow")
     --use({ "jose-elias-alvarez/null-ls.nvim", config = get_setup("null-ls") })
     use({ "neovim/nvim-lspconfig", config = get_setup("lsp") })
@@ -106,11 +106,7 @@ return require("packer").startup({
       keys = { "gc", "gcc" },
       config = get_setup("comment"),
     })
-    use({
-      "phaazon/hop.nvim",
-      event = "BufReadPre",
-      config = get_setup("hop"),
-    })
+    use({ "phaazon/hop.nvim", event = "BufReadPre", config = get_setup("hop") })
     use({ "Shatur/neovim-session-manager", config = get_setup("session") })
     use({ "filipdutescu/renamer.nvim", config = get_setup("renamer") })
     use({ "luukvbaal/stabilize.nvim", config = get_setup("stabilize") })
@@ -121,11 +117,9 @@ return require("packer").startup({
     })
     use({ "ckipp01/stylua-nvim" })
     use({ "lukas-reineke/indent-blankline.nvim" })
-    -- use({ "glepnir/dashboard-nvim", config = get_setup("dashboard") })
     use({ "goolord/alpha-nvim", config = get_setup("alpha") })
     use({ "ryanoasis/vim-devicons" })
     use({ "folke/lsp-colors.nvim" })
-    use({ "junegunn/rainbow_parentheses.vim" })
     use({ "f-person/git-blame.nvim" })
     use({ "kdheepak/lazygit.nvim" })
     use({ "sindrets/diffview.nvim" })
@@ -135,7 +129,7 @@ return require("packer").startup({
     use({ "caenrique/nvim-maximize-window-toggle" })
     use({ "nacro90/numb.nvim" })
     use({ "voldikss/vim-floaterm" })
-    use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+    use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons" }, config = get_setup("bufferline") })
     use({
       "folke/todo-comments.nvim",
       requires = { "nvim-lua/plenary.nvim" },
@@ -152,6 +146,18 @@ return require("packer").startup({
       },
       config = get_setup("telescope"),
     })
+    -- use({
+    --   "nvim-telescope/telescope.nvim",
+    --   -- module = "telescope",
+    --   -- cmd = "Telescope",
+    --   requires = {
+    --     { "nvim-lua/popup.nvim" },
+    --     -- { "nvim-lua/plenary.nvim" },
+    --     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    --   },
+    --   config = get_setup("telescope"),
+    -- })
+    use({ "nvim-telescope/telescope-github.nvim" })
     use({ "nvim-telescope/telescope-file-browser.nvim" })
     use({ "nvim-telescope/telescope-media-files.nvim" })
     use({ "nvim-telescope/telescope-project.nvim" })

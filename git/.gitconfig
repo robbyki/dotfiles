@@ -1,0 +1,82 @@
+[user]
+  name = "Robby Kiskanyan"
+  email = "rkee@us.ibm.com"
+  signingkey = A4C2EBBBF0CFA8D0
+[core]
+  autocrlf = input
+  hooksPath = ~/.githooks
+[pager]
+	branch = false
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+[url "ssh://git@github.ibm.com/"]
+  insteadOf = https://github.ibm.com/
+[push]
+  default = matching
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[diff]
+	colorMoved = default
+[filesystem "Oracle Corporation|1.8.0_242|rootfs"]
+	timestampResolution = 1001 microseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|1.8.0_252|rootfs"]
+	timestampResolution = 1001 microseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|1.8.0_252|tmpfs"]
+	timestampResolution = 1001 microseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|11.0.7|rootfs"]
+	timestampResolution = 11000 nanoseconds
+	minRacyThreshold = 976 microseconds
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+[pull]
+	rebase = false
+[github]
+	user = rkee
+[gpg]
+	program = gpg2
+[init]
+	defaultBranch = main
+[merge]
+	conflictStyle = diff3
+	summary = true
+[delta]
+  paging = auto
+  line-numbers = true
+  syntax-theme = OneHalfDark
+  whitespace-error-style = 22 reverse
+  minus-style = syntax "#402529"
+  minus-emph-style = syntax "#662F33"
+  plus-style = syntax "#29342A"
+  plus-emph-style = syntax "#3B5134"
+  hunk-header-style = syntax bold
+  hunk-header-decoration-style = "#4b5263" box
+  file-style = white bold
+  file-decoration-style = "#4b5263" ul
+  line-numbers-zero-style = "#4b5263"
+  line-numbers-left-format = "{nm:^4} "
+  line-numbers-right-format = "{np:^4} "
+  line-numbers-minus-style = "#e06c75"
+  line-numbers-plus-style = "#98c379"
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none

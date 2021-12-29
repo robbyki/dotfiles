@@ -18,6 +18,11 @@ map("n", "p", "pzz")
 map("n", "P", "Pzz")
 
 vim.cmd([[
+  nmap <F1> :echo<CR>
+  imap <F1> <C-o>:echo<CR>
+]])
+
+vim.cmd([[
   nnoremap <silent> <C-Up> : resize -2<CR>
   nnoremap <silent> <C-Down> : resize +2<CR>
   nnoremap <silent> <C-Left> : vertical resize -2<CR>
