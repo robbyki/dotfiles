@@ -77,6 +77,7 @@
     ip                    # ip address and bandwidth usage for a specified network interface
     # kubecontext
     prompt_secrets
+    vpn_ip                # virtual private network indicator
 
     # proxy                 # system-wide http/https/ftp proxy
     # battery               # internal battery
@@ -107,7 +108,6 @@
     # ranger                  # ranger shell (https://github.com/ranger/ranger)
     # nnn                     # nnn shell (https://github.com/jarun/nnn)
     # nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
-    # vpn_ip                # virtual private network indicator
     # swap                  # used swap
     # todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
     # timewarrior             # timewarrior tracking status (https://timewarrior.net/)
@@ -1403,7 +1403,8 @@
   typeset -g POWERLEVEL9K_VPN_IP_CONTENT_EXPANSION=
   # Regular expression for the VPN network interface. Run `ifconfig` or `ip -4 a show` while on VPN
   # to see the name of the interface.
-  typeset -g POWERLEVEL9K_VPN_IP_INTERFACE='(wg|(.*tun))[0-9]*'
+  typeset -g POWERLEVEL9K_VPN_IP_INTERFACE="vpn0" # for the IBM vpn after running ifconfig
+  # typeset -g POWERLEVEL9K_VPN_IP_INTERFACE='(wg|(.*vpn)|(.*vpn))[0-9]*'
   # If set to true, show one segment per matching network interface. If set to false, show only
   # one segment corresponding to the first matching network interface.
   # Tip: If you set it to true, you'll probably want to unset POWERLEVEL9K_VPN_IP_CONTENT_EXPANSION.

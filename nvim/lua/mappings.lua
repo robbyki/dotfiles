@@ -12,10 +12,15 @@ map("n", "<Space>", "<NOP>")
 map("n", "\\", ":NvimTreeToggle<CR>")
 map("i", "<C-c>", "<Esc>")
 
-map("n", "n", "nzz")
-map("n", "N", "Nzz")
-map("n", "p", "pzz")
-map("n", "P", "Pzz")
+-- map("n", "n", "nzz")
+-- map("n", "N", "Nzz")
+-- map("n", "p", "pzz")
+-- map("n", "P", "Pzz")
+
+vim.cmd([[
+  noremap <C-e> 5<C-e>
+  noremap <C-y> 5<C-y>
+]])
 
 vim.cmd([[
   nmap <F1> :echo<CR>
@@ -75,6 +80,7 @@ wk.register({
     B = { "<Cmd>lua require('telescope.builtin').buffers()<CR>", "buffers" },
     f = { "<Cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>", "find files here" },
     F = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME', hidden = true })<CR>", "find files all" },
+    D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>", "find Docs" },
     n = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>", "find nvim config" },
     b = { "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "fuzzy find here" },
     h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },

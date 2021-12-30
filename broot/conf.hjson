@@ -178,6 +178,11 @@
 			execution: "$EDITOR +{line} {file}"
 			leave_broot: false
                 }
+		{
+			name: view
+			invocation: view
+			execution: "bat -f {file}"
+		}
 #		{
 #			invocation: edit
 #			key: enter
