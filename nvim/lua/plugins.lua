@@ -124,7 +124,7 @@ return require("packer").startup({
     use({ "kdheepak/lazygit.nvim" })
     use({ "sindrets/diffview.nvim" })
     use({ "pwntester/octo.nvim" })
-    use({ "karb94/neoscroll.nvim", config = get_setup("neoscroll") })
+    -- use({ "karb94/neoscroll.nvim", config = get_setup("neoscroll") })
     use({ "numtostr/bufonly.nvim" })
     use({ "caenrique/nvim-maximize-window-toggle" })
     use({ "nacro90/numb.nvim" })

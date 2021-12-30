@@ -24,9 +24,9 @@ require("telescope").setup({
     -- selection_strategy = "reset",
     sorting_strategy = "ascending",
     layout_strategy = "vertical",
-    layout_config = {
+    -- layout_config = {
       -- horizontal = { width = 0.9, height = 0.95, preview_width = 0.6 },
-      vertical = { preview_height = 0.8 },
+      -- vertical = { preview_height = 0.8 },
       -- horizontal = {
       --   prompt_position = "bottom",
       --   preview_width = 0.55,
@@ -37,7 +37,7 @@ require("telescope").setup({
       -- width = 0.87,
       -- height = 0.80,
       -- preview_cutoff = 120,
-    },
+    -- },
 
     -- layout_strategy = "horizontal",
     -- layout_config = {
@@ -145,6 +145,7 @@ require("telescope").load_extension("media_files")
 require("telescope").load_extension("project")
 require("telescope").load_extension("zoxide")
 require("telescope").load_extension("gh")
+
 
 -- local M = {}
 --
