@@ -52,10 +52,10 @@ return require("packer").startup({
     use({ "nvim-lua/lsp-status.nvim" })
     use({ "tpope/vim-eunuch" })
     use({ "mfussenegger/nvim-dap" })
+    use({ "gelguy/wilder.nvim", requires = { "romgrk/fzy-lua-native", after = "wilder.nvim" } })
     use({ "andymass/vim-matchup" })
     use({ "yuezk/vim-js" })
     use({ "maxmellon/vim-jsx-pretty" })
-
     -- Treesitter
     -- use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use("nvim-treesitter/playground")
@@ -157,6 +157,7 @@ return require("packer").startup({
     --   },
     --   config = get_setup("telescope"),
     -- })
+    use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
     use({ "nvim-telescope/telescope-github.nvim" })
     use({ "nvim-telescope/telescope-file-browser.nvim" })
     use({ "nvim-telescope/telescope-media-files.nvim" })
@@ -186,17 +187,23 @@ return require("packer").startup({
     use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
     use({ "ellisonleao/glow.nvim" })
+    use({ "b0o/schemastore.nvim" })
     -- use({
     --   "folke/trouble.nvim",
-    --   requires = "kyazdani42/nvim-web-devicons",
-    --   config = function()
-    --     require("trouble").setup({
-    --       -- your configuration comes here
-    --       -- or leave it empty to use the default settings
-    --       -- refer to the configuration section below
-    --     })
-    --   end,
+    --   event = "VimEnter",
+    --   cmd = { "TroubleToggle", "Trouble" },
+    --   config = get_setup("trouble"),
     -- })
+    -- use({
+    --   "folke/trouble.nvim",
+    --   requires = { "kyazdani42/nvim-web-devicons" },
+    --   config = get_setup("trouble"),
+    -- })
+    use({
+      "SmiteshP/nvim-gps",
+      requires = "nvim-treesitter/nvim-treesitter",
+      config = get_setup("gps"),
+    })
     use({
       "abecodes/tabout.nvim",
       wants = { "nvim-treesitter" },
@@ -251,10 +258,6 @@ return require("packer").startup({
   },
 })
 -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
---use {
---  "SmiteshP/nvim-gps",
---  requires = "nvim-treesitter/nvim-treesitter",
---}
 --   use {
 --   "RRethy/vim-illuminate",
 --   config = function()

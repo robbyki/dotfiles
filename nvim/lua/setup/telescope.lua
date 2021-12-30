@@ -1,5 +1,4 @@
 -- local telescope = require("telescope")
--- local utils = require("telescope.utils")
 local telescope_actions = require("telescope.actions")
 
 require("telescope").setup({
@@ -25,18 +24,18 @@ require("telescope").setup({
     sorting_strategy = "ascending",
     layout_strategy = "vertical",
     -- layout_config = {
-      -- horizontal = { width = 0.9, height = 0.95, preview_width = 0.6 },
-      -- vertical = { preview_height = 0.8 },
-      -- horizontal = {
-      --   prompt_position = "bottom",
-      --   preview_width = 0.55,
-      -- },
-      -- vertical = {
-      --   mirror = false,
-      -- },
-      -- width = 0.87,
-      -- height = 0.80,
-      -- preview_cutoff = 120,
+    -- horizontal = { width = 0.9, height = 0.95, preview_width = 0.6 },
+    -- vertical = { preview_height = 0.8 },
+    -- horizontal = {
+    --   prompt_position = "bottom",
+    --   preview_width = 0.55,
+    -- },
+    -- vertical = {
+    --   mirror = false,
+    -- },
+    -- width = 0.87,
+    -- height = 0.80,
+    -- preview_cutoff = 120,
     -- },
 
     -- layout_strategy = "horizontal",
@@ -137,6 +136,11 @@ require("telescope").setup({
       hidden_files = true,
       display_type = "full",
     },
+    frecency = {
+      show_scores = true,
+      show_unindexed = true,
+      ignore_patterns = { "*.git/*", "*/tmp/*" },
+    },
   },
 })
 
@@ -145,7 +149,7 @@ require("telescope").load_extension("media_files")
 require("telescope").load_extension("project")
 require("telescope").load_extension("zoxide")
 require("telescope").load_extension("gh")
-
+require("telescope").load_extension("frecency")
 
 -- local M = {}
 --

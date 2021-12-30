@@ -2,6 +2,7 @@
 -- Based on work by: glepnir and shadmansaleh
 -- See: https://gist.github.com/hoob3rt/b200435a765ca18f09f83580a606b878
 
+local gps = require("nvim-gps")
 local lualine = require("lualine")
 
 -- @todo make this more generic
@@ -150,6 +151,7 @@ local config = {
 		lualine_b = {},
 		lualine_c = {
 			plugins.filename,
+      { gps.get_location, cond = gps.is_available },
 		},
 		lualine_x = {
 			plugins.branch,
