@@ -30,10 +30,6 @@ return require("packer").startup({
         use({ "takac/vim-hardtime" })
         use({ "ptzz/lf.vim" })
         use({ "nathom/filetype.nvim", config = get_setup("filetype") })
-        use({
-            "machakann/vim-sandwich",
-            config = get_setup("sandwich"),
-        })
         use({ "EdenEast/nightfox.nvim", config = get_setup("nightfox") })
         use({ "kyazdani42/nvim-web-devicons" })
         use({
@@ -55,6 +51,18 @@ return require("packer").startup({
         use({ "kosayoda/nvim-lightbulb" })
         use({ "nvim-lua/lsp-status.nvim" })
         use({
+            "ethanholz/nvim-lastplace",
+            config = get_setup("lastplace"),
+        })
+        use({
+            "gbprod/substitute.nvim",
+            config = get_setup("substitute"),
+        })
+        use({
+            "sQVe/sort.nvim",
+            config = get_setup("sort"),
+        })
+        use({
             "rmagatti/goto-preview",
             config = get_setup("goto-preview"),
             keys = { "gpd", "gpi", "gpr", "gP" },
@@ -63,16 +71,20 @@ return require("packer").startup({
             "weilbith/nvim-code-action-menu",
             cmd = "CodeActionMenu",
         })
+        use({
+            "svermeulen/vim-yoink",
+            config = get_setup("yoink"),
+        })
         use({ "tpope/vim-eunuch" })
         use({ "mfussenegger/nvim-dap" })
         use({ "gelguy/wilder.nvim", requires = { "romgrk/fzy-lua-native", after = "wilder.nvim" } })
         use({ "andymass/vim-matchup" })
         use({ "yuezk/vim-js" })
         use({ "maxmellon/vim-jsx-pretty" })
-        use("nvim-treesitter/playground")
-        use("nvim-treesitter/completion-treesitter")
-        use("JoosepAlviste/nvim-ts-context-commentstring")
-        use("windwp/nvim-ts-autotag")
+        use({ "nvim-treesitter/playground" })
+        use({ "nvim-treesitter/completion-treesitter" })
+        use({ "JoosepAlviste/nvim-ts-context-commentstring" })
+        use({ "windwp/nvim-ts-autotag" })
         use({
             "nvim-treesitter/nvim-treesitter",
             config = get_setup("treesitter"),
@@ -99,6 +111,16 @@ return require("packer").startup({
                 { "f3fora/cmp-spell", { "hrsh7th/cmp-calc" }, { "hrsh7th/cmp-emoji" } },
             },
             config = get_setup("cmp"),
+        })
+        use({
+            "editorconfig/editorconfig-vim",
+            setup = get_setup("editorconfig"),
+        })
+        use({ "chaoren/vim-wordmotion", setup = get_setup("motion") })
+        use({ "junegunn/vim-easy-align", keys = "<Plug>(EasyAlign)" })
+        use({
+            "machakann/vim-sandwich",
+            config = get_setup("sandwich"),
         })
         use({
             "kristijanhusak/vim-dadbod-completion",
@@ -133,7 +155,7 @@ return require("packer").startup({
             setup = get_setup("outline"),
         })
         use({ "ckipp01/stylua-nvim" })
-        use({ "lukas-reineke/indent-blankline.nvim" })
+        use({ "lukas-reineke/indent-blankline.nvim", config = get_setup("indentline") })
         use({ "goolord/alpha-nvim", config = get_setup("alpha") })
         use({ "ryanoasis/vim-devicons" })
         use({ "folke/lsp-colors.nvim" })
@@ -232,6 +254,23 @@ return require("packer").startup({
                     },
                 })
             end,
+        })
+        use({
+            "RishabhRD/nvim-cheat.sh",
+            requires = "RishabhRD/popfix",
+            setup = get_setup("cheat"),
+            cmd = {
+                "Cheat",
+                "CheatWithoutComments",
+                "CheatList",
+                "CheatListWithoutComments",
+            },
+        })
+        use({ "AndrewRadev/splitjoin.vim" })
+        use({
+            "arthurxavierx/vim-caser",
+            setup = get_setup("caser"),
+            keys = "gw",
         })
         use({
             "folke/which-key.nvim",
