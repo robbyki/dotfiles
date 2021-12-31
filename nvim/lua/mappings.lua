@@ -90,6 +90,7 @@ wk.register({
     t = { "<Cmd>lua require('telescope.builtin').tags()<CR>", "tags" },
     r = { "<Cmd>lua require('telescope'.builtin).registers()<CR>", "tags" },
     d = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
+    m = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
   },
   ["<leader>h"] = {
     name = "+hop around",
