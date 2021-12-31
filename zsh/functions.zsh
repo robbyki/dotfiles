@@ -3,7 +3,7 @@ fapp() {
 	nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
 }
 
-function gistedit () {
+function gistedit() {
   # Quoting switches between single and double quotes to leverage and avoid
   # string interpolation as necessary. There is probably a better way to do
   # this.
@@ -19,7 +19,7 @@ function gistedit () {
 #     - https://github.com/cli/cli,
 #     - https://github.com/junegunn/fzf
 #     - https://github.com/sharkdp/bat
-function ghissues () {
+function ghissues() {
   # Quoting switches between single and double quotes to leverage and avoid
   # string interpolation as necessary. There is probably a better way to do
   # this.
@@ -30,7 +30,7 @@ function ghissues () {
   )
 }
 
-function ghprs () {
+function ghprs() {
   # Quoting switches between single and double quotes to leverage and avoid
   # string interpolation as necessary. There is probably a better way to do
   # this.
@@ -41,7 +41,7 @@ function ghprs () {
   )
 }
 
-function gccd {
+function gccd() {
   local dir
   if [[ $# -eq 2 ]]; then
     git clone -- $1 $2 || return
@@ -61,7 +61,7 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-find-alias(){ alias | grep ${1} }
+find-alias() { alias | grep ${1} }
 
 # a bunch of really ugly functions that could use a lot of improvements
 
@@ -172,3 +172,5 @@ ocstatus() {
 oclogin() {
  	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1
 }
+
+agh() { ag $1 . }
