@@ -128,6 +128,13 @@ return require("packer").startup({
 
         -- autocomplete
         use({
+            "danymat/neogen",
+            config = get_setup("neogen"),
+            requires = "nvim-treesitter/nvim-treesitter",
+            module = "neogen",
+        })
+        use({ "hrsh7th/vim-vsnip", after = "nvim-cmp" })
+        use({
             "hrsh7th/nvim-cmp",
             requires = {
                 { "hrsh7th/cmp-nvim-lsp" },
@@ -228,20 +235,7 @@ return require("packer").startup({
         use({ "neovim/nvim-lspconfig", config = get_setup("lsp") })
 
         -- motion
-        use({
-            "ggandor/lightspeed.nvim",
-            config = get_setup("lightspeed"),
-            keys = {
-                "<Plug>Lightspeed_s",
-                "<Plug>Lightspeed_S",
-                "<Plug>Lightspeed_x",
-                "<Plug>Lightspeed_X",
-                "<Plug>Lightspeed_f",
-                "<Plug>Lightspeed_F",
-                "<Plug>Lightspeed_t",
-                "<Plug>Lightspeed_T",
-            },
-        })
+        use({ "ggandor/lightspeed.nvim", config = get_setup("lightspeed") })
         use({ "unblevable/quick-scope", opt = true })
         use({ "takac/vim-hardtime" })
         use({ "chaoren/vim-wordmotion", setup = get_setup("motion") })
