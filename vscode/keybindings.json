@@ -155,8 +155,23 @@
     "key": "ctrl+shift+w",
     "command": "-workbench.action.closeWindow"
   },
+  {
+    "key": "shift+alt+up",
+    "command": "-notebook.cell.copyUp",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "terminalFocus"
+  },
   // {
-  //   "key": "ctrl+shift+up",
+    //   "key": "ctrl+shift+up",
   //   "command": "workbench.action.toggleMaximizedPanel",
   //   "when": "!terminalFocus"
   // }

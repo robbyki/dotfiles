@@ -22,6 +22,8 @@ vim.g.hardtime_ignore_buffer_patterns = { "LuaTree", "alpha", "NvimTree", "fugit
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
+vim.g.vsnip_snippet_dir = "~/.config/nvim/.vsnip"
+
 vim.g.rainbow_active = 1
 
 local indent = 2

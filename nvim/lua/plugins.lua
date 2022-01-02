@@ -134,6 +134,7 @@ return require("packer").startup({
             module = "neogen",
         })
         use({ "hrsh7th/vim-vsnip", after = "nvim-cmp" })
+        use({ "hrsh7th/vim-vsnip-integ" })
         use({
             "hrsh7th/nvim-cmp",
             requires = {

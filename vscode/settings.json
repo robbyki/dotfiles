@@ -220,7 +220,6 @@
   "workbench.editor.showTabs": true,
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.inheritEnv": true,
-  "terminal.explorerKind": "external",
   "terminal.integrated.defaultProfile.linux": "tmux",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.sendKeybindingsToShell": true,
@@ -255,8 +254,11 @@
   "files.defaultLanguage": "markdown",
   "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
   "editor.smoothScrolling": true,
-  "window.zoomLevel": 2,
   "bracketPairColorizer.depreciation-notice": false,
   "WhiteSource Advise.Diff.BaseBranch": "main",
-  "WhiteSource Advise.includeDevDependencies": true
+  "WhiteSource Advise.includeDevDependencies": true,
+  "window.zoomLevel": 2,
+  "terminal.integrated.commandsToSkipShell": [
+    "workbench.action.toggleMaximizedPanel"
+  ]
 }
