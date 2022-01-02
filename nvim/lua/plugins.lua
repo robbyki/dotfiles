@@ -164,6 +164,13 @@ return require("packer").startup({
 
         -- code
         use({
+            "ThePrimeagen/refactoring.nvim",
+            requires = {
+                { "nvim-lua/plenary.nvim" },
+                { "nvim-treesitter/nvim-treesitter" },
+            },
+        })
+        use({
             "simrat39/symbols-outline.nvim",
             cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
             setup = get_setup("outline"),
@@ -207,11 +214,11 @@ return require("packer").startup({
         use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
 
         -- database
-        use({
-            "kristijanhusak/vim-dadbod-completion",
-            requires = "tpope/vim-dadbod",
-            after = "nvim-cmp",
-        })
+        -- use({
+        --     "kristijanhusak/vim-dadbod-completion",
+        --     requires = "tpope/vim-dadbod",
+        --     after = "nvim-cmp",
+        -- })
 
         -- git
         use({ "kdheepak/lazygit.nvim" })
@@ -239,7 +246,7 @@ return require("packer").startup({
         use({ "unblevable/quick-scope", opt = true })
         use({ "takac/vim-hardtime" })
         use({ "chaoren/vim-wordmotion", setup = get_setup("motion") })
-        -- use({ "phaazon/hop.nvim", event = "BufReadPre", config = get_setup("hop") })
+        use({ "phaazon/hop.nvim", event = "BufReadPre", config = get_setup("hop") })
 
         -- windows
         use({ "Shatur/neovim-session-manager", config = get_setup("session") })
