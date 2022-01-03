@@ -96,6 +96,7 @@ export CARGO=$HOME/.cargo
 export GOPATH=${HOME}/go
 export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
+export SCRIPTS=${HOME}/bin
 PATH=$PATH:${FNM}
 PATH=$PATH:/opt
 PATH=$PATH:/opt/bin
@@ -112,6 +113,7 @@ PATH=$PATH:${HOME}/.yarn/bin
 PATH=$PATH:${HOME}/.config/yarn/global/node_modules/.bin
 PATH=$PATH:${HOME}/node_modules/.bin
 PATH=$PATH:$CARGO/bin
+PATH=$PATH:$SCRIPTS
 export PATH
 # }}}
 

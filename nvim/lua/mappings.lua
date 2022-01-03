@@ -115,6 +115,8 @@ wk.register({
     t = { "<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", "lsp type definitions" },
     m = { "<Cmd>lua require('metals').open_all_diagnostics()<CR>", "metals diagnostics" },
     H = { "<Cmd>lua require('metals').hover_worksheet()<CR>", "hover" },
+    c = { "<Cmd>lua require('nvim-comment-frame').add_comment()<CR>", "comment line" },
+    C = { "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>", "comment multi" },
     -- d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
     -- i = { "<Cmd>lua vim.lsp.buf.implementation()", "implementation" },
     -- r = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },

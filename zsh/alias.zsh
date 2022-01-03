@@ -1,7 +1,7 @@
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
-# Quick files
+# Quick files and directories
 alias zshconfig="$EDITOR $DOTFILES/zsh/.zshrc"
 alias aliasconfig="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabconfig="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
@@ -21,6 +21,7 @@ alias kubeconfig="$EDITOR ~/.kube/config"
 alias docs="cdl ~/Documents"
 alias vids="cdl ~/Videos"
 alias blog="cdl ~/dev/blog"
+alias snips="cdl ~/.dotfiles/nvim/.vsnip"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 

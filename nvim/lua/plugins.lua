@@ -165,6 +165,13 @@ return require("packer").startup({
 
         -- code
         use({
+            "s1n7ax/nvim-comment-frame",
+            requires = {
+                { "nvim-treesitter" },
+            },
+            config = get_setup("comment-frame"),
+        })
+        use({
             "ThePrimeagen/refactoring.nvim",
             requires = {
                 { "nvim-lua/plenary.nvim" },
