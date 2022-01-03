@@ -3,25 +3,26 @@
 -- Nightfox config
 local nightfox = require("nightfox")
 nightfox.setup({
-  fox = "nordfox",
-  alt_nc = true,
-  styles = {
-    comments = "italic",
-    keywords = "bold",
-    functions = "italic,bold",
-  },
-  inverse = {
-    visual = false,
-    search = true,
-    match_paren = false,
-  },
+    fox = "nordfox",
+    alt_nc = true,
+    styles = {
+        comments = "italic",
+        keywords = "bold",
+        functions = "italic,bold",
+    },
+    inverse = {
+        visual = false,
+        search = true,
+        match_paren = false,
+    },
 })
 nightfox.load()
 
 -- Good info on overriding colors: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 -- Note had to add the SpecialKey to keep highlight on yank working alongside the CursorLine override
+-- the below QuickScope highlights don't seem to be working.
 vim.api.nvim_exec(
-  [[
+    [[
 function! MyHighlights() abort
     highlight CursorLine guifg=NONE guibg=#353A54
     highlight CmpItemAbbr guifg=#9FA4B6
@@ -33,10 +34,12 @@ function! MyHighlights() abort
     highlight GitSignsAddNr guifg=#26A07A
     highlight GitSignsDeleteNr guifg=#E87D7D
     highlight GitSignsChangeNr guifg=#AD991F
+    highlight QuickScopePrimary guifg='#61afef' gui=underline,bold
+    highlight QuickScopeSecondary guifg='#e86671' gui=underline,bold
     endfunction
 augroup MyColors
     autocmd!
     autocmd ColorScheme * call MyHighlights()
 augroup END]],
-  true
+    true
 )

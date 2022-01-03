@@ -12,11 +12,6 @@ map("n", "<Space>", "<NOP>")
 map("n", "\\", ":NvimTreeToggle<CR>")
 map("i", "<C-c>", "<Esc>")
 
--- map("n", "n", "nzz")
--- map("n", "N", "Nzz")
--- map("n", "p", "pzz")
--- map("n", "P", "Pzz")
-
 vim.cmd([[
   noremap <C-e> 5<C-e>
   noremap <C-y> 5<C-y>

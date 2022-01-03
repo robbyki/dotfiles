@@ -5,10 +5,10 @@ vim.g.vim_markdown_conceal_code_blocks = 0
 vim.g.vim_markdown_conceal = 0
 
 vim.g.bullets_enabled_file_types = {
-  "gitcommit",
-  "markdown",
-  "pandoc",
-  "text",
+    "gitcommit",
+    "markdown",
+    "pandoc",
+    "text",
 }
 
 vim.g.lf_map_keys = 0
@@ -90,6 +90,7 @@ vim.bo.tabstop = indent
 vim.cmd('imap <silent><script><expr> <C-Q> copilot#Accept("")')
 vim.g.copilot_no_tab_map = true
 
+vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 -- vim.api.nvim_exec([[imap <silent><script><expr> <C-e> copilot#Accept()]], true)
 
 vim.g["incsearch#auto_nohlsearch"] = 1
@@ -108,6 +109,15 @@ vim.cmd([[
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
 augroup END]])
 
+-- vim.cmd([[
+-- augroup qs_colors
+--   autocmd!
+--   autocmd ColorScheme * highlight QuickScopePrimary guifg='#61afef' gui=underline,bold
+--   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#e86671' gui=underline,bold
+-- augroup END
+-- ]])
+
+vim.cmd("autocmd BufRead,BufNewFile *.zsh :setlocal filetype=bash")
 vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=yaml")
 vim.cmd("set formatoptions-=cro")
 vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
@@ -115,7 +125,9 @@ vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatopt
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd([[autocmd FileType markdown setlocal textwidth=80]])
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
-vim.cmd([[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
+vim.cmd(
+    [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
+)
 vim.cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]])
 vim.cmd([[autocmd TermOpen * startinsert]])
 

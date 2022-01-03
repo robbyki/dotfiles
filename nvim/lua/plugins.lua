@@ -251,7 +251,7 @@ return require("packer").startup({
 
         -- motion
         use({ "ggandor/lightspeed.nvim", config = get_setup("lightspeed") })
-        use({ "unblevable/quick-scope", opt = true })
+        use({ "unblevable/quick-scope" })
         use({ "takac/vim-hardtime" })
         use({ "chaoren/vim-wordmotion", setup = get_setup("motion") })
         use({ "phaazon/hop.nvim", event = "BufReadPre", config = get_setup("hop") })

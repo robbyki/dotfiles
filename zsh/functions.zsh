@@ -1,7 +1,7 @@
-fapp() {
-	selected="$(/bin/ls /usr/share/applications | fzf -e)"
-	nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
-}
+
+#--------------------------------------------------------------------#
+#                         github gh commands                         #
+#--------------------------------------------------------------------#
 
 function gistedit() {
   # Quoting switches between single and double quotes to leverage and avoid
@@ -56,51 +56,14 @@ function gccd() {
   ls -l
 }
 
-timezsh() {
-  shell=${1-$SHELL}
-  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
+#--------------------------------------------------------------------#
+#                          System functions                          #
+#--------------------------------------------------------------------#
 
-find-alias() { alias | grep ${1} }
-
-# a bunch of really ugly functions that could use a lot of improvements
-
-# delete any target directory recursively in a jvm project. helpful for debugging.
-delete-target() {
-find . -type d -name target -prune -exec rm -r {} +
-}
-
-# find files with extension in location given
-fde(){ fd . -e ${1} ${2} }
-
-#mcddpls(){
-#mc ls cosddp/dev-ai-staging/${1}
-#}
-
-go-to-local-bin(){
-sudo mv $1 /usr/local/bin/$1
-}
-
-go-to-completions(){
-sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
-}
-
-# use mc to list all files in cos dm location
-mcdmls(){
-mc ls dm/${1}
-}
-
-# use mc to list files in dm location. seriously needs to pamaterized.
-mcdmfiles(){
-mc $1 dm/datamaze-dev-analytics-sp-files/${2}
-}
-
-mcdmjars(){
-mc $1 dm/datamaze-dev-analytics-sp-jars/${2}
-}
-
-mcdmlogs(){
-mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
+# fuzzy search all of the gnome desktop files
+fapp() {
+	selected="$(/bin/ls /usr/share/applications | fzf -e)"
+	nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
 }
 
 # cd into dir after creating it.
@@ -108,15 +71,6 @@ mkcdir()
 {
     mkdir -p -- "$1" &&
       cd -P -- "$1"
-}
-
-# colorize oc commands
-ocy() {
-  oc --output yaml $@ | yq eval --colors
-}
-
-occ() {
-  oc $@ | yq eval --colors -P
 }
 
 #lfcd
@@ -155,6 +109,69 @@ bindkey '^Z' fancy-ctrl-z
 cdl() { cd "$@" && ll; }
 
 bindkey -s "^K" 'k9s^M'
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
+agh() { 
+	ag $1 . 
+}
+
+find-alias() { 
+ 	alias | grep ${1} 
+}
+
+# a bunch of really ugly functions that could use a lot of improvements
+
+# delete any target directory recursively in a jvm project. helpful for debugging.
+delete-target() {
+ 	find . -type d -name target -prune -exec rm -r {} +
+}
+
+# find files with extension in location given
+fde(){ 
+	fd . -e ${1} ${2} 
+}
+
+#mcddpls(){
+#mc ls cosddp/dev-ai-staging/${1}
+#}
+
+go-to-local-bin() { 
+ 	sudo mv $1 /usr/local/bin/$1
+}
+
+gO-to-completions() { 
+ 	sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
+}
+
+#--------------------------------------------------------------------#
+#                      minio mc object storage                       #
+#--------------------------------------------------------------------#
+
+# use mc to list all files in cos dm location
+mcdmls() { 
+	mc ls dm/${1}
+}
+
+# use mc to list files in dm location. seriously needs to pamaterized.
+mcdmfiles() { 
+	mc $1 dm/datamaze-dev-analytics-sp-files/${2}
+}
+
+mcdmjars() { 
+	mc $1 dm/datamaze-dev-analytics-sp-jars/${2}
+}
+
+mcdmlogs() { 
+	mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
+}
+
+
+#--------------------------------------------------------------------#
+#                             Openshift                              #
+#--------------------------------------------------------------------#
 
 ocdel() { 
  	ic oc cluster rm -f --force-delete-storage -c $1
@@ -173,4 +190,12 @@ oclogin() {
  	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1
 }
 
-agh() { ag $1 . }
+# colorize oc commands
+ocy() { 
+	oc --output yaml $@ | yq eval --colors
+}
+
+occ() { 
+	oc $@ | yq eval --colors -P
+}
+
