@@ -85,10 +85,10 @@ wk.register({
         b = { "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "fuzzy find here" },
         h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
         l = { "<Cmd>lua require('telescope.builtin').live_grep()<CR>", "live grep" },
-        p = { "<Cmd>lua require('telescope').extensions.project.project({})<CR>", "projects" },
+        p = { "<Cmd>:Telescope project<CR>", "projects" },
         s = { "<Cmd>lua require('telescope.builtin').grep_string()<CR>", "string search" },
         t = { "<Cmd>lua require('telescope.builtin').tags()<CR>", "tags" },
-        r = { "<Cmd>lua require('telescope'.builtin).registers()<CR>", "tags" },
+        r = { "<Cmd>lua require('telescope.builtin').registers()<CR>", "registers" },
         d = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
         m = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
     },
@@ -142,55 +142,6 @@ wk.register({
 })
 
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
--- map(
---     "n",
---     "f",
---     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
---     {}
--- )
--- map(
---     "n",
---     "F",
---     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
---     {}
--- )
--- map(
---     "o",
---     "f",
---     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
---     {}
--- )
--- map(
---     "o",
---     "F",
---     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
---     {}
--- )
--- map(
---     "",
---     "t",
---     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
---     {}
--- )
--- map(
---     "",
---     "T",
---     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
---     {}
--- )
--- map(
---     "v",
---     "f",
---     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
---     {}
--- )
--- map(
---     "v",
---     "F",
---     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
---     {}
--- )
-
 -- map("n", "<space>ld", [[<cmd>lua vim.diagnostic.open_float(0)<CR>]])
 -- map("n", "<space>nd", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
 -- map("n", "<space>pd", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])

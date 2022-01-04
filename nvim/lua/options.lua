@@ -68,7 +68,7 @@ vim.o.guifont = "Operator Mono SSm Lig Book"
 vim.o.swapfile = false
 vim.o.list = true
 vim.o.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
-vim.o.timeoutlen = 200
+vim.o.timeoutlen = 500
 
 -- window
 vim.wo.cursorline = true
@@ -109,13 +109,13 @@ vim.cmd([[
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
 augroup END]])
 
--- vim.cmd([[
--- augroup qs_colors
---   autocmd!
---   autocmd ColorScheme * highlight QuickScopePrimary guifg='#61afef' gui=underline,bold
---   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#e86671' gui=underline,bold
--- augroup END
--- ]])
+vim.cmd([[
+  augroup ScrollbarInit
+  autocmd!
+  autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
+  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
+augroup END]])
 
 vim.cmd("autocmd BufRead,BufNewFile *.zsh :setlocal filetype=bash")
 vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=yaml")

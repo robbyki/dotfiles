@@ -158,13 +158,8 @@ telescope.load_extension("fzf")
 telescope.load_extension("media_files")
 telescope.load_extension("project")
 telescope.load_extension("zoxide")
--- telescope.load_extension "neoclip"
+telescope.load_extension("neoclip")
 
--- require("neoclip").setup {
---   default_register = { "+", "*" },
---   filter = nil,
---   history = 1000,
--- }
 
 -- local previewers = require "telescope.previewers"
 -- local Job = require "plenary.job"
