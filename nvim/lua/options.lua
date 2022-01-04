@@ -68,7 +68,7 @@ vim.o.guifont = "Operator Mono SSm Lig Book"
 vim.o.swapfile = false
 vim.o.list = true
 vim.o.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 200
 
 -- window
 vim.wo.cursorline = true
