@@ -1,9 +1,9 @@
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 vim.g.mapleader = ","
@@ -49,83 +49,147 @@ map("n", "<leader>so", ":SymbolsOutline<cr>")
 
 -- begin which-key settings
 vim.g.which_key_display_names = {
-  ["<CR>"] = "↵",
-  ["<TAB>"] = "⇆",
-  [" "] = "🚀",
+    ["<CR>"] = "↵",
+    ["<TAB>"] = "⇆",
+    [" "] = "🚀",
 }
 vim.g.which_key_sep = "→"
 
 local wk = require("which-key")
 
 wk.register({
-  ["<leader>"] = { name = "+leader" },
-  ["<leader>."] = { ":FloatermToggle<cr>", "Toggle terminal" },
-  ["<leader>-"] = { ":Lf<cr>", "Start lf" },
-  ["<leader><leader>b"] = { "<Cmd>lua require('telescope.builtin').builtin()<CR>", "telescope builtins" },
-  ["<leader>?"] = { "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", "recent files" },
-  ["<leader>r"] = { "<Cmd>lua require('renamer').rename()<CR>", "rename" },
-  ["<space>m"] = { ":MinimapToggle<CR>", "minimap toggle" },
-  ["<leader><leader>l"] = { "<Cmd>lua require'hop'.hint_lines()<CR>", "hop by line" },
-  ["<leader><leader>w"] = { "<Cmd>lua require'hop'.hint_words()<CR>", "hop by word" },
+    ["<leader>"] = { name = "+leader" },
+    ["<leader>."] = { ":FloatermToggle<cr>", "Toggle terminal" },
+    ["<leader>-"] = { ":Lf<cr>", "Start lf" },
+    ["<leader><leader>b"] = { "<Cmd>lua require('telescope.builtin').builtin()<CR>", "telescope builtins" },
+    ["<leader>?"] = { "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", "recent files" },
+    ["<leader>r"] = { "<Cmd>lua require('renamer').rename()<CR>", "rename" },
+    -- ["<leader><leader>l"] = { "<Cmd>lua require'hop'.hint_lines()<CR>", "hop by line" },
+    -- ["<leader><leader>w"] = { "<Cmd>lua require'hop'.hint_words()<CR>", "hop by word" },
 })
 
 wk.register({
-  ["<leader>f"] = {
-    name = "+search",
-    B = { "<Cmd>lua require('telescope.builtin').buffers()<CR>", "buffers" },
-    f = { "<Cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>", "find files here" },
-    F = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME', hidden = true })<CR>", "find files all" },
-    D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>", "find Docs" },
-    n = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>", "find nvim config" },
-    b = { "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "fuzzy find here" },
-    h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
-    l = { "<Cmd>lua require('telescope.builtin').live_grep()<CR>", "live grep" },
-    p = { "<Cmd>lua require('telescope').extensions.project.project({})<CR>", "projects" },
-    s = { "<Cmd>lua require('telescope.builtin').grep_string()<CR>", "string search" },
-    t = { "<Cmd>lua require('telescope.builtin').tags()<CR>", "tags" },
-    r = { "<Cmd>lua require('telescope'.builtin).registers()<CR>", "tags" },
-    d = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
-    m = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
-  },
-  ["<leader>h"] = {
-    name = "+hop around",
-    m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "toggle quick menu" },
-    a = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "harpoon add file" },
-    c = { "<Cmd>lua require('harpoon.mark').clear_all()<CR>", "harpoon clear" },
-  },
-  ["<leader>c"] = {
-    name = "+code",
-    f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
-    n = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-    g = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "signature" },
-    F = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add folder" },
-    h = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "hover" },
-    i = { "<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>", "implementation" },
-    D = { "<Cmd>lua require'telescope.builtin'.diagnostics()<CR>", "diagnostics" },
-    a = { "<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>", "code actions" },
-    s = { "<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>", "document symbols" },
-    S = { "<Cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>", "workspace symbols" },
-    r = { "<Cmd>lua require'telescope.builtin'.lsp_references()<CR>", "references" },
-    d = { "<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>", "lsp definitions" },
-    t = { "<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", "lsp type definitions" },
-    m = { "<Cmd>lua require('metals').open_all_diagnostics()<CR>", "metals diagnostics" },
-    H = { "<Cmd>lua require('metals').hover_worksheet()<CR>", "hover" },
-    c = { "<Cmd>lua require('nvim-comment-frame').add_comment()<CR>", "comment line" },
-    C = { "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>", "comment multi" },
-    -- d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
-    -- i = { "<Cmd>lua vim.lsp.buf.implementation()", "implementation" },
-    -- r = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
-  },
-  ["<leader>g"] = {
-    name = "+git",
-    g = { "<Cmd>:LazyGit<CR>", "lazygit" },
-    b = { "<Cmd>GitBlameToggle<CR>", "blame" },
-    d = { "<Cmd>DiffviewOpen<CR>", "Diff view" },
-    D = { "<Cmd>DiffviewClose<CR>", "Diff view close" },
-    B = { "<Cmd>lua require('telescope.builtin').git_branches()<CR>", "git branches" },
-    f = { "<Cmd>lua require('telescope.builtin').git_files()<CR>", "git files" },
-  },
+    ["<leader>f"] = {
+        name = "+search",
+        B = { "<Cmd>lua require('telescope.builtin').buffers()<CR>", "buffers" },
+        f = { "<Cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>", "find files here" },
+        F = {
+            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME', hidden = true })<CR>",
+            "find files all",
+        },
+        D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>", "find Docs" },
+        n = {
+            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>",
+            "find nvim config",
+        },
+        b = { "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "fuzzy find here" },
+        h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
+        l = { "<Cmd>lua require('telescope.builtin').live_grep()<CR>", "live grep" },
+        p = { "<Cmd>lua require('telescope').extensions.project.project({})<CR>", "projects" },
+        s = { "<Cmd>lua require('telescope.builtin').grep_string()<CR>", "string search" },
+        t = { "<Cmd>lua require('telescope.builtin').tags()<CR>", "tags" },
+        r = { "<Cmd>lua require('telescope'.builtin).registers()<CR>", "tags" },
+        d = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
+        m = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
+    },
+    ["<leader>h"] = {
+        name = "hop",
+        b = { "<cmd>lua require'hop'.hint_char2()<cr>", "Hop to bigram (two characters)" },
+        c = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop to character" },
+        l = { "<cmd>lua require'hop'.hint_lines()<cr>", "Hop to line" },
+        p = { "<cmd>lua require'hop'.hint_patterns()<cr>", "Hop to pattern" },
+        r = { "<cmd>lua require'hop'.refine_hints()<cr>", "Refine hop hint" },
+        w = { "<cmd>lua require'hop'.hint_words()<cr>", "Hop to word" },
+    },
+    ["<leader><leader>h"] = {
+        name = "+hop around",
+        m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "toggle quick menu" },
+        a = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "harpoon add file" },
+        c = { "<Cmd>lua require('harpoon.mark').clear_all()<CR>", "harpoon clear" },
+    },
+    ["<leader>c"] = {
+        name = "+code",
+        f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
+        n = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
+        g = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "signature" },
+        F = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add folder" },
+        h = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "hover" },
+        i = { "<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>", "implementation" },
+        D = { "<Cmd>lua require'telescope.builtin'.diagnostics()<CR>", "diagnostics" },
+        a = { "<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>", "code actions" },
+        s = { "<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>", "document symbols" },
+        S = { "<Cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>", "workspace symbols" },
+        r = { "<Cmd>lua require'telescope.builtin'.lsp_references()<CR>", "references" },
+        d = { "<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>", "lsp definitions" },
+        t = { "<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", "lsp type definitions" },
+        m = { "<Cmd>lua require('metals').open_all_diagnostics()<CR>", "metals diagnostics" },
+        H = { "<Cmd>lua require('metals').hover_worksheet()<CR>", "hover" },
+        c = { "<Cmd>lua require('nvim-comment-frame').add_comment()<CR>", "comment line" },
+        C = { "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>", "comment multi" },
+        -- d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
+        -- i = { "<Cmd>lua vim.lsp.buf.implementation()", "implementation" },
+        -- r = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
+    },
+    ["<leader>g"] = {
+        name = "+git",
+        g = { "<Cmd>:LazyGit<CR>", "lazygit" },
+        b = { "<Cmd>GitBlameToggle<CR>", "blame" },
+        d = { "<Cmd>DiffviewOpen<CR>", "Diff view" },
+        D = { "<Cmd>DiffviewClose<CR>", "Diff view close" },
+        B = { "<Cmd>lua require('telescope.builtin').git_branches()<CR>", "git branches" },
+        f = { "<Cmd>lua require('telescope.builtin').git_files()<CR>", "git files" },
+    },
 })
+
+map("n", "<Leader>w", ":write<CR>", { noremap = true })
+-- map(
+--     "n",
+--     "f",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+--     {}
+-- )
+-- map(
+--     "n",
+--     "F",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+--     {}
+-- )
+-- map(
+--     "o",
+--     "f",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
+--     {}
+-- )
+-- map(
+--     "o",
+--     "F",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
+--     {}
+-- )
+-- map(
+--     "",
+--     "t",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+--     {}
+-- )
+-- map(
+--     "",
+--     "T",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+--     {}
+-- )
+-- map(
+--     "v",
+--     "f",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+--     {}
+-- )
+-- map(
+--     "v",
+--     "F",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+--     {}
+-- )
 
 -- map("n", "<space>ld", [[<cmd>lua vim.diagnostic.open_float(0)<CR>]])
 -- map("n", "<space>nd", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
