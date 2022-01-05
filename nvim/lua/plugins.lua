@@ -193,7 +193,6 @@ return require("packer").startup({
         })
         use({ "maxmellon/vim-jsx-pretty" })
         use({ "yuezk/vim-js" })
-        use({ "andymass/vim-matchup" })
         use({
             "arthurxavierx/vim-caser",
             setup = get_setup("caser"),
@@ -211,17 +210,21 @@ return require("packer").startup({
             requires = { "nvim-lua/plenary.nvim" },
             config = get_setup("todo-comments"),
         })
+        use({ "junegunn/vim-easy-align", keys = "<Plug>(EasyAlign)" })
         use({ "filipdutescu/renamer.nvim", config = get_setup("renamer") })
+        use({ "gbprod/substitute.nvim", config = get_setup("substitute") })
+        use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
+        use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
+
+        -- pairing
         use({
             "windwp/nvim-autopairs",
             after = "nvim-cmp",
             config = get_setup("autopairs"),
         })
-        use({ "gbprod/substitute.nvim", config = get_setup("substitute") })
-        use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
         use({ "machakann/vim-sandwich", config = get_setup("sandwich") })
-        use({ "junegunn/vim-easy-align", keys = "<Plug>(EasyAlign)" })
-        use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
+        use({ "andymass/vim-matchup" })
+
 
         -- database
         -- use({

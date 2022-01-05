@@ -90,6 +90,7 @@ wk.register({
         t = { "<Cmd>lua require('telescope.builtin').tags()<CR>", "tags" },
         r = { "<Cmd>lua require('telescope.builtin').registers()<CR>", "registers" },
         m = { "<Cmd>:Telescope marks<CR>", "marks" },
+        j = { "<Cmd>:Telescope jumplist<CR>", "jumps" },
         d = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
         M = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
         c = { "<Cmd>:Telescope neoclip<CR>", "neoclip" },

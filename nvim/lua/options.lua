@@ -59,8 +59,8 @@ vim.o.smartcase = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.termguicolors = true
-vim.o.title = true
-vim.o.titlestring = "%<%F%=%l/%L - nvim"
+vim.o.title = false
+-- vim.o.titlestring = "%<%F%=%l/%L - nvim"
 vim.o.updatetime = 300
 vim.o.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloop", ".ammonite"
 vim.o.writebackup = false

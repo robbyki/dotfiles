@@ -14,7 +14,7 @@ require("telescope").setup({
             "--follow",
             "--color=never",
         },
-        dynamic_preview_title = true,
+        -- dynamic_preview_title = true,
         prompt_prefix = "❯ ",
         -- prompt_prefix = " ",
         selection_caret = " ",
