@@ -89,8 +89,10 @@ wk.register({
         s = { "<Cmd>lua require('telescope.builtin').grep_string()<CR>", "string search" },
         t = { "<Cmd>lua require('telescope.builtin').tags()<CR>", "tags" },
         r = { "<Cmd>lua require('telescope.builtin').registers()<CR>", "registers" },
+        m = { "<Cmd>:Telescope marks<CR>", "marks" },
         d = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
-        m = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
+        M = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
+        c = { "<Cmd>:Telescope neoclip<CR>", "neoclip" },
     },
     ["<leader>h"] = {
         name = "hop",
@@ -98,7 +100,6 @@ wk.register({
         c = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop to character" },
         l = { "<cmd>lua require'hop'.hint_lines()<cr>", "Hop to line" },
         p = { "<cmd>lua require'hop'.hint_patterns()<cr>", "Hop to pattern" },
-        r = { "<cmd>lua require'hop'.refine_hints()<cr>", "Refine hop hint" },
         w = { "<cmd>lua require'hop'.hint_words()<cr>", "Hop to word" },
     },
     ["<leader><leader>h"] = {

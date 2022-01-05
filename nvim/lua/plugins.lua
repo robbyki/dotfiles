@@ -165,6 +165,7 @@ return require("packer").startup({
         use({ "editorconfig/editorconfig-vim", setup = get_setup("editorconfig") })
 
         -- code
+        use({ "brooth/far.vim" })
         use({
             "s1n7ax/nvim-comment-frame",
             requires = {
