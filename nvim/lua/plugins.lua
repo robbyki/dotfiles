@@ -134,7 +134,7 @@ return require("packer").startup({
             requires = "nvim-treesitter/nvim-treesitter",
             module = "neogen",
         })
-        use({ "hrsh7th/vim-vsnip", after = "nvim-cmp" })
+        use({ "hrsh7th/vim-vsnip" })
         use({ "hrsh7th/vim-vsnip-integ" })
         use({
             "hrsh7th/nvim-cmp",
@@ -144,7 +144,6 @@ return require("packer").startup({
                 { "hrsh7th/cmp-buffer" },
                 { "hrsh7th/cmp-path" },
                 { "hrsh7th/cmp-cmdline" },
-                { "hrsh7th/vim-vsnip" },
                 { "hrsh7th/cmp-vsnip" },
                 { "hrsh7th/vim-vsnip-integ" },
                 { "f3fora/cmp-spell", { "hrsh7th/cmp-calc" }, { "hrsh7th/cmp-emoji" } },

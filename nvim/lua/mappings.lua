@@ -86,7 +86,7 @@ wk.register({
         h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
         l = { "<Cmd>lua require('telescope.builtin').live_grep()<CR>", "live grep" },
         p = { "<Cmd>:Telescope project<CR>", "projects" },
-        s = { "<Cmd>lua require('telescope.builtin').grep_string()<CR>", "string search" },
+        s = { "<Cmd>:Telescope grep_string<CR>", "string search" },
         t = { "<Cmd>lua require('telescope.builtin').tags()<CR>", "tags" },
         r = { "<Cmd>lua require('telescope.builtin').registers()<CR>", "registers" },
         m = { "<Cmd>:Telescope marks<CR>", "marks" },
