@@ -35,13 +35,13 @@ map("n", "<TAB>", ":bnext<CR>")
 map("n", "<S-TAB>", ":bprevious<CR>")
 map("x", "K", ":move '<-2<CR>gv-gv")
 map("x", "J", ":move '>+1<CR>gv-gv")
-map("n", "<Leader>h", ":nohlsearch<cr>")
-map("n", "<Leader>xml", ":%!xmllint --format -<cr>")
-map("n", "<Leader>fo", ":copen<cr>") -- open quickfix window
-map("n", "<Leader>fc", ":cclose<cr>") -- close quickfix window
-map("n", "<leader>o", ":ToggleOnly<CR>")
-map("n", "<Leader>ev", ":vs $MYVIMRC<CR>")
-map("n", "<Leader>sv", ":luafile $MYVIMRC<CR>:echo 'Reloaded vimrc!'<CR>")
+map("n", "<leader>h", ":nohlsearch<cr>")
+map("n", "<leader>xml", ":%!xmllint --format -<cr>")
+map("n", "<leader>fo", ":copen<cr>") -- open quickfix window
+map("n", "<leader>fc", ":cclose<cr>") -- close quickfix window
+map("n", "<leader>o", ":toggleonly<cr>")
+map("n", "<leader>ev", ":vs $myvimrc<cr>")
+map("n", "<leader>sv", ":luafile $myvimrc<cr>:echo 'reloaded vimrc!'<cr>")
 map("i", "<S-Tab>", [[pumvisible() ? '<C-p>' : '<Tab>']])
 map("i", "<Tab>", [[pumvisible() ? '<C-n>' : '<Tab>']])
 map("n", "<esc>", ":noh<cr><esc>", { silent = true })
@@ -140,6 +140,13 @@ wk.register({
         D = { "<Cmd>DiffviewClose<CR>", "Diff view close" },
         B = { "<Cmd>lua require('telescope.builtin').git_branches()<CR>", "git branches" },
         f = { "<Cmd>lua require('telescope.builtin').git_files()<CR>", "git files" },
+    },
+    ["<leader>p"] = {
+        name = "+preview",
+        d = {"<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "Definition Preview"},
+        i = {"<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "Implementation Preview"},
+        c = {"<cmd>lua require('goto-preview').close_all_win()<CR>", "Close Preview"},
+        r = {"<cmd>lua require('goto-preview').goto_preview_references()<CR>", "References Preview"}
     },
 })
 
