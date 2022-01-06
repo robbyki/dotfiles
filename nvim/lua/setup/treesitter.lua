@@ -1,6 +1,19 @@
 require("nvim-treesitter.configs").setup({
     matchup = { enable = true },
-    ensure_installed = "maintained",
+    ensure_installed = {
+        "lua",
+        "rust",
+        "go",
+        "python",
+        "bash",
+        "comment",
+        "dockerfile",
+        "javascript",
+        "json",
+        "markdown",
+        "scala",
+        "yaml"
+    },
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {
         enable = true,

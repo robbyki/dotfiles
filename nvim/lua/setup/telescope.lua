@@ -111,7 +111,7 @@ require("telescope").setup({
             -- - "%.xcf",
             -- - "%.xls"
         },
-        path_display = { "shorten = 2" },
+        path_display = { "shorten" },
         winblend = 0,
         border = {},
         -- borderchars = { '═', '│', '═', '│', '╒', '╕', '╛', '╘' },
