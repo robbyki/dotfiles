@@ -272,11 +272,11 @@ return require("packer").startup({
         use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
         use({ "ellisonleao/glow.nvim" })
 
-        use({
-            "AckslD/nvim-neoclip.lua",
-            requires = { "nvim-telescope/telescope.nvim" },
-            config = get_setup("neoclip"),
-        })
+        -- use({
+        --     "AckslD/nvim-neoclip.lua",
+        --     requires = { "nvim-telescope/telescope.nvim" },
+        --     config = get_setup("neoclip"),
+        -- })
 
         -- json
         use({ "b0o/schemastore.nvim" })
