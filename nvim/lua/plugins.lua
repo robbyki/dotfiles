@@ -96,11 +96,8 @@ return require("packer").startup({
         use({ "haya14busa/incsearch.vim" })
         use({ "ethanholz/nvim-lastplace", config = get_setup("lastplace") })
         use({ "sQVe/sort.nvim", config = get_setup("sort") })
-        use({
-            "rmagatti/goto-preview",
-            config = get_setup("goto-preview"),
-            keys = { "gpd", "gpi", "gpr", "gP" },
-        })
+        use({ "rmagatti/goto-preview", config = get_setup("goto-preview") })
+            -- keys = { "gpd", "gpi", "gpr", "gP" }
 
         -- yanking
         -- use({
