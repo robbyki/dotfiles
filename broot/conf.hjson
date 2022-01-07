@@ -25,7 +25,7 @@
 	# A popular flag is the `g` one which displays git related info.
 	#
 	# default_flags:
-        default_flags: ghIS
+        default_flags: gHIS
 
 	###############################################################
 	# Date/Time format

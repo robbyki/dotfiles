@@ -97,7 +97,7 @@ return require("packer").startup({
         use({ "ethanholz/nvim-lastplace", config = get_setup("lastplace") })
         use({ "sQVe/sort.nvim", config = get_setup("sort") })
         use({ "rmagatti/goto-preview", config = get_setup("goto-preview") })
-            -- keys = { "gpd", "gpi", "gpr", "gP" }
+        -- keys = { "gpd", "gpi", "gpr", "gP" }
 
         -- yanking
         -- use({
@@ -220,7 +220,6 @@ return require("packer").startup({
         })
         use({ "machakann/vim-sandwich", config = get_setup("sandwich") })
         use({ "andymass/vim-matchup" })
-
 
         -- database
         -- use({

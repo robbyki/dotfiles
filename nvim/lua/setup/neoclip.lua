@@ -1,2 +1,1 @@
 -- require("neoclip").setup({})
-

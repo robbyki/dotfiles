@@ -1,17 +1,17 @@
-require("zen-mode").setup({
-  window = {
-    width = 90,
-    options = {
-      number = false,
-      relativenumber = false,
-      signcolumn = "no",
-      cursorcolumn = false,
-    },
-  },
-  plugins = {
-    kitty = {
-      enabled = false,
-      font = "+2",
-    },
-  },
-})
+-- require("zen-mode").setup({
+--     window = {
+--         width = 90,
+--         options = {
+--             number = false,
+--             relativenumber = false,
+--             signcolumn = "no",
+--             cursorcolumn = false,
+--         },
+--     },
+--     plugins = {
+--         kitty = {
+--             enabled = false,
+--             font = "+2",
+--         },
+--     },
+-- })

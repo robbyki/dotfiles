@@ -12,7 +12,7 @@ require("nvim-treesitter.configs").setup({
         "json",
         "markdown",
         "scala",
-        "yaml"
+        "yaml",
     },
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {

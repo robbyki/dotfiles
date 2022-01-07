@@ -28,21 +28,21 @@ require("telescope").setup({
         --   },
         -- },
         layout_strategy = "flex",
-        layout_config = {
-            -- confusing but horizontal means side by side
-            -- horizontal = { width = 0.9, height = 0.95, preview_width = 0.6 },
-            -- vertical = { width = 0.8, height = 0.8, preview_height = 0.7 },
-            -- horizontal = {
-            --   prompt_position = "bottom",
-            --   preview_width = 0.55,
-            -- },
-            -- vertical = {
-            --   mirror = false,
-            -- },
-            -- width = 0.87,
-            -- height = 0.80,
-            -- preview_cutoff = 120,
-        },
+        -- layout_config = {
+        -- confusing but horizontal means side by side
+        -- horizontal = { width = 0.9, height = 0.95, preview_width = 0.6 },
+        -- vertical = { width = 0.8, height = 0.8, preview_height = 0.7 },
+        -- horizontal = {
+        --   prompt_position = "bottom",
+        --   preview_width = 0.55,
+        -- },
+        -- vertical = {
+        --   mirror = false,
+        -- },
+        -- width = 0.87,
+        -- height = 0.80,
+        -- preview_cutoff = 120,
+        -- },
 
         -- layout_strategy = "horizontal",
         -- layout_config = {
@@ -66,7 +66,8 @@ require("telescope").setup({
             "Downloads",
             ".bloop",
             ".metals",
-            ".git",
+            ".git/*",
+            ".metals/*",
             "cache",
             "target",
             "node_modules",
@@ -100,7 +101,7 @@ require("telescope").setup({
             -- "%.oh%-my%-zsh/",
             ".m2",
             -- "%.gif",
-            "%.zcompdump"
+            "%.zcompdump",
             -- - "%.jpeg",
             -- - "%.jpg",
             -- - "%.ods",
@@ -124,8 +125,10 @@ require("telescope").setup({
                 ["<C-j>"] = telescope_actions.move_selection_next,
                 ["<C-k>"] = telescope_actions.move_selection_previous,
                 ["<Esc>"] = telescope_actions.close,
-                ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_next,
-                ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_previous,
+                ["<Tab>"] = telescope_actions.toggle_selection
+                    + telescope_actions.move_selection_next,
+                ["<S-Tab>"] = telescope_actions.toggle_selection
+                    + telescope_actions.move_selection_previous,
                 -- ["<CR>"] = actions.select_default + actions.center
             },
             n = {
@@ -138,7 +141,7 @@ require("telescope").setup({
     extensions = {
         fzf = {
             fuzzy = true, -- false will only do exact matching
-            override_generic_sorter = false, -- override the generic sorter
+            override_generic_sorter = true, -- override the generic sorter
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
         },
@@ -159,7 +162,6 @@ telescope.load_extension("media_files")
 telescope.load_extension("project")
 telescope.load_extension("zoxide")
 -- telescope.load_extension("neoclip")
-
 
 -- local previewers = require "telescope.previewers"
 -- local Job = require "plenary.job"

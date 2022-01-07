@@ -79,10 +79,10 @@ broot/launcher/bash/br
 broot/launcher/installed-v1
 lotus/
 motivate/
-nvim/plugin/packer_compiled.lua
-workplace-tmp/
-xterm-256color-italic.terminfo/
 node_modules/
+nvim/plugin/packer_compiled.lua
 package-lock.json
 package.json
 packer_compiled
+workplace-tmp/
+xterm-256color-italic.terminfo/
