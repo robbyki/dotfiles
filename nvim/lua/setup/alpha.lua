@@ -42,7 +42,7 @@ thingy:close()
 
 local heading = {
     type = "text",
-    val = "┌─   Today is " .. date .. " ─┐",
+    val = "┌──   Today is " .. date .. " ─┐",
     opts = {
         position = "center",
         hl = "Identifier",

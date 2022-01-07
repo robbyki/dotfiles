@@ -31,8 +31,9 @@ return require("packer").startup({
         -- lfrc in nvim
         use({ "ptzz/lf.vim" })
 
-        -- nvim performance
-        use({ "nathom/filetype.nvim" })
+        -- -- nvim performance
+        -- use({ "nathom/filetype.nvim" })
+        --
 
         -- ui
         use({ "Xuyuanp/scrollbar.nvim" })
@@ -98,28 +99,29 @@ return require("packer").startup({
         use({ "sQVe/sort.nvim", config = get_setup("sort") })
         use({ "rmagatti/goto-preview", config = get_setup("goto-preview") })
         -- keys = { "gpd", "gpi", "gpr", "gP" }
-
-        -- yanking
-        -- use({
-        --     "svermeulen/vim-yoink",
-        --     config = get_setup("yoink"),
-        -- })
-
-        -- files
+        --
+        -- -- yanking
+        -- -- use({
+        -- --     "svermeulen/vim-yoink",
+        -- --     config = get_setup("yoink"),
+        -- -- })
+        --
+        -- -- files
         use({ "tpope/vim-eunuch" })
-
-        -- treesitter
-        use({ "p00f/nvim-ts-rainbow" })
-        use({ "nvim-treesitter/playground" })
-        use({ "nvim-treesitter/completion-treesitter" })
-        use({ "JoosepAlviste/nvim-ts-context-commentstring" })
-        use({ "windwp/nvim-ts-autotag" })
+        --
         use({
             "nvim-treesitter/nvim-treesitter",
-            config = get_setup("treesitter"),
             run = ":TSUpdate",
+            requires = {
+                "JoosepAlviste/nvim-ts-context-commentstring",
+                "nvim-treesitter/nvim-treesitter-refactor",
+                "nvim-treesitter/nvim-treesitter-textobjects",
+                "p00f/nvim-ts-rainbow",
+                "theHamsta/nvim-treesitter-pairs",
+                "nvim-treesitter/playground",
+            },
+            config = get_setup("treesitter"),
         })
-        use("nvim-treesitter/nvim-treesitter-textobjects")
 
         -- debug
         use({ "mfussenegger/nvim-dap" })

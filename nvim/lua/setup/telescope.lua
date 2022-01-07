@@ -194,7 +194,7 @@ telescope.load_extension("zoxide")
 -- require('telescope').load_extension('fzy_native')
 
 --local telescope_map = function(key, provider)
---    utils.map("n", "<leader>f" .. key, "<CMD>lua require('telescope.builtin')." .. provider .. "()<CR>")
+--    utils.map("n", "<leader>f" .. key, "<Cmd>lua require('telescope.builtin')." .. provider .. "()<CR>")
 --end
 --
 --telescope_map("b", "buffers")

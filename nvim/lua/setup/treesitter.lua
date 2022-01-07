@@ -1,24 +1,28 @@
 require("nvim-treesitter.configs").setup({
     matchup = { enable = true },
-    ensure_installed = {
-        "lua",
-        "rust",
-        "go",
-        "python",
-        "bash",
-        "comment",
-        "dockerfile",
-        "javascript",
-        "json",
-        "markdown",
-        "scala",
-        "yaml",
-    },
-    ignore_install = {}, -- List of parsers to ignore installing
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = true,
-    },
+    ensure_installed = "maintained",
+    -- ensure_installed = {
+    --     "lua",
+    --     "rust",
+    --     "go",
+    --     "python",
+    --     "bash",
+    --     "comment",
+    --     "dockerfile",
+    --     "javascript",
+    --     "json",
+    --     "markdown",
+    --     "scala",
+    --     "yaml",
+    -- },
+    -- ignore_install = { "markdown" }, -- List of parsers to ignore installing
+     ----------------------------------------------------------------------
+     --            This obliterates my markdown file loading             --
+     ----------------------------------------------------------------------
+    -- highlight = {
+    --     enable = true,
+    --     -- additional_vim_regex_highlighting = true,
+    -- },
     indent = { enable = true },
     rainbow = {
         enable = true,

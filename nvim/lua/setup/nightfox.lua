@@ -3,7 +3,7 @@
 -- Nightfox config
 local nightfox = require("nightfox")
 nightfox.setup({
-    fox = "nordfox",
+    fox = "nightfox",
     alt_nc = true,
     styles = {
         comments = "italic",
