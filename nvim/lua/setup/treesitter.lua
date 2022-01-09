@@ -16,9 +16,9 @@ require("nvim-treesitter.configs").setup({
     --     "yaml",
     -- },
     -- ignore_install = { "markdown" }, -- List of parsers to ignore installing
-     ----------------------------------------------------------------------
-     --            This obliterates my markdown file loading             --
-     ----------------------------------------------------------------------
+    ----------------------------------------------------------------------
+    --            This obliterates my markdown file loading             --
+    ----------------------------------------------------------------------
     -- highlight = {
     --     enable = true,
     --     -- additional_vim_regex_highlighting = true,

@@ -108,7 +108,7 @@ wk.register({
             "<Cmd>lua require('telescope').extensions.metals.commands()<CR>",
             "metals commands",
         },
-        c = { "<Cmd>:Telescope neoclip<CR>", "neoclip" },
+        -- c = { "<Cmd>:Telescope neoclip<CR>", "neoclip" },
     },
     ["<leader>h"] = {
         name = "hop",
@@ -187,11 +187,7 @@ wk.register({
 })
 
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
---
---
---
---
---
+
 -- map("n", "<space>ld", [[<cmd>lua vim.diagnostic.open_float(0)<CR>]])
 -- map("n", "<space>nd", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
 -- map("n", "<space>pd", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])

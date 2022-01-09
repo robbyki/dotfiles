@@ -38,8 +38,13 @@ call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_re
 ]])
 
 -- global
-vim.opt.incsearch = true
+vim.g.loaded_python_provider = 0
+vim.g.loaded_perl_provider = 0 -- To disable Perl support
+vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
+vim.o.incsearch = true
 vim.o.cursorline = true
+vim.o.colorcolumn = "100"
+vim.o.textwidth = 100
 vim.o.ruler = true
 vim.o.rulerformat = [[%-14.(%l,%c   %o%)]]
 vim.o.mouse = ""
@@ -68,14 +73,14 @@ vim.o.guifont = "Operator Mono SSm Lig Book"
 vim.o.swapfile = false
 vim.o.list = true
 vim.o.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
+vim.g.wrap = false
 
 -- window
 vim.wo.cursorline = true
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
-vim.wo.wrap = false
 
 vim.g.lf_width = 0.9
 vim.g.lf_height = 0.9
