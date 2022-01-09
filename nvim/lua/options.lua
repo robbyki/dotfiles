@@ -74,6 +74,7 @@ vim.o.swapfile = false
 vim.o.list = true
 vim.o.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
 vim.o.timeoutlen = 500
+
 vim.g.wrap = false
 
 -- window

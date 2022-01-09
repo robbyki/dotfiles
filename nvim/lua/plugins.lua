@@ -44,7 +44,7 @@ return require("packer").startup({
             config = get_setup("gps"),
         })
         use({ "dkarter/bullets.vim" })
-        use({ "voldikss/vim-floaterm" })
+        use({ "voldikss/vim-floaterm", config = get_setup("floaterm") })
         use({
             "akinsho/bufferline.nvim",
             requires = { "kyazdani42/nvim-web-devicons" },

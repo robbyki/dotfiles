@@ -9,7 +9,6 @@ end
 vim.g.mapleader = ","
 
 map("n", "<Space>", "<NOP>")
-map("n", "\\", ":NvimTreeToggle<CR>")
 map("i", "<C-c>", "<Esc>")
 
 vim.cmd([[
@@ -47,7 +46,6 @@ map("i", "<Tab>", [[pumvisible() ? '<C-n>' : '<Tab>']])
 map("n", "<esc>", ":noh<cr><esc>", { silent = true })
 map("n", "<leader>so", ":SymbolsOutline<cr>")
 
--- begin which-key settings
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",
     ["<TAB>"] = "⇆",
@@ -59,7 +57,7 @@ local wk = require("which-key")
 
 wk.register({
     ["<leader>"] = { name = "+leader" },
-    ["<leader>."] = { ":FloatermToggle<cr>", "Toggle terminal" },
+    -- ["<leader>."] = { ":FloatermToggle<cr>", "Toggle terminal" },
     ["<leader>-"] = { ":Lf<cr>", "Start lf" },
     ["<leader><leader>b"] = {
         "<Cmd>lua require('telescope.builtin').builtin()<CR>",
@@ -67,14 +65,12 @@ wk.register({
     },
     ["<leader>?"] = { "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", "recent files" },
     ["<leader>r"] = { "<Cmd>lua require('renamer').rename()<CR>", "rename" },
-    -- ["<leader><leader>l"] = { "<Cmd>lua require'hop'.hint_lines()<CR>", "hop by line" },
-    -- ["<leader><leader>w"] = { "<Cmd>lua require'hop'.hint_words()<CR>", "hop by word" },
 })
 
 wk.register({
     ["<leader>f"] = {
         name = "+search",
-        B = { "<Cmd>lua require('telescope.builtin').buffers()<CR>", "buffers" },
+        B = { "<Cmd>:Telescope buffers<CR>", "buffers" },
         f = {
             "<Cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>",
             "find files here",
@@ -95,12 +91,12 @@ wk.register({
             "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
             "fuzzy find here",
         },
-        h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
-        l = { "<Cmd>lua require('telescope.builtin').live_grep()<CR>", "live grep" },
+        h = { "<Cmd>:Telescope help_tags<CR>", "help tags" },
+        l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
         p = { "<Cmd>:Telescope project<CR>", "projects" },
         s = { "<Cmd>:Telescope grep_string<CR>", "string search" },
-        t = { "<Cmd>lua require('telescope.builtin').tags()<CR>", "tags" },
-        r = { "<Cmd>lua require('telescope.builtin').registers()<CR>", "registers" },
+        t = { "<Cmd>:Telescope tags<CR>", "tags" },
+        r = { "<Cmd>:Telescope registers<CR>", "registers" },
         m = { "<Cmd>:Telescope marks<CR>", "marks" },
         j = { "<Cmd>:Telescope jumplist<CR>", "jumps" },
         d = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
@@ -109,6 +105,19 @@ wk.register({
             "metals commands",
         },
         -- c = { "<Cmd>:Telescope neoclip<CR>", "neoclip" },
+    },
+    ["<leader>t"] = {
+        name = "+terminal",
+        t = { "<Cmd>FloatermNew --height=0.3 --width=0.8<CR>", "terminal" },
+        -- t = { "<Cmd>FloatermNew --height=0.6 --width=0.9<CR>", "terminal" },
+        a = { "<Cmd>FloatermNew --name=ammonite --height=0.4 --width=0.9 amm<CR>", "ammonite" },
+        p = { "<Cmd>FloatermNew --name=python --height=0.4 --width=0.9 python<CR>", "python" },
+        k = { "<Cmd>FloatermNew --name=k9s --autoclose=2 --height=0.9 --width=0.9 k9s<CR>", "k9s" },
+        b = { "<Cmd>FloatermNew --name=btm --autoclose=2 --height=0.9 --width=0.9 btm<CR>", "btm" },
+        l = { "<Cmd>FloatermNew --name=lazydocker --autoclose=2 --height=0.9 --width=0.9 ld<CR>", "ld" },
+        g = { "<Cmd>FloatermNew --name=git diff --autoclose=2 --height=0.9 --width=0.9 gd<CR>", "git diff" },
+        B = { "<Cmd>FloatermNew --name=broot --autoclose=2 broot<CR>", "broot" },
+        T = { "<Cmd>FloatermToggle<CR>", "toggle" },
     },
     ["<leader>h"] = {
         name = "hop",
@@ -158,6 +167,8 @@ wk.register({
         -- d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
         -- i = { "<Cmd>lua vim.lsp.buf.implementation()", "implementation" },
         -- r = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
+        -- i = { "<Cmd>lua require('metals').toggle_setting('showImplicitArguments')<CR>", "show implicits" },
+        -- w = { "<Cmd>lua require('metals').type_of_range()<CR>", "metals type of range" },
     },
     ["<leader>g"] = {
         name = "+git",
@@ -165,8 +176,8 @@ wk.register({
         b = { "<Cmd>GitBlameToggle<CR>", "blame" },
         d = { "<Cmd>DiffviewOpen<CR>", "Diff view" },
         D = { "<Cmd>DiffviewClose<CR>", "Diff view close" },
-        B = { "<Cmd>lua require('telescope.builtin').git_branches()<CR>", "git branches" },
-        f = { "<Cmd>lua require('telescope.builtin').git_files()<CR>", "git files" },
+        B = { "<Cmd>:Telescope git_branches<CR>", "git branches" },
+        f = { "<Cmd>:Telescope git_files<CR>", "git files" },
     },
     ["<leader>p"] = {
         name = "+preview",
@@ -184,6 +195,16 @@ wk.register({
             "References Preview",
         },
     },
+    ["<space>"] = {
+        name = "+explorer",
+        c = { "<Cmd>NvimTreeClose<CR>", "close" },
+        f = { "<Cmd>NvimTreeFocus<CR>", "focus" },
+        i = { "<Cmd>NvimTreeFindFile<CR>", "find" },
+        p = { "<Cmd>NvimTreeClipboard<CR>", "clipboard" },
+        r = { "<Cmd>NvimTreeRefresh<CR>", "refresh" },
+        s = { "<Cmd>NvimTreeResize<CR>", "resize" },
+        e = { "<Cmd>NvimTreeToggle<CR>", "toggle" },
+    },
 })
 
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
@@ -192,8 +213,6 @@ map("n", "<Leader>w", ":write<CR>", { noremap = true })
 -- map("n", "<space>nd", [[<cmd>lua vim.diagnostic.goto_next()<CR>]])
 -- map("n", "<space>pd", [[<cmd>lua vim.diagnostic.goto_prev()<CR>]])
 
--- i = { "<Cmd>lua require('metals').toggle_setting('showImplicitArguments')<CR>", "show implicits" },
--- w = { "<Cmd>lua require('metals').type_of_range()<CR>", "metals type of range" },
 -- w = { "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "line diagnostics" },
 -- w = { "<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "loc list" },
 -- S = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
@@ -224,17 +243,6 @@ map("n", "<Leader>w", ":write<CR>", { noremap = true })
 --   [";"] = { "<Cmd>FloatermNew --wintype=popup --height=6<CR>", "terminal" },
 --   t = { "<Cmd>FloatermToggle<CR>", "toggle" },
 --   y = { "<Cmd>FloatermNew ytop<CR>", "ytop" },
--- 	e = {
--- 		name = '+explorer',
--- 		['<space>'] = {'<Cmd>NvimTreeOpen<CR>', 'open'},
--- 		c = {'<Cmd>NvimTreeClose<CR>', 'close'},
--- 		f = {'<Cmd>NvimTreeFocus<CR>', 'focus'},
--- 		i = {'<Cmd>NvimTreeFindFile<CR>', 'find'},
--- 		p = {'<Cmd>NvimTreeClipboard<CR>', 'clipboard'},
--- 		r = {'<Cmd>NvimTreeRefresh<CR>', 'refresh'},
--- 		s = {'<Cmd>NvimTreeResize<CR>', 'resize'},
--- 		t = {'<Cmd>NvimTreeToggle<CR>', 'toggle'}
--- 	},
 
 -- 	-- windows
 -- 	w = {
