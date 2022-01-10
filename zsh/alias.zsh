@@ -22,6 +22,7 @@ alias docs="cdl ~/Documents"
 alias vids="cdl ~/Videos"
 alias blog="cdl ~/dev/blog"
 alias snips="cdl ~/.dotfiles/nvim/.vsnip"
+alias pics="cdl ~/Pictures"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 
