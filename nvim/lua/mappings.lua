@@ -114,10 +114,9 @@ wk.register({
         p = { "<Cmd>FloatermNew --name=python --height=0.4 --width=0.9 python<CR>", "python" },
         k = { "<Cmd>FloatermNew --name=k9s --autoclose=2 --height=0.9 --width=0.9 k9s<CR>", "k9s" },
         b = { "<Cmd>FloatermNew --name=btm --autoclose=2 --height=0.9 --width=0.9 btm<CR>", "btm" },
-        l = { "<Cmd>FloatermNew --name=lazydocker --autoclose=2 --height=0.9 --width=0.9 ld<CR>", "ld" },
-        g = { "<Cmd>FloatermNew --name=git diff --autoclose=2 --height=0.9 --width=0.9 gd<CR>", "git diff" },
-        B = { "<Cmd>FloatermNew --name=broot --autoclose=2 broot<CR>", "broot" },
-        T = { "<Cmd>FloatermToggle<CR>", "toggle" },
+        B = { "<Cmd>FloatermNew --name=broot --autoclose=2 --height=0.9 --width=0.9 broot<CR>", "broot" },
+        -- l = { "<Cmd>FloatermNew --name=lazydocker --height=0.9 --width=0.9 ld<CR>", "ld" },
+        -- T = { "<Cmd>FloatermToggle<CR>", "toggle" },
     },
     ["<leader>h"] = {
         name = "hop",

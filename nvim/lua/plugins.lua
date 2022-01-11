@@ -33,10 +33,8 @@ return require("packer").startup({
 
         -- -- nvim performance
         -- use({ "nathom/filetype.nvim" })
-        --
 
         -- ui
-        use({ "Xuyuanp/scrollbar.nvim" })
         use({ "folke/which-key.nvim", config = get_setup("which-key") })
         use({
             "SmiteshP/nvim-gps",
