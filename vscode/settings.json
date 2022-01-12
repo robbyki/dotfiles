@@ -245,6 +245,7 @@
   },
   "go.toolsManagement.autoUpdate": true,
   "editor.inlineSuggest.enabled": true,
+  "github.copilot.inlineSuggest.enable": true,
   "github.copilot.enable": {
     "*": true,
     "yaml": false,
@@ -254,7 +255,6 @@
   "files.defaultLanguage": "markdown",
   "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
   "editor.smoothScrolling": true,
-  "bracketPairColorizer.depreciation-notice": false,
   "WhiteSource Advise.Diff.BaseBranch": "main",
   "WhiteSource Advise.includeDevDependencies": true,
   "window.zoomLevel": 2,

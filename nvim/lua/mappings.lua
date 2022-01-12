@@ -87,13 +87,14 @@ wk.register({
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>",
             "find nvim config",
         },
-        b = {
+        S = {
             "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
             "fuzzy find here",
         },
         h = { "<Cmd>:Telescope help_tags<CR>", "help tags" },
         l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
         p = { "<Cmd>:Telescope project<CR>", "projects" },
+        b = { "<Cmd>:Telescope file_browser<CR>", "projects" },
         s = { "<Cmd>:Telescope grep_string<CR>", "string search" },
         t = { "<Cmd>:Telescope tags<CR>", "tags" },
         r = { "<Cmd>:Telescope registers<CR>", "registers" },
@@ -106,6 +107,8 @@ wk.register({
         },
         -- c = { "<Cmd>:Telescope neoclip<CR>", "neoclip" },
     },
+    -- my floaterm instances ar not acting very well and lagging up. need to troubleshoot.
+    -- but wrappers such as broot, btm, and others seem to be okay
     ["<leader>t"] = {
         name = "+terminal",
         t = { "<Cmd>FloatermNew --height=0.3 --width=0.8<CR>", "terminal" },
