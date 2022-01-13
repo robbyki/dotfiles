@@ -116,7 +116,7 @@
   "tabnine.experimentalAutoImports": true,
   "workbench.iconTheme": "vscode-icons",
   "metals.sbtScript": "/usr/bin/sbt",
-  "metals.serverVersion": "0.10.9",
+  "metals.serverVersion": "0.11.0",
   "metals.javaHome": "/usr/lib/jvm/java-11-openjdk",
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.gitCommands.skipConfirmations": [
@@ -224,7 +224,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.sendKeybindingsToShell": true,
   "terminal.external.linuxExec": "alacritty",
-  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontSize": 14,
   "debug.console.fontFamily": "Operator Mono SSm Lig Book",
   "debug.console.wordWrap": false,
   "debug.console.fontSize": 12,

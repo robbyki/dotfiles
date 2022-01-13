@@ -179,6 +179,10 @@
     "key": "tab",
     "command": "-markdown.extension.onTabKey",
     "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus && !hasOtherSuggestions && !hasSnippetCompletions && !inSnippetMode && !suggestWidgetVisible && editorLangId == 'markdown'"
+  },
+  {
+    "key": "alt+2",
+    "command": "-workbench.action.openEditorAtIndex2"
   }
   // {
   //   "key": "ctrl+shift+up",
