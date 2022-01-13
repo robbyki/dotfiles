@@ -2,6 +2,7 @@ export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
 # Quick files and directories
+alias dots="cdl $DOTFILES"
 alias zshconfig="$EDITOR $DOTFILES/zsh/.zshrc"
 alias aliasconfig="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabconfig="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
@@ -10,12 +11,13 @@ alias codeconfig="$EDITOR $DOTFILES/vscode/settings.json"
 alias alacrittyconfig="$EDITOR $DOTFILES/alacritty/alacritty.yml"
 alias tmuxconfig="$EDITOR $DOTFILES/tmux/.tmux.conf"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
+
+# cd into directories
 alias rkeeweb='copy ~/Documents/notes/webex-rkee.txt'
 alias util='cdl $HOME/dev/ibm-projects/aide-utilities'
 alias temp='cdl $HOME/dev/ibm-projects/aide-template/'
 alias nv='cdl $HOME/.dotfiles/nvim'
 alias dev='cdl $HOME/dev/'
-alias dots="cdl $DOTFILES"
 alias downloads="cdl ~/Downloads"
 alias kubeconfig="$EDITOR ~/.kube/config"
 alias docs="cdl ~/Documents"
@@ -34,7 +36,7 @@ alias ssibm='secrets source ibm-secrets'
 alias sdibm='secrets decrypt ibm-secrets'
 alias seibm='secrets encrypt ibm-secrets'
 
-# system
+# system helpers
 alias tarx='tar xvzf'
 alias tarc='tar cvzf'
 alias t='tmux'
@@ -65,7 +67,7 @@ alias reb="systemctl reboot"
 #alias dr="rofi -show drun"
 #alias r="rofi -theme Arc-Dark -show window"
 
-#gatsby
+#gatsby js blog builder
 alias gat='gatsby'
 
 # argo
@@ -213,6 +215,7 @@ alias ocl='oc logs'
 alias oclf='oc logs --follow'
 alias ocrf='oc replace --force -f'
 alias ocls='ic oc cluster ls'
+
 # tekton
 alias tknhs='tkn hub search'
 alias tknit='tkn hub install task'
@@ -222,7 +225,7 @@ alias tknps='tkn pipeline start'
 alias tkntd='tkn task describe'
 alias tkntlf='tkn taskrun logs --last -f'
 alias tknts='tkn task start'
-alias tlint=tekton-lint
+alias tlint='tekton-lint'
 
 # yamls
 alias ylint='yamllint'
@@ -235,6 +238,7 @@ alias -g @json='| jq'
 alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 zrc() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
 
+# audio
 alias headp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-output-0"
 alias speakers="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"

@@ -250,7 +250,7 @@
     "*": true,
     "yaml": false,
     "plaintext": false,
-    "markdown": true
+    "markdown": false
   },
   "files.defaultLanguage": "markdown",
   "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
