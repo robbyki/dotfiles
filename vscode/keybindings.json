@@ -183,6 +183,23 @@
   {
     "key": "alt+2",
     "command": "-workbench.action.openEditorAtIndex2"
+  },
+  {
+    "key": "ctrl+alt+9",
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "ctrl+alt+-",
+    "command": "-workbench.action.quickInputBack",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+alt+-",
+    "command": "-workbench.action.navigateBack"
+  },
+  {
+    "key": "ctrl+alt+-",
+    "command": "editor.action.fontZoomOut"
   }
   // {
   //   "key": "ctrl+shift+up",
