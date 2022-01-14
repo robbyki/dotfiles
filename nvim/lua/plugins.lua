@@ -124,6 +124,8 @@ return require("packer").startup({
         -- debug
         use({ "mfussenegger/nvim-dap" })
 
+        use({ "Pocco81/AutoSave.nvim", config = get_setup("autosave") })
+
         -- autocomplete
         use({
             "danymat/neogen",

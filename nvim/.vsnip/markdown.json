@@ -1,0 +1,24 @@
+{
+  "lookatme frontmatter": {
+    "prefix": "fmlam",
+    "description": "Creates frontmatter for lam slides",
+    "body": [
+      "---",
+      "title: ${1}",
+      "date: ${2:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}}",
+      "author: Robby Kiskanyan",
+	  "styles:",
+	  "  style: ${3}",
+      "  table:",
+      "    column_spacing: 15",
+      "  margin:",
+      "    top: 3",
+      "    bottom: 0",
+      "  padding:",
+      "    top: 3",
+      "    bottom: 3",
+      "---",
+      "$0"
+    ]
+  }
+}
