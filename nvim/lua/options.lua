@@ -145,6 +145,9 @@ vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
 vim.cmd([[augroup end]])
 
+-- copy buffer path
+vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
+
 -- vim.cmd[[command! PI lua run_packer('install')]]
 vim.cmd([[command! PU packadd packer.nvim | lua require('plugins').update()]])
 vim.cmd([[command! PI packadd packer.nvim | lua require('plugins').install()]])
