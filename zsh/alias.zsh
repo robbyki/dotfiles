@@ -164,9 +164,9 @@ alias kx='kubectx'
 alias mk='minikube'
 
 # containers
-alias docker=podman
+alias docker='podman'
 alias pcls='podman container ls'
-alias pd=podman
+alias pd='podman'
 alias pi='podman images'
 alias pprune='podman system prune --all --force'
 alias ppull='podman pull'
@@ -239,8 +239,8 @@ alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 zrc() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
 
 # audio
-alias headp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-output-0"
-alias speakers="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
+alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-output-0"
+alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
 #alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake

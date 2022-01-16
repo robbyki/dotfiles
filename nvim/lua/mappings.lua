@@ -34,17 +34,17 @@ map("n", "<TAB>", ":bnext<CR>")
 map("n", "<S-TAB>", ":bprevious<CR>")
 map("x", "K", ":move '<-2<CR>gv-gv")
 map("x", "J", ":move '>+1<CR>gv-gv")
-map("n", "<leader>h", ":nohlsearch<cr>")
-map("n", "<leader>xml", ":%!xmllint --format -<cr>")
-map("n", "<leader>fo", ":copen<cr>") -- open quickfix window
-map("n", "<leader>fc", ":cclose<cr>") -- close quickfix window
-map("n", "<leader>o", ":toggleonly<cr>")
-map("n", "<leader>ev", ":vs $myvimrc<cr>")
-map("n", "<leader>sv", ":luafile $myvimrc<cr>:echo 'reloaded vimrc!'<cr>")
+map("n", "<leader>h", ":nohlsearch<CR>")
+map("n", "<leader>xml", ":%!xmllint --format -<CR>")
+map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
+map("n", "<leader>fc", ":cclose<CR>") -- close quickfix window
+map("n", "<leader>o", ":ToggleOnly<CR>")
+map("n", "<leader>ev", ":vs $myvimrc<CR>")
+map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
 map("i", "<S-Tab>", [[pumvisible() ? '<C-p>' : '<Tab>']])
 map("i", "<Tab>", [[pumvisible() ? '<C-n>' : '<Tab>']])
-map("n", "<esc>", ":noh<cr><esc>", { silent = true })
-map("n", "<leader>so", ":SymbolsOutline<cr>")
+map("n", "<esc>", ":noh<CR><esc>", { silent = true })
+map("n", "<leader>so", ":SymbolsOutline<CR>")
 
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",
@@ -57,8 +57,8 @@ local wk = require("which-key")
 
 wk.register({
     ["<leader>"] = { name = "+leader" },
-    -- ["<leader>."] = { ":FloatermToggle<cr>", "Toggle terminal" },
-    ["<leader>-"] = { ":Lf<cr>", "Start lf" },
+    -- ["<leader>."] = { ":FloatermToggle<CR>", "Toggle terminal" },
+    ["<leader>-"] = { ":Lf<CR>", "Start lf" },
     ["<leader><leader>b"] = {
         "<Cmd>lua require('telescope.builtin').builtin()<CR>",
         "telescope builtins",
@@ -123,11 +123,11 @@ wk.register({
     },
     ["<leader>h"] = {
         name = "hop",
-        b = { "<cmd>lua require'hop'.hint_char2()<cr>", "Hop to bigram (two characters)" },
-        c = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop to character" },
-        l = { "<cmd>lua require'hop'.hint_lines()<cr>", "Hop to line" },
-        p = { "<cmd>lua require'hop'.hint_patterns()<cr>", "Hop to pattern" },
-        w = { "<cmd>lua require'hop'.hint_words()<cr>", "Hop to word" },
+        b = { "<cmd>lua require'hop'.hint_char2()<CR>", "Hop to bigram (two characters)" },
+        c = { "<cmd>lua require'hop'.hint_char1()<CR>", "Hop to character" },
+        l = { "<cmd>lua require'hop'.hint_lines()<CR>", "Hop to line" },
+        p = { "<cmd>lua require'hop'.hint_patterns()<CR>", "Hop to pattern" },
+        w = { "<cmd>lua require'hop'.hint_words()<CR>", "Hop to word" },
     },
     ["<leader><leader>h"] = {
         name = "+hop around",

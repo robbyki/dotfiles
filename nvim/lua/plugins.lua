@@ -35,6 +35,8 @@ return require("packer").startup({
         -- use({ "nathom/filetype.nvim" })
 
         -- ui
+        use({ "christoomey/vim-tmux-navigator" })
+
         use({ "folke/which-key.nvim", config = get_setup("which-key") })
         use({
             "SmiteshP/nvim-gps",
