@@ -59,6 +59,17 @@ function gccd() {
 #--------------------------------------------------------------------#
 #                          System functions                          #
 #--------------------------------------------------------------------#
+lg()
+{
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
 
 # fuzzy search all of the gnome desktop files
 fapp() {
@@ -104,6 +115,8 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+bindkey "^[l" clear-screen
 
 # run `ll` after running cd into dir.
 cdl() { cd "$@" && ll; }

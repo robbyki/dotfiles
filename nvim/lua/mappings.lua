@@ -83,9 +83,9 @@ wk.register({
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>",
             "find Docs",
         },
-        n = {
+        d = {
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>",
-            "find nvim config",
+            "dotfiles",
         },
         S = {
             "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
@@ -100,7 +100,7 @@ wk.register({
         r = { "<Cmd>:Telescope registers<CR>", "registers" },
         m = { "<Cmd>:Telescope marks<CR>", "marks" },
         j = { "<Cmd>:Telescope jumplist<CR>", "jumps" },
-        d = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
+        C = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
         M = {
             "<Cmd>lua require('telescope').extensions.metals.commands()<CR>",
             "metals commands",

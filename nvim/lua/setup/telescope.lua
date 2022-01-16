@@ -122,16 +122,16 @@ require("telescope").setup({
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         mappings = {
             i = {
-                ["<C-j>"] = telescope_actions.move_selection_next,
-                ["<C-k>"] = telescope_actions.move_selection_previous,
+                -- ["<C-S-j>"] = telescope_actions.move_selection_next,
+                -- ["<C-S-k>"] = telescope_actions.move_selection_previous,
                 ["<Esc>"] = telescope_actions.close,
                 ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_next,
                 ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_previous,
                 -- ["<CR>"] = actions.select_default + actions.center
             },
             n = {
-                ["<C-j>"] = telescope_actions.move_selection_next,
-                ["<C-k>"] = telescope_actions.move_selection_previous,
+                -- ["<C-S-j>"] = telescope_actions.move_selection_next,
+                -- ["<C-S-k>"] = telescope_actions.move_selection_previous,
                 ["<C-q>"] = telescope_actions.smart_send_to_qflist + telescope_actions.open_qflist,
             },
         },

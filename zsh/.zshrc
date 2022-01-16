@@ -49,8 +49,6 @@ export ENHANCD_DOT_SHOW_FULLPATH=1
 export ENHANCD_FILTER=fzy:fzf
 # }}}
 
-# export DOTFILES="$HOME/.dotfiles"
-
 # {{{ alias helper
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
 # }}}
@@ -215,3 +213,4 @@ export PATH=/home/robbyk/.fnm:$PATH
 eval "`fnm env`"
 
 export SBT_CREDENTIALS=$HOME/.sbt/.credentials
+
