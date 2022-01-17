@@ -189,15 +189,17 @@ ocdel() {
  	ic oc cluster rm -f --force-delete-storage -c $1
 }
 
+# get cluster info printout along with master url
 occonf() {
  	ic oc cluster get -c $1
 }
 
+# download cluster config and add it to kubeconfig
 ocstatus() {
- 	ic oc cluster config -c $1
+ 	ic oc cluster config -c $1 --admin
 }
 
-# need to run `ssibm` before this for env variadles
+# need to run `ssibm` before this to export ibm api key to login without temp passcode
 oclogin() {
  	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1
 }
@@ -211,3 +213,8 @@ occ() {
 	oc $@ | yq eval --colors -P
 }
 
+# if you want to use passcode url: https://identity-3.us-south.iam.cloud.ibm.com/ui/showpasscode.jsp
+# must get master url info first by running occonf and does not require exporting api key
+oclogin-pass() {
+  oc login -u passcode -p $1 --server=$2
+}
