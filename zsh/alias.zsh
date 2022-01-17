@@ -64,6 +64,7 @@ alias sus="systemctl suspend"
 alias hib="systemctl hibernate"
 alias off="systemctl poweroff"
 alias reb="systemctl reboot"
+alias peek="GDK_BACKEND=x11 peek"
 #alias dr="rofi -show drun"
 #alias r="rofi -theme Arc-Dark -show window"
 

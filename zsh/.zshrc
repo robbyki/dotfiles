@@ -28,7 +28,8 @@ plugins=(
 autoload -U compinit && compinit
 source <(kubectl completion zsh)
 source <(tkn completion zsh)
-source <(oc completion zsh)
+# this is a temp fix until upstream is fixed
+source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
 source <(minikube completion zsh)
 source $ZSH/completions/_ic
 source $ZSH/completions/_helm
