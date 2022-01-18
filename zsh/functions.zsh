@@ -195,7 +195,7 @@ occonf() {
 }
 
 # download cluster config and add it to kubeconfig
-ocstatus() {
+ocgetconfig() {
  	ic oc cluster config -c $1 --admin
 }
 

@@ -215,3 +215,5 @@ eval "`fnm env`"
 
 export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 
+# helper file for storing ocp cluster info
+source $HOME/clusters

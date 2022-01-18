@@ -49,10 +49,9 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    kubecontext
     background_jobs         # presence of background jobs
     command_execution_time  # duration of the last command
-    direnv                  # direnv status (https://direnv.net/)
+    # direnv                  # direnv status (https://direnv.net/)
     # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     # anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
@@ -78,6 +77,8 @@
     # kubecontext
     prompt_secrets
     vpn_ip                # virtual private network indicator
+    newline
+    kubecontext
 
     # proxy                 # system-wide http/https/ftp proxy
     # battery               # internal battery

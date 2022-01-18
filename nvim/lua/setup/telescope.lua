@@ -124,7 +124,7 @@ require("telescope").setup({
             i = {
                 -- ["<C-S-j>"] = telescope_actions.move_selection_next,
                 -- ["<C-S-k>"] = telescope_actions.move_selection_previous,
-                ["<Esc>"] = telescope_actions.close,
+                -- ["<Esc>"] = telescope_actions.close,
                 ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_next,
                 ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_previous,
                 -- ["<CR>"] = actions.select_default + actions.center
