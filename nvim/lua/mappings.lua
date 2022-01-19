@@ -94,7 +94,7 @@ wk.register({
         h = { "<Cmd>:Telescope help_tags<CR>", "help tags" },
         l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
         p = { "<Cmd>:Telescope project<CR>", "projects" },
-        b = { "<Cmd>:Telescope file_browser<CR>", "projects" },
+        b = { "<Cmd>:Telescope file_browser<CR>", "file browser" },
         s = { "<Cmd>:Telescope grep_string<CR>", "string search" },
         t = { "<Cmd>:Telescope tags<CR>", "tags" },
         r = { "<Cmd>:Telescope registers<CR>", "registers" },

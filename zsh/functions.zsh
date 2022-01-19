@@ -121,7 +121,9 @@ bindkey "^[l" clear-screen
 # run `ll` after running cd into dir.
 cdl() { cd "$@" && ll; }
 
-bindkey -s "^K" 'k9s^M'
+# this equals is my '9' key on my dvorak keyboard.
+bindkey -s "^[=" 'k9s^M'
+
 timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
