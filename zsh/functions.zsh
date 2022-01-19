@@ -157,8 +157,12 @@ go-to-local-bin() {
  	sudo mv $1 /usr/local/bin/$1
 }
 
-gO-to-completions() { 
+go-to-completions() { 
  	sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
+}
+
+mktouch() {
+  mkdir -p $(dirname $1) && touch $1;
 }
 
 #--------------------------------------------------------------------#
