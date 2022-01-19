@@ -220,3 +220,5 @@ export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 source $HOME/clusters
 
 export UPDATE_ZSH_DAYS=1
+
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock

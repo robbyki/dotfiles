@@ -2,15 +2,15 @@ local telescope = require("telescope")
 local telescope_actions = require("telescope.actions")
 
 local toggle_modes = function()
-  local mode = vim.api.nvim_get_mode().mode
-  if mode == "n" then
-    vim.cmd [[startinsert]]
-    return
-  end
-  if mode == "i" then
-    vim.cmd [[stopinsert]]
-    return
-  end
+    local mode = vim.api.nvim_get_mode().mode
+    if mode == "n" then
+        vim.cmd([[startinsert]])
+        return
+    end
+    if mode == "i" then
+        vim.cmd([[stopinsert]])
+        return
+    end
 end
 
 telescope.setup({
@@ -41,18 +41,18 @@ telescope.setup({
         -- },
         layout_strategy = "flex",
         layout_config = {
-        horizontal = { width = 0.95, height = 0.95, preview_width = 0.6 },
-        vertical = { width = 0.95, height = 0.95, preview_height = 0.7 },
-        -- horizontal = {
-        --   prompt_position = "bottom",
-        --   preview_width = 0.55,
-        -- },
-        -- vertical = {
-        --   mirror = false,
-        -- },
-        -- width = 0.87,
-        -- height = 0.80,
-        -- preview_cutoff = 120,
+            horizontal = { width = 0.95, height = 0.95, preview_width = 0.6 },
+            vertical = { width = 0.95, height = 0.95, preview_height = 0.7 },
+            -- horizontal = {
+            --   prompt_position = "bottom",
+            --   preview_width = 0.55,
+            -- },
+            -- vertical = {
+            --   mirror = false,
+            -- },
+            -- width = 0.87,
+            -- height = 0.80,
+            -- preview_cutoff = 120,
         },
 
         -- layout_strategy = "horizontal",
@@ -116,7 +116,7 @@ telescope.setup({
             "svg",
             "target",
             "xcf",
-            "xls"
+            "xls",
             -- ".bluemix/",
             -- "db",
             -- "%.vim/",
@@ -134,7 +134,7 @@ telescope.setup({
                 ["<C-space>"] = toggle_modes,
                 ["<Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_next,
                 ["<S-Tab>"] = telescope_actions.toggle_selection + telescope_actions.move_selection_previous,
-                ["<Esc>"] = telescope_actions.close
+                ["<Esc>"] = telescope_actions.close,
                 -- ["<CR>"] = actions.select_default + actions.center
             },
             n = {

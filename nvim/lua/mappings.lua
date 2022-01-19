@@ -87,7 +87,7 @@ wk.register({
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>",
             "dotfiles",
         },
-        S = {
+        s = {
             "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
             "fuzzy find here",
         },
@@ -95,7 +95,7 @@ wk.register({
         l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
         p = { "<Cmd>:Telescope project<CR>", "projects" },
         b = { "<Cmd>:Telescope file_browser<CR>", "file browser" },
-        s = { "<Cmd>:Telescope grep_string<CR>", "string search" },
+        S = { "<Cmd>:Telescope grep_string<CR>", "string search" },
         t = { "<Cmd>:Telescope tags<CR>", "tags" },
         r = { "<Cmd>:Telescope registers<CR>", "registers" },
         m = { "<Cmd>:Telescope marks<CR>", "marks" },
