@@ -8,6 +8,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # {{{ zsh-plugins
 plugins=(
+  autoupdate
   git
   zsh-autosuggestions
   zsh-better-npm-completion
@@ -182,7 +183,7 @@ export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 # export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always --line-range :500 {}" --ansi --height 60% --layout=reverse --border'
 # export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'  --preview-window=up:40%"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
+export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
 # }}}
 
@@ -217,3 +218,5 @@ export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 
 # helper file for storing ocp cluster info
 source $HOME/clusters
+
+export UPDATE_ZSH_DAYS=1

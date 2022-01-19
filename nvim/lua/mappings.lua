@@ -34,7 +34,7 @@ map("n", "<TAB>", ":bnext<CR>")
 map("n", "<S-TAB>", ":bprevious<CR>")
 map("x", "K", ":move '<-2<CR>gv-gv")
 map("x", "J", ":move '>+1<CR>gv-gv")
-map("n", "<leader>h", ":nohlsearch<CR>")
+map("n", "<leader>H", ":nohlsearch<CR>")
 map("n", "<leader>xml", ":%!xmllint --format -<CR>")
 map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
 map("n", "<leader>fc", ":cclose<CR>") -- close quickfix window

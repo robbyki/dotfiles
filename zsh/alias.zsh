@@ -164,7 +164,7 @@ alias kx='kubectx'
 alias mk='minikube'
 
 # containers
-alias docker='podman'
+# alias docker='podman'
 alias pcls='podman container ls'
 alias pd='podman'
 alias pi='podman images'
@@ -173,10 +173,10 @@ alias ppull='podman pull'
 alias prc='podman rm $(podman ps -aq)'
 alias prmi='podman images -q | xargs podman rmi'
 #alias psc='podman stop $(docker ps -aq)'
-alias di='docker images'
-alias drmi='docker images -q | xargs docker rmi'
-alias drmif='docker rmi --force $(docker images -q)'
-alias docker-reset='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+# alias di='docker images'
+# alias drmi='docker images -q | xargs docker rmi'
+# alias drmif='docker rmi --force $(docker images -q)'
+# alias docker-reset='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias lzd='lazydocker'
 
 # keepassxc

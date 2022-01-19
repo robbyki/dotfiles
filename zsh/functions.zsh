@@ -215,6 +215,11 @@ occ() {
 	oc $@ | yq eval --colors -P
 }
 
+ocgetmaster() {
+  ibmcloud oc cluster get --cluster test-cluster-rk | grep "Master URL" | awk '{ print $3 }'
+}
+
+
 # if you want to use passcode url: https://identity-3.us-south.iam.cloud.ibm.com/ui/showpasscode.jsp
 # must get master url info first by running occonf and does not require exporting api key
 oclogin-pass() {

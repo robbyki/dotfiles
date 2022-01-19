@@ -73,7 +73,8 @@ vim.o.list = true
 vim.o.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
 vim.o.timeoutlen = 500
 
-vim.g.wrap = false
+vim.o.wrap = false
+vim.wo.wrap = false
 
 -- window
 vim.wo.cursorline = true
@@ -129,9 +130,9 @@ vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatopt
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd([[autocmd FileType markdown setlocal textwidth=80]])
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
-vim.cmd(
-    [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
-)
+-- vim.cmd(
+--     [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
+-- )
 vim.cmd([[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]])
 vim.cmd([[autocmd TermOpen * startinsert]])
 
