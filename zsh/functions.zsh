@@ -219,6 +219,7 @@ occ() {
 	oc $@ | yq eval --colors -P
 }
 
+# assumes for now that my testinf cluster name is always the same.
 ocgetmaster() {
   ibmcloud oc cluster get --cluster test-cluster-rk | grep "Master URL" | awk '{ print $3 }'
 }

@@ -1,4 +1,4 @@
-local reload = require("nvim-reload")
+local reload = require "nvim-reload"
 
 local plugin_dirs = DATA_PATH .. "/site/pack/packer/start/packer.nvim"
 

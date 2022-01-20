@@ -1,5 +1,5 @@
 -- symbols for autocomplete
-require("lspkind").init({
+require("lspkind").init {
     with_text = false,
     symbol_map = {
         Text = "  ",
@@ -23,4 +23,4 @@ require("lspkind").init({
         Constant = "  ",
         Struct = "  ",
     },
-})
+}

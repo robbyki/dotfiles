@@ -1,19 +1,19 @@
-local telescope = require("telescope")
-local telescope_actions = require("telescope.actions")
+local telescope = require "telescope"
+local telescope_actions = require "telescope.actions"
 
 local toggle_modes = function()
     local mode = vim.api.nvim_get_mode().mode
     if mode == "n" then
-        vim.cmd([[startinsert]])
+        vim.cmd [[startinsert]]
         return
     end
     if mode == "i" then
-        vim.cmd([[stopinsert]])
+        vim.cmd [[stopinsert]]
         return
     end
 end
 
-telescope.setup({
+telescope.setup {
     defaults = {
         vimgrep_arguments = {
             "rg",
@@ -161,10 +161,10 @@ telescope.setup({
             display_type = "full",
         },
     },
-})
-telescope.load_extension("fzf")
-telescope.load_extension("media_files")
-telescope.load_extension("project")
-telescope.load_extension("zoxide")
-telescope.load_extension("file_browser")
+}
+telescope.load_extension "fzf"
+telescope.load_extension "media_files"
+telescope.load_extension "project"
+telescope.load_extension "zoxide"
+telescope.load_extension "file_browser"
 -- telescope.load_extension("neoclip")

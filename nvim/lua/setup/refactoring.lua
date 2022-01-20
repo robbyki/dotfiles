@@ -1,1 +1,1 @@
-require("refactoring").setup({})
+require("refactoring").setup {}

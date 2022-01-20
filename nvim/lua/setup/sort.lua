@@ -1,1 +1,1 @@
-require("sort").setup({})
+require("sort").setup {}

@@ -1,3 +1,3 @@
-require("session_manager").setup({
+require("session_manager").setup {
     autoload_mode = "Disabled",
-})
+}

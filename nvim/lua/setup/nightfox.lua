@@ -1,8 +1,8 @@
 --vim.cmd("colorscheme nightfox")
 
 -- Nightfox config
-local nightfox = require("nightfox")
-nightfox.setup({
+local nightfox = require "nightfox"
+nightfox.setup {
     fox = "nightfox",
     alt_nc = true,
     styles = {
@@ -15,7 +15,7 @@ nightfox.setup({
         search = true,
         match_paren = false,
     },
-})
+}
 nightfox.load()
 
 -- Good info on overriding colors: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f

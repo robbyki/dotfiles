@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.configs").setup {
     matchup = { enable = true },
     ensure_installed = "maintained",
     -- ensure_installed = {
@@ -40,4 +40,4 @@ require("nvim-treesitter.configs").setup({
             "markdown",
         },
     },
-})
+}

@@ -2,8 +2,8 @@
 -- Based on work by: glepnir and shadmansaleh
 -- See: https://gist.github.com/hoob3rt/b200435a765ca18f09f83580a606b878
 
-local gps = require("nvim-gps")
-local lualine = require("lualine")
+local gps = require "nvim-gps"
+local lualine = require "lualine"
 
 -- @todo make this more generic
 local colors = require("nightfox.colors").load()
@@ -16,13 +16,13 @@ local conditions = {
         return not api.nvim_buf_get_option(api.nvim_get_current_buf(), "modified")
     end,
     buffer_not_empty = function()
-        return fn.empty(fn.expand("%:t")) ~= 1
+        return fn.empty(fn.expand "%:t") ~= 1
     end,
     hide_in_width = function()
         return fn.winwidth(0) > 80
     end,
     check_git_workspace = function()
-        local filepath = fn.expand("%:p:h")
+        local filepath = fn.expand "%:p:h"
         local gitdir = fn.finddir(".git", filepath .. ";")
         return gitdir and #gitdir > 0 and #gitdir < #filepath
     end,
@@ -52,11 +52,11 @@ local plugins = {
     filename = {
         function()
             if opt.bo.filetype == "help" then
-                return "HELP - " .. fn.expand("%:t:r")
+                return "HELP - " .. fn.expand "%:t:r"
             end
 
             local is_modified = api.nvim_buf_get_option(api.nvim_get_current_buf(), "modified")
-            local filename = fn.fnamemodify(fn.expand("%"), ":~:.")
+            local filename = fn.fnamemodify(fn.expand "%", ":~:.")
             local fg = colors.fg
             local bg = colors.bg_statusline
             local gui = "NONE"

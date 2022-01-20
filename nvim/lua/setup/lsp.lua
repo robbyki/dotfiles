@@ -1,5 +1,5 @@
 local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
-local lsp_config = require("lspconfig")
+local lsp_config = require "lspconfig"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
@@ -27,7 +27,7 @@ Metals_config.init_options.compilerOptions.isCompletionItemResolve = false
 Metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_settings
 Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local dap = require("dap")
+local dap = require "dap"
 
 dap.configurations.scala = {
     {
@@ -57,13 +57,13 @@ dap.configurations.scala = {
 }
 
 Metals_config.on_attach = function(client, bufnr)
-    vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
-    vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
-    vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
+    vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]]
+    vim.cmd [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
+    vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
     require("metals").setup_dap()
 end
 -- sumneko lua
-lsp_config.sumneko_lua.setup({
+lsp_config.sumneko_lua.setup {
     cmd = {
         "/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
         "-E",
@@ -88,51 +88,78 @@ lsp_config.sumneko_lua.setup({
                 preloadFileSize = 10000,
                 maxPreload = 10000,
                 library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                    [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                    [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
                 },
             },
             telemetry = { enable = false },
         },
     },
-})
+}
 
-lsp_config.bashls.setup({ on_attach = on_attach, filetypes = { "sh", "zsh" } })
-lsp_config.pyright.setup({ on_attach = on_attach })
-lsp_config.dockerls.setup({})
-lsp_config.html.setup({})
-lsp_config.jsonls.setup({
+lsp_config.bashls.setup { on_attach = on_attach, filetypes = { "sh", "zsh" } }
+lsp_config.pyright.setup { on_attach = on_attach }
+lsp_config.dockerls.setup {}
+lsp_config.html.setup {}
+lsp_config.jsonls.setup {
     commands = {
         Format = {
             function()
-                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line "$", 0 })
             end,
         },
     },
-})
-lsp_config.tsserver.setup({
+}
+lsp_config.tsserver.setup {
     capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
     end,
-})
-lsp_config.yamlls.setup({
-    filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
+}
+lsp_config.yamlls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    -- filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
     settings = {
         yaml = {
-            schemas = {
-                schemaStore = {
-                    enable = true,
-                    url = "https://www.schemastore.org/api/json/catalog.json",
-                },
-                { kubernetes = "/*.yaml" },
+            schemaStore = {
+                enable = true,
+                url = "https://www.schemastore.org/api/json/catalog.json",
             },
+            schemas = {
+                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
+                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+                ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.{yml,yaml}",
+                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.1-standalone-strict/all.json"] = "/*.yaml",
+                kubernetes = "/*.yaml",
+            },
+            format = { enabled = false },
+            validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml
+            completion = true,
+            hover = true,
         },
+        -- yaml = {
+        --     schemas = {
+        --         schemaStore = {
+        --             enable = true,
+        --             url = "https://www.schemastore.org/api/json/catalog.json",
+        --         },
+        --         { kubernetes = "/*.yaml" },
+        --     },
+        -- },
     },
-})
-lsp_config.racket_langserver.setup({})
+}
+lsp_config.racket_langserver.setup {}
 
-lsp_config.gopls.setup({
+lsp_config.gopls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -166,7 +193,7 @@ lsp_config.gopls.setup({
     flags = {
         debounce_text_changes = 200,
     },
-})
+}
 
 -- LSP Prevents inline buffer annotations
 vim.lsp.diagnostic.show_line_diagnostics()
@@ -188,7 +215,7 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = nil })
 end
 
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]])
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 
 -- lsp_config.gopls.setup({
 --   cmd = { "gopls", "serve" },
