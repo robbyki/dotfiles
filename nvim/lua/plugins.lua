@@ -36,7 +36,6 @@ return require("packer").startup {
 
         -- ui
         use { "christoomey/vim-tmux-navigator" }
-
         use { "folke/which-key.nvim", config = get_setup "which-key" }
         use {
             "SmiteshP/nvim-gps",
@@ -50,7 +49,7 @@ return require("packer").startup {
             requires = { "kyazdani42/nvim-web-devicons" },
             config = get_setup "bufferline",
         }
-        use { "nacro90/numb.nvim" }
+        use { "nacro90/numb.nvim", config = get_setup "numb" }
         use { "ryanoasis/vim-devicons" }
         use { "lukas-reineke/indent-blankline.nvim", config = get_setup "indentline" }
         use { "kyazdani42/nvim-tree.lua", config = get_setup "tree" }
@@ -108,7 +107,7 @@ return require("packer").startup {
         --
         -- -- files
         use { "tpope/vim-eunuch" }
-        --
+
         use {
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",

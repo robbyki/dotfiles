@@ -12,6 +12,9 @@ vim.g.bullets_enabled_file_types = {
 }
 
 vim.g.lf_map_keys = 0
+vim.g.lf_width = 0.9
+vim.g.lf_height = 0.9
+
 
 vim.g.hardtime_default_on = 1
 vim.g.hardtime_showmsg = 0
@@ -19,8 +22,6 @@ vim.g.hardtime_maxcount = 0
 vim.g.hardtime_ignore_buffer_patterns = { "LuaTree", "alpha", "NvimTree", "fugitiveblame", "magit" }
 
 vim.g.glow_binary_path = "/usr/local/bin"
-
--- vim.g.indentLine_char = '⦙'
 
 vim.g.vsnip_snippet_dir = "~/.config/nvim/.vsnip"
 
@@ -82,17 +83,26 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
 
--- lfrc
-vim.g.lf_width = 0.9
-vim.g.lf_height = 0.9
-
 -- buffer
-vim.opt.smartindent = true
-vim.opt.expandtab = true
-vim.opt.fileformat = "unix"
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.tabstop = 2
+-- vim.opt.smartindent = true
+-- vim.opt.expandtab = true
+-- vim.opt.fileformat = "unix"
+-- vim.opt.shiftwidth = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.tabstop = 4
+-- vim.o.autoindent = true
+-- vim.bo.autoindent = true
+
+vim.o.autoindent = true
+vim.bo.autoindent = true
+vim.o.tabstop = 4
+vim.bo.tabstop = 4
+vim.o.shiftwidth = vim.bo.tabstop
+vim.bo.shiftwidth = vim.bo.tabstop
+vim.o.softtabstop = vim.bo.tabstop
+vim.bo.softtabstop = vim.bo.tabstop
+vim.o.expandtab = true
+vim.bo.expandtab = true
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 -- vim.api.nvim_exec([[imap <silent><script><expr> <C-e> copilot#Accept()]], true)
@@ -127,7 +137,6 @@ vim.cmd [[autocmd FileType markdown setlocal textwidth=80]]
 -- ]]
 vim.cmd [[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]]
 vim.cmd [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
-vim.cmd [[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]]
 vim.cmd [[autocmd TermOpen * startinsert]]
 
 vim.cmd [[highlight LspDiagnosticsUnderlineWarning guifg=None]]
@@ -174,4 +183,5 @@ vim.cmd [[
   endif
 ]]
 
-vim.cmd [[autocmd FileType yaml setlocal ts=2 sts=2 sw=2]]
+-- vim.cmd [[autocmd FileType yaml setlocal ts=2 sts=2 sw=2]]
+vim.cmd "autocmd FileType * set tabstop=2|set shiftwidth=2|set expandtab"
