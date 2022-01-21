@@ -119,7 +119,7 @@ lsp_config.tsserver.setup {
 lsp_config.yamlls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    -- filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
+    filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
     settings = {
         yaml = {
             schemaStore = {
@@ -141,7 +141,7 @@ lsp_config.yamlls.setup {
                 ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.1-standalone-strict/all.json"] = "/*.yaml",
                 kubernetes = "/*.yaml",
             },
-            format = { enabled = false },
+            format = { enabled = true },
             validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml
             completion = true,
             hover = true,
@@ -158,7 +158,6 @@ lsp_config.yamlls.setup {
     },
 }
 lsp_config.racket_langserver.setup {}
-
 lsp_config.gopls.setup {
     on_attach = on_attach,
     capabilities = capabilities,

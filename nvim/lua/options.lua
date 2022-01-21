@@ -20,11 +20,11 @@ vim.g.hardtime_ignore_buffer_patterns = { "LuaTree", "alpha", "NvimTree", "fugit
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
+-- vim.g.indentLine_char = '⦙'
+
 vim.g.vsnip_snippet_dir = "~/.config/nvim/.vsnip"
 
 vim.g.rainbow_active = 1
-
-local indent = 2
 
 vim.cmd [[ highlight CopilotSuggestion guifg=#2e5d7d ctermfg=8 ]]
 
@@ -39,40 +39,40 @@ call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_re
 vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
 vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
-vim.o.incsearch = true
-vim.o.cursorline = true
-vim.o.colorcolumn = "100"
-vim.o.textwidth = 100
-vim.o.ruler = true
-vim.o.rulerformat = [[%-14.(%l,%c   %o%)]]
-vim.o.mouse = ""
-vim.o.backup = false
--- vim.o.clipboard = "unnamed"
-vim.o.completeopt = "menu,menuone,noselect,noinsert"
-vim.o.conceallevel = 0
-vim.o.fileencoding = "utf-8"
-vim.o.hidden = true
-vim.o.hlsearch = true
-vim.o.ignorecase = true
-vim.o.laststatus = 2
-vim.o.showmatch = true
-vim.o.showmode = false
-vim.o.showtabline = 2
-vim.o.smartcase = true
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.termguicolors = true
-vim.o.title = false
--- vim.o.titlestring = "%<%F%=%l/%L - nvim"
-vim.o.updatetime = 300
-vim.o.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloop", ".ammonite"
-vim.o.writebackup = false
-vim.o.guifont = "Operator Mono SSm Lig Book"
-vim.o.swapfile = false
-vim.o.list = true
-vim.o.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
-vim.o.timeoutlen = 500
 
+vim.opt.incsearch = true
+vim.opt.cursorline = true
+vim.opt.colorcolumn = "100"
+vim.opt.textwidth = 100
+vim.opt.ruler = true
+vim.opt.rulerformat = [[%-14.(%l,%c   %o%)]]
+vim.opt.mouse = ""
+vim.opt.backup = false
+-- vim.o.clipboard = "unnamed"
+vim.opt.completeopt = "menu,menuone,noselect,noinsert"
+vim.opt.conceallevel = 0
+vim.opt.fileencoding = "utf-8"
+vim.opt.hidden = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.laststatus = 2
+vim.opt.showmatch = true
+vim.opt.showmode = false
+vim.opt.showtabline = 2
+vim.opt.smartcase = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.termguicolors = true
+vim.opt.title = false
+-- vim.o.titlestring = "%<%F%=%l/%L - nvim"
+vim.opt.updatetime = 300
+vim.opt.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloop", ".ammonite"
+vim.opt.writebackup = false
+vim.opt.guifont = "Operator Mono SSm Lig Book"
+vim.opt.swapfile = false
+vim.opt.list = true
+vim.opt.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
+vim.opt.timeoutlen = 500
 vim.o.wrap = false
 vim.wo.wrap = false
 
@@ -87,11 +87,12 @@ vim.g.lf_width = 0.9
 vim.g.lf_height = 0.9
 
 -- buffer
-vim.bo.expandtab = true
-vim.bo.fileformat = "unix"
-vim.bo.shiftwidth = indent
-vim.bo.softtabstop = indent
-vim.bo.tabstop = indent
+vim.opt.smartindent = true
+vim.opt.expandtab = true
+vim.opt.fileformat = "unix"
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 -- vim.api.nvim_exec([[imap <silent><script><expr> <C-e> copilot#Accept()]], true)
@@ -112,21 +113,18 @@ vim.cmd [[
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
 augroup END]]
 
-vim.cmd [[
-  augroup ScrollbarInit
-  autocmd!
-  autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
-  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
-augroup END]]
-
-vim.cmd "autocmd BufRead,BufNewFile *.zsh :setlocal filetype=bash"
 vim.cmd "autocmd BufRead,BufNewFile *config :setlocal filetype=yaml"
 vim.cmd "set formatoptions-=cro"
-vim.cmd "autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
-vim.cmd "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
-vim.cmd "autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
+-- vim.cmd "autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
+-- vim.cmd "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
+-- vim.cmd "autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
 vim.cmd [[autocmd FileType markdown setlocal textwidth=80]]
+-- vim.cmd [[
+--     augroup yaml_fix
+--         autocmd!
+--         autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+--     augroup END
+-- ]]
 vim.cmd [[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]]
 vim.cmd [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
 vim.cmd [[autocmd BufReadPost,BufNewFile .html,*.txt,*.md,*.adoc set spell spelllang=en_us]]
@@ -175,3 +173,5 @@ vim.cmd [[
     let $GIT_EDITOR = "nvr --remote-wait +'set bufhidden=wipe'"
   endif
 ]]
+
+vim.cmd [[autocmd FileType yaml setlocal ts=2 sts=2 sw=2]]

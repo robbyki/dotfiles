@@ -168,7 +168,7 @@ return require("packer").startup {
 
         -- formatting
         use { "ckipp01/stylua-nvim" }
-        use { "editorconfig/editorconfig-vim", setup = get_setup "editorconfig" }
+        -- use { "editorconfig/editorconfig-vim", setup = get_setup "editorconfig" }
 
         -- code
         -- use({ "wellle/targets.vim" })

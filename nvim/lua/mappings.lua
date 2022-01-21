@@ -55,6 +55,10 @@ vim.g.which_key_sep = "→"
 
 local wk = require "which-key"
 
+local function cmd(s)
+    return "<cmd>" .. s .. "<cr>"
+end
+
 wk.register {
     ["<leader>"] = { name = "+leader" },
     -- ["<leader>."] = { ":FloatermToggle<CR>", "Toggle terminal" },
@@ -65,6 +69,7 @@ wk.register {
     },
     ["<leader>?"] = { "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", "recent files" },
     ["<leader>r"] = { "<Cmd>lua require('renamer').rename()<CR>", "rename" },
+    ["<leader>\\"] = { cmd "set wrap!", "line wrap" },
 }
 
 wk.register {
