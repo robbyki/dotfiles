@@ -31,8 +31,8 @@ return require("packer").startup {
         -- lfrc in nvim
         use { "ptzz/lf.vim" }
 
-        -- -- nvim performance
-        -- use({ "nathom/filetype.nvim" })
+        -- nvim performance
+        use({ "nathom/filetype.nvim" })
 
         -- ui
         use { "christoomey/vim-tmux-navigator" }
@@ -42,7 +42,7 @@ return require("packer").startup {
             requires = "nvim-treesitter/nvim-treesitter",
             config = get_setup "gps",
         }
-        use { "dkarter/bullets.vim" }
+        use { "dkarter/bullets.vim", config = get_setup "bullets" }
         use { "voldikss/vim-floaterm", config = get_setup "floaterm" }
         use {
             "akinsho/bufferline.nvim",
@@ -51,6 +51,7 @@ return require("packer").startup {
         }
         use { "nacro90/numb.nvim", config = get_setup "numb" }
         use { "ryanoasis/vim-devicons" }
+        use { "kyazdani42/nvim-web-devicons" }
         use { "lukas-reineke/indent-blankline.nvim", config = get_setup "indentline" }
         use { "kyazdani42/nvim-tree.lua", config = get_setup "tree" }
         use { "goolord/alpha-nvim", config = get_setup "alpha" }
@@ -60,7 +61,6 @@ return require("packer").startup {
         use { "nvim-lua/popup.nvim" }
         use { "luukvbaal/stabilize.nvim", config = get_setup "stabilize" }
         use { "EdenEast/nightfox.nvim", config = get_setup "nightfox" }
-        use { "kyazdani42/nvim-web-devicons" }
         use {
             "nvim-lualine/lualine.nvim",
             config = get_setup "statusline",
@@ -100,12 +100,12 @@ return require("packer").startup {
         -- keys = { "gpd", "gpi", "gpr", "gP" }
         --
         -- -- yanking
-        -- -- use({
-        -- --     "svermeulen/vim-yoink",
-        -- --     config = get_setup("yoink"),
-        -- -- })
-        --
-        -- -- files
+        -- -- -- use({
+        -- -- --     "svermeulen/vim-yoink",
+        -- -- --     config = get_setup("yoink"),
+        -- -- -- })
+        -- --
+        -- -- -- files
         use { "tpope/vim-eunuch" }
 
         use {
@@ -128,12 +128,12 @@ return require("packer").startup {
         use { "Pocco81/AutoSave.nvim", config = get_setup "autosave" }
 
         -- autocomplete
-        use {
-            "danymat/neogen",
-            config = get_setup "neogen",
-            requires = "nvim-treesitter/nvim-treesitter",
-            module = "neogen",
-        }
+        --use {
+        --    "danymat/neogen",
+        --    config = get_setup "neogen",
+        --    requires = "nvim-treesitter/nvim-treesitter",
+        --    module = "neogen",
+        --}
         use { "hrsh7th/vim-vsnip" }
         use { "hrsh7th/vim-vsnip-integ" }
         use {
@@ -167,10 +167,10 @@ return require("packer").startup {
 
         -- formatting
         use { "ckipp01/stylua-nvim" }
-        -- use { "editorconfig/editorconfig-vim", setup = get_setup "editorconfig" }
+        use { "editorconfig/editorconfig-vim", setup = get_setup "editorconfig" }
 
         -- code
-        -- use({ "wellle/targets.vim" })
+        use({ "wellle/targets.vim" })
         use { "brooth/far.vim" }
         use {
             "s1n7ax/nvim-comment-frame",
@@ -259,10 +259,13 @@ return require("packer").startup {
         use { "nvim-lua/lsp_extensions.nvim" }
         use { "neovim/nvim-lspconfig", config = get_setup "lsp" }
 
+        -- metals
+        use { "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } }
+
         -- motion
         -- use({ "ggandor/lightspeed.nvim", config = get_setup("lightspeed") })
         -- use({ "unblevable/quick-scope" })
-        use { "takac/vim-hardtime" }
+        -- use { "takac/vim-hardtime" }
         use { "chaoren/vim-wordmotion", setup = get_setup "motion" }
         use { "phaazon/hop.nvim", event = "BufReadPre", config = get_setup "hop" }
 
@@ -271,8 +274,6 @@ return require("packer").startup {
         use { "numtostr/bufonly.nvim" }
         use { "caenrique/nvim-maximize-window-toggle" }
 
-        -- metals
-        use { "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } }
 
         -- markdown
         use { "iamcco/markdown-preview.nvim", run = "cd app && npm install" }
@@ -283,8 +284,6 @@ return require("packer").startup {
         --     requires = { "nvim-telescope/telescope.nvim" },
         --     config = get_setup("neoclip"),
         -- })
-
-        -- json
         use { "b0o/schemastore.nvim" }
         -- use({
         --   "folke/trouble.nvim",
@@ -302,7 +301,6 @@ return require("packer").startup {
                 "CheatListWithoutComments",
             },
         }
-
         if packer_bootstrap then
             require("packer").sync()
         end

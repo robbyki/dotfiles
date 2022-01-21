@@ -38,12 +38,13 @@ map("n", "<leader>H", ":nohlsearch<CR>")
 map("n", "<leader>xml", ":%!xmllint --format -<CR>")
 map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
 map("n", "<leader>fc", ":cclose<CR>") -- close quickfix window
-map("n", "<leader>o", ":ToggleOnly<CR>")
+--map("n", "<leader>o", ":ToggleOnly<CR>")
 map("n", "<leader>ev", ":vs $myvimrc<CR>")
 map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
 map("i", "<S-Tab>", [[pumvisible() ? '<C-p>' : '<Tab>']])
 map("i", "<Tab>", [[pumvisible() ? '<C-n>' : '<Tab>']])
 map("n", "<esc>", ":noh<CR><esc>", { silent = true })
+
 map("n", "<leader>so", ":SymbolsOutline<CR>")
 
 vim.g.which_key_display_names = {
