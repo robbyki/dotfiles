@@ -17,7 +17,7 @@ set shellopts '-eu'
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
 set promptfmt "\033[32;1m%u\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
-map i $~/.config/lf/pv.sh $f | less -R
+map i $~/.config/lf/pv.sh $f
 
 #Dynamically set number of columns
 %{{

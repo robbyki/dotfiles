@@ -163,8 +163,8 @@ telescope.setup {
     },
 }
 telescope.load_extension "fzf"
-telescope.load_extension "media_files"
+--telescope.load_extension "media_files"
 telescope.load_extension "project"
 telescope.load_extension "zoxide"
-telescope.load_extension "file_browser"
+--telescope.load_extension "file_browser"
 -- telescope.load_extension("neoclip")

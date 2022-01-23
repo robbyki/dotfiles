@@ -86,3 +86,5 @@ package.json
 packer_compiled
 workplace-tmp/
 xterm-256color-italic.terminfo/
+
+nvim/lua/packer_compiled.lua

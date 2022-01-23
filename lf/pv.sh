@@ -11,8 +11,8 @@ EXT="${filename##*.}"
 ext="${EXT,,}"
 
 if [ "${ext}" == "md" ]; then
-  echo '`# Markdown: '"$1"'`via **glow**' | glow - -s dark
-  /usr/local/bin/glow "$1"
+  echo '`# Markdown: '"$1"'`via **glow**' | glow - -s -p dark
+  /usr/local/bin/glow -p "$1"
 else
-  bat --color=always --theme=base16 "$@"
+  bat --paging=always --color=always --theme=base16 "$@"
 fi

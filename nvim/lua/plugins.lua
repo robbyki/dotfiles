@@ -31,8 +31,10 @@ return require("packer").startup {
         -- lfrc in nvim
         use { "ptzz/lf.vim" }
 
+        use { "lewis6991/impatient.nvim" }
+
         -- nvim performance
-        use({ "nathom/filetype.nvim" })
+        use { "nathom/filetype.nvim" }
 
         -- ui
         use { "christoomey/vim-tmux-navigator" }
@@ -76,21 +78,47 @@ return require("packer").startup {
         -- search
         use {
             "nvim-telescope/telescope.nvim",
+            opt = true,
             module = "telescope",
             cmd = "Telescope",
-            requires = {
-                { "nvim-lua/popup.nvim" },
-                { "nvim-lua/plenary.nvim" },
-                { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-            },
             config = get_setup "telescope",
+            -- config = function()
+            --     require("telescope").setup()
+            -- end,
+            requires = {
+                "nvim-lua/popup.nvim",
+                "nvim-lua/plenary.nvim",
+            },
         }
-        use { "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } }
-        use { "nvim-telescope/telescope-github.nvim" }
-        use { "nvim-telescope/telescope-file-browser.nvim" }
-        use { "nvim-telescope/telescope-media-files.nvim" }
+
+        --        use {
+        --            "nvim-telescope/telescope.nvim",
+        --            opt = true,
+        --            cmd = { "Telescope" },
+        --            module = "telescope",
+        --            requires = {
+        --                "nvim-lua/popup.nvim",
+        --                "nvim-lua/plenary.nvim",
+        --                {
+        --                    "nvim-telescope/telescope-fzf-native.nvim",
+        --                    run = "make",
+        --                },
+        --                    "nvim-telescope/telescope-frecency.nvim",
+        --                    requires = { "tami5/sqlite.lua" },
+        --                "nvim-telescope/telescope-github.nvim",
+        --                "nvim-telescope/telescope-file-browser.nvim",
+        --                "nvim-telescope/telescope-media-files.nvim",
+        --                "nvim-telescope/telescope-project.nvim",
+        --                "jvgrootveld/telescope-zoxide",
+        --            },
+        --            config = get_setup "telescope",
+        --        }
+        --
+        use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
         use { "nvim-telescope/telescope-project.nvim" }
         use { "jvgrootveld/telescope-zoxide" }
+        use { "nvim-telescope/telescope-file-browser.nvim" }
+        use { "nvim-telescope/telescope-github.nvim" }
         use { "nvim-lua/plenary.nvim" }
         use { "ThePrimeagen/harpoon" }
         use { "haya14busa/incsearch.vim" }
@@ -170,7 +198,7 @@ return require("packer").startup {
         use { "editorconfig/editorconfig-vim", setup = get_setup "editorconfig" }
 
         -- code
-        use({ "wellle/targets.vim" })
+        use { "wellle/targets.vim" }
         use { "brooth/far.vim" }
         use {
             "s1n7ax/nvim-comment-frame",
@@ -274,7 +302,6 @@ return require("packer").startup {
         use { "numtostr/bufonly.nvim" }
         use { "caenrique/nvim-maximize-window-toggle" }
 
-
         -- markdown
         use { "iamcco/markdown-preview.nvim", run = "cd app && npm install" }
         use { "ellisonleao/glow.nvim" }
@@ -306,9 +333,10 @@ return require("packer").startup {
         end
     end,
     config = {
-        display = {
-            open_fn = require("packer.util").float,
-        },
+        --compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
+        --display = {
+        --    open_fn = require("packer.util").float,
+        --},
         profile = {
             enable = true,
             threshold = 1, -- the amount in ms that a plugins load time must be over for it to be included in the profile

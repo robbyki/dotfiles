@@ -54,6 +54,7 @@ vim.opt.updatetime = 300
 vim.opt.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloop", ".ammonite"
 vim.opt.writebackup = false
 vim.wo.cursorline = true
+vim.wo.foldlevel = 99
 vim.wo.number = false
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
@@ -112,9 +113,9 @@ vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 vim.cmd "autocmd BufRead,BufNewFile *config :setlocal filetype=yaml"
 vim.cmd "set formatoptions-=cro"
----- vim.cmd "autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
----- vim.cmd "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
----- vim.cmd "autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
+vim.cmd "autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
+vim.cmd "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
+vim.cmd "autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
 vim.cmd [[autocmd FileType markdown setlocal textwidth=80]]
 ---- vim.cmd [[
 ----     augroup yaml_fix
