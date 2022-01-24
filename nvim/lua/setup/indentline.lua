@@ -1,6 +1,6 @@
 vim.opt.listchars:append("eol:↴")
 
-require("indent_blankline").setup {
+require("indent_blankline").setup({
     show_end_of_line = true,
     use_treesitter = true,
     show_first_indent_level = false,
@@ -19,4 +19,4 @@ require("indent_blankline").setup {
         "NeogitStatus",
         "DiffViewFiles",
     },
-}
+})

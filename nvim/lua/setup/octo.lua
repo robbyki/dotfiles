@@ -1,4 +1,4 @@
-require("octo").setup {
+require("octo").setup({
     default_remote = { "upstream", "origin" }, -- order to try remotes
     reaction_viewer_hint_icon = "", -- marker for user reactions
     user_icon = " ", -- user icon
@@ -122,4 +122,4 @@ require("octo").setup {
             toggle_viewed = "<leader><space>", -- toggle viewer viewed state
         },
     },
-}
+})

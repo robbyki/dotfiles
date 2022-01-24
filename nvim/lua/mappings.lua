@@ -11,22 +11,22 @@ vim.g.mapleader = ","
 map("n", "<Space>", "<NOP>")
 map("i", "<C-c>", "<Esc>")
 
-vim.cmd [[
+vim.cmd([[
   noremap <C-e> 5<C-e>
   noremap <C-y> 5<C-y>
-]]
+]])
 
-vim.cmd [[
+vim.cmd([[
   nmap <F1> :echo<CR>
   imap <F1> <C-o>:echo<CR>
-]]
+]])
 
-vim.cmd [[
+vim.cmd([[
   nnoremap <silent> <C-Up> : resize -2<CR>
   nnoremap <silent> <C-Down> : resize +2<CR>
   nnoremap <silent> <C-Left> : vertical resize -2<CR>
   nnoremap <silent> <C-Right> : vertical resize +2<CR>
-]]
+]])
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")
@@ -54,13 +54,13 @@ vim.g.which_key_display_names = {
 }
 vim.g.which_key_sep = "→"
 
-local wk = require "which-key"
+local wk = require("which-key")
 
 local function cmd(s)
     return "<cmd>" .. s .. "<cr>"
 end
 
-wk.register {
+wk.register({
     ["<leader>"] = { name = "+leader" },
     -- ["<leader>."] = { ":FloatermToggle<CR>", "Toggle terminal" },
     ["<leader>-"] = { ":Lf<CR>", "Start lf" },
@@ -70,10 +70,10 @@ wk.register {
     },
     ["<leader>?"] = { "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", "recent files" },
     ["<leader>r"] = { "<Cmd>lua require('renamer').rename()<CR>", "rename" },
-    ["<leader>\\"] = { cmd "set wrap!", "line wrap" },
-}
+    ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
+})
 
-wk.register {
+wk.register({
     ["<leader>f"] = {
         name = "+search",
         B = { "<Cmd>:Telescope buffers<CR>", "buffers" },
@@ -213,7 +213,7 @@ wk.register {
         s = { "<Cmd>NvimTreeResize<CR>", "resize" },
         e = { "<Cmd>NvimTreeToggle<CR>", "toggle" },
     },
-}
+})
 
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
 

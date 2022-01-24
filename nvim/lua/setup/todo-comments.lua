@@ -1,4 +1,4 @@
-require("todo-comments").setup {
+require("todo-comments").setup({
     keywords = {
         TODO = { icon = " ", color = "error" },
     },
@@ -9,4 +9,4 @@ require("todo-comments").setup {
     search = {
         pattern = [[\b(KEYWORDS)]],
     },
-}
+})

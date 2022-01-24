@@ -1,4 +1,4 @@
-require("which-key").setup {
+require("which-key").setup({
     plugins = {
         presets = {
             operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
@@ -10,4 +10,4 @@ require("which-key").setup {
             g = false, -- bindings for prefixed with g
         },
     },
-}
+})

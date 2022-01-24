@@ -1,10 +1,10 @@
 vim.o.shortmess = string.gsub(vim.o.shortmess, "F", "") .. "c"
 vim.o.path = vim.o.path .. "**"
 
-vim.cmd [[command! PU packadd packer.nvim | lua require('plugins').update()]]
-vim.cmd [[command! PI packadd packer.nvim | lua require('plugins').install()]]
-vim.cmd [[command! PS packadd packer.nvim | lua require('plugins').sync()]]
-vim.cmd [[command! PC packadd packer.nvim | lua require('plugins').clean()]]
+vim.cmd([[command! PU packadd packer.nvim | lua require('plugins').update()]])
+vim.cmd([[command! PI packadd packer.nvim | lua require('plugins').install()]])
+vim.cmd([[command! PS packadd packer.nvim | lua require('plugins').sync()]])
+vim.cmd([[command! PC packadd packer.nvim | lua require('plugins').clean()]])
 
 -- global
 vim.g.loaded_python_provider = 0
@@ -58,20 +58,20 @@ vim.wo.foldlevel = 99
 vim.wo.number = false
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
-vim.wo.wrap = true
-vim.cmd('filetype plugin on')
-vim.cmd('filetype indent on')
+vim.wo.wrap = false
+vim.cmd("filetype plugin on")
+vim.cmd("filetype indent on")
 
 -- copy buffer path
-vim.cmd [[command! CopyBuffer let @+ = expand('%:p')]]
+vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
 
-vim.cmd [[ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 ]]
+vim.cmd([[ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 ]])
 
-vim.cmd [[
+vim.cmd([[
     augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
-augroup END]]
+augroup END]])
 
 vim.g["incsearch#auto_nohlsearch"] = 1
 vim.api.nvim_set_keymap("", "n", "<Plug>(incsearch-nohl-n)", {})
@@ -80,7 +80,6 @@ vim.api.nvim_set_keymap("", "*", "<Plug>(incsearch-nohl-*)", {})
 vim.api.nvim_set_keymap("", "#", "<Plug>(incsearch-nohl-#)", {})
 vim.api.nvim_set_keymap("", "g*", "<Plug>(incsearch-nohl-g*)", {})
 vim.api.nvim_set_keymap("", "g#", "<Plug>(incsearch-nohl-g#)", {})
-
 
 vim.g.vim_markdown_conceal_code_blocks = 0
 vim.g.vim_markdown_conceal = 0
@@ -100,60 +99,59 @@ vim.g.vsnip_snippet_dir = "~/.config/nvim/.vsnip"
 
 vim.g.rainbow_active = 1
 
-vim.cmd [[ highlight CopilotSuggestion guifg=#2e5d7d ctermfg=8 ]]
+vim.cmd([[ highlight CopilotSuggestion guifg=#2e5d7d ctermfg=8 ]])
 
-vim.cmd [[
+vim.cmd([[
 call wilder#setup({'modes': [':', '/', '?']})
 call wilder#set_option('use_python_remote_plugin', 0)
 call wilder#set_option('pipeline', [wilder#branch(wilder#cmdline_pipeline({'use_python': 0,'fuzzy': 1, 'fuzzy_filter': wilder#lua_fzy_filter()}),wilder#vim_search_pipeline(), [wilder#check({_, x -> empty(x)}), wilder#history(), wilder#result({'draw': [{_, x -> ' ' . x}]})])])
 call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_renderer({'highlighter': wilder#lua_fzy_highlighter(), 'left': [wilder#popupmenu_devicons()], 'right': [' ', wilder#popupmenu_scrollbar()]}), '/': wilder#wildmenu_renderer({'highlighter': wilder#lua_fzy_highlighter()})}))
-]]
+]])
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
-vim.cmd "autocmd BufRead,BufNewFile *config :setlocal filetype=yaml"
-vim.cmd "set formatoptions-=cro"
-vim.cmd "autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
-vim.cmd "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
-vim.cmd "autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
-vim.cmd [[autocmd FileType markdown setlocal textwidth=80]]
+vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=yaml")
+vim.cmd("set formatoptions-=cro")
+vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd("autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd([[autocmd FileType markdown setlocal textwidth=80]])
 ---- vim.cmd [[
 ----     augroup yaml_fix
 ----         autocmd!
 ----         autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 ----     augroup END
 ---- ]]
-vim.cmd [[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]]
-vim.cmd [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
-vim.cmd [[autocmd TermOpen * startinsert]]
-
+vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
+vim.cmd([[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
+vim.cmd([[autocmd TermOpen * startinsert]])
 
 -- LSP
-vim.cmd [[highlight LspDiagnosticsUnderlineWarning guifg=None]]
+vim.cmd([[highlight LspDiagnosticsUnderlineWarning guifg=None]])
 vim.cmd([[hi Visual guifg=White guibg=LightBlue gui=none]])
-vim.cmd [[augroup lsp]]
-vim.cmd [[autocmd!]]
-vim.cmd [[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
-vim.cmd [[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]]
-vim.cmd [[augroup end]]
+vim.cmd([[augroup lsp]])
+vim.cmd([[autocmd!]])
+vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
+vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
+vim.cmd([[augroup end]])
 vim.fn.sign_define("LspDiagnosticsSignError", { text = "▬" })
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "▬" })
 vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "▬" })
 vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })
-vim.cmd [[hi! link LspReferenceText CursorColumn]]
-vim.cmd [[hi! link LspReferenceRead CursorColumn]]
-vim.cmd [[hi! link LspReferenceWrite CursorColumn]]
-vim.cmd [[hi! link LspSagaFinderSelection CursorColumn]]
-vim.cmd [[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]]
+vim.cmd([[hi! link LspReferenceText CursorColumn]])
+vim.cmd([[hi! link LspReferenceRead CursorColumn]])
+vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
+vim.cmd([[hi! link LspSagaFinderSelection CursorColumn]])
+vim.cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
 
-vim.cmd "highlight! Comment cterm=italic, gui=italic"
-vim.cmd "highlight! Special cterm=italic, gui=italic"
+vim.cmd("highlight! Comment cterm=italic, gui=italic")
+vim.cmd("highlight! Special cterm=italic, gui=italic")
 
-vim.cmd [[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]]
+vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
 
 -- use vim for commit messages
-vim.cmd [[
+vim.cmd([[
   if has('nvim') && executable('nvr')
     let $GIT_EDITOR = "nvr --remote-wait +'set bufhidden=wipe'"
   endif
-]]
+]])

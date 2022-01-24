@@ -76,10 +76,10 @@ local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
-local tabnine = require "cmp_tabnine.config"
-local cmp = require "cmp"
+local tabnine = require("cmp_tabnine.config")
+local cmp = require("cmp")
 
-local select_prev_item = cmp.mapping {
+local select_prev_item = cmp.mapping({
     c = function()
         if cmp.visible() then
             cmp.select_prev_item()
@@ -105,9 +105,9 @@ local select_prev_item = cmp.mapping {
             fallback()
         end
     end,
-}
+})
 
-local select_next_item = cmp.mapping {
+local select_next_item = cmp.mapping({
     c = function()
         if cmp.visible() then
             cmp.select_next_item()
@@ -135,15 +135,15 @@ local select_next_item = cmp.mapping {
             fallback()
         end
     end,
-}
+})
 
-cmp.setup {
+cmp.setup({
     documentation = {
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
         winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
     },
     formatting = {
-        format = require("lspkind").cmp_format {
+        format = require("lspkind").cmp_format({
             with_text = true,
             menu = {
                 cmp_tabnine = "[TN]",
@@ -156,7 +156,7 @@ cmp.setup {
                 vsnip = "[SNIPPET]",
                 -- ["vim-dadbod-completion"] = "[DB]",
             },
-        },
+        }),
     },
     mapping = {
         ["<C-j>"] = select_next_item,
@@ -169,10 +169,10 @@ cmp.setup {
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "c", "i" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "c", "i" }),
         ["<C-c>"] = cmp.mapping(cmp.mapping.close(), { "c", "i" }),
-        ["<CR>"] = cmp.mapping.confirm {
+        ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
-        },
+        }),
     },
     snippet = {
         expand = function(args)
@@ -205,7 +205,7 @@ cmp.setup {
         },
         { name = "vsnip" },
     },
-}
+})
 
 cmp.setup.cmdline("/", {
     sources = {
@@ -227,10 +227,10 @@ cmp.setup.cmdline(":", {
     },
 })
 
-tabnine:setup {
+tabnine:setup({
     max_lines = 1000,
     max_num_results = 20,
     sort = true,
     run_on_every_keystroke = true,
     snippet_placeholder = "..",
-}
+})

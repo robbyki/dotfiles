@@ -1,4 +1,4 @@
-local alpha = require "alpha"
+local alpha = require("alpha")
 
 local header = {
     type = "text",
@@ -30,12 +30,12 @@ local header = {
     },
 }
 
-local handle = io.popen 'fd -d 2 . $HOME"/.local/share/nvim/site/pack/packer" | head -n -2 | wc -l | tr -d "\n" '
-local plugins = handle:read "*a"
+local handle = io.popen('fd -d 2 . $HOME"/.local/share/nvim/site/pack/packer" | head -n -2 | wc -l | tr -d "\n" ')
+local plugins = handle:read("*a")
 handle:close()
 
-local thingy = io.popen 'echo "$(date +%a) $(date +%d) $(date +%b)" | tr -d "\n"'
-local date = thingy:read "*a"
+local thingy = io.popen('echo "$(date +%a) $(date +%d) $(date +%b)" | tr -d "\n"')
+local date = thingy:read("*a")
 thingy:close()
 
 local heading = {
@@ -58,7 +58,7 @@ local plugin_count = {
 
 local footer = {
     type = "text",
-    val = require "alpha.fortune"(),
+    val = require("alpha.fortune")(),
     opts = {
         position = "center",
         width = 50,

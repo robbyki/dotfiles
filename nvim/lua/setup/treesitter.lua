@@ -1,7 +1,7 @@
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-require("nvim-treesitter.configs").setup {
+require("nvim-treesitter.configs").setup({
     matchup = { enable = true },
     ensure_installed = "maintained",
     sync_install = true,
@@ -118,4 +118,4 @@ require("nvim-treesitter.configs").setup {
             "markdown",
         },
     },
-}
+})
