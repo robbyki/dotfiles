@@ -1,9 +1,7 @@
 local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 local lsp_config = require("lspconfig")
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
     handlers = {

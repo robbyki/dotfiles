@@ -125,7 +125,9 @@ vim.cmd([[autocmd FileType markdown setlocal textwidth=80]])
 ----     augroup END
 ---- ]]
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
-vim.cmd([[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
+vim.cmd(
+    [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
+)
 vim.cmd([[autocmd TermOpen * startinsert]])
 
 -- LSP
@@ -158,4 +160,4 @@ vim.cmd([[
   endif
 ]])
 
-vim.lsp.set_log_level("debug")
+--vim.lsp.set_log_level("debug")

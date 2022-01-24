@@ -145,14 +145,14 @@ wk.register({
         h = { "<Cmd>lua require('metals').hover_worksheet()<CR>", "hover" },
     },
 
---    ["<leader>c"] = {
---        name = "+code"
---        c = { "<Cmd>lua require('nvim-comment-frame').add_comment()<CR>", "comment line" },
---        C = {
---            "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>",
---            "comment multi",
---        },
---    }
+    --    ["<leader>c"] = {
+    --        name = "+code"
+    --        c = { "<Cmd>lua require('nvim-comment-frame').add_comment()<CR>", "comment line" },
+    --        C = {
+    --            "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>",
+    --            "comment multi",
+    --        },
+    --    }
 
     -- ["<leader>l"] = {
     --     name = "+lsp",
@@ -208,7 +208,6 @@ wk.register({
     --     },
     -- },
     --
-
 
     ["<leader>g"] = {
         name = "+git",

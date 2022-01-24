@@ -16,6 +16,6 @@ require("which-key").register({
     u = "SNAKE_UPPERCASE",
     U = "SNAKE_UPPERCASE",
 }, {
-    prefix = "gw",
+    prefix = "<leader>gw",
     mode = "n",
 })

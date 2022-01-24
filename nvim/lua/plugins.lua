@@ -69,9 +69,7 @@ return require("packer").startup({
             event = "VimEnter",
             requires = { "kyazdani42/nvim-web-devicons", opt = true },
         })
-        use({ "norcalli/nvim-colorizer.lua",
-            config = get_setup("colorizer"),
-        })
+        use({ "norcalli/nvim-colorizer.lua", config = get_setup("colorizer") })
 
         -- search
         use({
@@ -201,7 +199,7 @@ return require("packer").startup({
 
         -- code
         use({ "Einenlum/yaml-revealer" })
-        use({ "wellle/targets.vim" })
+        --use({ "wellle/targets.vim" })
         use({ "brooth/far.vim" })
         use({
             "s1n7ax/nvim-comment-frame",
@@ -222,12 +220,12 @@ return require("packer").startup({
             cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
             setup = get_setup("outline"),
         })
-        use({
-            "numToStr/Comment.nvim",
-            opt = true,
-            keys = { "gc", "gcc" },
-            config = get_setup("comment"),
-        })
+        -- use({
+        --     "numToStr/Comment.nvim",
+        --     opt = true,
+        --     keys = { "gc", "gcc" },
+        --     config = get_setup("comment"),
+        -- })
         use({ "maxmellon/vim-jsx-pretty" })
         use({ "yuezk/vim-js" })
         use({
@@ -260,7 +258,7 @@ return require("packer").startup({
             config = get_setup("autopairs"),
         })
         use({ "machakann/vim-sandwich", config = get_setup("sandwich") })
-        use({ "andymass/vim-matchup" })
+        -- use({ "andymass/vim-matchup" })
 
         -- database
         -- use({

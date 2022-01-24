@@ -1,4 +1,4 @@
-require("hop").setup({keys = "etovxqpdygfblzhckisuran"})
+require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 
 -- vim.cmd("hi HopNextKey guifg=#ff9900")
 -- vim.cmd("hi HopNextKey1 guifg=#ff9900")
