@@ -11,6 +11,8 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
 vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 
+vim.g.loaded_matchit = 1
+
 vim.bo.autoindent = true
 vim.bo.expandtab = true
 vim.bo.shiftwidth = vim.bo.tabstop
@@ -55,7 +57,7 @@ vim.opt.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloo
 vim.opt.writebackup = false
 vim.wo.cursorline = true
 vim.wo.foldlevel = 99
-vim.wo.number = false
+vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
 vim.wo.wrap = false
@@ -155,3 +157,5 @@ vim.cmd([[
     let $GIT_EDITOR = "nvr --remote-wait +'set bufhidden=wipe'"
   endif
 ]])
+
+vim.lsp.set_log_level("debug")

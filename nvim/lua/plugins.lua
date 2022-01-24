@@ -114,11 +114,11 @@ return require("packer").startup({
         --
         -- this might be causing some issues with Telescope sugar commands
         -- use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
+        use({ "nvim-telescope/telescope-github.nvim" })
         use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
         use({ "nvim-telescope/telescope-project.nvim" })
         use({ "jvgrootveld/telescope-zoxide" })
-        --        use({ "nvim-telescope/telescope-file-browser.nvim" })
-        --        use({ "nvim-telescope/telescope-github.nvim" })
+        --use({ "nvim-telescope/telescope-file-browser.nvim" })
 
         use({ "nvim-lua/plenary.nvim" })
 
@@ -200,6 +200,7 @@ return require("packer").startup({
         use({ "editorconfig/editorconfig-vim", setup = get_setup("editorconfig") })
 
         -- code
+        use({ "Einenlum/yaml-revealer" })
         use({ "wellle/targets.vim" })
         use({ "brooth/far.vim" })
         use({
