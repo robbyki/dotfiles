@@ -117,8 +117,6 @@ PATH=$PATH:$SCRIPTS
 export PATH
 # }}}
 
-eval "`fnm env`"
-
 # {{{ easier pasting
 zle_highlight+=(paste:none)
 zstyle :prompt:pure:git:stash show yes
@@ -211,8 +209,8 @@ fi
 eval "$(zoxide init zsh)"
 
 # fnm
-export PATH=/home/robbyk/.fnm:$PATH
 eval "`fnm env`"
+eval "$(fnm env --use-on-cd)"
 
 export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 

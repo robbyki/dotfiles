@@ -69,9 +69,7 @@ return require("packer").startup({
             event = "VimEnter",
             requires = { "kyazdani42/nvim-web-devicons", opt = true },
         })
-        use({
-            "norcalli/nvim-colorizer.lua",
-            event = "BufReadPre",
+        use({ "norcalli/nvim-colorizer.lua",
             config = get_setup("colorizer"),
         })
 
@@ -114,12 +112,16 @@ return require("packer").startup({
         --            config = get_setup "telescope",
         --        }
         --
+        -- this might be causing some issues with Telescope sugar commands
+        -- use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
         use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
         use({ "nvim-telescope/telescope-project.nvim" })
         use({ "jvgrootveld/telescope-zoxide" })
-        use({ "nvim-telescope/telescope-file-browser.nvim" })
-        use({ "nvim-telescope/telescope-github.nvim" })
+        --        use({ "nvim-telescope/telescope-file-browser.nvim" })
+        --        use({ "nvim-telescope/telescope-github.nvim" })
+
         use({ "nvim-lua/plenary.nvim" })
+
         use({ "ThePrimeagen/harpoon" })
         use({ "haya14busa/incsearch.vim" })
         use({ "ethanholz/nvim-lastplace", config = get_setup("lastplace") })
@@ -295,7 +297,7 @@ return require("packer").startup({
         -- use({ "unblevable/quick-scope" })
         -- use { "takac/vim-hardtime" }
         use({ "chaoren/vim-wordmotion", setup = get_setup("motion") })
-        use({ "phaazon/hop.nvim", event = "BufReadPre", config = get_setup("hop") })
+        use({ "phaazon/hop.nvim", config = get_setup("hop") })
 
         -- windows
         use({ "Shatur/neovim-session-manager", config = get_setup("session") })
