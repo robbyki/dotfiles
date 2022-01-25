@@ -46,6 +46,9 @@ return require("packer").startup({
         use({ "nathom/filetype.nvim" })
 
         -- ui
+        		-- notification plugin
+		use({ "rcarriga/nvim-notify", config = get_setup("notify") })
+
         use({ "christoomey/vim-tmux-navigator" })
         use({ "folke/which-key.nvim", config = get_setup("which-key") })
         use({

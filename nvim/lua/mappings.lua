@@ -8,7 +8,7 @@ end
 
 vim.g.mapleader = ","
 
-map("n", "<Space>", "<NOP>")
+vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true })
 map("i", "<C-c>", "<Esc>")
 
 vim.cmd([[
@@ -137,7 +137,7 @@ wk.register({
     },
     ["<leader>m"] = {
         name = "+metals",
-        m = { "<Cmd>lua require('telescope').extensions.metals.commands()", "metals commands" },
+        m = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
         d = { "<Cmd>lua require('metals').open_all_diagnostics()<CR>", "metals diagnostics" },
         h = { "<Cmd>lua require('metals').hover_worksheet()<CR>", "hover" },
     },
