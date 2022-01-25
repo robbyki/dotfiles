@@ -1,23 +1,32 @@
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+--vim.cmd([[
+--  augroup packer_user_config
+--    autocmd!
+--    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+--  augroup end
+--]])
 
 local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
+        'git', 'clone', '--depth', '1',
+        'https://github.com/wbthomason/packer.nvim', install_path
     })
 end
-vim.api.nvim_command("packadd packer.nvim")
+
+--local fn = vim.fn
+--local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+--if fn.empty(fn.glob(install_path)) > 0 then
+--    packer_bootstrap = fn.system({
+--        "git",
+--        "clone",
+--        "--depth",
+--        "1",
+--        "https://github.com/wbthomason/packer.nvim",
+--        install_path,
+--    })
+--end
+--vim.api.nvim_command("packadd packer.nvim")
 
 function get_setup(name)
     return string.format('require("setup/%s")', name)
@@ -31,7 +40,7 @@ return require("packer").startup({
         -- lfrc in nvim
         use({ "ptzz/lf.vim" })
 
-        use({ "lewis6991/impatient.nvim" })
+        --use({ "lewis6991/impatient.nvim" })
 
         -- nvim performance
         use({ "nathom/filetype.nvim" })
@@ -78,44 +87,19 @@ return require("packer").startup({
             module = "telescope",
             cmd = "Telescope",
             config = get_setup("telescope"),
-            -- config = function()
-            --     require("telescope").setup()
-            -- end,
             requires = {
                 "nvim-lua/popup.nvim",
                 "nvim-lua/plenary.nvim",
             },
         })
 
-        --        use {
-        --            "nvim-telescope/telescope.nvim",
-        --            opt = true,
-        --            cmd = { "Telescope" },
-        --            module = "telescope",
-        --            requires = {
-        --                "nvim-lua/popup.nvim",
-        --                "nvim-lua/plenary.nvim",
-        --                {
-        --                    "nvim-telescope/telescope-fzf-native.nvim",
-        --                    run = "make",
-        --                },
-        --                    "nvim-telescope/telescope-frecency.nvim",
-        --                    requires = { "tami5/sqlite.lua" },
-        --                "nvim-telescope/telescope-github.nvim",
-        --                "nvim-telescope/telescope-file-browser.nvim",
-        --                "nvim-telescope/telescope-media-files.nvim",
-        --                "nvim-telescope/telescope-project.nvim",
-        --                "jvgrootveld/telescope-zoxide",
-        --            },
-        --            config = get_setup "telescope",
-        --        }
-        --
         -- this might be causing some issues with Telescope sugar commands
         -- use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
         use({ "nvim-telescope/telescope-github.nvim" })
         use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
         use({ "nvim-telescope/telescope-project.nvim" })
         use({ "jvgrootveld/telescope-zoxide" })
+        --"nvim-telescope/telescope-media-files.nvim",
         --use({ "nvim-telescope/telescope-file-browser.nvim" })
 
         use({ "nvim-lua/plenary.nvim" })
@@ -153,7 +137,7 @@ return require("packer").startup({
         -- debug
         use({ "mfussenegger/nvim-dap" })
 
-        use({ "Pocco81/AutoSave.nvim", config = get_setup("autosave") })
+        --use({ "Pocco81/AutoSave.nvim", config = get_setup("autosave") })
 
         -- autocomplete
         --use {
@@ -199,7 +183,7 @@ return require("packer").startup({
 
         -- code
         use({ "Einenlum/yaml-revealer" })
-        --use({ "wellle/targets.vim" })
+        use({ "wellle/targets.vim" })
         use({ "brooth/far.vim" })
         use({
             "s1n7ax/nvim-comment-frame",
@@ -220,12 +204,11 @@ return require("packer").startup({
             cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
             setup = get_setup("outline"),
         })
-        -- use({
-        --     "numToStr/Comment.nvim",
-        --     opt = true,
-        --     keys = { "gc", "gcc" },
-        --     config = get_setup("comment"),
-        -- })
+
+        use({
+            "numToStr/Comment.nvim",
+            config = get_setup("comment"),
+        })
         use({ "maxmellon/vim-jsx-pretty" })
         use({ "yuezk/vim-js" })
         use({
@@ -332,17 +315,17 @@ return require("packer").startup({
         if packer_bootstrap then
             require("packer").sync()
         end
-    end,
-    config = {
-        --compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
-        display = {
-            open_fn = function()
-                return require("packer.util").float({ border = "single" })
-            end,
-        },
-        profile = {
-            enable = true,
-            threshold = 1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
-        },
-    },
+    end
+    --config = {
+    --    --compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
+    --    display = {
+    --        open_fn = function()
+    --            return require("packer.util").float({ border = "single" })
+    --        end,
+    --    },
+    --    profile = {
+    --        enable = true,
+    --        threshold = 1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+    --    },
+    --},
 })

@@ -1,4 +1,3 @@
-local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 local lsp_config = require("lspconfig")
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -216,21 +215,3 @@ for type, icon in pairs(signs) do
 end
 
 vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]])
-
--- lsp_config.gopls.setup({
---   cmd = { "gopls", "serve" },
---   settings = {
---     gopls = { analyses = { unusedparams = true }, staticcheck = true },
---   },
--- })
-
--- require("lspconfig").kotlin_language_server.setup({
---   cmd = {
---     "/Users/ckipp/Documents/kotlin-workspace/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
---   },
--- })
-
--- lsp_config.elmls.setup({})
-
--- Uncomment for trace logs from neovim
---vim.lsp.set_log_level('trace')
