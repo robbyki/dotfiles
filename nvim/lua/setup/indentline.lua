@@ -14,6 +14,9 @@ require("indent_blankline").setup({
     show_current_context = true,
     space_char_blankline = " ",
     filetype_exclude = {
+        "terminal",
+        "alpha",
+        "notify",
         "markdown",
         "help",
         "dashboard",

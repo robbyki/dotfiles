@@ -29,7 +29,28 @@ return require("packer").startup({
         use({ "nathom/filetype.nvim" })
 
         -- ui
+        use({ "liuchengxu/vista.vim" })
         use({ "rcarriga/nvim-notify", config = get_setup("notify") })
+
+        use({
+            "rebelot/kanagawa.nvim",
+            config = function()
+                require("kanagawa").setup({
+                    undercurl = true, -- enable undercurls
+                    commentStyle = "italic",
+                    functionStyle = "NONE",
+                    keywordStyle = "italic",
+                    statementStyle = "bold",
+                    typeStyle = "NONE",
+                    variablebuiltinStyle = "italic",
+                    specialReturn = true, -- special highlight for the return keyword
+                    specialException = true, -- special highlight for exception handling keywords
+                    transparent = false, -- do not set background color
+                    colors = {},
+                    overrides = {},
+                })
+            end,
+        })
 
         use({ "christoomey/vim-tmux-navigator" })
         use({ "folke/which-key.nvim", config = get_setup("which-key") })
@@ -106,13 +127,24 @@ return require("packer").startup({
         use({ "tpope/vim-eunuch" })
 
         use({
+            "p00f/nvim-ts-rainbow",
+            config = function()
+                require("nvim-treesitter.configs").setup({
+                    rainbow = {
+                        enable = true,
+                        extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+                    },
+                })
+            end,
+        })
+
+        use({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
             requires = {
                 "JoosepAlviste/nvim-ts-context-commentstring",
                 "nvim-treesitter/nvim-treesitter-refactor",
                 "nvim-treesitter/nvim-treesitter-textobjects",
-                "p00f/nvim-ts-rainbow",
                 "theHamsta/nvim-treesitter-pairs",
                 "nvim-treesitter/playground",
             },
@@ -276,7 +308,15 @@ return require("packer").startup({
 
         -- markdown
         use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
-        use({ "ellisonleao/glow.nvim" })
+        use({ "ellisonleao/glow.nvim", ft = { "markdown" } })
+
+        -- use({
+        --     "towolf/vim-helm",
+        --     config = function()
+        --         vim.cmd([[autocmd BufRead,BufNewFile */templates/*.yml,*/templates/*.yaml,*/templates/*.tpl set ft=helm]])
+        --     end,
+        -- })
+        use({ "aklt/plantuml-syntax", ft = { "plantuml" } })
 
         use({
             "AckslD/nvim-neoclip.lua",
