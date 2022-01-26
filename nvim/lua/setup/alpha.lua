@@ -98,6 +98,7 @@ end
 local buttons = {
     type = "group",
     val = {
+        button("u", "  Update plugins", ":PackerSync<CR>"),
         button("r", "  Recently Used Files", ":Telescope oldfiles <CR>"),
         button("f", "  Telescope", ":Telescope find_files <CR>"),
         button("p", "  Projects", ":Telescope project <CR>"),

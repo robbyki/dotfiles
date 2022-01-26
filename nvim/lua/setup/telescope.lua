@@ -124,7 +124,7 @@ telescope.setup({
             -- "%.cache/",
         },
         path_display = { "shorten" },
-        winblend = 0,
+        winblend = 9,
         border = {},
         color_devicons = true,
         use_less = true,
