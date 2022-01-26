@@ -159,5 +159,3 @@ vim.cmd([[
     let $GIT_EDITOR = "nvr --remote-wait +'set bufhidden=wipe'"
   endif
 ]])
-
---vim.lsp.set_log_level("debug")

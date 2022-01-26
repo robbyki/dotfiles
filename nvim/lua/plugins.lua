@@ -1,32 +1,15 @@
---vim.cmd([[
---  augroup packer_user_config
---    autocmd!
---    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
---  augroup end
---]])
-
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({
-        'git', 'clone', '--depth', '1',
-        'https://github.com/wbthomason/packer.nvim', install_path
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
     })
 end
-
---local fn = vim.fn
---local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
---if fn.empty(fn.glob(install_path)) > 0 then
---    packer_bootstrap = fn.system({
---        "git",
---        "clone",
---        "--depth",
---        "1",
---        "https://github.com/wbthomason/packer.nvim",
---        install_path,
---    })
---end
---vim.api.nvim_command("packadd packer.nvim")
 
 function get_setup(name)
     return string.format('require("setup/%s")', name)
@@ -46,8 +29,7 @@ return require("packer").startup({
         use({ "nathom/filetype.nvim" })
 
         -- ui
-        		-- notification plugin
-		use({ "rcarriga/nvim-notify", config = get_setup("notify") })
+        use({ "rcarriga/nvim-notify", config = get_setup("notify") })
 
         use({ "christoomey/vim-tmux-navigator" })
         use({ "folke/which-key.nvim", config = get_setup("which-key") })
@@ -140,8 +122,6 @@ return require("packer").startup({
         -- debug
         use({ "mfussenegger/nvim-dap" })
 
-        --use({ "Pocco81/AutoSave.nvim", config = get_setup("autosave") })
-
         -- autocomplete
         --use {
         --    "danymat/neogen",
@@ -185,6 +165,11 @@ return require("packer").startup({
         use({ "editorconfig/editorconfig-vim", setup = get_setup("editorconfig") })
 
         -- code
+        use({
+            "fatih/vim-go",
+            run = ":GoUpdateBinaries",
+            config = get_setup("golang"),
+        })
         use({ "Einenlum/yaml-revealer" })
         use({ "wellle/targets.vim" })
         use({ "brooth/far.vim" })
@@ -293,6 +278,17 @@ return require("packer").startup({
         use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
         use({ "ellisonleao/glow.nvim" })
 
+        use({
+            "AckslD/nvim-neoclip.lua",
+            requires = { "tami5/sqlite.lua", module = "sqlite" },
+            config = function()
+                require("neoclip").setup({
+                    enable_persistant_history = true,
+                    db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+                    default_register = '"',
+                })
+            end,
+        })
         -- use({
         --     "AckslD/nvim-neoclip.lua",
         --     requires = { "nvim-telescope/telescope.nvim" },
@@ -318,7 +314,7 @@ return require("packer").startup({
         if packer_bootstrap then
             require("packer").sync()
         end
-    end
+    end,
     --config = {
     --    --compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
     --    display = {

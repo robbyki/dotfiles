@@ -1,11 +1,20 @@
-local nvim_notify = require("notify")
-nvim_notify.setup({
-  -- Render style
-  render = "minimal",
-  -- Animation style
-  stages = "slide",
-  -- Default timeout for notifications
-  timeout = 100,
-})
+vim.notify = require("notify")
+vim.notify.setup({
+    -- Animation style (see below for details)
+    stages = "fade_in_slide_out",
 
-vim.notify = nvim_notify
+    -- Default timeout for notifications
+    timeout = 5000,
+
+    -- For stages that change opacity this is treated as the highlight behind the window
+    -- background_colour = "#000000",
+
+    -- Icons for the different levels
+    icons = {
+        ERROR = "",
+        WARN = "",
+        INFO = "",
+        DEBUG = "",
+        TRACE = "✎",
+    },
+})

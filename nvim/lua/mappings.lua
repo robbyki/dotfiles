@@ -46,6 +46,7 @@ map("i", "<Tab>", [[pumvisible() ? '<C-n>' : '<Tab>']])
 map("n", "<esc>", ":noh<CR><esc>", { silent = true })
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
 map("n", "<leader>so", ":SymbolsOutline<CR>")
+map("n", "<leader>F", ":Format<CR>")
 
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",
