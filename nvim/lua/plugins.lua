@@ -40,7 +40,7 @@ return require("packer").startup({
         -- lfrc in nvim
         use({ "ptzz/lf.vim" })
 
-        --use({ "lewis6991/impatient.nvim" })
+        use({ "lewis6991/impatient.nvim" })
 
         -- nvim performance
         use({ "nathom/filetype.nvim" })
