@@ -220,3 +220,7 @@ source $HOME/clusters
 export UPDATE_ZSH_DAYS=1
 
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export FZF_TMUX_OPTS="-p 85%,85%"

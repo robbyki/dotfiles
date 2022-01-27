@@ -74,7 +74,7 @@ map au %du -chD ${(f)fx} | tail -1
 map ch chmod
 map dd trash
 map ee $$EDITOR "$f"
-map f broot_jump
+map b broot_jump
 map gD cd ~/Downloads
 map gc cd ~/.config/
 map gd cd ~/dev
@@ -109,6 +109,7 @@ map gF :fzf_jump
 
 cmd help $lf -doc| ~/.config/lf/less.sh
 
+# Broot
 cmd broot_jump ${{
   f=$(mktemp)
   res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
