@@ -203,7 +203,7 @@ wk.register({
         i = { "<Cmd>NvimTreeFindFile<CR>", "find" },
         p = { "<Cmd>NvimTreeClipboard<CR>", "clipboard" },
         r = { "<Cmd>NvimTreeRefresh<CR>", "refresh" },
-        s = { "<Cmd>NvimTreeResize<CR>", "resize" },
+        -- s = { "<Cmd>NvimTreeResize<CR>", "resize" },
         e = { "<Cmd>NvimTreeToggle<CR>", "toggle" },
     },
     ["<leader>c"] = {

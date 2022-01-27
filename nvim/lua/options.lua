@@ -112,7 +112,7 @@ call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_re
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
-vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=yaml")
+vim.cmd("autocmd BufRead,BufNewFile *conf :setlocal filetype=bash")
 vim.cmd("set formatoptions-=cro")
 vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
