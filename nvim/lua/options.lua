@@ -49,7 +49,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
-vim.opt.textwidth = 100
+vim.opt.textwidth = 80
 vim.opt.timeoutlen = 500
 vim.opt.title = false
 vim.opt.updatetime = 300
@@ -112,12 +112,11 @@ call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_re
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
-vim.cmd("autocmd BufRead,BufNewFile *conf :setlocal filetype=bash")
-vim.cmd("set formatoptions-=cro")
-vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
-vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
-vim.cmd([[autocmd FileType markdown setlocal textwidth=80]])
+vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd("autocmd BufRead,BufNewFile *conf :setlocal filetype=bash")
+vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd("set formatoptions-=cro")
 ---- vim.cmd [[
 ----     augroup yaml_fix
 ----         autocmd!
@@ -126,7 +125,7 @@ vim.cmd([[autocmd FileType markdown setlocal textwidth=80]])
 ---- ]]
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
 vim.cmd(
-    [[autocmd BufReadPost,BufNewFile *.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
+    [[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
 )
 vim.cmd([[autocmd TermOpen * startinsert]])
 
@@ -158,4 +157,16 @@ vim.cmd([[
   if has('nvim') && executable('nvr')
     let $GIT_EDITOR = "nvr --remote-wait +'set bufhidden=wipe'"
   endif
+]])
+
+vim.cmd([[
+    augroup HopInitHighlight
+        autocmd!
+        autocmd ColorScheme *
+            \ highlight HopNextKey guifg=#fcf400 gui=bold ctermfg=45 cterm=bold
+            \ | highlight link HopNextKey1 HopNextKey
+            \ | highlight HopNextKey2 guifg=#fcf400 ctermfg=45
+            \ | highlight HopUnmatched guifg=#666666 guibg=bg guisp=#666666 ctermfg=242
+            \ | highlight link HopCursor Cursor
+    augroup end
 ]])
