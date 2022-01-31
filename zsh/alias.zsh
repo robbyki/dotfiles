@@ -244,3 +244,5 @@ alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.i
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
 #alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
+
+alias gatdev="gatsby develop"

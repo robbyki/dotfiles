@@ -10,10 +10,14 @@ require("nvim-treesitter.configs").setup({
         disable = {},
         additional_vim_regex_highlighting = true,
     },
-    -- indent = {
-    --     enable = false,
-    --     disable = { "yaml", "yml" },
+    indent = {
+        enable = false,
+        disable = { "yaml", "yml" },
+    },
+    -- autopairs = {
+    --     enable = true,
     -- },
+    -- something funky is happening with kanawaga color scheme when I enable something in here.
     -- refactor = {
     --     highlight_current_scope = {
     --         enable = false,
@@ -97,9 +101,6 @@ require("nvim-treesitter.configs").setup({
     --         ["."] = "textsubjects-smart",
     --         [";"] = "textsubjects-container-outer",
     --     },
-    -- },
-    -- autopairs = {
-    --     enable = true,
     -- },
     -- rainbow = {
     --     enable = true,
