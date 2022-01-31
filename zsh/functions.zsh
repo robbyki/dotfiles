@@ -3,7 +3,7 @@
 #                         github gh commands                         #
 #--------------------------------------------------------------------#
 
-function gistedit() {
+function ge() {
   # Quoting switches between single and double quotes to leverage and avoid
   # string interpolation as necessary. There is probably a better way to do
   # this.
