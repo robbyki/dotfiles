@@ -46,6 +46,7 @@ return require("packer").startup({
                     specialReturn = true, -- special highlight for the return keyword
                     specialException = true, -- special highlight for exception handling keywords
                     transparent = false, -- do not set background color
+                    dimInactive = true, -- dim inactive regions
                     colors = {},
                     overrides = {},
                 })
@@ -77,7 +78,7 @@ return require("packer").startup({
         use({ "kosayoda/nvim-lightbulb" })
         use({ "nvim-lua/popup.nvim" })
         use({ "luukvbaal/stabilize.nvim", config = get_setup("stabilize") })
-        use({ "EdenEast/nightfox.nvim", config = get_setup("nightfox") })
+        -- use({ "EdenEast/nightfox.nvim", config = get_setup("nightfox") })
         use({
             "nvim-lualine/lualine.nvim",
             config = get_setup("statusline"),

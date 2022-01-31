@@ -2,7 +2,8 @@ local gps = require("nvim-gps")
 local lualine = require("lualine")
 
 -- @todo make this more generic
-local colors = require("nightfox.colors").load()
+-- local colors = require("nightfox.colors").load()
+local colors = require("kanagawa.colors").setup()
 
 local conditions = {
     buffer_is_modified = function()
@@ -134,7 +135,7 @@ local plugins = {
 -- Config
 local config = {
     options = {
-        theme = "nightfox",
+        theme = "kanagawa",
         component_separators = "",
         -- component_separators = {left = '', right = ''},
         -- section_separators = {left = '', right = ''},

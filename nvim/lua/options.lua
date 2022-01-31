@@ -170,3 +170,5 @@ vim.cmd([[
             \ | highlight link HopCursor Cursor
     augroup end
 ]])
+
+vim.cmd("colorscheme kanagawa")

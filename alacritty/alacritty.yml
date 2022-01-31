@@ -36,39 +36,76 @@ key_bindings:
     mods: Control|Alt
     action: Copy
 
-# Default colors
-colors:
-  cursor:
-   text: "0x000000"
-   cursor: "0x00ff00"
-   # cursor: "0xffffff"
-  primary:
-    background: '0x192330'
-    foreground: '0xcdcecf'
-  # Normal colors
-  normal:
-    black:   '0x393b44'
-    red:     '0xc94f6d'
-    green:   '0x81b29a'
-    yellow:  '0xdbc074'
-    blue:    '0x719cd6'
-    magenta: '0x9d79d6'
-    cyan:    '0x63cdcf'
-    white:   '0xdfdfe0'
-  # Bright colors
-  bright:
-    black:   '0x475072'
-    red:     '0xd6616b'
-    green:   '0x58cd8b'
-    yellow:  '0xffe37e'
-    blue:    '0x84cee4'
-    magenta: '0xb8a1e3'
-    cyan:    '0x59f0ff'
-    white:   '0xf2f2f2'
-  indexed_colors:
-    - { index: 16, color: '0xf4a261' }
-    - { index: 17, color: '0xd67ad2' }
 
+# Kanagawa Alacritty Colors
+colors:
+  primary:
+    background: '0x1f1f28'
+    foreground: '0xdcd7ba'
+
+  normal:
+    black:   '0x090618'
+    red:     '0xc34043'
+    green:   '0x76946a'
+    yellow:  '0xc0a36e'
+    blue:    '0x7e9cd8'
+    magenta: '0x957fb8'
+    cyan:    '0x6a9589'
+    white:   '0xc8c093'
+
+  bright:
+    black:   '0x727169'
+    red:     '0xe82424'
+    green:   '0x98bb6c'
+    yellow:  '0xe6c384'
+    blue:    '0x7fb4ca'
+    magenta: '0x938aa9'
+    cyan:    '0x7aa89f'
+    white:   '0xdcd7ba'
+
+  selection:
+    background: '0x2d4f67'
+    foreground: '0xc8c093'
+
+  indexed_colors:
+    - { index: 16, color: '0xffa066' }
+    - { index: 17, color: '0xff5d62' }
+
+
+
+# Default colors
+# colors:
+#   cursor:
+#    text: "0x000000"
+#    cursor: "0x00ff00"
+#    # cursor: "0xffffff"
+#   primary:
+#     background: '0x192330'
+#     foreground: '0xcdcecf'
+#   # Normal colors
+#   normal:
+#     black:   '0x393b44'
+#     red:     '0xc94f6d'
+#     green:   '0x81b29a'
+#     yellow:  '0xdbc074'
+#     blue:    '0x719cd6'
+#     magenta: '0x9d79d6'
+#     cyan:    '0x63cdcf'
+#     white:   '0xdfdfe0'
+#   # Bright colors
+#   bright:
+#     black:   '0x475072'
+#     red:     '0xd6616b'
+#     green:   '0x58cd8b'
+#     yellow:  '0xffe37e'
+#     blue:    '0x84cee4'
+#     magenta: '0xb8a1e3'
+#     cyan:    '0x59f0ff'
+#     white:   '0xf2f2f2'
+#   indexed_colors:
+#     - { index: 16, color: '0xf4a261' }
+#     - { index: 17, color: '0xd67ad2' }
+#
 # colors:
 #   cursor:
 #    text: "0x000000"
