@@ -57,7 +57,7 @@ return require("packer").startup({
         use({ "folke/which-key.nvim", config = get_setup("which-key") })
         use({
             "SmiteshP/nvim-gps",
-            requires = "nvim-treesitter/nvim-treesitter",
+            requires = "nvim-trreesitter/nvim-treesitter",
             config = get_setup("gps"),
         })
         use({ "dkarter/bullets.vim", config = get_setup("bullets") })
@@ -182,6 +182,7 @@ return require("packer").startup({
 
         use({
             "ruifm/gitlinker.nvim",
+            config = get_setup("gitlinker"),
             requires = "nvim-lua/plenary.nvim",
         })
 

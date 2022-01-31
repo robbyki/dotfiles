@@ -1,5 +1,5 @@
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("nvim-treesitter.configs").setup({
     -- matchup = { enable = true },
@@ -10,34 +10,34 @@ require("nvim-treesitter.configs").setup({
         disable = {},
         additional_vim_regex_highlighting = true,
     },
-    indent = {
-        enable = false,
-        disable = { "yaml", "yml" },
-    },
-    refactor = {
-        highlight_current_scope = {
-            enable = false,
-        },
-        highlight_definition = {
-            enable = true,
-        },
-        smart_rename = {
-            enable = true,
-            keymaps = {
-                smart_rename = "grr",
-            },
-        },
-        navigation = {
-            enable = false,
-            keymaps = {
-                goto_definition = "gnd",
-                list_definition = "gnD",
-                list_definition_toc = "gO",
-                goto_next_usage = "<a-*>",
-                goto_previos_usgae = "<a-#>",
-            },
-        },
-    },
+    -- indent = {
+    --     enable = false,
+    --     disable = { "yaml", "yml" },
+    -- },
+    -- refactor = {
+    --     highlight_current_scope = {
+    --         enable = false,
+    --     },
+    --     highlight_definition = {
+    --         enable = true,
+    --     },
+    --     smart_rename = {
+    --         enable = true,
+    --         keymaps = {
+    --             smart_rename = "grr",
+    --         },
+    --     },
+    --     navigation = {
+    --         enable = false,
+    --         keymaps = {
+    --             goto_definition = "gnd",
+    --             list_definition = "gnD",
+    --             list_definition_toc = "gO",
+    --             goto_next_usage = "<a-*>",
+    --             goto_previos_usgae = "<a-#>",
+    --         },
+    --     },
+    -- },
     -- textobjects = {
     --     select = {
     --         enable = true,
@@ -98,24 +98,24 @@ require("nvim-treesitter.configs").setup({
     --         [";"] = "textsubjects-container-outer",
     --     },
     -- },
-    autopairs = {
-        enable = true,
-    },
-    ignore_install = {}, -- List of parsers to ignore installing
-    rainbow = {
-        enable = true,
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    },
-    autotag = {
-        enable = true,
-        filetypes = {
-            "scala",
-            "python",
-            "html",
-            "javascript",
-            "typescript",
-            "markdown",
-        },
-    },
+    -- autopairs = {
+    --     enable = true,
+    -- },
+    -- rainbow = {
+    --     enable = true,
+    --     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    --     max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- },
+    -- ignore_install = {}, -- List of parsers to ignore installing
+    -- autotag = {
+    --     enable = true,
+    --     filetypes = {
+    --         "scala",
+    --         "python",
+    --         "html",
+    --         "javascript",
+    --         "typescript",
+    --         "markdown",
+    --     },
+    -- },
 })
