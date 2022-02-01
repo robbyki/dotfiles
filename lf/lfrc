@@ -73,7 +73,7 @@ map U unselect
 map au %du -chD ${(f)fx} | tail -1
 map ch chmod
 map dd trash
-map ee $$EDITOR "$f"
+map E $$EDITOR "$f"
 map b broot_jump
 map gD cd ~/Downloads
 map gc cd ~/.config/
