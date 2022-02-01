@@ -108,8 +108,10 @@ wk.register({
         C = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
         -- c = { "<Cmd>:Telescope neoclip<CR>", "neoclip" },
     },
-    -- my floaterm instances ar not acting very well and lagging up. need to troubleshoot.
-    -- but wrappers such as broot, btm, and others seem to be okay
+    ["<leader>i"] = {
+        name = "+insert",
+        d = { "i<C-R>=strftime('%Y-%m-%d')<CR><Esc>", "Insert Current Time" },
+    },
     ["<leader>t"] = {
         name = "+terminal",
         t = { "<Cmd>FloatermNew --height=0.3 --width=0.8<CR>", "terminal" },
