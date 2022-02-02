@@ -8,20 +8,20 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # {{{ zsh-plugins
 plugins=(
-  autoupdate
-  git
-  zsh-autosuggestions
-  zsh-better-npm-completion
-  zsh-syntax-highlighting
-  dnf
-  vscode
-  jfrog
-  tmux
-  alias-tips
-  zsh-256color
-  fzf-tab
-  zsh-secrets
-  flatpak
+    autoupdate
+    git
+    zsh-autosuggestions
+    zsh-better-npm-completion
+    zsh-syntax-highlighting
+    dnf
+    vscode
+    jfrog
+    tmux
+    alias-tips
+    zsh-256color
+    fzf-tab
+    zsh-secrets
+    flatpak
 )
 # }}}
 
@@ -224,3 +224,4 @@ export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export FZF_TMUX_OPTS="-p 85%,85%"
+

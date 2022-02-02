@@ -76,6 +76,7 @@ map dd trash
 map E $$EDITOR "$f"
 map b broot_jump
 map gD cd ~/Downloads
+map gb cd ~/dev/blog
 map gc cd ~/.config/
 map gd cd ~/dev
 map gn cd ~/.config/nvim

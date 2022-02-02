@@ -38,6 +38,7 @@ alias sdibm='secrets decrypt ibm-secrets'
 alias seibm='secrets encrypt ibm-secrets'
 
 # system helpers
+alias peekf='functions'
 alias tarx='tar xvzf'
 alias tarc='tar cvzf'
 alias t='tmux'
@@ -247,3 +248,8 @@ alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB
 #alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
 
 alias gatdev="gatsby develop"
+
+# I don't really need these since I can just use `magic-enter` but I like them anyway
+alias ptop='tput cup $((LINES/4)) 0'  # Clear quarter
+alias pmid='tput cup $((LINES/2)) 0'  # Clear half
+alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th
