@@ -207,7 +207,7 @@ ocgetconfig() {
 
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
 oclogin() {
- 	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1
+ 	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1 --insecure-skip-tls-verify=true
 }
 
 # colorize oc commands

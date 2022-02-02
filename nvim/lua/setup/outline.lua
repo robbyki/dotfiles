@@ -5,6 +5,7 @@ vim.g.symbols_outline = {
     position = "right",
     width = 50,
     show_numbers = false,
+    auto_close = true,
     show_relative_numbers = false,
     show_symbol_details = true,
     preview_bg_highlight = "Pmenu",
