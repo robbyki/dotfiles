@@ -91,9 +91,9 @@ export GH_EDITOR=/usr/local/bin/nvim
 export IBMCLOUD_TRACE=false
 export IBMCLOUD_COLOR=true
 export IBMCLOUD_VERSION_CHECK=true
-export GO_HOME=$HOME/go
-export CARGO=$HOME/.cargo
+export GOROOT=/usr/local/go
 export GOPATH=${HOME}/go
+export CARGO=$HOME/.cargo
 export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
 export SCRIPTS=${HOME}/bin
@@ -107,16 +107,19 @@ PATH=$PATH:${HOME}/.local/share/coursier/bin
 PATH=$PATH:${JAVA_HOME}/bin
 PATH=$PATH:${MVN_HOME}/bin
 PATH=$PATH:${GIT_HOME}/bin
-PATH=$PATH:${GO_HOME}/bin
+PATH=$PATH:${GOROOT}/bin
+PATH=$PATH:${GOPATH}/bin
 PATH=$PATH:${HOME}/tools/lua-language-server/bin/Linux
 PATH=$PATH:${HOME}/.yarn/bin
 PATH=$PATH:${HOME}/.config/yarn/global/node_modules/.bin
 PATH=$PATH:${HOME}/node_modules/.bin
-PATH=$PATH:$CARGO/bin
-PATH=$PATH:$SCRIPTS
+PATH=$PATH:${CARGO}/bin
+PATH=$PATH:${SCRIPTS}
 export PATH
 # }}}
 
+export KUBECONFIG=$HOME/.kube/config
+export KUBECONFIG=$KUBECONFIG:my-super-config
 # {{{ easier pasting
 zle_highlight+=(paste:none)
 zstyle :prompt:pure:git:stash show yes

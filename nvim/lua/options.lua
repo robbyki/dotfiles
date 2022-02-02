@@ -112,10 +112,10 @@ call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_re
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
-vim.cmd("autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
-vim.cmd("autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
-vim.cmd("autocmd BufRead,BufNewFile *conf :setlocal filetype=bash")
+vim.cmd("autocmd BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=bash")
+vim.cmd("autocmd BufRead,BufNewFile */.kube/config set filetype=yaml")
 vim.cmd("set formatoptions-=cro")
 ---- vim.cmd [[
 ----     augroup yaml_fix
