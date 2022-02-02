@@ -20,5 +20,20 @@
       "---",
       "$0"
     ]
+  },
+  "jsx frontmatter": {
+    "prefix": "jsxfm",
+    "description": "Creates frontmatter for jsx markdown posts",
+    "body": [
+      "---",
+      "title: ${1}",
+      "description: ${2}",
+      "date: \"${3:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}}\"",
+      "image: \"${4}\"",
+      "author: \"Robby Kiskanyan\"",
+      "tags: [\"${5}\"]",
+      "---",
+      "$0"
+    ]
   }
 }

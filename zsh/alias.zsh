@@ -11,6 +11,7 @@ alias codeconfig="$EDITOR $DOTFILES/vscode/settings.json"
 alias alacrittyconfig="$EDITOR $DOTFILES/alacritty/alacritty.yml"
 alias tmuxconfig="$EDITOR $DOTFILES/tmux/.tmux.conf"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
+alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
 
 # cd into directories
 alias rkeeweb='copy ~/Documents/notes/webex-rkee.txt'

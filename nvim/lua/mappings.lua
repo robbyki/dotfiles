@@ -34,11 +34,11 @@ map("n", "<TAB>", ":bnext<CR>")
 map("n", "<S-TAB>", ":bprevious<CR>")
 map("x", "K", ":move '<-2<CR>gv-gv")
 map("x", "J", ":move '>+1<CR>gv-gv")
+map("n", "<leader>xml", ":%!xmllint --format -<CR>")
 map("n", "<Esc><Esc>", ":nohlsearch<CR>")
 map("n", "<leader>n", ":set number! norelativenumber<CR>")
-map("n", "<leader>xml", ":%!xmllint --format -<CR>")
 map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
-map("n", "<leader>fc", ":cclose<CR>") -- close quickfix window
+map("n", "<leader>lc", ":lcl<CR>") -- close quickfix window
 map("n", "<leader>ev", ":vs $myvimrc<CR>")
 map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
 map("i", "<S-Tab>", [[pumvisible() ? '<C-p>' : '<Tab>']])
@@ -63,6 +63,7 @@ end
 
 wk.register({
     ["<leader>"] = { name = "+leader" },
+    ["<leader>q"] = { "<Cmd>:bd<CR>" },
     ["<leader>-"] = { ":Lf<CR>", "Start lf" },
     ["<leader><leader>b"] = {
         "<Cmd>lua require('telescope.builtin').builtin()<CR>",
