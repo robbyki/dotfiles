@@ -167,6 +167,7 @@ alias mk='minikube'
 
 # containers
 # alias docker='podman'
+alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
 alias pcls='podman container ls'
 alias pd='podman'
 alias pi='podman images'

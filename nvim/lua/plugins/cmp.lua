@@ -2,19 +2,7 @@ local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
--- local tabnine = require("cmp_tabnine.config")
 local cmp = require("cmp")
-
-local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-
--- require("lsp_signature").setup({
---     bind = true,
---     max_height = 12,
---     max_width = 120,
---     transpancy = 20,
---     handler_opts = { border = "rounded" },
---     hint_prefix = " ",
--- })
 
 local select_prev_item = cmp.mapping({
     c = function()
@@ -74,25 +62,7 @@ local select_next_item = cmp.mapping({
     end,
 })
 
-require("cmp_nvim_lsp").setup()
-
 cmp.setup({
-    completion = {
-        border = border,
-        scrollbar = "┃",
-        completeopt = "menu,menuone,preview,noinsert,select",
-        keyword_length = 1,
-    },
-    window = {
-        completion = {
-            border = border,
-            scrollbar = "┃",
-        },
-        documentation = {
-            border = border,
-            scrollbar = "┃",
-        },
-    },
     documentation = {
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
         winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
@@ -102,7 +72,6 @@ cmp.setup({
             with_text = true,
             menu = {
                 cmp_tabnine = "[TN]",
-                copilot = "[CP]",
                 buffer = "[BUFFER]",
                 fuzzy_path = "[FZ-PATH]",
                 fuzzy_buffer = "[FZ-BUFFER]",
@@ -130,21 +99,15 @@ cmp.setup({
             select = false,
         }),
     },
-    enabled = function()
-        if vim.bo.ft == "TelescopePrompt" then
-            return false
-        end
-    end,
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
         end,
     },
     sources = {
-        { name = "copilot" },
-        { name = "cmp_tabnine" },
+        { name = 'cmp_tabnine' },
         { name = "nvim_lsp" },
-        -- { name = "cmp_git" },
+        { name = "cmp_git" },
         { name = "path" },
         {
             name = "buffer",
@@ -159,52 +122,251 @@ cmp.setup({
                 end,
             },
         },
+        {
+            name = "tmux",
+            option = {
+                all_panes = true,
+                trigger_characters = {},
+            },
+        },
         { name = "vsnip" },
-        -- {
-        --     name = "tmux",
-        --     option = {
-        --         all_panes = true,
-        --         trigger_characters = {},
-        --     },
-        -- },
     },
 })
 
-cmp.setup.cmdline(':', {
-	enabled = function()
-		return true
-	end,
-	completion = {
-		border = border,
-		scrollbar = '▌',
-	},
-	documentation = {
-		border = border,
-		scrollbar = '▌',
-	},
-	sources = cmp.config.sources({
-		{ name = 'path' },
-	}, {
-		{ name = 'cmdline' },
-	}),
+cmp.setup.cmdline("/", {
+    sources = {
+        { name = "buffer" },
+        { name = "fuzzy_buffer" },
+    },
 })
 
-cmp.setup.cmdline('/', {
-	enabled = function()
-		return true
-	end,
-	sources = {
-		{ name = 'buffer', keyword_length = 1 },
-	},
-	completion = {
-		border = border,
-		scrollbar = '┃',
-	},
-	documentation = {
-		border = border,
-		scrollbar = '┃',
-	},
+cmp.setup.cmdline(":", {
+    sources = {
+        { name = "cmdline" },
+        { name = "path" },
+        {
+            name = "fuzzy_path",
+            options = { fd_cmd = { "fd", "--max-depth", "20", "--hidden", "--exclude", ".git" } },
+        },
+        { name = "buffer" },
+        { name = "fuzzy_buffer" },
+    },
 })
+
+local tabnine = require("cmp_tabnine.config")
+tabnine:setup({
+    max_lines = 1000,
+    max_num_results = 20,
+    sort = true,
+    run_on_every_keystroke = true,
+    snippet_placeholder = "..",
+})
+
+
+
+
+-- local cmp = require("cmp")
+--
+-- -- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+--
+-- -- require("lsp_signature").setup({
+-- --     bind = true,
+-- --     max_height = 12,
+-- --     max_width = 120,
+-- --     transpancy = 20,
+-- --     handler_opts = { border = "rounded" },
+-- --     hint_prefix = " ",
+-- -- })
+--
+-- local select_prev_item = cmp.mapping({
+--     c = function()
+--         if cmp.visible() then
+--             cmp.select_prev_item()
+--         else
+--             cmp.complete()
+--         end
+--     end,
+--     i = function(fallback)
+--         if cmp.visible() then
+--             cmp.select_prev_item()
+--         elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+--             feedkey("<Plug>(vsnip-jump-prev)", "")
+--             --[[ elseif has_words_before() then
+-- 				cmp.complete() ]]
+--         else
+--             fallback()
+--         end
+--     end,
+--     s = function(fallback)
+--         if vim.fn["vsnip#jumpable"](-1) == 1 then
+--             feedkey("<Plug>(vsnip-jump-prev)", "")
+--         else
+--             fallback()
+--         end
+--     end,
+-- })
+--
+-- local select_next_item = cmp.mapping({
+--     c = function()
+--         if cmp.visible() then
+--             cmp.select_next_item()
+--         else
+--             cmp.complete()
+--         end
+--     end,
+--     i = function(fallback)
+--         if cmp.visible() then
+--             cmp.select_next_item()
+--         elseif vim.fn["vsnip#available"](1) == 1 then
+--             feedkey("<Plug>(vsnip-expand-or-jump)", "")
+--             --[[ elseif has_words_before() then
+-- 				cmp.complete() ]]
+--         elseif package.loaded["neogen"] ~= nil and require("neogen").jumpable() then
+--             require("neogen").jump_next()
+--         else
+--             fallback()
+--         end
+--     end,
+--     s = function(fallback)
+--         if vim.fn["vsnip#available"](1) == 1 then
+--             feedkey("<Plug>(vsnip-expand-or-jump)", "")
+--         else
+--             fallback()
+--         end
+--     end,
+-- })
+--
+-- -- require("cmp_nvim_lsp").setup()
+--
+-- cmp.setup({
+--     -- completion = {
+--     --     border = border,
+--     --     scrollbar = "┃",
+--     --     completeopt = "menu,menuone,preview,noinsert,select",
+--     --     keyword_length = 1,
+--     -- },
+--     -- window = {
+--     --     completion = {
+--     --         border = border,
+--     --         scrollbar = "┃",
+--     --     },
+--     --     documentation = {
+--     --         border = border,
+--     --         scrollbar = "┃",
+--     --     },
+--     -- },
+--     documentation = {
+--         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+--         winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+--     },
+--     formatting = {
+--         format = require("lspkind").cmp_format({
+--             with_text = true,
+--             menu = {
+--                 cmp_tabnine = "[TN]",
+--                 -- copilot = "[CP]",
+--                 buffer = "[BUFFER]",
+--                 fuzzy_path = "[FZ-PATH]",
+--                 fuzzy_buffer = "[FZ-BUFFER]",
+--                 nvim_lsp = "[LSP]",
+--                 path = "[PATH]",
+--                 tmux = "[TMUX]",
+--                 vsnip = "[SNIPPET]",
+--                 -- ["vim-dadbod-completion"] = "[DB]",
+--             },
+--         }),
+--     },
+--     mapping = {
+--         ["<C-j>"] = select_next_item,
+--         ["<C-k>"] = select_prev_item,
+--         ["<C-n>"] = select_next_item,
+--         ["<C-p>"] = select_prev_item,
+--         ["<Tab>"] = select_next_item,
+--         ["<S-Tab>"] = select_prev_item,
+--         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "c", "i" }),
+--         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "c", "i" }),
+--         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "c", "i" }),
+--         ["<C-c>"] = cmp.mapping(cmp.mapping.close(), { "c", "i" }),
+--         ["<CR>"] = cmp.mapping.confirm({
+--             behavior = cmp.ConfirmBehavior.Replace,
+--             select = false,
+--         }),
+--     },
+--     enabled = function()
+--         if vim.bo.ft == "TelescopePrompt" then
+--             return false
+--         end
+--     end,
+--     snippet = {
+--         expand = function(args)
+--             vim.fn["vsnip#anonymous"](args.body)
+--         end,
+--     },
+--     sources = {
+--         -- { name = "copilot" },
+--         { name = "cmp_tabnine" },
+--         { name = "nvim_lsp" },
+--         -- { name = "cmp_git" },
+--         { name = "path" },
+--         {
+--             name = "buffer",
+--             option = {
+--                 get_bufnrs = function()
+--                     -- visible buffers
+--                     local bufs = {}
+--                     for _, win in ipairs(vim.api.nvim_list_wins()) do
+--                         bufs[vim.api.nvim_win_get_buf(win)] = true
+--                     end
+--                     return vim.tbl_keys(bufs)
+--                 end,
+--             },
+--         },
+--         { name = "vsnip" },
+--         -- {
+--         --     name = "tmux",
+--         --     option = {
+--         --         all_panes = true,
+--         --         trigger_characters = {},
+--         --     },
+--         -- },
+--     },
+-- })
+--
+-- -- cmp.setup.cmdline(':', {
+-- -- 	enabled = function()
+-- -- 		return true
+-- -- 	end,
+-- -- 	completion = {
+-- -- 		border = border,
+-- -- 		scrollbar = '▌',
+-- -- 	},
+-- -- 	documentation = {
+-- -- 		border = border,
+-- -- 		scrollbar = '▌',
+-- -- 	},
+-- -- 	sources = cmp.config.sources({
+-- -- 		{ name = 'path' },
+-- -- 	}, {
+-- -- 		{ name = 'cmdline' },
+-- -- 	}),
+-- -- })
+-- --
+-- -- cmp.setup.cmdline('/', {
+-- -- 	enabled = function()
+-- -- 		return true
+-- -- 	end,
+-- -- 	sources = {
+-- -- 		{ name = 'buffer', keyword_length = 1 },
+-- -- 	},
+-- -- 	completion = {
+-- -- 		border = border,
+-- -- 		scrollbar = '┃',
+-- -- 	},
+-- -- 	documentation = {
+-- -- 		border = border,
+-- -- 		scrollbar = '┃',
+-- -- 	},
+-- -- })
 -- cmp.setup.cmdline("/", {
 --     sources = {
 --         { name = "buffer" },
@@ -224,16 +386,3 @@ cmp.setup.cmdline('/', {
 --         { name = "fuzzy_buffer" },
 --     },
 -- })
---
-local tabnine = require("cmp_tabnine.config")
-tabnine:setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = "..",
-    ignored_file_types = { -- default is not to ignore
-        -- uncomment to ignore in lua:
-        -- lua = true
-    },
-})
