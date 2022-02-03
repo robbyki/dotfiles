@@ -3,7 +3,7 @@ require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 
 --vim.cmd("hi HopLine guifg=#ff007c gui=bold ctermfg=198 cterm=bold")
 --local cmd = vim.cmd
---
+
 --cmd [[highlight HopNextKey guifg=#ff5050 gui=bold,underline]]
 --cmd [[highlight HopNextKey1 guifg=#ff5050 gui=bold,underline]]
 --cmd [[highlight HopNextKey2 guifg=#ff5050 gui=bold,underline]]

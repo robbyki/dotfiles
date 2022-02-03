@@ -41,12 +41,12 @@ map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
 map("n", "<leader>lc", ":lcl<CR>") -- close quickfix window
 map("n", "<leader>ev", ":vs $myvimrc<CR>")
 map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
-map("i", "<S-Tab>", [[pumvisible() ? '<C-p>' : '<Tab>']])
-map("i", "<Tab>", [[pumvisible() ? '<C-n>' : '<Tab>']])
 map("n", "<esc>", ":noh<CR><esc>", { silent = true })
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
 map("n", "<leader>so", ":SymbolsOutline<CR>")
 map("n", "<leader>F", ":Format<CR>")
+map('n', 'n', 'nzzzv', {})
+map('n', 'N', 'Nzzzv', {})
 
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",
@@ -153,6 +153,14 @@ wk.register({
         B = { "<Cmd>:Telescope git_branches<CR>", "git branches" },
         f = { "<Cmd>:Telescope git_files<CR>", "git files" },
     },
+    ["<leader>P"] = {
+		name = "Packer",
+		c = { "<cmd>PackerCompile<cr>", "Compile" },
+		i = { "<cmd>PackerInstall<cr>", "Install" },
+		s = { "<cmd>PackerSync<cr>", "Sync" },
+		S = { "<cmd>PackerStatus<cr>", "Status" },
+		u = { "<cmd>PackerUpdate<cr>", "Update" },
+	},
     ["<leader>p"] = {
         name = "+preview",
         d = {

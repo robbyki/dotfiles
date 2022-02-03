@@ -1,13 +1,11 @@
-vim.notify = require("notify")
-vim.notify.setup({
-    -- Animation style (see below for details)
-    stages = "fade_in_slide_out",
+require('notify').setup({
+    -- stages = "fade_in_slide_out",
+    stages = "static",
 
-    -- Default timeout for notifications
-    timeout = 5000,
+    timeout = 4000,
 
     -- For stages that change opacity this is treated as the highlight behind the window
-    -- background_colour = "#000000",
+    background_colour = "#24292e",
 
     -- Icons for the different levels
     icons = {
@@ -18,3 +16,4 @@ vim.notify.setup({
         TRACE = "✎",
     },
 })
+vim.notify = require('notify')

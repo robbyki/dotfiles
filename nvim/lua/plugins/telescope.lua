@@ -150,10 +150,10 @@ telescope.setup({
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
         },
-        media_files = {
-            filetypes = { "png", "webp", "jpg", "jpeg" },
-            find_cmd = "rg",
-        },
+        -- media_files = {
+        --     filetypes = { "png", "webp", "jpg", "jpeg" },
+        --     find_cmd = "rg",
+        -- },
         -- apparently this would control where telescope opens the preview
         project = {
             -- base_dirs = {'~/dev'},
@@ -162,10 +162,13 @@ telescope.setup({
         },
     },
 })
+-- telescope.load_extension("frecency")
 telescope.load_extension("fzf")
+telescope.load_extension("gh")
 telescope.load_extension("project")
 telescope.load_extension("zoxide")
-telescope.load_extension("gh")
+telescope.load_extension('file_browser')
+-- telescope.load_extension('hop')
 --telescope.load_extension "media_files"
 --telescope.load_extension "file_browser"
 -- telescope.load_extension("neoclip")

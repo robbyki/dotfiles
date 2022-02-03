@@ -159,16 +159,16 @@ vim.cmd([[
   endif
 ]])
 
-vim.cmd([[
-    augroup HopInitHighlight
-        autocmd!
-        autocmd ColorScheme *
-            \ highlight HopNextKey guifg=#fcf400 gui=bold ctermfg=45 cterm=bold
-            \ | highlight link HopNextKey1 HopNextKey
-            \ | highlight HopNextKey2 guifg=#fcf400 ctermfg=45
-            \ | highlight HopUnmatched guifg=#666666 guibg=bg guisp=#666666 ctermfg=242
-            \ | highlight link HopCursor Cursor
-    augroup end
-]])
+-- vim.cmd([[
+--     augroup HopInitHighlight
+--         autocmd!
+--         autocmd ColorScheme *
+--             \ highlight HopNextKey guifg=#fcf400 gui=bold ctermfg=45 cterm=bold
+--             \ | highlight link HopNextKey1 HopNextKey
+--             \ | highlight HopNextKey2 guifg=#fcf400 ctermfg=45
+--             \ | highlight HopUnmatched guifg=#666666 guibg=bg guisp=#666666 ctermfg=242
+--             \ | highlight link HopCursor Cursor
+--     augroup end
+-- ]])
 
 vim.cmd("colorscheme kanagawa")

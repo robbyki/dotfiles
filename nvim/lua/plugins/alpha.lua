@@ -98,34 +98,35 @@ end
 local buttons = {
     type = "group",
     val = {
-        button("r", "  Recently Used Files", ":Telescope oldfiles <CR>"),
-        button("u", "  Update plugins", ":PackerSync<CR>"),
-        button("f", "  Telescope", ":Telescope find_files <CR>"),
-        button("p", "  Projects", ":Telescope project <CR>"),
+        button("r", "  Recently Files", ":Telescope oldfiles<CR>"),
+        button("u", "  Update Packer", ":PackerSync<CR>"),
+        button("f", "  Telescope", ":Telescope find_files<CR>"),
+        button("p", "  Projects", ":Telescope project<CR>"),
+        button("t", "  Find text", ":Telescope live_grep <CR>"),
         button(
             "d",
             "  Dotfiles",
-            ":cd ~/.dotfiles | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
+            ":cd ~/.dotfiles | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
         ),
         button(
             "i",
             "  IBM Projects",
-            ":cd ~/dev/ibm-projects | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
+            ":cd ~/dev/ibm-projects | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
         ),
         button(
             "a",
             "  AIDE",
-            ":cd ~/dev/ibm-projects/aide-template | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
+            ":cd ~/dev/ibm-projects/aide-template | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
         ),
         button(
             "D",
             "  Documents",
-            ":cd ~/Documents | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
+            ":cd ~/Documents | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
         ),
         button(
             "b",
             "  Blog",
-            ":cd ~/dev/blog | :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
+            ":cd ~/dev/blog | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
         ),
         button("e", "  New file", ":ene <BAR> startinsert <CR>"),
         button("q", "  Quit NVIM", ":qa<CR>"),
