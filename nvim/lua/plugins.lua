@@ -32,26 +32,7 @@ return require("packer").startup({
         use({ "liuchengxu/vista.vim" })
         use({ "rcarriga/nvim-notify", config = get_setup("notify") })
 
-        use({
-            "rebelot/kanagawa.nvim",
-            config = function()
-                require("kanagawa").setup({
-                    undercurl = true, -- enable undercurls
-                    commentStyle = "italic",
-                    functionStyle = "NONE",
-                    keywordStyle = "italic",
-                    statementStyle = "bold",
-                    typeStyle = "NONE",
-                    variablebuiltinStyle = "italic",
-                    specialReturn = true, -- special highlight for the return keyword
-                    specialException = true, -- special highlight for exception handling keywords
-                    transparent = false, -- do not set background color
-                    dimInactive = true, -- dim inactive regions
-                    colors = {},
-                    overrides = {},
-                })
-            end,
-        })
+        use({ "rebelot/kanagawa.nvim", config = get_setup("kanagawa") })
 
         use({ "christoomey/vim-tmux-navigator" })
         use({ "folke/which-key.nvim", config = get_setup("which-key") })
@@ -323,13 +304,7 @@ return require("packer").startup({
         use({
             "AckslD/nvim-neoclip.lua",
             requires = { "tami5/sqlite.lua", module = "sqlite" },
-            config = function()
-                require("neoclip").setup({
-                    enable_persistant_history = true,
-                    db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
-                    default_register = '"',
-                })
-            end,
+            config = get_setup("neoclip"),
         })
         -- use({
         --     "AckslD/nvim-neoclip.lua",
