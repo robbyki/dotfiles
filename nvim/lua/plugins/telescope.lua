@@ -74,6 +74,8 @@ telescope.setup({
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
         buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
         file_ignore_patterns = {
+            "schemas/*",
+            "schemas/",
             "%.gif",
             "%.jpeg",
             "%.jpg",
@@ -87,7 +89,6 @@ telescope.setup({
             "%.xls",
             "%.zcompdump",
             ".bloop",
-            ".dropbox%-dist/",
             ".dropbox%-dist/",
             ".git/*",
             ".jfrog/",

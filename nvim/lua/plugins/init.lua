@@ -33,7 +33,6 @@ require("packer").startup({
         use({ "lewis6991/impatient.nvim" })
 
         -- nvim performance
-        use({ "nathom/filetype.nvim" })
 
         -- ui
         use({ "liuchengxu/vista.vim" })

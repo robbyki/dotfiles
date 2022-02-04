@@ -150,12 +150,12 @@ lspconfig.yamlls.setup({
                 ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
                 ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
                 ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.{yml,yaml}",
-                ["https://raw.githubusercontent.com/robbyki/dotfiles/main/schemas/all.json"] = "/*.yaml",
+                -- ["https://raw.githubusercontent.com/robbyki/dotfiles/main/schemas/all.json"] = "/*.yaml",
                 ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.1-standalone-strict/all.json"] = "/*.yaml",
                 kubernetes = "/*.yaml",
             },
             format = { enabled = true },
-            -- validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml
+            validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml
             completion = true,
             hover = true,
         },

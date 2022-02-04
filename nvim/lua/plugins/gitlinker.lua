@@ -27,20 +27,15 @@ require("gitlinker").setup({
     mappings = "<leader>gy",
 })
 
--- local utils = require("utils")
--- utils.map(
+-- fix these
+-- map(
 --     "n",
 --     "<leader>go",
 --     "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
 -- )
--- utils.map(
+-- map(
 --     "v",
 --     "<leader>go",
 --     "<Cmd>lua require'gitlinker'.get_buf_range_url('v', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
 -- )
--- utils.map(
---     "n",
---     "<leader>gO",
---     "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
--- )
--- utils.map("n", "<leader>gY", "<Cmd>lua require'gitlinker'.get_repo_url()<CR>")
+-- map("n", "<leader>gY", "<Cmd>lua require'gitlinker'.get_repo_url()<CR>")

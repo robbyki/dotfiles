@@ -45,9 +45,20 @@ map("n", "<esc>", ":noh<CR><esc>", { silent = true })
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
 map("n", "<leader>so", ":SymbolsOutline<CR>")
 map("n", "<leader>F", ":Format<CR>")
-map('n', 'n', 'nzzzv', {})
-map('n', 'N', 'Nzzzv', {})
-map('n', '<leader>d', ':bd<CR>')
+map("n", "n", "nzzzv", {})
+map("n", "N", "Nzzzv", {})
+map("n", "<leader>d", ":bd<CR>")
+
+map(
+    "n",
+    "<leader>gO",
+    "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
+)
+map(
+    "n",
+    "<leader>go",
+    "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
+)
 
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",
@@ -154,13 +165,13 @@ wk.register({
         f = { "<Cmd>:Telescope git_files<CR>", "git files" },
     },
     ["<leader>P"] = {
-		name = "Packer",
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-	},
+        name = "Packer",
+        c = { "<cmd>PackerCompile<cr>", "Compile" },
+        i = { "<cmd>PackerInstall<cr>", "Install" },
+        s = { "<cmd>PackerSync<cr>", "Sync" },
+        S = { "<cmd>PackerStatus<cr>", "Status" },
+        u = { "<cmd>PackerUpdate<cr>", "Update" },
+    },
     ["<leader>p"] = {
         name = "+preview",
         d = {
