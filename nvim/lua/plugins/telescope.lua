@@ -41,7 +41,7 @@ telescope.setup({
         -- },
         layout_strategy = "flex",
         layout_config = {
-            horizontal = { width = 0.95, height = 0.95, preview_width = 0.6 },
+            horizontal = { width = 0.95, height = 0.95, preview_width = 0.5 },
             vertical = { width = 0.95, height = 0.95, preview_height = 0.7 },
             -- horizontal = {
             --   prompt_position = "bottom",
@@ -124,7 +124,7 @@ telescope.setup({
             -- "%.cache/",
         },
         path_display = { "shorten" },
-        winblend = 5,
+        winblend = 15,
         border = {},
         color_devicons = true,
         use_less = true,

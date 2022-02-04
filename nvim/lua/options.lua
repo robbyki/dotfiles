@@ -172,3 +172,7 @@ vim.cmd([[
 -- ]])
 
 vim.cmd("colorscheme kanagawa")
+
+-- this doesn't work
+-- vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
+

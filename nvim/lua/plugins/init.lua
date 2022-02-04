@@ -171,7 +171,6 @@ require("packer").startup({
                 "nvim-telescope/telescope-project.nvim",
                 "nvim-telescope/telescope-file-browser.nvim",
                 "nvim-telescope/telescope-github.nvim",
-                -- "nvim-telescope/telescope-hop.nvim",
                 "jvgrootveld/telescope-zoxide",
             },
             --cmd = 'Telescope',
@@ -180,25 +179,7 @@ require("packer").startup({
             end,
         })
 
-        -- use({
-        --     "nvim-telescope/telescope.nvim",
-        --     opt = true,
-        --     module = "telescope",
-        --     cmd = "Telescope",
-        --     requires = {
-        --         "nvim-lua/popup.nvim",
-        --         "nvim-lua/plenary.nvim",
-        --     },
-        --     config = function()
-        --         require("plugins.telescope")
-        --     end,
-        -- })
-        --
-        -- this might be causing some issues with Telescope sugar commands
-        -- use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
         use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-        --"nvim-telescope/telescope-media-files.nvim",
-        --use({ "nvim-telescope/telescope-file-browser.nvim" })
 
         use({ "nvim-lua/plenary.nvim" })
 
@@ -255,25 +236,64 @@ require("packer").startup({
         -- debug
         use({ "mfussenegger/nvim-dap" })
 
+        use({
+            "L3MON4D3/LuaSnip",
+            event = "InsertEnter",
+            requires = "rafamadriz/friendly-snippets",
+        })
+
         use({ "hrsh7th/vim-vsnip" })
         use({ "hrsh7th/vim-vsnip-integ" })
+
+        -- Completion
         use({
             "hrsh7th/nvim-cmp",
-            requires = {
-                { "hrsh7th/cmp-nvim-lsp" },
-                { "hrsh7th/cmp-nvim-lua" },
-                { "hrsh7th/cmp-buffer" },
-                { "hrsh7th/cmp-path" },
-                { "hrsh7th/cmp-cmdline" },
-                { "hrsh7th/cmp-vsnip" },
-                { "hrsh7th/vim-vsnip-integ" },
-                { "f3fora/cmp-spell", { "hrsh7th/cmp-calc" }, { "hrsh7th/cmp-emoji" } },
-            },
+            --'iron-e/nvim-cmp',
+            --branch = 'feat/completion-menu-borders',
+            --event = { 'InsertEnter', 'CmdLineEnter' },
+            requires = {},
             config = function()
                 require("plugins.cmp")
             end,
         })
+        use({ "petertriho/cmp-git", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/cmp-nvim-lua", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/cmp-buffer", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/cmp-path", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/cmp-calc", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "ray-x/cmp-treesitter", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "lukas-reineke/cmp-rg", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "saadparwaiz1/cmp_luasnip", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/cmp-copilot", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/cmp-cmdline", event = "CmdLineEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/cmp-nvim-lsp-signature-help", event = "CmdLineEnter", after = "nvim-cmp" })
         use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
+
+        use({
+            "j-hui/fidget.nvim",
+            config = function()
+                require("fidget").setup({
+                    text = { spinner = "bouncing_bar" },
+                })
+            end,
+        })
+        -- use({
+        --     "hrsh7th/nvim-cmp",
+        --     requires = {
+        --         { "hrsh7th/cmp-nvim-lsp" },
+        --         { "hrsh7th/cmp-nvim-lua" },
+        --         { "hrsh7th/cmp-buffer" },
+        --         { "hrsh7th/cmp-path" },
+        --         { "hrsh7th/cmp-cmdline" },
+        --         { "hrsh7th/cmp-vsnip" },
+        --         { "hrsh7th/vim-vsnip-integ" },
+        --         { "f3fora/cmp-spell", { "hrsh7th/cmp-calc" }, { "hrsh7th/cmp-emoji" } },
+        --     },
+        --     config = function()
+        --         require("plugins.cmp")
+        --     end,
+        -- })
 
         -- Annotation generator
         use({
@@ -409,7 +429,6 @@ require("packer").startup({
             end,
         })
 
-        -- git
         use({ "kdheepak/lazygit.nvim" })
         use({ "sindrets/diffview.nvim" })
         use({ "pwntester/octo.nvim" })
@@ -427,6 +446,7 @@ require("packer").startup({
         -- lsp
         use({ "glepnir/lspsaga.nvim" })
         use({ "onsails/lspkind-nvim" })
+        use({ "ray-x/lsp_signature.nvim" })
         use({ "folke/lsp-colors.nvim" })
         use({ "nvim-lua/lsp-status.nvim" })
         -- LSP

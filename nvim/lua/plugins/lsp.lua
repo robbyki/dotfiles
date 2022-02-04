@@ -1,8 +1,8 @@
-local lsp_config = require("lspconfig")
+local lspconfig = require("lspconfig")
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
+lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
     handlers = {
         ["textDocument/publishDiagnostics"] = shared_diagnostic_settings,
     },
@@ -63,7 +63,7 @@ Metals_config.on_attach = function(client, bufnr)
     require("metals").setup_dap()
 end
 -- sumneko lua
-lsp_config.sumneko_lua.setup({
+lspconfig.sumneko_lua.setup({
     cmd = {
         "/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
         "-E",
@@ -97,11 +97,11 @@ lsp_config.sumneko_lua.setup({
     },
 })
 
-lsp_config.bashls.setup({ on_attach = on_attach, filetypes = { "sh", "zsh" } })
-lsp_config.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
-lsp_config.dockerls.setup({})
-lsp_config.html.setup({})
-lsp_config.jsonls.setup({
+lspconfig.bashls.setup({ on_attach = on_attach, filetypes = { "sh", "zsh" } })
+lspconfig.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.dockerls.setup({})
+lspconfig.html.setup({})
+lspconfig.jsonls.setup({
     commands = {
         Format = {
             function()
@@ -110,13 +110,25 @@ lsp_config.jsonls.setup({
         },
     },
 })
-lsp_config.tsserver.setup({
-    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-    end,
+lspconfig.tsserver.setup({
+    flags = flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {
+        "javascript",
+        "javascript.jsx",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+    },
+    init_options = {
+        importModuleSpecifierEnding = "auto",
+        importModuleSpecifierPreference = "project-relative",
+        includePackageJsonAutoImports = "auto",
+    },
 })
-lsp_config.yamlls.setup({
+lspconfig.yamlls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
@@ -142,57 +154,60 @@ lsp_config.yamlls.setup({
                 kubernetes = "/*.yaml",
             },
             format = { enabled = true },
-            validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml
+            -- validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml
             completion = true,
             hover = true,
         },
-        -- yaml = {
-        --     schemas = {
-        --         schemaStore = {
-        --             enable = true,
-        --             url = "https://www.schemastore.org/api/json/catalog.json",
-        --         },
-        --         { kubernetes = "/*.yaml" },
-        --     },
-        -- },
     },
 })
-lsp_config.racket_langserver.setup({})
-lsp_config.gopls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
+lspconfig.racket_langserver.setup({})
+lspconfig.gopls.setup({
     settings = {
         gopls = {
-            buildFlags = { "-tags=wireinject" },
-            experimentalTemplateSupport = true,
-            usePlaceholders = true,
-            codelenses = {
-                gc_details = true,
-                generate = true,
-                regenerate_cgo = true,
-                tidy = true,
-                upgrade_dependency = true,
-                vendor = true,
-                nilness = true,
-            },
-            analyses = {
-                fillreturns = true,
-                nonewvars = true,
-                shadow = true,
-                undeclaredname = true,
-                unreachable = true,
-                unusedparams = true,
-                unusedwrite = true,
-            },
-            gofumpt = true,
-            ["local"] = "go.ngrok.com",
+            analyses = { unusedparams = true, shadow = true },
             staticcheck = true,
+            experimentalPostfixCompletions = true,
         },
     },
-    flags = {
-        debounce_text_changes = 200,
-    },
+    init_options = { usePlaceholders = true, completeUnimported = true },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = flags,
 })
+-- lsp_config.gopls.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         gopls = {
+--             buildFlags = { "-tags=wireinject" },
+--             usePlaceholders = true,
+--             codelenses = {
+--                 gc_details = true,
+--                 generate = true,
+--                 regenerate_cgo = true,
+--                 tidy = true,
+--                 upgrade_dependency = true,
+--                 vendor = true,
+--                 nilness = true,
+--             },
+--             analyses = {
+--                 fillreturns = true,
+--                 nonewvars = true,
+--                 shadow = true,
+--                 undeclaredname = true,
+--                 unreachable = true,
+--                 unusedparams = true,
+--                 unusedwrite = true,
+--             },
+--             gofumpt = true,
+--             ["local"] = "go.ngrok.com",
+--             staticcheck = true,
+--         },
+--     },
+--     flags = {
+--         debounce_text_changes = 200,
+--     },
+-- })
 
 -- LSP Prevents inline buffer annotations
 vim.lsp.diagnostic.show_line_diagnostics()

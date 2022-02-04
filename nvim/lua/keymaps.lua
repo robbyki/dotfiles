@@ -47,6 +47,7 @@ map("n", "<leader>so", ":SymbolsOutline<CR>")
 map("n", "<leader>F", ":Format<CR>")
 map('n', 'n', 'nzzzv', {})
 map('n', 'N', 'Nzzzv', {})
+map('n', '<leader>d', ':bd<CR>')
 
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",
@@ -63,7 +64,6 @@ end
 
 wk.register({
     ["<leader>"] = { name = "+leader" },
-    ["<leader>q"] = { "<Cmd>:bd<CR>" },
     ["<leader>-"] = { ":Lf<CR>", "Start lf" },
     ["<leader><leader>b"] = {
         "<Cmd>lua require('telescope.builtin').builtin()<CR>",

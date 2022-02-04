@@ -144,8 +144,7 @@ alias jfmls="jfrog rt search \"txo-aide-team-cio-maven-local/*\" | jq '.[]|.path
 alias jfsls="jfrog rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 
 # k8s
-#alias kubectl=kubecolor
-#alias kb='kubecolor'
+alias kbver='kubectl version --short --client=true'
 alias kbc='kubecolor'
 alias kb='kubectl'
 alias kbaf='kbc apply -f'
@@ -186,8 +185,9 @@ alias lzd='lazydocker'
 alias kpass='/usr/bin/keepassxc-cli'
 alias kpasso='keepassxc-cli open ~/Dropbox/donut-bartenders/donut-bartenders.kdbx'
 
-# directory listings
 alias l=lf
+
+# directory listings
 alias la="colorls -lA"
 alias lad="la --sort-dirs"
 alias lag="la --git-status"

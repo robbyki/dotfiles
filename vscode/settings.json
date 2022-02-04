@@ -260,5 +260,6 @@
   "window.zoomLevel": 2,
   "terminal.integrated.commandsToSkipShell": [
     "workbench.action.toggleMaximizedPanel"
-  ]
+  ],
+  "editor.unicodeHighlight.invisibleCharacters": false
 }
