@@ -1,0 +1,211 @@
+{
+  "description": "BGPConfiguration contains the configuration for any BGP routing.",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "crd.projectcalico.org/v1"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "BGPConfiguration"
+      ]
+    },
+    "metadata": {
+      "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+      "$ref": "_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta_v2"
+    },
+    "spec": {
+      "description": "BGPConfigurationSpec contains the values of the BGP configuration.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "asNumber": {
+          "description": "ASNumber is the default AS number used by a node. [Default: 64512]",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "communities": {
+          "description": "Communities is a list of BGP community values and their arbitrary names for tagging routes.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "description": "Community contains standard or large community value and its name.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "name": {
+                "description": "Name given to community value.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "value": {
+                "description": "Value must be of format `aa:nn` or `aa:nn:mm`. For standard community use `aa:nn` format, where `aa` and `nn` are 16 bit number. For large community use `aa:nn:mm` format, where `aa`, `nn` and `mm` are 32 bit number. Where, `aa` is an AS Number, `nn` and `mm` are per-AS identifier.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^(\\d+):(\\d+)$|^(\\d+):(\\d+):(\\d+)$"
+              }
+            }
+          }
+        },
+        "listenPort": {
+          "description": "ListenPort is the port where BGP protocol should listen. Defaults to 179",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "maximum": 65535,
+          "minimum": 1
+        },
+        "logSeverityScreen": {
+          "description": "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nodeToNodeMeshEnabled": {
+          "description": "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "prefixAdvertisements": {
+          "description": "PrefixAdvertisements contains per-prefix advertisement configuration.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "description": "PrefixAdvertisement configures advertisement properties for the specified CIDR.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "cidr": {
+                "description": "CIDR for which properties should be advertised.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "communities": {
+                "description": "Communities can be list of either community names already defined in `Specs.Communities` or community value of format `aa:nn` or `aa:nn:mm`. For standard community use `aa:nn` format, where `aa` and `nn` are 16 bit number. For large community use `aa:nn:mm` format, where `aa`, `nn` and `mm` are 32 bit number. Where,`aa` is an AS Number, `nn` and `mm` are per-AS identifier.",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "serviceClusterIPs": {
+          "description": "ServiceClusterIPs are the CIDR blocks from which service cluster IPs are allocated. If specified, Calico will advertise these blocks, as well as any cluster IPs within them.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "description": "ServiceClusterIPBlock represents a single allowed ClusterIP CIDR block.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "cidr": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "serviceExternalIPs": {
+          "description": "ServiceExternalIPs are the CIDR blocks for Kubernetes Service External IPs. Kubernetes Service ExternalIPs will only be advertised if they are within one of these blocks.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "description": "ServiceExternalIPBlock represents a single allowed External IP CIDR block.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "cidr": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "serviceLoadBalancerIPs": {
+          "description": "ServiceLoadBalancerIPs are the CIDR blocks for Kubernetes Service LoadBalancer IPs. Kubernetes Service status.LoadBalancer.Ingress IPs will only be advertised if they are within one of these blocks.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "description": "ServiceLoadBalancerIPBlock represents a single allowed LoadBalancer IP CIDR block.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "cidr": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-kubernetes-group-version-kind": [
+    {
+      "group": "crd.projectcalico.org",
+      "kind": "BGPConfiguration",
+      "version": "v1"
+    }
+  ],
+  "$schema": "http://json-schema.org/schema#"
+}
