@@ -1,0 +1,42 @@
+# ** Format
+# <type>(<optional scope>): <emoji> <subject>
+# [BLANK LINE]
+# <optional body>
+# [BLANK LINE]
+# <optional footer>
+#
+# ** Type
+# * 👷 build:    changes affecting build process or auxiliary tools
+# * 🤖 chore:    changes that don't modify src or test files
+# * 💚 ci:       ci/cd related changes
+# * 📝 docs:     documentation only changes
+# * ✨ feat:     a new feature
+# * 🐛 fix:      a bug fix
+# * ⚡️ perf:     a code change that improves performance
+# * ♻️ refactor: a code change that neither fixes a bug or adds a feature
+# * 🚀 release:  create a release commit
+# * ⏪ revert:   revert previous changes
+# * 🎨 style:    changes that do not affect the meaning of the code (white­space, formatting, missing semi-colons, etc)
+# * ✅ test:     adding missing or correcting existing tests
+#
+# ** Subject
+# * use imperative, present tense: "change" not "changed" nor "changes"
+# * no dot (.) at the end.
+#
+# ** Scope
+# * provide additional contextual information
+# * contained within parenthesis
+#
+# ** Body
+# * use imperative, present tense: "change" not "changed" nor "changes"
+# * should include the motivation for the change and contrast this with
+#   previous behavior
+#
+# ** Footer
+# * reference any tasks/tickets/issues related to this commit
+# * breaking changes start with "BREAKING CHANGE:", or appends "!" after the
+#   type/scope
+#
+# ** Additional Notes:
+# * subject line 50 chars
+# * body/footer 72 chars
