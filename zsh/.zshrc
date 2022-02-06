@@ -78,9 +78,9 @@ HISTCONTROL='ignoreboth';
 # }}}
 
 # {{{ application path settings
-export VISUAL="/usr/local/bin/nvim"
-export EDITOR="/usr/local/bin/nvim"
-export SUDO_EDITOR="/usr/local/bin/nvim"
+export VISUAL=/usr/local/bin/nvim
+export EDITOR=/usr/local/bin/nvim
+export SUDO_EDITOR=/usr/local/bin/nvim
 export MYVIMRC=$HOME/.config/nvim/init.lua
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
@@ -181,8 +181,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 
-# export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always --line-range :500 {}" --ansi --height 60% --layout=reverse --border'
-# export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'  --preview-window=up:40%"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
@@ -220,7 +218,7 @@ export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 # helper file for storing ocp cluster info
 source $HOME/clusters
 
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=10
 
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 

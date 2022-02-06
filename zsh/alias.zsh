@@ -38,6 +38,7 @@ alias sdibm='secrets decrypt ibm-secrets'
 alias seibm='secrets encrypt ibm-secrets'
 
 # system helpers
+alias tch='touch'
 alias peekf='functions'
 alias tarx='tar xvzf'
 alias tarc='tar cvzf'
@@ -160,7 +161,7 @@ alias kblf='kbc logs --follow'
 alias kbrf='kbc replace --force -f'
 alias klint='kube-linter lint'
 alias kns='kubens'
-alias kval='kubeval'
+alias kval='kubeval --schema-location=file://$OCPSCHEMA'
 alias kx='kubectx'
 alias mk='minikube'
 

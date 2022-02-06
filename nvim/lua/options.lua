@@ -67,7 +67,7 @@ vim.cmd("filetype indent on")
 -- copy buffer path
 vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
 
-vim.cmd([[ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 ]])
+-- vim.cmd([[ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 ]])
 
 vim.cmd([[
     augroup highlight_yank
@@ -116,6 +116,7 @@ vim.cmd("autocmd BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r f
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=bash")
 vim.cmd("autocmd BufRead,BufNewFile */.kube/config set filetype=yaml")
+vim.cmd("autocmd FileType yaml setlocal ts=2 sw=2 et ai nu")
 vim.cmd("set formatoptions-=cro")
 ---- vim.cmd [[
 ----     augroup yaml_fix
@@ -175,4 +176,3 @@ vim.cmd("colorscheme kanagawa")
 
 -- this doesn't work
 -- vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
-

@@ -237,6 +237,7 @@ wk.register({
     },
     ["<leader>l"] = {
         name = "+lsp",
+        L = { ":LspInfo<CR>", "Connected Language" },
         F = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add folder" },
         H = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "hover" },
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
