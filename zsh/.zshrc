@@ -227,3 +227,5 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_TMUX_OPTS="-p 85%,85%"
 
 export OCPSCHEMA=${HOME}/dev/openshift-json-schema
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4d4d4d"
