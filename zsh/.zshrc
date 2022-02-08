@@ -177,7 +177,7 @@ bindkey '^P' fzf-open-file-current-dir
 # export FZF_TMUX_OPTS="-p 85%,65%"
 export FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
-export FZF_DEFAULT_OPTS="-i --no-mouse --ansi --layout=default --preview-window 'right:70%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+export FZF_DEFAULT_OPTS="-i --no-mouse --ansi --layout=default --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
@@ -185,6 +185,7 @@ export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--preview 'tree -NC {} | head -200'"
+export FZF_TMUX_OPTS="-p 90%,90%"
 # }}}
 
 #export number of processors on linux
@@ -224,8 +225,6 @@ export UPDATE_ZSH_DAYS=10
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-export FZF_TMUX_OPTS="-p 85%,85%"
 
 export OCPSCHEMA=${HOME}/dev/openshift-json-schema
 
