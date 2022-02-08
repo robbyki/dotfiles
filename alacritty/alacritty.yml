@@ -1,7 +1,7 @@
 custom_cursor_colors: true
 window:
   dynamic_padding: true
-  decorations: none
+  # decorations: full
     # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:

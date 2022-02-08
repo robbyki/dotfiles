@@ -182,12 +182,12 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-agh() { 
-	ag $1 . 
+agh() {
+	ag $1 .
 }
 
-find-alias() { 
- 	alias | grep ${1} 
+find-alias() {
+ 	alias | grep ${1}
 }
 
 # a bunch of really ugly functions that could use a lot of improvements
@@ -198,19 +198,19 @@ delete-target() {
 }
 
 # find files with extension in location given
-fde(){ 
-	fd . -e ${1} ${2} 
+fde(){
+	fd . -e ${1} ${2}
 }
 
 #mcddpls(){
 #mc ls cosddp/dev-ai-staging/${1}
 #}
 
-go-to-local-bin() { 
+go-to-local-bin() {
  	sudo mv $1 /usr/local/bin/$1
 }
 
-go-to-completions() { 
+go-to-completions() {
  	sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
 }
 
@@ -223,20 +223,20 @@ mktouch() {
 #--------------------------------------------------------------------#
 
 # use mc to list all files in cos dm location
-mcdmls() { 
+mcdmls() {
 	mc ls dm/${1}
 }
 
 # use mc to list files in dm location. seriously needs to pamaterized.
-mcdmfiles() { 
+mcdmfiles() {
 	mc $1 dm/datamaze-dev-analytics-sp-files/${2}
 }
 
-mcdmjars() { 
+mcdmjars() {
 	mc $1 dm/datamaze-dev-analytics-sp-jars/${2}
 }
 
-mcdmlogs() { 
+mcdmlogs() {
 	mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
 }
 
@@ -244,7 +244,7 @@ mcdmlogs() {
 #--------------------------------------------------------------------#
 #                             Openshift                              #
 #--------------------------------------------------------------------#
-ocdel() { 
+ocdel() {
  	ic oc cluster rm -f --force-delete-storage -c $1
 }
 
@@ -264,11 +264,11 @@ oclogin() {
 }
 
 # colorize oc commands
-ocy() { 
+ocy() {
 	oc --output yaml $@ | yq eval --colors
 }
 
-occ() { 
+occ() {
 	oc $@ | yq eval --colors -P
 }
 

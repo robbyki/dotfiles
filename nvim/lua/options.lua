@@ -13,12 +13,12 @@ vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 
 -- vim.g.loaded_matchit = 1
 
-vim.bo.autoindent = true
 vim.bo.expandtab = true
 vim.bo.shiftwidth = vim.bo.tabstop
 vim.bo.softtabstop = vim.bo.tabstop
 vim.bo.tabstop = 4
 vim.o.autoindent = true
+vim.bo.autoindent = true
 vim.o.expandtab = true
 vim.o.shiftwidth = vim.bo.tabstop
 vim.o.softtabstop = vim.bo.tabstop
@@ -67,8 +67,6 @@ vim.cmd("filetype indent on")
 -- copy buffer path
 vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
 
--- vim.cmd([[ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 ]])
-
 vim.cmd([[
     augroup highlight_yank
     autocmd!
@@ -97,7 +95,7 @@ vim.g.hardtime_ignore_buffer_patterns = { "LuaTree", "alpha", "NvimTree", "fugit
 
 vim.g.glow_binary_path = "/usr/local/bin"
 
-vim.g.vsnip_snippet_dir = "~/.config/nvim/.vsnip"
+vim.g.vsnip_snippet_dir = "/home/robbyk/.dotfiles/nvim/.vsnip"
 
 vim.g.rainbow_active = 1
 
@@ -115,15 +113,9 @@ vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 vim.cmd("autocmd BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=bash")
+vim.cmd("autocmd BufRead,BufNewFile */oc-crc-notes.txt :setlocal filetype=bash")
 vim.cmd("autocmd BufRead,BufNewFile */.kube/config set filetype=yaml")
-vim.cmd("autocmd FileType yaml setlocal ts=2 sw=2 et ai nu")
 vim.cmd("set formatoptions-=cro")
----- vim.cmd [[
-----     augroup yaml_fix
-----         autocmd!
-----         autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
-----     augroup END
----- ]]
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
 vim.cmd(
     [[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
@@ -174,5 +166,5 @@ vim.cmd([[
 
 vim.cmd("colorscheme kanagawa")
 
--- this doesn't work
--- vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
+vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
+vim.cmd("autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab")

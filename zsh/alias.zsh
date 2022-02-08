@@ -2,7 +2,7 @@ export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
 # Quick files and directories
-alias dots="cdl $DOTFILES"
+alias dots="cd $DOTFILES"
 alias zshconfig="$EDITOR $DOTFILES/zsh/.zshrc"
 alias aliasconfig="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabconfig="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
@@ -15,17 +15,17 @@ alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
 
 # cd into directories
 alias rkeeweb='copy ~/Documents/notes/webex-rkee.txt'
-alias util='cdl $HOME/dev/ibm-projects/aide-utilities'
-alias temp='cdl $HOME/dev/ibm-projects/aide-template/'
-alias nv='cdl $HOME/.dotfiles/nvim'
-alias dev='cdl $HOME/dev/'
-alias downloads="cdl ~/Downloads"
+alias util='cd $HOME/dev/ibm-projects/aide-utilities'
+alias temp='cd $HOME/dev/ibm-projects/aide-template/'
+alias nv='cd $HOME/.dotfiles/nvim'
+alias dev='cd $HOME/dev/'
+alias downloads="cd ~/Downloads"
 alias kubeconfig="$EDITOR ~/.kube/config"
-alias docs="cdl ~/Documents"
-alias vids="cdl ~/Videos"
-alias blog="cdl ~/dev/blog"
-alias snips="cdl ~/.dotfiles/nvim/.vsnip"
-alias pics="cdl ~/Pictures"
+alias docs="cd ~/Documents"
+alias vids="cd ~/Videos"
+alias blog="cd ~/dev/blog"
+alias snips="cd ~/.dotfiles/nvim/.vsnip"
+alias pics="cd ~/Pictures"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 
@@ -73,6 +73,7 @@ alias peek="GDK_BACKEND=x11 peek"
 
 #gatsby js blog builder
 alias gat='gatsby'
+alias gatdev="gatsby develop"
 
 # argo
 alias acc='argo cron create'
@@ -95,12 +96,14 @@ alias bl='bloop'
 alias blc='bloop compile'
 alias blcr='bloop compile root --verbose'
 alias blcv='bloop compile --verbose'
-alias bld='buildah'
 alias blp='bloop projects'
 alias blrd='bloop run root -m com.ibm.cio.DemoCos'
 alias blrm='bloop run root -m'
 alias blrr='bloop run root'
 alias blrv='bloop run --verbose'
+
+# Buildah
+alias bld='buildah'
 
 # scala
 alias fix="scalafix"
@@ -203,9 +206,6 @@ alias lsg="ls --git-status"
 alias lst="ls -tr"
 #alias ll="colorls -1A"
 
-#alias linters='mc cp --recursive cosp/robbyk/configs/linters/ .'
-#alias lk='lookatme'
-
 # openshift oc
 alias ocaf='oc apply -f'
 alias occf='oc create -f'
@@ -248,8 +248,6 @@ alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.i
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
 #alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
-
-alias gatdev="gatsby develop"
 
 # I don't really need these since I can just use `magic-enter` but I like them anyway
 alias ptop='tput cup $((LINES/4)) 0'  # Clear quarter

@@ -42,16 +42,31 @@
   "editor.fontLigatures": true,
   "security.workspace.trust.untrustedFiles": "open",
   "yaml.format.enable": true,
-  "yaml.schemaStore.enable": true,
+  "yaml.schemaStore.enable": false,
+  "yaml.validate": false,
   "yaml.completion": true,
-  "yaml.schemas": {
-    "kubernetes": [
-      "kubernetes/*.yaml",
-      "kube/*.yaml",
-      "k8s/*.yaml",
-      "!k8s/kustomization.yaml"
-    ],
-    "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json": "**/*argo*.yaml"
+    "yaml.schemas": {
+    "kubernetes": "/*.yaml",
+    "https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json": "/*.yaml"
+  },
+  // "yaml.schemas": {
+  /*  *///   "kubernetes": "/*.k8s.yaml",
+  //   "https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json": "/*.oc.yaml"
+  // },
+  // "yaml.schemas": {
+  //   "kubernetes": [
+  //     "kubernetes/*.yaml",
+  //     "kube/*.yaml",
+  //     "k8s/*.yaml",
+  //     "!k8s/kustomization.yaml"
+  //   ],
+  //   "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json": "**/*argo*.yaml"
+  // },
+  "[yaml]": {
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "files.associations": {
     "*.sc": "scala",
@@ -240,15 +255,12 @@
   "explorer.compactFolders": false,
   "output.smartScroll.enabled": true,
   "rewrap.wrappingColumn": 80,
-  "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
   "go.toolsManagement.autoUpdate": true,
   "editor.inlineSuggest.enabled": true,
   "github.copilot.inlineSuggest.enable": true,
   "github.copilot.enable": {
     "*": true,
-    "yaml": false,
+    "yaml": true,
     "plaintext": false,
     "markdown": false
   },
@@ -257,9 +269,12 @@
   "editor.smoothScrolling": true,
   "WhiteSource Advise.Diff.BaseBranch": "main",
   "WhiteSource Advise.includeDevDependencies": true,
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 3,
   "terminal.integrated.commandsToSkipShell": [
     "workbench.action.toggleMaximizedPanel"
   ],
-  "editor.unicodeHighlight.invisibleCharacters": false
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "vs-kubernetes": {
+    "vscode-kubernetes.minikube-path.linux": "/home/robbyk/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+  }
 }

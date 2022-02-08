@@ -2,7 +2,7 @@ local cmp = require('cmp')
 local types = require('cmp.types')
 local str = require('cmp.utils.str')
 local lspkind = require('lspkind')
-local luasnip = require('luasnip')
+-- local luasnip = require('luasnip')
 local neogen = require('neogen')
 
 local border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' }
@@ -176,11 +176,6 @@ tabnine:setup({
     snippet_placeholder = "..",
 })
 
-
-
-
--- local cmp = require("cmp")
-
 local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 
 require("lsp_signature").setup({
@@ -192,5 +187,5 @@ require("lsp_signature").setup({
     hint_prefix = " ",
 })
 
-require('luasnip.loaders.from_vscode').load()
+-- require('luasnip.loaders.from_vscode').load()
 

@@ -235,14 +235,14 @@ require("packer").startup({
         -- debug
         use({ "mfussenegger/nvim-dap" })
 
-        use({
-            "L3MON4D3/LuaSnip",
-            event = "InsertEnter",
-            requires = "rafamadriz/friendly-snippets",
-        })
+        -- use({
+        --     "L3MON4D3/LuaSnip",
+        --     event = "InsertEnter",
+        --     requires = "rafamadriz/friendly-snippets",
+        -- })
 
-        use({ "hrsh7th/vim-vsnip" })
-        use({ "hrsh7th/vim-vsnip-integ" })
+        -- use({ "hrsh7th/vim-vsnip" })
+        -- use({ "hrsh7th/vim-vsnip-integ" })
 
         -- Completion
         use({
@@ -250,11 +250,16 @@ require("packer").startup({
             --'iron-e/nvim-cmp',
             --branch = 'feat/completion-menu-borders',
             --event = { 'InsertEnter', 'CmdLineEnter' },
-            requires = {},
+            requires = {
+                { "hrsh7th/cmp-vsnip" },
+                { "hrsh7th/vim-vsnip-integ" }
+            },
             config = function()
                 require("plugins.cmp")
             end,
         })
+        use({ "hrsh7th/vim-vsnip", event = "InsertEnter", after = "nvim-cmp" })
+        use({ "hrsh7th/vim-vsnip-integ", event = "InsertEnter", after = "nvim-cmp" })
         use({ "petertriho/cmp-git", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lua", event = "InsertEnter", after = "nvim-cmp" })
@@ -263,7 +268,7 @@ require("packer").startup({
         use({ "hrsh7th/cmp-calc", event = "InsertEnter", after = "nvim-cmp" })
         use({ "ray-x/cmp-treesitter", event = "InsertEnter", after = "nvim-cmp" })
         use({ "lukas-reineke/cmp-rg", event = "InsertEnter", after = "nvim-cmp" })
-        use({ "saadparwaiz1/cmp_luasnip", event = "InsertEnter", after = "nvim-cmp" })
+        -- use({ "saadparwaiz1/cmp_luasnip", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-copilot", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-cmdline", event = "CmdLineEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lsp-signature-help", event = "CmdLineEnter", after = "nvim-cmp" })
