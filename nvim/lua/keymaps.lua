@@ -149,6 +149,11 @@ wk.register({
         a = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "harpoon add file" },
         c = { "<Cmd>lua require('harpoon.mark').clear_all()<CR>", "harpoon clear" },
     },
+    ["<leader>M"] = {
+        name = "+markdown",
+        p = { "<Cmd>:MarkdownPreview<CR>", "markdown preview" },
+        t = { "<Cmd>:MarkdownPreviewToggle<CR>", "markdown toggle" },
+    },
     ["<leader>m"] = {
         name = "+metals",
         m = { "<Cmd>lua require('telescope').extensions.metals.commands()<CR>", "metals commands" },
