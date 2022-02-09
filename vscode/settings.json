@@ -269,7 +269,7 @@
   "editor.smoothScrolling": true,
   "WhiteSource Advise.Diff.BaseBranch": "main",
   "WhiteSource Advise.includeDevDependencies": true,
-  "window.zoomLevel": 3,
+  "window.zoomLevel": 2,
   "terminal.integrated.commandsToSkipShell": [
     "workbench.action.toggleMaximizedPanel"
   ],

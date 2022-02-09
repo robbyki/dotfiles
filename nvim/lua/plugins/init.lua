@@ -462,16 +462,6 @@ require("packer").startup({
                 require("plugins.lsp")
             end,
         })
-        -- use({
-        --     "neovim/nvim-lspconfig",
-        --     requires = {
-        --         { "nvim-lua/lsp-status.nvim" },
-        --         -- { "nvim-lua/lsp-extensions.nvim" },
-        --     },
-        --     config = function()
-        --         require("plugins.lsp")
-        --     end,
-        -- })
 
         -- metals
         use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })

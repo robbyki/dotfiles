@@ -219,6 +219,8 @@ alias ocl='oc logs'
 alias oclf='oc logs --follow'
 alias ocrf='oc replace --force -f'
 alias ocls='ic oc cluster ls'
+alias oce='oc expose'
+alias ocgserv='oc get svc'
 
 # tekton
 alias tknhs='tkn hub search'
