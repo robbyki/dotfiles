@@ -14,28 +14,29 @@ alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
 
 # cd into directories
-alias rkeeweb='copy ~/Documents/notes/webex-rkee.txt'
-alias util='cd $HOME/dev/ibm-projects/aide-utilities'
-alias temp='cd $HOME/dev/ibm-projects/aide-template/'
-alias nv='cd $HOME/.dotfiles/nvim'
-alias dev='cd $HOME/dev/'
+alias rkeeweb="copy ~/Documents/notes/webex-rkee.txt"
+alias util="cd $HOME/dev/ibm-projects/aide-utilities"
+alias temp="cd $HOME/dev/ibm-projects/aide-template/"
+alias nv="cd $HOME/.dotfiles/nvim"
+alias dev="cd $HOME/dev/"
 alias downloads="cd ~/Downloads"
 alias kubeconfig="$EDITOR ~/.kube/config"
 alias docs="cd ~/Documents"
 alias vids="cd ~/Videos"
 alias blog="cd ~/dev/blog"
-alias snips="cd ~/.dotfiles/nvim/.vsnip"
+alias snip="cd ~/.dotfiles/nvim/.vsnip"
+alias snipf="cd $HOME/.local/share/nvim/site/pack/packer/opt/friendly-snippets/snippets/"
 alias pics="cd ~/Pictures"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 
 # gpg secrets with zsh secrets to have some sort of protection on a per-shell basis
-alias sd='secrets decrypt'
-alias se='secrets encrypt'
-alias ssrc='secrets source'
-alias ssibm='secrets source ibm-secrets'
-alias sdibm='secrets decrypt ibm-secrets'
-alias seibm='secrets encrypt ibm-secrets'
+alias sd="secrets decrypt"
+alias se="secrets encrypt"
+alias ssrc="secrets source"
+alias ssibm="secrets source ibm-secrets"
+alias sdibm="secrets decrypt ibm-secrets"
+alias seibm="secrets encrypt ibm-secrets"
 
 # system helpers
 alias tch='touch'
