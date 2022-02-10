@@ -4,5 +4,18 @@
             "log"
         ],
         "body": "console.log(${1:$TM_SELECTED_TEXT});"
+    },
+    "demo-port": {
+        "prefix": "demo-port",
+        "body": [
+            "const express = require(\"express\");",
+            "const app = express();",
+            "const port = process.env.PORT || 3000;",
+            "app.listen(port, () => {",
+            "    console.log(\"Hello world listening on port\", port);",
+            "})",
+            ""
+        ],
+        "description": "demo snippet"
     }
 }
