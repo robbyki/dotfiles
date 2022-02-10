@@ -32,8 +32,6 @@ require("packer").startup({
 
         use({ "lewis6991/impatient.nvim" })
 
-        -- nvim performance
-
         -- ui
         use({ "liuchengxu/vista.vim" })
         use({
@@ -42,6 +40,8 @@ require("packer").startup({
                 require("plugins.notify")
             end,
         })
+
+        use({ "voldikss/vim-floaterm" })
 
         use({
             "rebelot/kanagawa.nvim",
@@ -79,16 +79,6 @@ require("packer").startup({
                 require("plugins.fold")
             end,
         })
-        -- Terminal
-        use({
-            "akinsho/toggleterm.nvim",
-            event = "BufWinEnter",
-            config = function()
-                require("plugins.toggleterm")
-            end,
-            --cmd = { 'ToggleTerm', 'TermExec', 'ToggleTermOpenAll', 'ToggleTermCloseAll' },
-        })
-
         use({
             "akinsho/bufferline.nvim",
             requires = { "kyazdani42/nvim-web-devicons" },
