@@ -22,6 +22,7 @@ plugins=(
     fzf-tab
     zsh-secrets
     flatpak
+    npm
 )
 # }}}
 

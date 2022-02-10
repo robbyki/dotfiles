@@ -231,8 +231,9 @@ require("packer").startup({
         --     requires = "rafamadriz/friendly-snippets",
         -- })
 
-        -- use({ "hrsh7th/vim-vsnip" })
-        -- use({ "hrsh7th/vim-vsnip-integ" })
+        use({ "hrsh7th/vim-vsnip" })
+        use({ "hrsh7th/vim-vsnip-integ" })
+        use({ "hrsh7th/cmp-vsnip" })
 
         -- Completion
         use({
@@ -248,8 +249,6 @@ require("packer").startup({
                 require("plugins.cmp")
             end,
         })
-        use({ "hrsh7th/vim-vsnip", event = "InsertEnter", after = "nvim-cmp" })
-        use({ "hrsh7th/vim-vsnip-integ", event = "InsertEnter", after = "nvim-cmp" })
         use({ "petertriho/cmp-git", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lua", event = "InsertEnter", after = "nvim-cmp" })

@@ -126,7 +126,7 @@ wk.register({
     },
     ["<leader>t"] = {
         name = "+terminal",
-        t = { "<Cmd>FloatermNew --height=0.3 --width=0.8<CR>", "terminal" },
+        t = { "<Cmd>FloatermNew --height=0.6 --width=0.8<CR>", "terminal" },
         a = { "<Cmd>FloatermNew --name=ammonite --height=0.4 --width=0.9 amm<CR>", "ammonite" },
         p = { "<Cmd>FloatermNew --name=python --height=0.4 --width=0.9 python<CR>", "python" },
         k = { "<Cmd>FloatermNew --name=k9s --autoclose=2 --height=0.9 --width=0.9 k9s<CR>", "k9s" },
