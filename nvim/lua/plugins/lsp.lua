@@ -10,8 +10,8 @@ lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default
     capabilities = capabilities,
 })
 
-metals_config = require("metals").bare_config()
-metals_config.settings = {
+Metals_config = require("metals").bare_config()
+Metals_config.settings = {
     showImplicitArguments = true,
     showInferredType = true,
     excludedPackages = {
@@ -19,42 +19,46 @@ metals_config.settings = {
         "com.github.swagger.akka.javadsl",
         "akka.stream.javadsl",
     },
+    superMethodLensesEnabled = true,
 }
-
-metals_config.init_options.statusBarProvider = "on"
-metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_settings
-metals_config.capabilities = capabilities
-
+Metals_config.init_options.statusBarProvider = "on"
+Metals_config.init_options.compilerOptions.isCompletionItemResolve = false
+Metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_settings
+Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local dap = require("dap")
-
--- For that they usually provide a `console` option in their |dap-configuration|.
--- The supported values are usually called `internalConsole`, `integratedTerminal`
--- and `externalTerminal`.
-
 dap.configurations.scala = {
     {
         type = "scala",
         request = "launch",
         name = "Run",
-        metalsRunType = "run",
+        metals = {
+            runType = "run",
+        },
     },
     {
         type = "scala",
         request = "launch",
         name = "Test File",
-        metalsRunType = "testFile",
+        metals = {
+            runType = "testFile",
+        },
     },
     {
         type = "scala",
         request = "launch",
         name = "Test Target",
-        metalsRunType = "testTarget",
+        metals = {
+            runType = "testTarget",
+        },
     },
 }
-
-metals_config.on_attach = function(client, bufnr)
+Metals_config.on_attach = function(client, bufnr)
+    vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
+    vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
+    vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
     require("metals").setup_dap()
 end
+
 -- sumneko lua
 lsp_config.sumneko_lua.setup({
     cmd = {
@@ -196,8 +200,6 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 
 --
 --
---
---
 -- local lspconfig = require("lspconfig")
 -- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 --
@@ -207,9 +209,11 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 --     },
 --     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
 -- })
---
+
+
+
+
 -- Metals_config = require("metals").bare_config()
---
 -- Metals_config.settings = {
 --     showImplicitArguments = true,
 --     showInferredType = true,
@@ -220,14 +224,11 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 --     },
 --     superMethodLensesEnabled = true,
 -- }
---
 -- Metals_config.init_options.statusBarProvider = "on"
 -- Metals_config.init_options.compilerOptions.isCompletionItemResolve = false
 -- Metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_settings
 -- Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
---
 -- local dap = require("dap")
---
 -- dap.configurations.scala = {
 --     {
 --         type = "scala",
@@ -254,13 +255,17 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 --         },
 --     },
 -- }
---
 -- Metals_config.on_attach = function(client, bufnr)
 --     vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
 --     vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
 --     vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
 --     require("metals").setup_dap()
 -- end
+
+
+
+
+
 -- -- sumneko lua
 -- lspconfig.sumneko_lua.setup({
 --     cmd = {
