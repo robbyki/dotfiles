@@ -168,6 +168,7 @@ alias kns='kubens'
 alias kval='kubeval --schema-location=file://$OCPSCHEMA'
 alias kx='kubectx'
 alias mk='minikube'
+alias st='stern'
 
 # containers
 # alias docker='podman'
