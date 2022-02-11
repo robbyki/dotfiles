@@ -34,7 +34,7 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    # os_icon                 # os identifier
+    # custom_fedora_icon
     status                  # exit code of the last command
     dir                     # current directory
     vcs                     # git status
@@ -59,7 +59,7 @@
     # anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-    # node_version          # node.js version
+    node_version          # node.js version
     go_version            # go version (https://golang.org)
     # java_version          # java version (https://www.java.com/)
 #    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
@@ -75,8 +75,8 @@
     battery
     # =========================[ Line #2 ]=========================
     # newline
-    # public_ip             # public IP address
-    # ip                    # ip address and bandwidth usage for a specified network interface
+    public_ip             # public IP address
+    ip                    # ip address and bandwidth usage for a specified network interface
     # kubecontext
     # prompt_example
     vpn_ip                # virtual private network indicator
@@ -189,8 +189,17 @@
 
 
   #################################[ os_icon: os identifier ]##################################
+POWERLEVEL9K_CUSTOM_FEDORA_ICON="echo '\uf798'"
+POWERLEVEL9K_CUSTOM_FEDORA_ICON_BACKGROUND=069
+POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
+# POWERLEVEL9K_CUSTOM_FEDORA_ICON_BACKGROUND=232
+# POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=101
   # OS identifier color.
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=
+  # POWERLEVEL9K_LINUX_FEDORA_ICON='\uf30a'
+  # typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=
+  # POWERLEVEL9K_CUSTOM_ICON_BACKGROUND='255'
+  # typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=212
+  # POWERLEVEL9K_CUSTOM_ICON="echo $'\uf30a'"
   # Make the icon bold.
   typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='${P9K_CONTENT}'
 
