@@ -69,6 +69,8 @@ alias hib="systemctl hibernate"
 alias off="systemctl poweroff"
 alias reb="systemctl reboot"
 alias peek="GDK_BACKEND=x11 peek"
+alias ccc="xclip -sel clip"
+alias jqi="jid -q | ccc"
 #alias dr="rofi -show drun"
 #alias r="rofi -theme Arc-Dark -show window"
 
@@ -169,6 +171,7 @@ alias kval='kubeval --schema-location=file://$OCPSCHEMA'
 alias kx='kubectx'
 alias mk='minikube'
 alias st='stern'
+alias kbksd='kubectl-ksd'
 
 # containers
 # alias docker='podman'
@@ -223,6 +226,7 @@ alias ocrf='oc replace --force -f'
 alias ocls='ic oc cluster ls'
 alias oce='oc expose'
 alias ocgserv='oc get svc'
+alias ocgnoj='oc get nodes -o=json'
 
 # tekton
 alias tknhs='tkn hub search'

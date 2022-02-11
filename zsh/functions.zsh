@@ -241,6 +241,18 @@ ocy() {
 	oc --output yaml $@ | yq eval --colors
 }
 
+ocgetnode() {
+    oc get nodes -o=jsonpath='{ .items[0].metadata.name }'
+}
+
+ocgetclusterip() {
+    oc get svc -o=jsonpath='{ .items[0].spec.clusterIP }'
+}
+
+ocgetport() {
+    oc get svc -o=jsonpath='{ .items[0].spec.ports[0].port }'
+}
+
 occ() {
 	oc $@ | yq eval --colors -P
 }
