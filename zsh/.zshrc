@@ -8,6 +8,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # {{{ zsh-plugins
 plugins=(
+    golang
+    docker
     autoupdate
     git
     zsh-autosuggestions
@@ -186,7 +188,7 @@ export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--height 80% --preview 'tree -NC {} | head -200'"
-export FZF_TMUX_OPTS="-p 85%,30%"
+export FZF_TMUX_OPTS="-p 90%,30%"
 # }}}
 
 #export number of processors on linux

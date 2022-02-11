@@ -49,8 +49,11 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
+    secrets
+    # prompt_example
     background_jobs         # presence of background jobs
     command_execution_time  # duration of the last command
+    # instant_prompt_example
     # direnv                  # direnv status (https://direnv.net/)
     # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     # anaconda                # conda environment (https://conda.io/)
@@ -65,17 +68,17 @@
     vim_shell               # vim shell indicator (:sh)
 #    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
     context                 # user@hostname
-    load                  # CPU load
+    # load                  # CPU load
     ram                   # free RAM
-    disk_usage            # disk usage
+    # disk_usage            # disk usage
     time                    # current time
     battery
     # =========================[ Line #2 ]=========================
-    newline
-    public_ip             # public IP address
-    ip                    # ip address and bandwidth usage for a specified network interface
+    # newline
+    # public_ip             # public IP address
+    # ip                    # ip address and bandwidth usage for a specified network interface
     # kubecontext
-    prompt_secrets
+    # prompt_example
     vpn_ip                # virtual private network indicator
     newline
     kubecontext
@@ -184,11 +187,6 @@
     typeset -g POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='%{%}'
   fi
 
-  function prompt_secrets() {
-  if [[ -n "$SESSION_SECRETS" ]]; then
-    p10k segment -f 3 -t "🔒"
-  fi
-  }
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
@@ -1160,7 +1158,7 @@
       # '*prod*'  PROD    # These values are examples that are unlikely
       # '*test*'  TEST    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
   # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # Use POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION to specify the content displayed by kubecontext
@@ -1185,7 +1183,7 @@
   # the following extra parameters are available:
   #
   # - P9K_KUBECONTEXT_CLOUD_NAME     Either "gke" or "eks".
-  # - P9K_KUBECONTEXT_CLOUD_ACCOUNT  Account/project ID.
+  # - P7K_KUBECONTEXT_CLOUD_ACCOUNT  Account/project ID.
   # - P9K_KUBECONTEXT_CLOUD_ZONE     Availability zone.
   # - P9K_KUBECONTEXT_CLOUD_CLUSTER  Cluster.
   #
@@ -1203,14 +1201,21 @@
   #   - P9K_KUBECONTEXT_CLOUD_ACCOUNT=123456789012
   #   - P9K_KUBECONTEXT_CLOUD_ZONE=us-east-1
   #   - P9K_KUBECONTEXT_CLOUD_CLUSTER=my-cluster-01
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION=
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION=
+  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_NAME}'
   # Show P9K_KUBECONTEXT_CLOUD_CLUSTER if it's not empty and fall back to P9K_KUBECONTEXT_NAME.
-  POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
+  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
   # Append the current context's namespace if it's not "default".
-  POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}'
+  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}'
 
   # Custom prefix.
   # typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='%fat '
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION=
+  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
+  POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
+  POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}'
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='%246Fat '
 
   ################[ terraform: terraform workspace (https://www.terraform.io) ]#################
   # Don't show terraform workspace if it's literally "default".
@@ -1501,9 +1506,17 @@
   # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and orange text greeting the user.
   #
   # Type `p10k help segment` for documentation and a more sophisticated example.
-  function prompt_example() {
-    p10k segment -f 208 -i '⭐' -t 'hello, %n'
-  }
+function prompt_example() {
+  # p10k segment -f 208 -i '⭐' -t 'hello, %n'
+  p10k segment -f 208 -i "🔒" -t 'hello, %n'
+}
+
+function prompt_secrets() {
+  if [[ -n "$SESSION_SECRETS" ]]; then
+    p10k segment -f 196 -i "🔒"
+    # p10k segment -f 208 -i "🔒" -t 'hello, %n'
+  fi
+}
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See

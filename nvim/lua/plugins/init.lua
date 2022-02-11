@@ -243,7 +243,7 @@ require("packer").startup({
             --event = { 'InsertEnter', 'CmdLineEnter' },
             requires = {
                 { "hrsh7th/cmp-vsnip" },
-                { "hrsh7th/vim-vsnip-integ" }
+                { "hrsh7th/vim-vsnip-integ" },
             },
             config = function()
                 require("plugins.cmp")
@@ -266,9 +266,7 @@ require("packer").startup({
         use({
             "j-hui/fidget.nvim",
             config = function()
-                require("fidget").setup({
-                    text = { spinner = "bouncing_bar" },
-                })
+                require("plugins.fidget-spinner")
             end,
         })
         -- use({

@@ -130,12 +130,13 @@ fapp() {
 	nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
 }
 
+# can just use `take` with zsh
 # cd into dir after creating it.
-mkcdir()
-{
-    mkdir -p -- "$1" &&
-      cd -P -- "$1"
-}
+# mkcdir()
+# {
+#     mkdir -p -- "$1" &&
+#       cd -P -- "$1"
+# }
 
 #lfcd
 LFCD="$HOME/.config/lf/lfcd.sh"
