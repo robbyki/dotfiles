@@ -546,7 +546,7 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
   # Don't show the number of background jobs.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
   # Background jobs color.
-  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=70
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=37
   # Custom icon.
   # typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -754,7 +754,7 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
 
   ######################################[ ram: free RAM ]#######################################
   # RAM color.
-  typeset -g POWERLEVEL9K_RAM_FOREGROUND=66
+  typeset -g POWERLEVEL9K_RAM_FOREGROUND="grey39"
   # Custom icon.
   # typeset -g POWERLEVEL9K_RAM_VISUAL_IDENTIFIER_EXPANSION='⭐'
 

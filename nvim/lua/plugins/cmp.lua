@@ -1,11 +1,11 @@
-local cmp = require('cmp')
-local types = require('cmp.types')
-local str = require('cmp.utils.str')
-local lspkind = require('lspkind')
+local cmp = require("cmp")
+local types = require("cmp.types")
+local str = require("cmp.utils.str")
+local lspkind = require("lspkind")
 -- local luasnip = require('luasnip')
-local neogen = require('neogen')
+local neogen = require("neogen")
 
-local border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' }
+local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 
 local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
@@ -114,7 +114,7 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = 'cmp_tabnine' },
+        { name = "cmp_tabnine" },
         { name = "nvim_lsp" },
         { name = "cmp_git" },
         { name = "path" },
@@ -142,30 +142,36 @@ cmp.setup({
     },
 })
 
-cmp.setup.cmdline(':', {
-	enabled = function()
-		return true
-	end,
-	completion = {
-		border = border,
-		scrollbar = '▌',
-	},
-	documentation = {
-		border = border,
-		scrollbar = '▌',
-	},
-	sources = cmp.config.sources({
-		{ name = 'path' },
-	}, {
-		{ name = 'cmdline' },
-	}),
+cmp.setup.cmdline(":", {
+    enabled = function()
+        return true
+    end,
+    completion = {
+        border = border,
+        scrollbar = "▌",
+    },
+    documentation = {
+        border = border,
+        scrollbar = "▌",
+    },
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
+        { name = "cmdline" },
+    }),
 })
 
-cmp.setup.cmdline('/', {
-    sources = {
-        { name = 'buffer' }
-    }
+-- fuzzy buffer
+cmp.setup.cmdline("/", {
+    sources = cmp.config.sources({
+        { name = "fuzzy_buffer" },
+    }),
 })
+-- cmp.setup.cmdline('/', {
+--     sources = {
+--         { name = 'buffer' }
+--     }
+-- })
 
 local tabnine = require("cmp_tabnine.config")
 tabnine:setup({
@@ -188,4 +194,3 @@ require("lsp_signature").setup({
 })
 
 -- require('luasnip.loaders.from_vscode').load()
-

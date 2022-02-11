@@ -170,10 +170,11 @@ fzf-open-file-current-dir() {
 zle -N fzf-open-file-current-dir
 
 bindkey -s "^[o" 'lfcd\n'
-bindkey '^ ' autosuggest-accept
-bindkey -a '^ ' autosuggest-accept
 bindkey '^O' fzf_then_open_in_editor
 bindkey '^P' fzf-open-file-current-dir
+
+bindkey '^ ' autosuggest-accept
+bindkey -a '^ ' autosuggest-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -230,6 +231,3 @@ export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export OCPSCHEMA=${HOME}/dev/openshift-json-schema
-
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4d4d4d"
-

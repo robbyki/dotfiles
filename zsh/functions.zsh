@@ -2,7 +2,6 @@
 #--------------------------------------------------------------------#
 #                         github gh commands                         #
 #--------------------------------------------------------------------#
-
 function ge() {
   # Quoting switches between single and double quotes to leverage and avoid
   # string interpolation as necessary. There is probably a better way to do
@@ -59,33 +58,6 @@ function gccd() {
 #--------------------------------------------------------------------#
 #                          System functions                          #
 #--------------------------------------------------------------------#
-
-halfpage=$((LINES/2)) # calculate how many lines one half of the terminal's height has
-# construct parameter to go down/up $halfpage lines via termcap
-halfpage_down=""
-for i in {1..$halfpage}; do
-  halfpage_down="$halfpage_down$terminfo[cud1]"
-done
-halfpage_up=""
-for i in {1..$halfpage}; do
-  halfpage_up="$halfpage_up$terminfo[cuu1]"
-done
-# This checks if the current command line is empty
-# and if so move the prompt up to the middle of the terminal.
-# Now you can fast-forward your prompt with an additional press of the ENTER key
-magic-enter () {
-    if [[ -z $BUFFER ]]
-    then
-        print ${halfpage_down}${halfpage_up}$terminfo[cuu1]
-        zle reset-prompt
-    else
-        zle accept-line
-    fi
-}
-zle -N magic-enter
-bindkey "^M" magic-enter
-
-# Archive Extraction
 # Usage: Ex <File>
 ex ()
 {
@@ -156,6 +128,7 @@ lfcd () {
             fi
         fi
     fi
+    ll
 }
 
 fancy-ctrl-z () {
@@ -241,7 +214,6 @@ mcdmlogs() {
 	mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
 }
 
-
 #--------------------------------------------------------------------#
 #                             Openshift                              #
 #--------------------------------------------------------------------#
@@ -285,3 +257,6 @@ oclogin-pass() {
   oc login -u passcode -p $1 --server=$2
 }
 
+function prompt-middle() { tput cup $((LINES/2)) 0; zle reset-prompt; zle redisplay}
+zle -N prompt-middle
+bindkey '^[m' prompt-middle
