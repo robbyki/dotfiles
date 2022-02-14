@@ -8,6 +8,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # {{{ zsh-plugins
 plugins=(
+    fzf-alias
     golang
     docker
     autoupdate
@@ -178,7 +179,6 @@ bindkey -a '^ ' autosuggest-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# export FZF_TMUX_OPTS="-p 85%,65%"
 export FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_DEFAULT_OPTS="-i --no-mouse --ansi --layout=default --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
@@ -229,3 +229,8 @@ export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export OCPSCHEMA=${HOME}/dev/openshift-json-schema
+
+export OCREGISTRY="image-registry.openshift-image-registry.svc:5000"
+
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
+export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=1

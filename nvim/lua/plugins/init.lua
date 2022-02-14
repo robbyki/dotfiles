@@ -172,7 +172,7 @@ require("packer").startup({
 
         use({ "nvim-lua/plenary.nvim" })
 
-        use({ "ThePrimeagen/harpoon" })
+        -- use({ "ThePrimeagen/harpoon" })
         use({ "haya14busa/incsearch.vim" })
         use({
             "ethanholz/nvim-lastplace",

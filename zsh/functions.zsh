@@ -228,6 +228,10 @@ ocgetconfig() {
  	ic oc cluster config -c $1 --admin
 }
 
+ocprune() {
+    oc adm prune images --registry-url=$OCREGISTRY --confirm
+}
+
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
 occlogin() {
  	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1 --insecure-skip-tls-verify=true
@@ -238,20 +242,30 @@ ocy() {
 	oc --output yaml $@ | yq eval --colors
 }
 
-ocgetnode() {
+octkn() {
+    oc whoami -t
+}
+
+ocnodeip() {
     oc get nodes -o=jsonpath='{ .items[0].metadata.name }'
 }
 
-ocgetip() {
-    oc get svc -o=jsonpath='{ .items[0].spec.clusterIP }'
+occlusterip() {
+    echo "$(oc get svc -o=jsonpath='{ .items[0].spec.clusterIP }'):`ocport`"
 }
 
-ocgetport() {
+ocport() {
     oc get svc -o=jsonpath='{ .items[0].spec.ports[0].port }'
 }
 
-ocgetextroute() {
-    oc get route -o=jsonpath='{ .items[0].spec.host }'
+# usage for clipboard and then node debug: ocgetextroute | ccc
+ocextroute() {
+    oc get route -o=jsonpath='{.items..spec.host}'
+}
+
+ocdefaultroute() {
+    # oc get route -n openshift-image-registry -o=json | jq '.items[].spec.host'
+    oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
 }
 
 occ() {

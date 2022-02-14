@@ -142,12 +142,12 @@ wk.register({
         p = { "<Cmd>lua require'hop'.hint_patterns()<CR>", "Hop to pattern" },
         w = { "<Cmd>lua require'hop'.hint_words()<CR>", "Hop to word" },
     },
-    ["<leader>H"] = {
-        name = "+harpoon",
-        m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "toggle quick menu" },
-        a = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "harpoon add file" },
-        c = { "<Cmd>lua require('harpoon.mark').clear_all()<CR>", "harpoon clear" },
-    },
+    -- ["<leader>H"] = {
+    --     name = "+harpoon",
+    --     m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "toggle quick menu" },
+    --     a = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "harpoon add file" },
+    --     c = { "<Cmd>lua require('harpoon.mark').clear_all()<CR>", "harpoon clear" },
+    -- },
     ["<leader>M"] = {
         name = "+markdown",
         p = { "<Cmd>:MarkdownPreview<CR>", "markdown preview" },

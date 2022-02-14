@@ -39,13 +39,15 @@ alias sdibm="secrets decrypt ibm-secrets"
 alias seibm="secrets encrypt ibm-secrets"
 
 # system helpers
+alias exp='export'
 alias tch='touch'
-alias peekf='functions'
+alias vf='functions'
 alias tarx='tar xvzf'
 alias tarc='tar cvzf'
 alias t='tmux'
 alias am='alsamixer'
 #alias beaver='GTK_THEME=Adwaita:light dbeaver-ce'
+alias c='cat'
 alias cat='bat'
 alias cb='clipboard'
 alias cls='clear'
@@ -176,13 +178,17 @@ alias kbksd='kubectl-ksd' # secrets decoder
 # containers
 # alias docker='podman'
 alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
-alias pcls='podman container ls'
+alias pdp='podman push --tls-verify=false'
+alias pdoclogin='podman login -u kubeadmin -p `octkn` `ocdefaultroute` --tls-verify=false'
+alias pdcls='podman container ls'
 alias pd='podman'
-alias pi='podman images'
-alias pprune='podman system prune --all --force'
-alias ppull='podman pull'
-alias prc='podman rm $(podman ps -aq)'
-alias prmi='podman images -q | xargs podman rmi'
+alias pdb='podman build'
+alias pdi='podman images'
+alias pdprune='podman system prune --all --force'
+alias pdt='podman tag'
+alias pdpull='podman pull'
+alias pdrc='podman rm $(podman ps -aq)'
+alias pdrmi='podman images -q | xargs podman rmi'
 #alias psc='podman stop $(docker ps -aq)'
 # alias di='docker images'
 # alias drmi='docker images -q | xargs docker rmi'
@@ -211,22 +217,29 @@ alias lsg="ls --git-status"
 alias lst="ls -tr"
 
 # openshift oc
-alias oclogin="ssibm;iclogin;"
+alias ocgproj='oc get projects'
 alias ocaf='oc apply -f'
+alias occd='oc create deployment'
 alias occf='oc create -f'
+alias occimages='oc get images | grep $OCREGISTRY'
 alias occs='oc create secret'
 alias ocd='oc describe'
+alias ocdn='oc debug nodes/`ocnodeip`'
+alias oce='oc expose'
+alias oced='oc expose deployment --port=8080'
 alias ocgd='oc get deployments'
 alias ocgn='oc get nodes'
 alias ocgp='oc get pods'
+alias ocgrn='oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name'
 alias ocgs='oc get secrets'
+alias ocgserv='oc get svc'
 alias ocl='oc logs'
 alias oclf='oc logs --follow'
-alias ocrf='oc replace --force -f'
+alias oclogin="ssibm;iclogin;"
 alias ocls='ic oc cluster ls'
-alias oce='oc expose'
-alias ocgserv='oc get svc'
-alias ocgnoj='oc get nodes -o=json'
+alias ocnp='oc new-project'
+alias ocrf='oc replace --force -f'
+# alias ocgnoj='oc get nodes -o=json'
 
 # tekton
 alias tknhs='tkn hub search'
