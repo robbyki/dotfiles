@@ -59,6 +59,7 @@
     # anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    kubecontext
     node_version          # node.js version
     go_version            # go version (https://golang.org)
     # java_version          # java version (https://www.java.com/)
@@ -75,13 +76,13 @@
     battery
     # =========================[ Line #2 ]=========================
     # newline
-    public_ip             # public IP address
-    ip                    # ip address and bandwidth usage for a specified network interface
+    # public_ip             # public IP address
+    # ip                    # ip address and bandwidth usage for a specified network interface
     # kubecontext
     # prompt_example
     vpn_ip                # virtual private network indicator
-    newline
-    kubecontext
+    # newline
+    # kubecontext
 
     # proxy                 # system-wide http/https/ftp proxy
     # battery               # internal battery
@@ -1132,7 +1133,14 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
   # Custom icon.
   # typeset -g POWERLEVEL9K_HASKELL_STACK_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  #############[ kubecontext: current kubernetes context (https://kubernetes.io/) ]#############
+
+
+
+
+#--------------------------------------------------------------------#
+#                             KUBERNETES                             #
+#--------------------------------------------------------------------#
+
   # Show kubecontext only when the the command you are typing invokes one of these tools.
   # Tip: Remove the next line to always show kubecontext.
   # typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='oc|kubectl|helm|kubens|kubectx|oc|istioctl|kogito'
@@ -1163,12 +1171,29 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_FOREGROUND=28
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_VISUAL_IDENTIFIER_EXPANSION='⭐'
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
-  typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
-      # '*prod*'  PROD    # These values are examples that are unlikely
-      # '*test*'  TEST    # to match your needs. Customize them as needed.
-      '*'       DEFAULT)
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
+  #     # '*prod*'  PROD    # These values are examples that are unlikely
+  #     # '*test*'  TEST    # to match your needs. Customize them as needed.
+  #     '*'       DEFAULT)
   # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
-  # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION=
+  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
+  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}'
+
+# typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION='$P9K_KUBECONTEXT_NAME:$P9K_KUBECONTEXT_NAMESPACE'
+typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION='$P9K_KUBECONTEXT_NAMESPACE'
+typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='('
+typeset -g POWERLEVEL9K_KUBECONTEXT_SUFFIX=')'
+typeset -g POWERLEVEL9K_KUBECONTEXT_VISUAL_IDENTIFIER_EXPANSION='☸️'
+typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
+# '*-prod-*'  PROD
+'*'         DEFAULT)
+typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=140
+typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=201
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION='%B'
+  # POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
+  # POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION+='${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}'
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION=
 
   # Use POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION to specify the content displayed by kubecontext
   # segment. Parameter expansions are very flexible and fast, too. See reference:
@@ -1210,21 +1235,23 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
   #   - P9K_KUBECONTEXT_CLOUD_ACCOUNT=123456789012
   #   - P9K_KUBECONTEXT_CLOUD_ZONE=us-east-1
   #   - P9K_KUBECONTEXT_CLOUD_CLUSTER=my-cluster-01
-  # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION=
-  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_NAME}'
   # Show P9K_KUBECONTEXT_CLOUD_CLUSTER if it's not empty and fall back to P9K_KUBECONTEXT_NAME.
-  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
   # Append the current context's namespace if it's not "default".
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION=
+  # # Show P9K_KUBECONTEXT_CLOUD_CLUSTER if it's not empty and fall back to P9K_KUBECONTEXT_NAME.
+  # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
+  # # Append the current context's namespace if it's not "default".
   # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}'
 
   # Custom prefix.
   # typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='%fat '
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION=
   # POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
-  POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
-  POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}'
   # typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='%246Fat '
+
+#--------------------------------------------------------------------#
+#                          KUBERNETES ENDS                           #
+#--------------------------------------------------------------------#
+
 
   ################[ terraform: terraform workspace (https://www.terraform.io) ]#################
   # Don't show terraform workspace if it's literally "default".
@@ -1386,6 +1413,7 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
       # '*:*test*:*'  TEST    # to match your needs. Customize them as needed.
       '*'             DEFAULT)
   typeset -g POWERLEVEL9K_GOOGLE_APP_CRED_DEFAULT_FOREGROUND=32
+  typeset -g POWERLEVEL9K_KUBECONTEXT_VISUAL_IDENTIFIER_EXPANSION='☸️'
   # typeset -g POWERLEVEL9K_GOOGLE_APP_CRED_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # Use POWERLEVEL9K_GOOGLE_APP_CRED_CONTENT_EXPANSION to specify the content displayed by

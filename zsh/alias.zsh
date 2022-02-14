@@ -13,7 +13,7 @@ alias tmuxconfig="$EDITOR $DOTFILES/tmux/.tmux.conf"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
 
-# cd into directories
+# "I didn't say they'll take you places you'd want to go"
 alias rkeeweb="copy ~/Documents/notes/webex-rkee.txt"
 alias util="cd $HOME/dev/ibm-projects/aide-utilities"
 alias temp="cd $HOME/dev/ibm-projects/aide-template/"
@@ -30,7 +30,7 @@ alias pics="cd ~/Pictures"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 
-# gpg secrets with zsh secrets to have some sort of protection on a per-shell basis
+# gpg secrets on a per shell basis
 alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
@@ -46,7 +46,6 @@ alias tarc='tar cvzf'
 alias t='tmux'
 alias am='alsamixer'
 #alias beaver='GTK_THEME=Adwaita:light dbeaver-ce'
-#alias btop='bpytop'
 alias cat='bat'
 alias cb='clipboard'
 alias cls='clear'
@@ -59,8 +58,8 @@ alias mkdir='mkdir -pv'
 alias mv='mv -iv'
 alias mytemp='curl wttr.in'
 alias update='dnfu'
-alias vi='/usr/local/bin/nvim'
-alias vim='/usr/local/bin/nvim'
+alias vi=$EDITOR
+alias vim=$EDITOR
 alias wi='which'
 alias x=exit
 alias zz='omz reload'
@@ -71,6 +70,7 @@ alias reb="systemctl reboot"
 alias peek="GDK_BACKEND=x11 peek"
 alias ccc="xclip -sel clip"
 alias jqi="jid -q | ccc"
+
 #alias dr="rofi -show drun"
 #alias r="rofi -theme Arc-Dark -show window"
 
@@ -94,7 +94,7 @@ alias as='argo submit'
 alias asw='argo submit --watch'
 alias aw='argo watch'
 
-# bloop
+# bloop Scala
 alias bl='bloop'
 alias blc='bloop compile'
 alias blcr='bloop compile root --verbose'
@@ -171,7 +171,7 @@ alias kval='kubeval --schema-location=file://$OCPSCHEMA'
 alias kx='kubectx'
 alias mk='minikube'
 alias st='stern'
-alias kbksd='kubectl-ksd'
+alias kbksd='kubectl-ksd' # secrets decoder
 
 # containers
 # alias docker='podman'
@@ -209,9 +209,9 @@ alias ls="colorls -A"
 alias lsd="ls --sort-dirs"
 alias lsg="ls --git-status"
 alias lst="ls -tr"
-#alias ll="colorls -1A"
 
 # openshift oc
+alias oclogin="ssibm;iclogin;"
 alias ocaf='oc apply -f'
 alias occf='oc create -f'
 alias occs='oc create secret'
@@ -255,9 +255,10 @@ alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86V
 alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
+
 #alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
 
 # I don't really need these since I can just use `magic-enter` but I like them anyway
 alias ptop='tput cup $((LINES/4)) 0'  # Clear quarter
-alias pmid='tput cup $((LINES/2)) 0'  # Clear half
+# alias pmid='tput cup $((LINES/2)) 0'  # Clear half
 alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th

@@ -222,8 +222,6 @@ eval "$(fnm env --use-on-cd)"
 export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 
 # helper file for storing ocp cluster info
-source $HOME/clusters
-
 export UPDATE_ZSH_DAYS=10
 
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock

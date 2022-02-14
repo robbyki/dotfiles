@@ -1,4 +1,3 @@
-
 #--------------------------------------------------------------------#
 #                         github gh commands                         #
 #--------------------------------------------------------------------#
@@ -103,7 +102,6 @@ fapp() {
 }
 
 # can just use `take` with zsh
-# cd into dir after creating it.
 # mkcdir()
 # {
 #     mkdir -p -- "$1" &&
@@ -128,9 +126,10 @@ lfcd () {
             fi
         fi
     fi
-    ll
+    ll # list files after exiting lf
 }
 
+# I think I do this around 2 million times a day.
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
@@ -146,7 +145,8 @@ bindkey '^Z' fancy-ctrl-z
 bindkey "^[l" clear-screen
 
 # run `ll` after running cd into dir.
-cdl() { cd "$@" && ll; }
+# don't need this anymore thanks ENHANCD_HOOK_AFTER_CD=ll
+# cdl() { cd "$@" && ll; }
 
 # this equals is my '9' key on my dvorak keyboard.
 bindkey -s "^[=" 'k9s^M'
@@ -156,6 +156,7 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
+# search for string in history until I figure out zsh search substring plugin
 agh() {
 	ag $1 .
 }
@@ -176,10 +177,6 @@ fde(){
 	fd . -e ${1} ${2}
 }
 
-#mcddpls(){
-#mc ls cosddp/dev-ai-staging/${1}
-#}
-
 go-to-local-bin() {
  	sudo mv $1 /usr/local/bin/$1
 }
@@ -188,6 +185,7 @@ go-to-completions() {
  	sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
 }
 
+# usage: newdir/newfile.txt
 mktouch() {
   mkdir -p $(dirname $1) && touch $1;
 }
@@ -195,7 +193,6 @@ mktouch() {
 #--------------------------------------------------------------------#
 #                      minio mc object storage                       #
 #--------------------------------------------------------------------#
-
 # use mc to list all files in cos dm location
 mcdmls() {
 	mc ls dm/${1}
@@ -232,7 +229,7 @@ ocgetconfig() {
 }
 
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
-oclogin() {
+occlogin() {
  	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1 --insecure-skip-tls-verify=true
 }
 
@@ -245,12 +242,16 @@ ocgetnode() {
     oc get nodes -o=jsonpath='{ .items[0].metadata.name }'
 }
 
-ocgetclusterip() {
+ocgetip() {
     oc get svc -o=jsonpath='{ .items[0].spec.clusterIP }'
 }
 
 ocgetport() {
     oc get svc -o=jsonpath='{ .items[0].spec.ports[0].port }'
+}
+
+ocgetextroute() {
+    oc get route -o=jsonpath='{ .items[0].spec.host }'
 }
 
 occ() {
@@ -259,9 +260,12 @@ occ() {
 
 # assumes for now that my testinf cluster name is always the same.
 ocgetmaster() {
-  ibmcloud oc cluster get --cluster test-cluster-rk | grep "Master URL" | awk '{ print $3 }'
+    ic oc cluster get --cluster test-cluster-rk --output=json | jq -r '.serverURL'
 }
 
+ocgetid() {
+    ic oc cluster get --cluster test-cluster-rk --output=json | jq -r '.id'
+}
 
 # if you want to use passcode url: https://identity-3.us-south.iam.cloud.ibm.com/ui/showpasscode.jsp
 # must get master url info first by running occonf and does not require exporting api key
@@ -269,6 +273,7 @@ oclogin-pass() {
   oc login -u passcode -p $1 --server=$2
 }
 
+# moves my prompt to middle of screen. Helpful during video presentations.
 function prompt-middle() { tput cup $((LINES/2)) 0; zle reset-prompt; zle redisplay}
 zle -N prompt-middle
 bindkey '^[m' prompt-middle
