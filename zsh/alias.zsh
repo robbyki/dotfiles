@@ -41,7 +41,7 @@ alias seibm="secrets encrypt ibm-secrets"
 # system helpers
 alias exp='export'
 alias tch='touch'
-alias vf='functions'
+alias ff='functions'
 alias tarx='tar xvzf'
 alias tarc='tar cvzf'
 alias t='tmux'
@@ -143,7 +143,7 @@ alias glow='glow -p'
 
 # cloud
 alias ic='ibmcloud'
-alias iclogin='IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login'
+alias iclogin='IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
 alias iccr-rm='ic cr image-rm'
 
 # artifactory
@@ -186,6 +186,7 @@ alias pdb='podman build'
 alias pdi='podman images'
 alias pdprune='podman system prune --all --force'
 alias pdt='podman tag'
+alias pdr='podman run'
 alias pdpull='podman pull'
 alias pdrc='podman rm $(podman ps -aq)'
 alias pdrmi='podman images -q | xargs podman rmi'

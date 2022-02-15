@@ -291,3 +291,31 @@ oclogin-pass() {
 function prompt-middle() { tput cup $((LINES/2)) 0; zle reset-prompt; zle redisplay}
 zle -N prompt-middle
 bindkey '^[m' prompt-middle
+
+function fzf_alias() {
+    FZF_TMUX_OPTS="-p 90%,30%"
+    local selection
+    if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+        BUFFER=$selection
+    fi
+    zle redisplay
+}
+
+zle -N fzf_alias
+bindkey -M emacs '\ea' fzf_alias
+bindkey -M vicmd '\ea' fzf_alias
+bindkey -M viins '\ea' fzf_alias
+
+function fzf_functions() {
+    FZF_TMUX_OPTS="-p 90%,30%"
+    local selection
+    if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+        BUFFER=$selection
+    fi
+    zle redisplay
+}
+
+zle -N fzf_functions
+bindkey -M emacs '\ef' fzf_functions
+bindkey -M vicmd '\ef' fzf_functions
+bindkey -M viins '\ef' fzf_functions

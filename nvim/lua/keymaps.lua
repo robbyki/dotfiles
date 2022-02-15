@@ -100,6 +100,10 @@ wk.register({
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>",
             "find Docs",
         },
+        o = {
+            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.oh-my-zsh' })<CR>",
+            "find oh-my-zsh",
+        },
         d = {
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>",
             "dotfiles",
