@@ -210,9 +210,6 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 --     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
 -- })
 
-
-
-
 -- Metals_config = require("metals").bare_config()
 -- Metals_config.settings = {
 --     showImplicitArguments = true,
@@ -261,10 +258,6 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 --     vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
 --     require("metals").setup_dap()
 -- end
-
-
-
-
 
 -- -- sumneko lua
 -- lspconfig.sumneko_lua.setup({

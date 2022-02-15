@@ -1,4 +1,4 @@
-require('notify').setup({
+require("notify").setup({
     -- stages = "fade_in_slide_out",
     stages = "static",
 
@@ -16,4 +16,4 @@ require('notify').setup({
         TRACE = "✎",
     },
 })
-vim.notify = require('notify')
+vim.notify = require("notify")

@@ -1,13 +1,13 @@
-local autopairs = require('nvim-autopairs')
-local cmp = require('cmp')
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local autopairs = require("nvim-autopairs")
+local cmp = require("cmp")
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 autopairs.setup({
-	disable_filetype = { 'TelescopePrompt' },
-	check_ts = true,
+    disable_filetype = { "TelescopePrompt" },
+    check_ts = true,
 })
 
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 --
 -- local ok, autopairs = pcall(require, "nvim-autopairs")
