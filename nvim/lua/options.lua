@@ -112,16 +112,17 @@ vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 vim.cmd("autocmd BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
-vim.cmd("autocmd BufRead,BufNewFile *config :setlocal filetype=bash")
-vim.cmd("autocmd BufRead,BufNewFile *.zsh :setlocal filetype=bash")
-vim.cmd("autocmd BufRead,BufNewFile */oc-crc-notes.txt :setlocal filetype=bash")
-vim.cmd("autocmd BufRead,BufNewFile */.kube/config set filetype=yaml")
-vim.cmd("set formatoptions-=cro")
+vim.cmd("autocmd BufRead,BufNewFile *config :set ft=bash")
+vim.cmd("autocmd BufRead,BufNewFile *.zsh* :set ft=bash")
+vim.cmd("autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=bash")
+vim.cmd("autocmd BufRead,BufNewFile */.kube/config :set ft=yaml")
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
 vim.cmd(
-    [[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
+    "autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell"
 )
-vim.cmd([[autocmd TermOpen * startinsert]])
+vim.cmd("autocmd TermOpen * startinsert")
+vim.cmd("autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=bash")
+vim.cmd("set formatoptions-=cro")
 
 -- LSP
 vim.cmd([[highlight LspDiagnosticsUnderlineWarning guifg=None]])

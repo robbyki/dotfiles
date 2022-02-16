@@ -234,3 +234,26 @@ export OCREGISTRY="image-registry.openshift-image-registry.svc:5000"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=1
+
+# keybindings
+zle -N prompt-middle
+bindkey '^[m' prompt-middle
+zle -N fzf_alias
+bindkey -M emacs '\ea' fzf_alias
+bindkey -M vicmd '\ea' fzf_alias
+bindkey -M viins '\ea' fzf_alias
+zle -N fzf_functions
+bindkey -M emacs '\ef' fzf_functions
+bindkey -M vicmd '\ef' fzf_functions
+bindkey -M viins '\ef' fzf_functions
+zle -N fancyctrlz
+bindkey '^Z' fancyctrlz
+bindkey "^[l" clear-screen
+bindkey -s "^[=" 'k9s^M'
+
+fpath=( ~/.zshfunctions "${fpath[@]}" )
+autoload -Uz $fpath[1]/*(.:t)
+
+export ARTIFACTORY_USER_NAME=rkee@us.ibm.com
+export ARTIFACTORY_AUTH_TOKEN=AKCp8k8iMAgRksJrLZkSZQWUy65Nba15VyS5i9fDpZwPxdG6ioopyHwScj7EPmS3ft9CHDguU
+# autoload -Uz ~/.zshfunctions/ocdelfunc

@@ -21,8 +21,6 @@
 # # switch group using `,` and `.`
 # zstyle ':fzf-tab:*' switch-group ',' '.'
 
-
-
 enable-fzf-tab
 setopt glob_dots
 zstyle ':completion:*' special-dirs true

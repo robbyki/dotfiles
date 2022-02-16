@@ -57,6 +57,27 @@ function gccd() {
 #--------------------------------------------------------------------#
 #                          System functions                          #
 #--------------------------------------------------------------------#
+# moves my prompt to middle of screen. Helpful during video presentations.
+function prompt-middle() { tput cup $((LINES/2)) 0; zle reset-prompt; zle redisplay}
+
+function fzf_alias() {
+    FZF_TMUX_OPTS="-p 90%,30%"
+    local selection
+    if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+        BUFFER=$selection
+    fi
+    zle redisplay
+}
+
+function fzf_functions() {
+    FZF_TMUX_OPTS="-p 90%,30%"
+    local selection
+    if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+        BUFFER=$selection
+    fi
+    zle redisplay
+}
+
 # Usage: Ex <File>
 ex ()
 {
@@ -130,7 +151,7 @@ lfcd () {
 }
 
 # I think I do this around 2 million times a day.
-fancy-ctrl-z () {
+fancyctrlz () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
     zle accept-line
@@ -139,17 +160,7 @@ fancy-ctrl-z () {
     zle clear-screen
   fi
 }
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
 
-bindkey "^[l" clear-screen
-
-# run `ll` after running cd into dir.
-# don't need this anymore thanks ENHANCD_HOOK_AFTER_CD=ll
-# cdl() { cd "$@" && ll; }
-
-# this equals is my '9' key on my dvorak keyboard.
-bindkey -s "^[=" 'k9s^M'
 
 timezsh() {
   shell=${1-$SHELL}
@@ -161,14 +172,14 @@ agh() {
 	ag $1 .
 }
 
-find-alias() {
+findalias() {
  	alias | grep ${1}
 }
 
 # a bunch of really ugly functions that could use a lot of improvements
 
 # delete any target directory recursively in a jvm project. helpful for debugging.
-delete-target() {
+deletetarget() {
  	find . -type d -name target -prune -exec rm -r {} +
 }
 
@@ -177,11 +188,11 @@ fde(){
 	fd . -e ${1} ${2}
 }
 
-go-to-local-bin() {
+gotolocalbin() {
  	sudo mv $1 /usr/local/bin/$1
 }
 
-go-to-completions() {
+gotocompletions() {
  	sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
 }
 
@@ -214,27 +225,26 @@ mcdmlogs() {
 #--------------------------------------------------------------------#
 #                             Openshift                              #
 #--------------------------------------------------------------------#
+# some of these assume I already ran source ~/dev/ocinit
 ocdel() {
- 	ic oc cluster rm -f --force-delete-storage -c $1
+ 	ic oc cluster rm -f --force-delete-storage -c $OCID
 }
 
 # get cluster info printout along with master url
 occonf() {
- 	ic oc cluster get -c $1
+ 	ic oc cluster get -c $OCID
 }
 
 # download cluster config and add it to kubeconfig
-ocgetconfig() {
- 	ic oc cluster config -c $1 --admin
-}
+ocgetconf() { ic oc cluster config -c $OCID --admin }
 
 ocprune() {
     oc adm prune images --registry-url=$OCREGISTRY --confirm
 }
 
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
-occlogin() {
- 	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$1 --insecure-skip-tls-verify=true
+oclogin() {
+ 	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$OCMASTERURL --insecure-skip-tls-verify=true
 }
 
 # colorize oc commands
@@ -273,49 +283,17 @@ occ() {
 }
 
 # assumes for now that my testinf cluster name is always the same.
-ocgetmaster() {
-    ic oc cluster get --cluster test-cluster-rk --output=json | jq -r '.serverURL'
-}
+# ocgetmaster() {
+#     ic oc cluster get --cluster test-cluster-rk --output=json | jq -r '.serverURL'
+# }
 
-ocgetid() {
-    ic oc cluster get --cluster test-cluster-rk --output=json | jq -r '.id'
-}
+# ocgetid() {
+#     ic oc cluster get --cluster test-cluster-rk --output=json | jq -r '.id'
+# }
 
 # if you want to use passcode url: https://identity-3.us-south.iam.cloud.ibm.com/ui/showpasscode.jsp
 # must get master url info first by running occonf and does not require exporting api key
-oclogin-pass() {
-  oc login -u passcode -p $1 --server=$2
-}
+# ocloginpass() {
+#   oc login -u passcode -p $1 --server=$2
+# }
 
-# moves my prompt to middle of screen. Helpful during video presentations.
-function prompt-middle() { tput cup $((LINES/2)) 0; zle reset-prompt; zle redisplay}
-zle -N prompt-middle
-bindkey '^[m' prompt-middle
-
-function fzf_alias() {
-    FZF_TMUX_OPTS="-p 90%,30%"
-    local selection
-    if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
-        BUFFER=$selection
-    fi
-    zle redisplay
-}
-
-zle -N fzf_alias
-bindkey -M emacs '\ea' fzf_alias
-bindkey -M vicmd '\ea' fzf_alias
-bindkey -M viins '\ea' fzf_alias
-
-function fzf_functions() {
-    FZF_TMUX_OPTS="-p 90%,30%"
-    local selection
-    if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
-        BUFFER=$selection
-    fi
-    zle redisplay
-}
-
-zle -N fzf_functions
-bindkey -M emacs '\ef' fzf_functions
-bindkey -M vicmd '\ef' fzf_functions
-bindkey -M viins '\ef' fzf_functions

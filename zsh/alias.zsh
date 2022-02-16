@@ -121,10 +121,11 @@ alias refconf="$EDITOR src/main/resources/reference.conf"
 alias appconf="$EDITOR src/main/resources/application.conf"
 
 # finders
-alias fa='find-alias'
+alias fa='findalias'
 alias fdf='fd --no-ignore --list-details --hidden'
 
 # git
+alias ghrepo='gh repo-fzf'
 alias ghibm='gh fzrepo'
 alias ghdig='gh repo-fzf Digital-Business-Mgmt-Platform'
 alias ghaide='gh repo-fzf AIDE'
@@ -143,7 +144,7 @@ alias glow='glow -p'
 
 # cloud
 alias ic='ibmcloud'
-alias iclogin='IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
+alias iclogin='ssibm;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
 alias iccr-rm='ic cr image-rm'
 
 # artifactory
@@ -190,6 +191,10 @@ alias pdr='podman run'
 alias pdpull='podman pull'
 alias pdrc='podman rm $(podman ps -aq)'
 alias pdrmi='podman images -q | xargs podman rmi'
+alias pdps='pd ps --all --storage'
+alias pdstop='pd stop -a'
+alias pdrmall='pd rm -fa'
+alias pdnuke='pd rmi -fa'
 #alias psc='podman stop $(docker ps -aq)'
 # alias di='docker images'
 # alias drmi='docker images -q | xargs docker rmi'
@@ -218,6 +223,8 @@ alias lsg="ls --git-status"
 alias lst="ls -tr"
 
 # openshift oc
+alias ocinit='iclogin && source ~/dev/ocvars && oclogin'
+alias ocvars='source ~/dev/ocvars'
 alias ocgproj='oc get projects'
 alias ocaf='oc apply -f'
 alias occd='oc create deployment'
@@ -236,7 +243,6 @@ alias ocgs='oc get secrets'
 alias ocgserv='oc get svc'
 alias ocl='oc logs'
 alias oclf='oc logs --follow'
-alias oclogin="ssibm;iclogin;"
 alias ocls='ic oc cluster ls'
 alias ocnp='oc new-project'
 alias ocrf='oc replace --force -f'
