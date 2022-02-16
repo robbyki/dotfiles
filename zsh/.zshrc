@@ -253,7 +253,4 @@ bindkey -s "^[=" 'k9s^M'
 
 fpath=( ~/.zshfunctions "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
-
-export ARTIFACTORY_USER_NAME=rkee@us.ibm.com
-export ARTIFACTORY_AUTH_TOKEN=AKCp8k8iMAgRksJrLZkSZQWUy65Nba15VyS5i9fDpZwPxdG6ioopyHwScj7EPmS3ft9CHDguU
 # autoload -Uz ~/.zshfunctions/ocdelfunc
