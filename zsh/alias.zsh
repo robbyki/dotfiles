@@ -4,7 +4,7 @@ export DOTFILES="$HOME/.dotfiles"
 # Quick files and directories
 alias dots="cd $DOTFILES"
 alias zshconfig="$EDITOR $DOTFILES/zsh/.zshrc"
-alias aliasconfig="$EDITOR $DOTFILES/zsh/alias.zsh"
+alias alc="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabconfig="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
 alias nvimconfig="$EDITOR $DOTFILES/nvim/init.lua"
 alias codeconfig="$EDITOR $DOTFILES/vscode/settings.json"
@@ -31,12 +31,10 @@ alias pics="cd ~/Pictures"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
 
 # gpg secrets on a per shell basis
+alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
 alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
-alias ssibm="secrets source ibm-secrets"
-alias sdibm="secrets decrypt ibm-secrets"
-alias seibm="secrets encrypt ibm-secrets"
 
 # system helpers
 alias exp='export'
@@ -102,7 +100,6 @@ alias blc='bloop compile'
 alias blcr='bloop compile root --verbose'
 alias blcv='bloop compile --verbose'
 alias blp='bloop projects'
-alias blrd='bloop run root -m com.ibm.cio.DemoCos'
 alias blrm='bloop run root -m'
 alias blrr='bloop run root'
 alias blrv='bloop run --verbose'
@@ -144,7 +141,7 @@ alias glow='glow -p'
 
 # cloud
 alias ic='ibmcloud'
-alias iclogin='ssibm;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
+alias iclogin='ssrc ibm-secrets;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
 alias iccr-rm='ic cr image-rm'
 
 # artifactory

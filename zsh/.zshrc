@@ -253,4 +253,8 @@ bindkey -s "^[=" 'k9s^M'
 
 fpath=( ~/.zshfunctions "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
-# autoload -Uz ~/.zshfunctions/ocdelfunc
+
+# used for gpg zsh secrets plugin
+export RECIPIENT="robbmk@gmail.com"
+
+export GPGKEY=9D0BE3B364886BBCE5C6B4551D020EA33FE2A6A8

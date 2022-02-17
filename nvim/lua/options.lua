@@ -49,7 +49,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
-vim.opt.textwidth = 80
+-- vim.opt.textwidth = 80
 vim.opt.timeoutlen = 700
 vim.opt.title = false
 vim.opt.updatetime = 300
@@ -122,7 +122,7 @@ vim.cmd(
 )
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=bash")
-vim.cmd("set formatoptions-=cro")
+-- vim.cmd("set formatoptions-=cro")
 
 -- LSP
 vim.cmd([[highlight LspDiagnosticsUnderlineWarning guifg=None]])
