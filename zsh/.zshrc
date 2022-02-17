@@ -82,46 +82,29 @@ HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
 HISTCONTROL='ignoreboth';
 # }}}
 
-# {{{ application path settings
+export IBMCLOUD_TRACE=false
+export IBMCLOUD_COLOR=true
+export IBMCLOUD_VERSION_CHECK=true
 export VISUAL=/usr/local/bin/nvim
 export EDITOR=/usr/local/bin/nvim
 export SUDO_EDITOR=/usr/local/bin/nvim
 export MYVIMRC=$HOME/.config/nvim/init.lua
+
+# {{{ application path settings
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
 export STEWARD_DIR=$HOME/dev/scala-steward/
 export GH_HOST=github.ibm.com
 export GH_EDITOR=/usr/local/bin/nvim
-export IBMCLOUD_TRACE=false
-export IBMCLOUD_COLOR=true
-export IBMCLOUD_VERSION_CHECK=true
 export GOROOT=/usr/local/go
 export GOPATH=${HOME}/go
 export CARGO=$HOME/.cargo
 export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
 export SCRIPTS=${HOME}/bin
-PATH=$PATH:${FNM}
-PATH=$PATH:/opt
-PATH=$PATH:/opt/bin
-PATH=$PATH:/usr/bin/local
-PATH=$PATH:${HOME}/.local/bin
-PATH=$PATH:${NPM}/bin
-PATH=$PATH:${HOME}/.local/share/coursier/bin
-PATH=$PATH:${JAVA_HOME}/bin
-PATH=$PATH:${MVN_HOME}/bin
-PATH=$PATH:${GIT_HOME}/bin
-PATH=$PATH:${GOROOT}/bin
-PATH=$PATH:${GOPATH}/bin
-PATH=$PATH:${HOME}/tools/lua-language-server/bin/Linux
-PATH=$PATH:${HOME}/.yarn/bin
-PATH=$PATH:${HOME}/.config/yarn/global/node_modules/.bin
-PATH=$PATH:${HOME}/node_modules/.bin
-PATH=$PATH:${CARGO}/bin
-PATH=$PATH:${SCRIPTS}
-export PATH
-# }}}
+
+export PATH=${GOPATH}/bin:${GOROOT}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
 
 export KUBECONFIG=$HOME/.kube/config
 # export KUBECONFIG=$KUBECONFIG:my-super-config
@@ -258,3 +241,5 @@ autoload -Uz $fpath[1]/*(.:t)
 export RECIPIENT="robbmk@gmail.com"
 
 export GPGKEY=9D0BE3B364886BBCE5C6B4551D020EA33FE2A6A8
+
+typeset -U PATH
