@@ -35,6 +35,7 @@ alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
 alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
+alias ssibm="secrets source ibm-secrets"
 
 # system helpers
 alias exp='export'

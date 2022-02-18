@@ -216,7 +216,7 @@ export OCPSCHEMA=${HOME}/dev/openshift-json-schema
 export OCREGISTRY="image-registry.openshift-image-registry.svc:5000"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
-export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=1
+export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
 
 # keybindings
 zle -N prompt-middle

@@ -42,14 +42,19 @@ vim.opt.mouse = ""
 vim.opt.ruler = true
 vim.opt.rulerformat = [[%-14.(%l,%c   %o%)]]
 vim.opt.showmatch = true
-vim.opt.showmode = false
 vim.opt.showtabline = 2
 vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
+vim.o.undodir = vim.fn.stdpath("cache") .. "/undodir/"
+vim.bo.undofile = true
+vim.o.undofile = true
 vim.opt.termguicolors = true
 -- vim.opt.textwidth = 80
+vim.o.hidden = true
+vim.o.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
+vim.o.showmode = true
 vim.opt.timeoutlen = 700
 vim.opt.title = false
 vim.opt.updatetime = 300
@@ -57,8 +62,10 @@ vim.opt.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloo
 vim.opt.writebackup = false
 vim.wo.cursorline = true
 vim.wo.foldlevel = 99
+vim.o.number = true
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.o.relativenumber = true
 vim.wo.signcolumn = "yes"
 vim.wo.wrap = false
 vim.cmd("filetype plugin on")
@@ -154,19 +161,6 @@ vim.cmd([[
   endif
 ]])
 
--- vim.cmd([[
---     augroup HopInitHighlight
---         autocmd!
---         autocmd ColorScheme *
---             \ highlight HopNextKey guifg=#fcf400 gui=bold ctermfg=45 cterm=bold
---             \ | highlight link HopNextKey1 HopNextKey
---             \ | highlight HopNextKey2 guifg=#fcf400 ctermfg=45
---             \ | highlight HopUnmatched guifg=#666666 guibg=bg guisp=#666666 ctermfg=242
---             \ | highlight link HopCursor Cursor
---     augroup end
--- ]])
-
 vim.cmd("colorscheme kanagawa")
-
 vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
 vim.cmd("autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab")

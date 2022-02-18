@@ -41,7 +41,7 @@ require("packer").startup({
             end,
         })
 
-        use({ "voldikss/vim-floaterm" })
+        -- use({ "voldikss/vim-floaterm" })
 
         use({
             "rebelot/kanagawa.nvim",
@@ -340,6 +340,15 @@ require("packer").startup({
             },
             config = function()
                 require("plugins.comment-frame")
+            end,
+        })
+        use({
+            "VonHeikemen/fine-cmdline.nvim",
+            requires = {
+                { "MunifTanjim/nui.nvim" },
+            },
+            config = function()
+                require("plugins.fine-cmdline")
             end,
         })
         use({

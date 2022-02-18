@@ -92,7 +92,7 @@ visual_bell:
   duration: 0
   color: '0x1a1a1a'
 
-background_opacity: 0.85
+# background_opacity: 0.90
 # Allow terminal applications to change Alacritty's window title.
 dynamic_title: true
 

@@ -28,6 +28,7 @@ vim.cmd([[
   nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
+map("n", "<CR>", "<cmd>FineCmdline<CR>")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 map("n", "<TAB>", ":bnext<CR>")
@@ -48,6 +49,7 @@ map("n", "<leader>F", ":Format<CR>")
 map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
+map("n", "/", "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>")
 
 map(
     "n",
@@ -108,10 +110,10 @@ wk.register({
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>",
             "dotfiles",
         },
-        s = {
-            "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
-            "fuzzy find here",
-        },
+        -- ['//'] = {
+        --     "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
+        --     "fuzzy find here",
+        -- },
         h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
         l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
         p = { "<Cmd>lua require'telescope'.extensions.project.project{}<CR>", "projects" },
