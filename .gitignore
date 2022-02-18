@@ -90,3 +90,5 @@ xterm-256color-italic.terminfo/
 nvim/lua/packer_compiled.lua
 nvim/spell/en.utf-8.add.spl
 nvim/lua/compiled.lua
+home/robbyk/.dotfiles/.vscode/diff
+.vscode

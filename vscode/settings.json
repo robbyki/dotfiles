@@ -31,7 +31,7 @@
   "vim.leader": ",",
   "vim.handleKeys": {
     "<C-w>": true,
-    "<C-a>": false,
+    "<C-a>": true,
     "<C-f>": true
   },
   "workbench.colorTheme": "One Dark Pro Darker",
@@ -131,7 +131,7 @@
   "tabnine.experimentalAutoImports": true,
   "workbench.iconTheme": "vscode-icons",
   "metals.sbtScript": "/usr/bin/sbt",
-  "metals.serverVersion": "0.11.0",
+  "metals.serverVersion": "0.11.1",
   "metals.javaHome": "/usr/lib/jvm/java-11-openjdk",
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.gitCommands.skipConfirmations": [
@@ -239,7 +239,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.sendKeybindingsToShell": true,
   "terminal.external.linuxExec": "alacritty",
-  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontSize": 14,
   "debug.console.fontFamily": "Operator Mono SSm Lig Book",
   "debug.console.wordWrap": false,
   "debug.console.fontSize": 12,
@@ -276,5 +276,6 @@
   "editor.unicodeHighlight.invisibleCharacters": false,
   "vs-kubernetes": {
     "vscode-kubernetes.minikube-path.linux": "/home/robbyk/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
-  }
+  },
+  "WhiteSource Advise.enableAutomaticScanningInWorkspace": false
 }

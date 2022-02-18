@@ -26,8 +26,7 @@ local select_prev_item = cmp.mapping({
             cmp.select_prev_item()
         elseif vim.fn["vsnip#jumpable"](-1) == 1 then
             feedkey("<Plug>(vsnip-jump-prev)", "")
-            --[[ elseif has_words_before() then
-				cmp.complete() ]]
+            [[ elseif has_words_before() then cmp.complete() ]]
         else
             fallback()
         end
@@ -54,8 +53,7 @@ local select_next_item = cmp.mapping({
             cmp.select_next_item()
         elseif vim.fn["vsnip#available"](1) == 1 then
             feedkey("<Plug>(vsnip-expand-or-jump)", "")
-            --[[ elseif has_words_before() then
-				cmp.complete() ]]
+            [[ elseif has_words_before() then cmp.complete() ]]
         elseif package.loaded["neogen"] ~= nil and require("neogen").jumpable() then
             require("neogen").jump_next()
         else
@@ -72,22 +70,21 @@ local select_next_item = cmp.mapping({
 })
 
 cmp.setup({
-    documentation = {
-        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-    },
+    -- documentation = {
+    --     winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+    -- },
     formatting = {
         format = require("lspkind").cmp_format({
-            with_text = true,
+            -- with_text = true,
             menu = {
-                cmp_tabnine = "[TN]",
+                nvim_lsp = "[LSP]",
                 buffer = "[BUFFER]",
                 fuzzy_path = "[FZ-PATH]",
                 fuzzy_buffer = "[FZ-BUFFER]",
-                nvim_lsp = "[LSP]",
                 path = "[PATH]",
                 tmux = "[TMUX]",
                 vsnip = "[SNIPPET]",
+                cmp_tabnine = "[TN]",
                 -- ["vim-dadbod-completion"] = "[DB]",
             },
         }),
@@ -114,8 +111,8 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = "cmp_tabnine" },
         { name = "nvim_lsp" },
+        { name = "cmp_tabnine" },
         { name = "cmp_git" },
         { name = "path" },
         {
@@ -182,15 +179,13 @@ tabnine:setup({
     snippet_placeholder = "..",
 })
 
-local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-
-require("lsp_signature").setup({
-    bind = true,
-    max_height = 12,
-    max_width = 120,
-    transpancy = 20,
-    handler_opts = { border = "rounded" },
-    hint_prefix = " ",
-})
+-- require("lsp_signature").setup({
+--     bind = true,
+--     max_height = 12,
+--     max_width = 120,
+--     transpancy = 20,
+--     handler_opts = { border = "rounded" },
+--     hint_prefix = " ",
+-- })
 
 -- require('luasnip.loaders.from_vscode').load()

@@ -174,7 +174,7 @@ alias st='stern'
 alias kbksd='kubectl-ksd' # secrets decoder
 
 # containers
-# alias docker='podman'
+alias docker='podman'
 alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
 alias pdp='podman push --tls-verify=false'
 alias pdoclogin='podman login -u kubeadmin -p `octkn` `ocdefaultroute` --tls-verify=false'
