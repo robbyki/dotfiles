@@ -25,8 +25,7 @@ local select_prev_item = cmp.mapping({
         if cmp.visible() then
             cmp.select_prev_item()
         elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-            feedkey("<Plug>(vsnip-jump-prev)", "")
-            [[ elseif has_words_before() then cmp.complete() ]]
+            feedkey("<Plug>(vsnip-jump-prev)", "")([[ elseif has_words_before() then cmp.complete() ]])
         else
             fallback()
         end
@@ -52,8 +51,7 @@ local select_next_item = cmp.mapping({
         if cmp.visible() then
             cmp.select_next_item()
         elseif vim.fn["vsnip#available"](1) == 1 then
-            feedkey("<Plug>(vsnip-expand-or-jump)", "")
-            [[ elseif has_words_before() then cmp.complete() ]]
+            feedkey("<Plug>(vsnip-expand-or-jump)", "")([[ elseif has_words_before() then cmp.complete() ]])
         elseif package.loaded["neogen"] ~= nil and require("neogen").jumpable() then
             require("neogen").jump_next()
         else
@@ -111,6 +109,7 @@ cmp.setup({
         end,
     },
     sources = {
+        { name = "orgmade" },
         { name = "nvim_lsp" },
         { name = "cmp_tabnine" },
         { name = "cmp_git" },

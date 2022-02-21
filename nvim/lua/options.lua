@@ -53,7 +53,7 @@ vim.o.undofile = true
 vim.opt.termguicolors = true
 -- vim.opt.textwidth = 80
 vim.o.hidden = true
-vim.o.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
+-- vim.o.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
 vim.o.showmode = true
 vim.opt.timeoutlen = 700
 vim.opt.title = false
@@ -119,6 +119,7 @@ vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 vim.cmd("autocmd BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
+vim.cmd("autocmd BufRead,BufNewFile *Dockerfile* :set ft=dockerfile")
 vim.cmd("autocmd BufRead,BufNewFile *config :set ft=bash")
 vim.cmd("autocmd BufRead,BufNewFile *.zsh* :set ft=bash")
 vim.cmd("autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=bash")

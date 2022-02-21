@@ -198,7 +198,7 @@ gotocompletions() {
 }
 
 # usage: newdir/newfile.txt
-mktouch() {
+mktch() {
   mkdir -p $(dirname $1) && touch $1;
 }
 
@@ -282,6 +282,15 @@ ocdefaultroute() {
 occ() {
 	oc $@ | yq eval --colors -P
 }
+
+pddspark() {
+    podman exec -it $1 bash -c "/spark/bin/spark-submit --class SparkPi --master local[*] /app/target/scala-2.12/spark-tekton-assembly-3.1.2.jar"
+}
+
+pdrunc() {
+    pd run -id $1 bash
+}
+
 
 # assumes for now that my testinf cluster name is always the same.
 # ocgetmaster() {

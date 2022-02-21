@@ -106,7 +106,15 @@ alias blrr='bloop run root'
 alias blrv='bloop run --verbose'
 
 # Buildah
-alias bld='buildah'
+alias bu='buildah'
+alias bub='buildah build' # same as buildah build
+alias buinsp='buildah inspect'
+alias bur='buildah run'
+alias buf='buildah from'
+alias bucfg='buildah config'
+alias buc='buildah commit'
+alias bucls='buildah containers --all'
+alias bui='buildah images --all'
 
 # scala
 alias fix="scalafix"
@@ -175,12 +183,15 @@ alias st='stern'
 alias kbksd='kubectl-ksd' # secrets decoder
 
 # containers
+alias pdtxologin='podman login $TXO_ARTIFACTORY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY'
 alias docker='podman'
-alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
+# alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
 alias pdp='podman push --tls-verify=false'
 alias pdoclogin='podman login -u kubeadmin -p `octkn` `ocdefaultroute` --tls-verify=false'
-alias pdcls='podman container ls'
+alias pdcls='podman container list --all'
+alias pde='podman exec'
 alias pd='podman'
+alias pdl='podman login'
 alias pdb='podman build'
 alias pdi='podman images'
 alias pdprune='podman system prune --all --force'
@@ -189,11 +200,11 @@ alias pdr='podman run'
 alias pdpull='podman pull'
 alias pdrc='podman rm $(podman ps -aq)'
 alias pdrmi='podman images -q | xargs podman rmi'
-alias pdps='pd ps --all --storage'
-alias pdstop='pd stop -a'
-alias pdrmall='pd rm -fa'
-alias pdnuke='pd rmi -fa'
-#alias psc='podman stop $(docker ps -aq)'
+alias pdps='podman ps --all --storage'
+alias pdstop='podman stop -a'
+alias pdrmcls='podman rm -fa'
+alias pdnuke='podman rmi -fa'
+alias pdsc='podman stop $(docker ps -aq)'
 # alias di='docker images'
 # alias drmi='docker images -q | xargs docker rmi'
 # alias drmif='docker rmi --force $(docker images -q)'

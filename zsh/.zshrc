@@ -97,14 +97,14 @@ export GIT_HOME=/usr/bin/git
 export STEWARD_DIR=$HOME/dev/scala-steward/
 export GH_HOST=github.ibm.com
 export GH_EDITOR=/usr/local/bin/nvim
-export GOROOT=/usr/local/go
+# export GOROOT=/usr/local/go
 export GOPATH=${HOME}/go
 export CARGO=$HOME/.cargo
 export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
 export SCRIPTS=${HOME}/bin
 
-export PATH=${GOPATH}/bin:${GOROOT}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
+export PATH=${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
 
 export KUBECONFIG=$HOME/.kube/config
 # export KUBECONFIG=$KUBECONFIG:my-super-config
@@ -207,7 +207,6 @@ export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 # helper file for storing ocp cluster info
 export UPDATE_ZSH_DAYS=10
 
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
@@ -243,3 +242,7 @@ export RECIPIENT="robbmk@gmail.com"
 export GPGKEY=9D0BE3B364886BBCE5C6B4551D020EA33FE2A6A8
 
 typeset -U PATH
+
+export BUILDAH_FORMAT=docker
+export REGISTRY_AUTH_FILE=$HOME/.podmanauth
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock

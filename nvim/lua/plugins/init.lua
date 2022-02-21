@@ -263,6 +263,19 @@ require("packer").startup({
         use({ "hrsh7th/cmp-nvim-lsp-signature-help", event = "CmdLineEnter", after = "nvim-cmp" })
         use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
 
+        -- Terminal
+        use({
+            "akinsho/toggleterm.nvim",
+            config = function()
+                require("plugins.toggleterm")
+            end,
+        })
+        use({
+            "nvim-orgmode/orgmode",
+            config = function()
+                require("orgmode").setup({})
+            end,
+        })
         use({
             "j-hui/fidget.nvim",
             config = function()
