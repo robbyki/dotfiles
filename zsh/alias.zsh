@@ -115,6 +115,12 @@ alias bucfg='buildah config'
 alias buc='buildah commit'
 alias bucls='buildah containers --all'
 alias bui='buildah images --all'
+alias bucopy='buildah copy'
+alias bumnt='buildah mount'
+alias buumnt='buildah unmount'
+alias buu='buildah unshare'
+alias burmall='buildah rm --all'
+alias bupush='buildah push'
 
 # scala
 alias fix="scalafix"

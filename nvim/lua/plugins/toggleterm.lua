@@ -7,7 +7,6 @@ require("toggleterm").setup({
         end
     end,
     open_mapping = [[<c-t>]],
-    open_mapping = [[<c-t>]],
     hide_numbers = true,
     shade_filetypes = {},
     shade_terminals = true,
@@ -16,8 +15,8 @@ require("toggleterm").setup({
     -- shell = 'flatpak-spawn --host --env=TERM="$TERM" zsh',
     float_opts = {
         border = "curved",
-        height = 10,
+        height = 20,
         width = 100,
     },
-    winblend = 20,
+    -- winblend = 20,
 })
