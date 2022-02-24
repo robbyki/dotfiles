@@ -147,8 +147,6 @@ require("packer").startup({
             end,
         })
 
-        -- search
-
         -- Telescope
         use({
             "nvim-telescope/telescope.nvim",
@@ -236,19 +234,16 @@ require("packer").startup({
         use({ "hrsh7th/cmp-vsnip" })
 
         -- Completion
-        use({
-            "hrsh7th/nvim-cmp",
-            --'iron-e/nvim-cmp',
-            --branch = 'feat/completion-menu-borders',
-            --event = { 'InsertEnter', 'CmdLineEnter' },
-            requires = {
-                { "hrsh7th/cmp-vsnip" },
-                { "hrsh7th/vim-vsnip-integ" },
-            },
-            config = function()
-                require("plugins.cmp")
-            end,
-        })
+        -- use({
+        --     "hrsh7th/nvim-cmp",
+        --     requires = {
+        --         { "hrsh7th/cmp-vsnip" },
+        --         { "hrsh7th/vim-vsnip-integ" },
+        --     },
+        --     config = function()
+        --         require("plugins.cmp")
+        --     end,
+        -- })
         use({ "petertriho/cmp-git", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lua", event = "InsertEnter", after = "nvim-cmp" })
@@ -282,22 +277,22 @@ require("packer").startup({
                 require("plugins.fidget-spinner")
             end,
         })
-        -- use({
-        --     "hrsh7th/nvim-cmp",
-        --     requires = {
-        --         { "hrsh7th/cmp-nvim-lsp" },
-        --         { "hrsh7th/cmp-nvim-lua" },
-        --         { "hrsh7th/cmp-buffer" },
-        --         { "hrsh7th/cmp-path" },
-        --         { "hrsh7th/cmp-cmdline" },
-        --         { "hrsh7th/cmp-vsnip" },
-        --         { "hrsh7th/vim-vsnip-integ" },
-        --         { "f3fora/cmp-spell", { "hrsh7th/cmp-calc" }, { "hrsh7th/cmp-emoji" } },
-        --     },
-        --     config = function()
-        --         require("plugins.cmp")
-        --     end,
-        -- })
+        use({
+            "hrsh7th/nvim-cmp",
+            requires = {
+                { "hrsh7th/cmp-nvim-lsp" },
+                { "hrsh7th/cmp-nvim-lua" },
+                { "hrsh7th/cmp-buffer" },
+                { "hrsh7th/cmp-path" },
+                { "hrsh7th/cmp-cmdline" },
+                { "hrsh7th/cmp-vsnip" },
+                { "hrsh7th/vim-vsnip-integ" },
+                { "hrsh7th/cmp-emoji" },
+            },
+            config = function()
+                require("plugins.cmp")
+            end,
+        })
 
         -- Annotation generator
         use({
@@ -364,13 +359,13 @@ require("packer").startup({
                 require("plugins.fine-cmdline")
             end,
         })
-        use({
-            "ThePrimeagen/refactoring.nvim",
-            requires = {
-                { "nvim-lua/plenary.nvim" },
-                { "nvim-treesitter/nvim-treesitter" },
-            },
-        })
+        -- use({
+        --     "ThePrimeagen/refactoring.nvim",
+        --     requires = {
+        --         { "nvim-lua/plenary.nvim" },
+        --         { "nvim-treesitter/nvim-treesitter" },
+        --     },
+        -- })
         use({
             "simrat39/symbols-outline.nvim",
             cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },

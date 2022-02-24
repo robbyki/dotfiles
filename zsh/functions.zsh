@@ -64,6 +64,7 @@ function fzf_alias() {
     FZF_TMUX_OPTS="-p 90%,30%"
     local selection
     if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+        --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
         BUFFER=$selection
     fi
     zle redisplay
@@ -291,6 +292,27 @@ pdrunc() {
     pd run -id $1 bash
 }
 
+sparkbase-image() {
+    baseimage=bde2020/spark-submit:3.1.2-hadoop3.2
+    sbt_version=1.6.2
+    sbturl=https://github.com/sbt/sbt/releases/download/v${sbt_version}/sbt-${sbt_version}.tgz
+    ctr=$(buildah from $baseimage)
+    buildah run $ctr /bin/sh -c "wget -O - $sbturl | gunzip | tar -x -C /usr/local"
+    buildah config --env "PATH=/usr/local/sbt/bin:${PATH}" $ctr
+    buildah config --workingdir /app $ctr
+    buildah copy $ctr build.sbt app/
+    buildah copy $ctr project/plugins.sbt /app/project/
+    buildah copy $ctr project/project.sbt /app/project/
+    buildah config --onbuild="COPY build.sbt /app/" $ctr
+    buildah config --onbuild="COPY project /app/project" $ctr
+    buildah config --onbuild="RUN sbt update" $ctr
+    buildah config --onbuild="COPY . /app" $ctr
+    buildah config --onbuild="RUN sbt clean assembly" $ctr
+    buildah config --cmd "/template.sh" $ctr
+    buildah config --env _BUILDAH_STARTED_IN_USERNS="" --env BUILDAH_ISOLATION=chroot $ctr
+    buildah commit $ctr onbuild-image
+    buildah rm $ctr
+}
 
 # assumes for now that my testinf cluster name is always the same.
 # ocgetmaster() {
@@ -306,4 +328,3 @@ pdrunc() {
 # ocloginpass() {
 #   oc login -u passcode -p $1 --server=$2
 # }
-

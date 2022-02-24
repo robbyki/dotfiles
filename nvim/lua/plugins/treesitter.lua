@@ -2,9 +2,21 @@
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("nvim-treesitter.configs").setup({
-    -- matchup = { enable = true },
-    ensure_installed = "maintained",
-    sync_install = true,
+    ensure_installed = {
+        "bash",
+        "dockerfile",
+        "go",
+        "hocon",
+        "html",
+        "javascript",
+        "json5",
+        "lua",
+        "scala",
+        "python",
+        "http",
+        "json",
+        "yaml",
+    },
     highlight = {
         enable = true,
         disable = {},
@@ -14,6 +26,8 @@ require("nvim-treesitter.configs").setup({
         enable = true,
         disable = { "yaml", "yml" },
     },
+    sync_install = true,
+    ignore_install = {},
     textsubjects = {
         enable = true,
         prev_selection = ",", -- (Optional) keymap to select the previous selection
@@ -65,20 +79,20 @@ require("nvim-treesitter.configs").setup({
             },
         },
     },
-    -- rainbow = {
-    --     enable = true,
-    --     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    --     max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- },
-    -- autotag = {
-    --     enable = true,
-    --     filetypes = {
-    --         "scala",
-    --         "python",
-    --         "html",
-    --         "javascript",
-    --         "typescript",
-    --         "markdown",
-    --     },
-    -- },
+    --     -- rainbow = {
+    --     --     enable = true,
+    --     --     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    --     --     max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    --     -- },
+    --     -- autotag = {
+    --     --     enable = true,
+    --     --     filetypes = {
+    --     --         "scala",
+    --     --         "python",
+    --     --         "html",
+    --     --         "javascript",
+    --     --         "typescript",
+    --     --         "markdown",
+    --     --     },
+    --     -- },
 })

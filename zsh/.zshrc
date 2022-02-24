@@ -41,6 +41,7 @@ source $ZSH/completions/_helm
 source $HOME/.config/broot/launcher/bash/br
 autoload -U +X bashcompinit && bashcompinit
 # }}}
+
 source $ZSH/oh-my-zsh.sh
 
 # {{{ nvm settings
@@ -103,11 +104,13 @@ export CARGO=$HOME/.cargo
 export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
 export SCRIPTS=${HOME}/bin
+export GOROOT=/usr/local/go
 
-export PATH=${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
+export PATH=${GOROOT}/bin:${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
 
 export KUBECONFIG=$HOME/.kube/config
 # export KUBECONFIG=$KUBECONFIG:my-super-config
+
 # {{{ easier pasting
 zle_highlight+=(paste:none)
 zstyle :prompt:pure:git:stash show yes
@@ -207,11 +210,10 @@ export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 # helper file for storing ocp cluster info
 export UPDATE_ZSH_DAYS=10
 
-
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export OCPSCHEMA=${HOME}/dev/openshift-json-schema
-
+# standard internal oc registry url
 export OCREGISTRY="image-registry.openshift-image-registry.svc:5000"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
@@ -241,8 +243,11 @@ export RECIPIENT="robbmk@gmail.com"
 
 export GPGKEY=9D0BE3B364886BBCE5C6B4551D020EA33FE2A6A8
 
+# deduplicate env paths for now
 typeset -U PATH
 
+# {{{ Containers
 export BUILDAH_FORMAT=docker
 export REGISTRY_AUTH_FILE=$HOME/.podmanauth
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
+# }}}

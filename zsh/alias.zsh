@@ -29,6 +29,7 @@ alias snipf="cd $HOME/.local/share/nvim/site/pack/packer/opt/friendly-snippets/s
 alias pics="cd ~/Pictures"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
+alias chx="chmod +x"
 
 # gpg secrets on a per shell basis
 alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
@@ -109,7 +110,7 @@ alias blrv='bloop run --verbose'
 alias bu='buildah'
 alias bub='buildah build' # same as buildah build
 alias buinsp='buildah inspect'
-alias bur='buildah run'
+alias burun='buildah run'
 alias buf='buildah from'
 alias bucfg='buildah config'
 alias buc='buildah commit'
@@ -121,6 +122,7 @@ alias buumnt='buildah unmount'
 alias buu='buildah unshare'
 alias burmall='buildah rm --all'
 alias bupush='buildah push'
+alias burm='buildah rm'
 
 # scala
 alias fix="scalafix"

@@ -188,6 +188,10 @@
     typeset -g POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='%{%}'
   fi
 
+#######################[ go_version: go version (https://golang.org) ]########################
+typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=5
+typeset -g POWERLEVEL9K_GO_VERSION_BACKGROUND=0
+typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
 
   #################################[ os_icon: os identifier ]##################################
 POWERLEVEL9K_CUSTOM_FEDORA_ICON="echo '\uf798'"
@@ -1482,17 +1486,30 @@ typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=201
   # typeset -g POWERLEVEL9K_PROXY_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ################################[ battery: internal battery ]#################################
-  # Show battery in red when it's below this level and not connected to power supply.
+	################################[ battery: internal battery ]#################################
   typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD=20
-  typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=160
-  # Show battery in green when it's charging or fully charged.
-  typeset -g POWERLEVEL9K_BATTERY_{CHARGING,CHARGED}_FOREGROUND=70
-  # Show battery in yellow when it's discharging.
+  typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=1
+  typeset -g POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND=70
   typeset -g POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND=178
-  # Battery pictograms going from low to high level of charge.
-  typeset -g POWERLEVEL9K_BATTERY_STAGES='\uf58d\uf579\uf57a\uf57b\uf57c\uf57d\uf57e\uf57f\uf580\uf581\uf578'
-  # Don't show the remaining time to charge/discharge.
+  typeset -g POWERLEVEL9K_BATTERY_STAGES='▁▂▃▄▅▆▇'
+  typeset -g POWERLEVEL9K_BATTERY_VISUAL_IDENTIFIER_EXPANSION='%K{232}${P9K_VISUAL_IDENTIFIER}%k'
+  typeset -g POWERLEVEL9K_BATTERY_CHARGED_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
   typeset -g POWERLEVEL9K_BATTERY_VERBOSE=false
+
+
+
+
+  # Show battery in red when it's below this level and not connected to power supply.
+  # typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD=20
+  # typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=160
+  # # Show battery in green when it's charging or fully charged.
+  # typeset -g POWERLEVEL9K_BATTERY_{CHARGING,CHARGED}_FOREGROUND=70
+  # # Show battery in yellow when it's discharging.
+  # typeset -g POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND=178
+  # # Battery pictograms going from low to high level of charge.
+  # typeset -g POWERLEVEL9K_BATTERY_STAGES='\uf58d\uf579\uf57a\uf57b\uf57c\uf57d\uf57e\uf57f\uf580\uf581\uf578'
+  # # Don't show the remaining time to charge/discharge.
+  # typeset -g POWERLEVEL9K_BATTERY_VERBOSE=false
 
   #####################################[ wifi: wifi speed ]#####################################
   # WiFi color.
