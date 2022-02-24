@@ -64,7 +64,6 @@ function fzf_alias() {
     FZF_TMUX_OPTS="-p 90%,30%"
     local selection
     if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
-        --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
         BUFFER=$selection
     fi
     zle redisplay
@@ -313,18 +312,3 @@ sparkbase-image() {
     buildah commit $ctr onbuild-image
     buildah rm $ctr
 }
-
-# assumes for now that my testinf cluster name is always the same.
-# ocgetmaster() {
-#     ic oc cluster get --cluster test-cluster-rk --output=json | jq -r '.serverURL'
-# }
-
-# ocgetid() {
-#     ic oc cluster get --cluster test-cluster-rk --output=json | jq -r '.id'
-# }
-
-# if you want to use passcode url: https://identity-3.us-south.iam.cloud.ibm.com/ui/showpasscode.jsp
-# must get master url info first by running occonf and does not require exporting api key
-# ocloginpass() {
-#   oc login -u passcode -p $1 --server=$2
-# }
