@@ -1,8 +1,10 @@
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+require('orgmode').setup_ts_grammar()
 
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
+        "org",
         "bash",
         "dockerfile",
         "go",
@@ -19,7 +21,7 @@ require("nvim-treesitter.configs").setup({
     },
     highlight = {
         enable = true,
-        disable = {},
+        disable = { 'org' },
         additional_vim_regex_highlighting = true,
     },
     indent = {

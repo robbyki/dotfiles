@@ -59,9 +59,10 @@
     # anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    goenv                     # go environment (https://github.com/syndbg/goenv)
+    go_version            # go version (https://golang.org)
     kubecontext
     node_version          # node.js version
-    go_version            # go version (https://golang.org)
     # java_version          # java version (https://www.java.com/)
 #    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
 #    gcloud                  # google cloud cli account and project (https://cloud.google.com/)
@@ -932,9 +933,17 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
   # Custom icon.
   # typeset -g POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ################[ goenv: go environment (https://github.com/syndbg/goenv) ]################
+      #######################[ go_version: go version (https://golang.org) ]########################
+  # Go version color.
+  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=6
+  # Show go version only when in a go project subdirectory.
+  typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ################[ goenv: go environment (https://github.com/syndbg/goenv) ]################
   # Goenv color.
-  typeset -g POWERLEVEL9K_GOENV_FOREGROUND=37
+  typeset -g POWERLEVEL9K_GOENV_FOREGROUND=6
   # Hide go version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_GOENV_SOURCES=(shell local global)
   # If set to false, hide go version if it's the same as global:

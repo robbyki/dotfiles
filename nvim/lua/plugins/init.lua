@@ -223,27 +223,10 @@ require("packer").startup({
         -- debug
         use({ "mfussenegger/nvim-dap" })
 
-        -- use({
-        --     "L3MON4D3/LuaSnip",
-        --     event = "InsertEnter",
-        --     requires = "rafamadriz/friendly-snippets",
-        -- })
-
         use({ "hrsh7th/vim-vsnip" })
         use({ "hrsh7th/vim-vsnip-integ" })
         use({ "hrsh7th/cmp-vsnip" })
 
-        -- Completion
-        -- use({
-        --     "hrsh7th/nvim-cmp",
-        --     requires = {
-        --         { "hrsh7th/cmp-vsnip" },
-        --         { "hrsh7th/vim-vsnip-integ" },
-        --     },
-        --     config = function()
-        --         require("plugins.cmp")
-        --     end,
-        -- })
         use({ "petertriho/cmp-git", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter", after = "nvim-cmp" })
         use({ "hrsh7th/cmp-nvim-lua", event = "InsertEnter", after = "nvim-cmp" })
@@ -265,10 +248,20 @@ require("packer").startup({
                 require("plugins.toggleterm")
             end,
         })
+
+        use({
+            "akinsho/org-bullets.nvim",
+            config = function()
+                require("org-bullets").setup({
+                    symbols = { "◉", "○", "✸", "✿" },
+                    -- or a function that receives the defaults and returns a list
+                })
+            end,
+        })
         use({
             "nvim-orgmode/orgmode",
             config = function()
-                require("orgmode").setup({})
+                require("plugins.orgmode")
             end,
         })
         use({
