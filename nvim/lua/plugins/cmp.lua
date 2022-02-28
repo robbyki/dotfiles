@@ -108,7 +108,7 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = "orgmade" },
+        { name = "orgmode" },
         { name = "nvim_lsp" },
         { name = "cmp_tabnine" },
         { name = "cmp_git" },

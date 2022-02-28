@@ -10,4 +10,10 @@ require("which-key").setup({
             g = false, -- bindings for prefixed with g
         },
     },
+    layout = {
+        height = { min = 30, max = 50 }, -- min and max height of the columns
+        width = { min = 20, max = 100 }, -- min and max width of the columns
+        spacing = 3, -- spacing between columns
+        align = "left", -- align columns left, center or right
+    },
 })

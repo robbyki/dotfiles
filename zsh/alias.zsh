@@ -10,7 +10,7 @@ alias nvimcfg="$EDITOR $DOTFILES/nvim/init.lua"
 alias codecfg="$EDITOR $DOTFILES/vscode/settings.json"
 alias alacrittycfg="$EDITOR $DOTFILES/alacritty/alacritty.yml"
 alias tmuxcfg="$EDITOR $DOTFILES/tmux/.tmux.conf"
-alias kubecfg="$EDITOR ~/.kube/config"
+alias kbcfg="$EDITOR ~/.kube/config"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
 
@@ -159,7 +159,7 @@ alias glow='glow -p'
 
 # cloud
 alias ic='ibmcloud'
-alias iclogin='ssrc ibm-secrets;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null;ocvars'
+alias iclogin='ssrc ibm-secrets;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
 alias iccr-rm='ic cr image-rm'
 
 # artifactory
@@ -168,7 +168,8 @@ alias jfdls="jfrog rt search \"txo-aide-team-cio-docker-local/*\" | jq '.[]|.pat
 alias jfmls="jfrog rt search \"txo-aide-team-cio-maven-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 alias jfsls="jfrog rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 
-# k8s
+# kubernetes
+alias kbclean='kbcleanup --raw > ~/.kube/config.swap;kbswap'
 alias kbver='kubectl version --short --client=true'
 alias kbc='kubecolor'
 alias kb='kubectl'
@@ -189,6 +190,7 @@ alias kval='kubeval --schema-location=file://$OCPSCHEMA'
 alias kx='kubectx'
 alias mk='minikube'
 alias st='stern'
+alias stt='stern --tail 10'
 alias kbksd='kubectl-ksd' # secrets decoder
 
 # containers

@@ -5,6 +5,11 @@ local lualine = require("lualine")
 -- local colors = require("nightfox.colors").load()
 local colors = require("kanagawa.colors").setup()
 
+local function lualine_orgmode()
+    local orgmode = require('orgmode')
+	return orgmode.statusline()
+end
+
 local conditions = {
     buffer_is_modified = function()
         return api.nvim_buf_get_option(api.nvim_get_current_buf(), "modified")
@@ -151,6 +156,7 @@ local config = {
             { gps.get_location, cond = gps.is_available },
         },
         lualine_x = {
+            lualine_orgmode,
             plugins.branch,
             plugins.diff,
             plugins.lsp_server,
