@@ -198,7 +198,7 @@ alias pdtxologin='podman login $TXO_ARTIFACTORY -u $ARTIFACTORY_USER -p $ARTIFAC
 alias docker='podman'
 # alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
 alias pdp='podman push --tls-verify=false'
-alias pdoclogin='podman login -u kubeadmin -p `octkn` `ocdefaultroute` --tls-verify=false'
+alias pdoclogin='podman login -u kubeadmin -p $OCTKN $OCDEFAULTROUTE --tls-verify=false'
 alias pdcls='podman container list --all'
 alias pde='podman exec'
 alias pd='podman'
@@ -243,6 +243,7 @@ alias lsg="ls --git-status"
 alias lst="ls -tr"
 
 # openshift oc
+alias ocwho='oc whoami'
 alias ocvars='source ~/dev/ocvars'
 alias ocg='oc get'
 alias ocaf='oc apply -f'

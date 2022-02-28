@@ -46,6 +46,8 @@ source <(minikube completion zsh)
 source $ZSH/completions/_ic
 source $ZSH/completions/_helm
 source $HOME/.config/broot/launcher/bash/br
+source <(stern --completion=zsh) # does not work
+source $ZSH/completions/_stern # does not work
 autoload -U +X bashcompinit && bashcompinit
 # }}}
 
@@ -220,8 +222,6 @@ export UPDATE_ZSH_DAYS=10
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export OCPSCHEMA=${HOME}/dev/openshift-json-schema
-# standard internal oc registry url
-export OCREGISTRY="image-registry.openshift-image-registry.svc:5000"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
