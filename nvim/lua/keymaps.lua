@@ -86,6 +86,10 @@ wk.register({
     ["<leader>r"] = { "<Cmd>lua require('renamer').rename()<CR>", "rename" },
     ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
 })
+
+-- FIXME: Need to make this look nicer. Maybe just use better function organization.
+-- I like how this is doing it as inspiration: https://github.com/CalinLeafshade/dots/blob/1632cfce0f2412a0333993223e5e5a8c5a62ef5c/nvim/.config/nvim/lua/leafshade/telescope/init.lua
+
 wk.register({
     ["<leader>f"] = {
         name = "+search",
@@ -94,26 +98,22 @@ wk.register({
             "<Cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>",
             "find files here",
         },
-        F = {
-            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME', hidden = true })<CR>",
-            "find files all",
-        },
         D = {
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>",
             "find Docs",
         },
-        o = {
+        z = {
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.oh-my-zsh' })<CR>",
             "find oh-my-zsh",
+        },
+        s = {
+            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/bin', hidden = true })<CR>",
+            "scripts",
         },
         d = {
             "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>",
             "dotfiles",
         },
-        -- ['//'] = {
-        --     "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>",
-        --     "fuzzy find here",
-        -- },
         h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
         l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
         p = { "<Cmd>lua require'telescope'.extensions.project.project{}<CR>", "projects" },

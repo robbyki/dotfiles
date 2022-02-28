@@ -4,7 +4,7 @@ export DOTFILES="$HOME/.dotfiles"
 # Quick files and directories
 alias dots="cd $DOTFILES"
 alias zshcfg="$EDITOR $DOTFILES/zsh/.zshrc"
-alias alc="$EDITOR $DOTFILES/zsh/alias.zsh"
+alias al="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabcfg="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
 alias nvimcfg="$EDITOR $DOTFILES/nvim/init.lua"
 alias codecfg="$EDITOR $DOTFILES/vscode/settings.json"
@@ -159,7 +159,7 @@ alias glow='glow -p'
 
 # cloud
 alias ic='ibmcloud'
-alias iclogin='ssrc ibm-secrets;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
+alias iclogin='ssrc ibm-secrets;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null;ocvars'
 alias iccr-rm='ic cr image-rm'
 
 # artifactory
@@ -241,9 +241,8 @@ alias lsg="ls --git-status"
 alias lst="ls -tr"
 
 # openshift oc
-alias ocinit='iclogin && source ~/dev/ocvars && oclogin'
 alias ocvars='source ~/dev/ocvars'
-alias ocgproj='oc get projects'
+alias ocg='oc get'
 alias ocaf='oc apply -f'
 alias occd='oc create deployment'
 alias occf='oc create -f'
