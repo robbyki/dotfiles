@@ -50,6 +50,7 @@ map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
 map("n", "/", "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>")
+map("n", "<leader>L", "<Cmd>lua require('plugins.terminal.custom').lf_toggle()<CR>")
 
 map(
     "n",

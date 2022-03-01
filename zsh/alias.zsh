@@ -167,6 +167,7 @@ alias jf=jfrog
 alias jfdls="jfrog rt search \"txo-aide-team-cio-docker-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 alias jfmls="jfrog rt search \"txo-aide-team-cio-maven-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 alias jfsls="jfrog rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
+alias jfdel="jfrog rt delete"
 
 # kubernetes
 alias kbclean='kbcleanup --raw > ~/.kube/config.swap;kbswap'
@@ -197,7 +198,7 @@ alias kbksd='kubectl-ksd' # secrets decoder
 alias pdtxologin='podman login $TXO_ARTIFACTORY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY'
 alias docker='podman'
 # alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
-alias pdp='podman push --tls-verify=false'
+alias pdpush='podman push --tls-verify=false'
 alias pdoclogin='podman login -u kubeadmin -p $OCTKN $OCDEFAULTROUTE --tls-verify=false'
 alias pdcls='podman container list --all'
 alias pde='podman exec'
@@ -216,6 +217,8 @@ alias pdstop='podman stop -a'
 alias pdrmcls='podman rm -fa'
 alias pdnuke='podman rmi -fa'
 alias pdsc='podman stop $(docker ps -aq)'
+alias pds='podman search'
+alias pdif="pdi --format '{{.Repository}} -> {{.ID}}'"
 # alias di='docker images'
 # alias drmi='docker images -q | xargs docker rmi'
 # alias drmif='docker rmi --force $(docker images -q)'
@@ -252,7 +255,7 @@ alias occf='oc create -f'
 alias occimages='oc get images | grep $OCREGISTRY'
 alias occs='oc create secret'
 alias ocd='oc describe'
-alias ocdn='oc debug nodes/`ocnodeip`'
+alias ocdebug='oc debug nodes/$OCNIP'
 alias oce='oc expose'
 alias oced='oc expose deployment --port=8080'
 alias ocgd='oc get deployments'

@@ -283,32 +283,15 @@ occ() {
 	oc $@ | yq eval --colors -P
 }
 
+# this is just a temporary hack for testing
 pddspark() {
-    podman exec -it $1 bash -c "/spark/bin/spark-submit --class SparkPi --master local[*] /app/target/scala-2.12/spark-tekton-assembly-3.1.2.jar"
+    podman exec -it $1 bash -c "\
+        /opt/spark/bin/spark-submit \
+        --class com.AppDemo \
+        --master local[*] \
+        /app/target/scala-2.12/spark-tekton-assembly-0.1.0-SNAPSHOT.jar"
 }
 
 pdrunc() {
     pd run -id $1 bash
-}
-
-sparkbase-image() {
-    baseimage=bde2020/spark-submit:3.1.2-hadoop3.2
-    sbt_version=1.6.2
-    sbturl=https://github.com/sbt/sbt/releases/download/v${sbt_version}/sbt-${sbt_version}.tgz
-    ctr=$(buildah from $baseimage)
-    buildah run $ctr /bin/sh -c "wget -O - $sbturl | gunzip | tar -x -C /usr/local"
-    buildah config --env "PATH=/usr/local/sbt/bin:${PATH}" $ctr
-    buildah config --workingdir /app $ctr
-    buildah copy $ctr build.sbt app/
-    buildah copy $ctr project/plugins.sbt /app/project/
-    buildah copy $ctr project/project.sbt /app/project/
-    buildah config --onbuild="COPY build.sbt /app/" $ctr
-    buildah config --onbuild="COPY project /app/project" $ctr
-    buildah config --onbuild="RUN sbt update" $ctr
-    buildah config --onbuild="COPY . /app" $ctr
-    buildah config --onbuild="RUN sbt clean assembly" $ctr
-    buildah config --cmd "/template.sh" $ctr
-    buildah config --env _BUILDAH_STARTED_IN_USERNS="" --env BUILDAH_ISOLATION=chroot $ctr
-    buildah commit $ctr onbuild-image
-    buildah rm $ctr
 }
