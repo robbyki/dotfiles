@@ -258,3 +258,4 @@ export BUILDAH_FORMAT=docker
 # export REGISTRY_AUTH_FILE=$HOME/.podmanauth
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 # }}}
+

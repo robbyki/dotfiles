@@ -7,7 +7,7 @@ require("toggleterm").setup({
       return 70
     end
   end,
-  open_mapping = [[<C-t>]],
+  open_mapping = [[c-t]],
   hide_numbers = true, -- hide the number column in toggleterm buffers
   shade_filetypes = {},
   shade_terminals = true,

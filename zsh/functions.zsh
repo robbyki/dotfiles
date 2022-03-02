@@ -231,7 +231,6 @@ ocdel() {
  	ic oc cluster rm -f --force-delete-storage -c $OCID
 }
 
-# get cluster info printout along with master url
 occonf() {
  	ic oc cluster get -c $OCID
 }
@@ -245,42 +244,46 @@ ocprune() {
 
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
 oclogin() {
- 	oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$OCMASTERURL --insecure-skip-tls-verify=true
+    oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$OCMASTER --insecure-skip-tls-verify=true
 }
+
+# ocgetdefaultroute() {
+#     oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
+# }
 
 # colorize oc commands
 ocy() {
 	oc --output yaml $@ | yq eval --colors
 }
 
-octkn() {
-    oc whoami -t
-}
+# ocnodeip() {
+#     oc get nodes -o=jsonpath='{ .items[0].metadata.name }'
+# }
 
-ocnodeip() {
-    oc get nodes -o=jsonpath='{ .items[0].metadata.name }'
-}
+# occlusterip() {
+#     echo "$(oc get svc -o=jsonpath='{ .items[0].spec.clusterIP }'):`ocport`"
+# }
 
-occlusterip() {
-    echo "$(oc get svc -o=jsonpath='{ .items[0].spec.clusterIP }'):`ocport`"
-}
-
-ocport() {
-    oc get svc -o=jsonpath='{ .items[0].spec.ports[0].port }'
-}
+# ocport() {
+#     oc get svc -o=jsonpath='{ .items[0].spec.ports[0].port }'
+# }
 
 # usage for clipboard and then node debug: ocgetextroute | ccc
-ocextroute() {
-    oc get route -o=jsonpath='{.items..spec.host}'
-}
+# ocextroute() {
+#     oc get route -o=jsonpath='{.items..spec.host}'
+# }
 
-ocdefaultroute() {
-    # oc get route -n openshift-image-registry -o=json | jq '.items[].spec.host'
-    oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
-}
+# ocdefaultroute() {
+#     # oc get route -n openshift-image-registry -o=json | jq '.items[].spec.host'
+#     oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
+# }
 
 occ() {
 	oc $@ | yq eval --colors -P
+}
+
+ocimages() {
+    oc get images | grep $OCREGISTRY
 }
 
 # this is just a temporary hack for testing
@@ -295,3 +298,18 @@ pddspark() {
 pdrunc() {
     pd run -id $1 bash
 }
+
+# requires first exposing secrets with `ssibm`
+pdtxologin() {
+    podman login $TXO_ARTIFACTORY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
+}
+
+# requires first to be logged into cluster
+pdoclogin() {
+    podman login -u kubeadmin -p $(octkn) \
+        $(oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}') \
+        --tls-verify=false
+}
+
+
+

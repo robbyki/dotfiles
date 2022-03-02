@@ -41,8 +41,6 @@ require("packer").startup({
             end,
         })
 
-        -- use({ "voldikss/vim-floaterm" })
-
         use({
             "rebelot/kanagawa.nvim",
             config = function()
@@ -241,6 +239,15 @@ require("packer").startup({
         use({ "hrsh7th/cmp-nvim-lsp-signature-help", event = "CmdLineEnter", after = "nvim-cmp" })
         use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
 
+        use({
+            "folke/trouble.nvim",
+            requires = "kyazdani42/nvim-web-devicons",
+            config = function()
+                require("plugins.trouble")
+            end,
+            cmd = "Trouble",
+        })
+
         -- Terminal
         use({
             "akinsho/toggleterm.nvim",
@@ -430,7 +437,6 @@ require("packer").startup({
             end,
         })
 
-        use({ "kdheepak/lazygit.nvim" })
         use({ "sindrets/diffview.nvim" })
         use({ "pwntester/octo.nvim" })
         use({ "f-person/git-blame.nvim" })

@@ -195,11 +195,9 @@ alias stt='stern --tail 10'
 alias kbksd='kubectl-ksd' # secrets decoder
 
 # containers
-alias pdtxologin='podman login $TXO_ARTIFACTORY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY'
 alias docker='podman'
 # alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
 alias pdpush='podman push --tls-verify=false'
-alias pdoclogin='podman login -u kubeadmin -p $OCTKN $OCDEFAULTROUTE --tls-verify=false'
 alias pdcls='podman container list --all'
 alias pde='podman exec'
 alias pd='podman'
@@ -246,22 +244,21 @@ alias lsg="ls --git-status"
 alias lst="ls -tr"
 
 # openshift oc
-alias ocwho='oc whoami'
-alias ocvars='source ~/dev/ocvars'
+alias ocroutes='oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name'
+alias ocvars='source ~/bin/ocvars'
 alias ocg='oc get'
 alias ocaf='oc apply -f'
 alias occd='oc create deployment'
 alias occf='oc create -f'
-alias occimages='oc get images | grep $OCREGISTRY'
 alias occs='oc create secret'
 alias ocd='oc describe'
-alias ocdebug='oc debug nodes/$OCNIP'
+alias ocdebug='oc debug nodes' # use as ocdebug/`ocnip`
 alias oce='oc expose'
 alias oced='oc expose deployment --port=8080'
 alias ocgd='oc get deployments'
 alias ocgn='oc get nodes'
 alias ocgp='oc get pods'
-alias ocgrn='oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name'
+alias ocgpw='oc get pods --watch'
 alias ocgs='oc get secrets'
 alias ocgserv='oc get svc'
 alias ocl='oc logs'
@@ -269,7 +266,8 @@ alias oclf='oc logs --follow'
 alias ocls='ic oc cluster ls'
 alias ocnp='oc new-project'
 alias ocrf='oc replace --force -f'
-# alias ocgnoj='oc get nodes -o=json'
+alias octkn='oc whoami -t'
+alias ocwho='oc whoami'
 
 # tekton
 alias tkb='tekton bundle'

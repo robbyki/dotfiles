@@ -133,12 +133,14 @@ wk.register({
     },
     ["<leader>t"] = {
         name = "+terminal",
-        t = { "<Cmd>FloatermNew --height=0.6 --width=0.8<CR>", "terminal" },
-        a = { "<Cmd>FloatermNew --name=ammonite --height=0.4 --width=0.9 amm<CR>", "ammonite" },
-        p = { "<Cmd>FloatermNew --name=python --height=0.4 --width=0.9 python<CR>", "python" },
-        k = { "<Cmd>FloatermNew --name=k9s --autoclose=2 --height=0.9 --width=0.9 k9s<CR>", "k9s" },
-        b = { "<Cmd>FloatermNew --name=btm --autoclose=2 --height=0.9 --width=0.9 btm<CR>", "btm" },
-        B = { "<Cmd>FloatermNew --name=broot --autoclose=2 --height=0.9 --width=0.9 broot<CR>", "broot" },
+        b = { "<Cmd>lua require('plugins.terminal.custom').broot_toggle()<CR>", "broot" },
+        k = { "<Cmd>lua require('plugins.terminal.custom').k9s_toggle()<CR>", "k9s" },
+        -- t = { "<Cmd>FloatermNew --height=0.6 --width=0.8<CR>", "terminal" },
+        -- a = { "<Cmd>FloatermNew --name=ammonite --height=0.4 --width=0.9 amm<CR>", "ammonite" },
+        -- p = { "<Cmd>FloatermNew --name=python --height=0.4 --width=0.9 python<CR>", "python" },
+        -- k = { "<Cmd>FloatermNew --name=k9s --autoclose=2 --height=0.9 --width=0.9 k9s<CR>", "k9s" },
+        -- b = { "<Cmd>FloatermNew --name=btm --autoclose=2 --height=0.9 --width=0.9 btm<CR>", "btm" },
+        -- B = { "<Cmd>FloatermNew --name=broot --autoclose=2 --height=0.9 --width=0.9 broot<CR>", "broot" },
         -- l = { "<Cmd>FloatermNew --name=lazydocker --height=0.9 --width=0.9 ld<CR>", "ld" },
     },
     ["<leader>h"] = {
@@ -168,7 +170,7 @@ wk.register({
     },
     ["<leader>g"] = {
         name = "+git",
-        g = { "<Cmd>:LazyGit<CR>", "lazygit" },
+        g = { "<Cmd>lua require('plugins.terminal.custom').lazygit_toggle()<CR>", "lazygit" },
         b = { "<Cmd>GitBlameToggle<CR>", "blame" },
         d = { "<Cmd>DiffviewOpen<CR>", "Diff view" },
         D = { "<Cmd>DiffviewClose<CR>", "Diff view close" },
@@ -251,7 +253,7 @@ wk.register({
         L = { ":LspInfo<CR>", "Connected Language" },
         F = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add folder" },
         H = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "hover" },
-        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+        a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
         f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
         g = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "signature" },
         r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
@@ -267,7 +269,7 @@ wk.register({
         I = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
         R = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
         d = { "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "line diagnostics" },
-        i = { "<Cmd>lua vim.lsp.buf.implementation()", "implementation" },
+        i = { "<Cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
         s = { "<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "loc list" },
     },
     ["<leader><leader>l"] = {
@@ -288,13 +290,7 @@ wk.register({
             "<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>",
             "lsp type definitions",
         },
-        D = {
-            "<cmd>Telescope lsp_document_diagnostics<cr>",
-            "Document Diagnostics",
-        },
-        w = {
-            "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-            "Workspace Diagnostics",
-        },
+        D = { "<cmd>Telescope lsp_document_diagnostics<CR>", "Document Diagnostics" },
+        w = { "<cmd>Telescope lsp_workspace_diagnostics<CR>", "Workspace Diagnostics" },
     },
 })
