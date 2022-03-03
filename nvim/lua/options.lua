@@ -121,6 +121,7 @@ vim.cmd("autocmd FileType,BufEnter,BufRead * setlocal formatoptions-=c formatopt
 vim.cmd("autocmd BufRead,BufNewFile *Dockerfile* :set ft=dockerfile")
 vim.cmd("autocmd BufRead,BufNewFile *config :set ft=bash")
 vim.cmd("autocmd BufRead,BufNewFile *.zsh* :set ft=bash")
+vim.cmd("autocmd BufRead,BufNewFile ~/bin/* :set ft=bash")
 vim.cmd("autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=bash")
 vim.cmd("autocmd BufRead,BufNewFile */.kube/config :set ft=yaml")
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])

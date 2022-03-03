@@ -157,8 +157,11 @@ alias rvwu='gh rvwu 2>/dev/null'
 
 alias glow='glow -p'
 
+alias sk='skopeo'
+
 # cloud
 alias ic='ibmcloud'
+alias ocdelc='ic oc cluster rm -f --force-delete-storage -c'
 alias iclogin='ssrc ibm-secrets;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
 alias iccr-rm='ic cr image-rm'
 
@@ -192,7 +195,6 @@ alias kx='kubectx'
 alias mk='minikube'
 alias st='stern'
 alias stt='stern --tail 10'
-alias kbksd='kubectl-ksd' # secrets decoder
 
 # containers
 alias docker='podman'
@@ -245,6 +247,7 @@ alias lst="ls -tr"
 
 # openshift oc
 alias ocroutes='oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name'
+alias icvars='source ~/bin/icvars'
 alias ocvars='source ~/bin/ocvars'
 alias ocg='oc get'
 alias ocaf='oc apply -f'
@@ -252,6 +255,7 @@ alias occd='oc create deployment'
 alias occf='oc create -f'
 alias occs='oc create secret'
 alias ocd='oc describe'
+alias ocdelf='oc delete -f'
 alias ocdebug='oc debug nodes' # use as ocdebug/`ocnip`
 alias oce='oc expose'
 alias oced='oc expose deployment --port=8080'
@@ -288,7 +292,7 @@ alias tlint='tekton-lint'
 # yamls
 alias ylint='yamllint'
 # alias y='yq eval -C'
-type yq > /dev/null && alias yq='yq -C'
+# type yq > /dev/null && alias yq='yq -C'
 alias -g @yml='| yq eval -P'
 alias -g @yaml='| yq eval -P'
 alias -g @json='| jq'

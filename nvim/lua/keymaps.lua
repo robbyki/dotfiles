@@ -78,7 +78,6 @@ end
 
 wk.register({
     ["<leader>"] = { name = "+leader" },
-    ["<leader>-"] = { ":Lf<CR>", "Start lf" },
     ["<leader><leader>b"] = {
         "<Cmd>lua require('telescope.builtin').builtin()<CR>",
         "telescope builtins",

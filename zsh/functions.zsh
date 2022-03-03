@@ -226,16 +226,10 @@ mcdmlogs() {
 #--------------------------------------------------------------------#
 #                             Openshift                              #
 #--------------------------------------------------------------------#
-# some of these assume I already ran source ~/dev/ocinit
-ocdel() {
- 	ic oc cluster rm -f --force-delete-storage -c $OCID
-}
-
 occonf() {
  	ic oc cluster get -c $OCID
 }
 
-# download cluster config and add it to kubeconfig
 ocgetconf() { ic oc cluster config -c $OCID --admin }
 
 ocprune() {
@@ -288,16 +282,12 @@ ocimages() {
 
 # this is just a temporary hack for testing
 pddspark() {
-    podman exec -it $1 bash -c "\
-        /opt/spark/bin/spark-submit \
-        --class com.AppDemo \
-        --master local[*] \
-        /app/target/scala-2.12/spark-tekton-assembly-0.1.0-SNAPSHOT.jar"
+    podman exec -it $1 bash -c "/opt/spark/bin/spark-submit --class com.AppDemo --master local[*] /app/target/scala-2.12/spark-tekton-assembly-0.1.0-SNAPSHOT.jar"
 }
 
-pdrunc() {
-    pd run -id $1 bash
-}
+# pdrunc() {
+#     pd run -id $1 bash
+# }
 
 # requires first exposing secrets with `ssibm`
 pdtxologin() {
