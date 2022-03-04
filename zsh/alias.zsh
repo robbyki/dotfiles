@@ -29,6 +29,9 @@ alias snipf="cd $HOME/.local/share/nvim/site/pack/packer/opt/friendly-snippets/s
 alias pics="cd ~/Pictures"
 #alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 #alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
+#alias dr="rofi -show drun"
+#alias r="rofi -theme Arc-Dark -show window"
+
 alias chx="chmod +x"
 
 # gpg secrets on a per shell basis
@@ -37,6 +40,7 @@ alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
 alias ssibm="secrets source ibm-secrets"
+alias sdibm="secrets decrypt ibm-secrets"
 
 # system helpers
 alias exp='export'
@@ -72,9 +76,6 @@ alias reb="systemctl reboot"
 alias peek="GDK_BACKEND=x11 peek"
 alias ccc="xclip -sel clip"
 alias jqi="jid -q | ccc"
-
-#alias dr="rofi -show drun"
-#alias r="rofi -theme Arc-Dark -show window"
 
 #gatsby js blog builder
 alias gat='gatsby'
@@ -126,8 +127,6 @@ alias bupush='buildah push'
 alias burm='buildah rm'
 
 # scala
-alias fix="scalafix"
-alias fmt="scalafmt"
 alias sbi='sbt -Dbloop.export-jar-classifiers=sources bloopInstall'
 alias bb="$EDITOR build.sbt"
 alias bd="$EDITOR project/Dependencies.scala"
@@ -198,7 +197,7 @@ alias stt='stern --tail 10'
 
 # containers
 alias docker='podman'
-# alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
+alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
 alias pdpush='podman push --tls-verify=false'
 alias pdcls='podman container list --all'
 alias pde='podman exec'
@@ -305,8 +304,6 @@ alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86V
 alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
-
-#alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
 
 # I don't really need these since I can just use `magic-enter` but I like them anyway
 alias ptop='tput cup $((LINES/4)) 0'  # Clear quarter

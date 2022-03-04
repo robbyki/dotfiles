@@ -291,7 +291,7 @@ pddspark() {
 
 # requires first exposing secrets with `ssibm`
 pdtxologin() {
-    podman login $TXO_ARTIFACTORY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
+    podman login $MYPRIVATE_REGISTRY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
 }
 
 # requires first to be logged into cluster

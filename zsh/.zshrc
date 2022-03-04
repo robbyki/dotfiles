@@ -259,3 +259,5 @@ export BUILDAH_FORMAT=docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 # }}}
 
+exp SPARKCMD="/opt/spark/bin/spark-submit --class com.AppDemo --master local[*] /app/target/scala-2.12/myapp-demo-assembly-0.1.0-SNAPSHOT.jar"
+
