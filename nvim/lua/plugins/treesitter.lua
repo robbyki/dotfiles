@@ -1,6 +1,6 @@
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-require('orgmode').setup_ts_grammar()
+require("orgmode").setup_ts_grammar()
 
 require("nvim-treesitter.configs").setup({
     ensure_installed = {

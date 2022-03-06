@@ -40,6 +40,7 @@
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
+    command_execution_time  # duration of the last command
     prompt_char             # prompt symbol
   )
 
@@ -52,14 +53,13 @@
     secrets
     # prompt_example
     background_jobs         # presence of background jobs
-    command_execution_time  # duration of the last command
     # instant_prompt_example
     # direnv                  # direnv status (https://direnv.net/)
     # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     # anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-    goenv                     # go environment (https://github.com/syndbg/goenv)
+    # goenv                     # go environment (https://github.com/syndbg/goenv)
     go_version            # go version (https://golang.org)
     kubecontext
     node_version          # node.js version
@@ -190,9 +190,9 @@
   fi
 
 #######################[ go_version: go version (https://golang.org) ]########################
-typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=5
-typeset -g POWERLEVEL9K_GO_VERSION_BACKGROUND=0
-typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
+# typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=5
+# typeset -g POWERLEVEL9K_GO_VERSION_BACKGROUND=0
+# typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
 
   #################################[ os_icon: os identifier ]##################################
 POWERLEVEL9K_CUSTOM_FEDORA_ICON="echo '\uf798'"
@@ -935,25 +935,25 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
 
       #######################[ go_version: go version (https://golang.org) ]########################
   # Go version color.
-  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=6
+  # typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=6
   # Show go version only when in a go project subdirectory.
-  typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
+  # typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
   # Custom icon.
   # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
     ################[ goenv: go environment (https://github.com/syndbg/goenv) ]################
-  # Goenv color.
-  typeset -g POWERLEVEL9K_GOENV_FOREGROUND=6
-  # Hide go version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_GOENV_SOURCES=(shell local global)
-  # If set to false, hide go version if it's the same as global:
-  # $(goenv version-name) == $(goenv global).
-  typeset -g POWERLEVEL9K_GOENV_PROMPT_ALWAYS_SHOW=false
-  # If set to false, hide go version if it's equal to "system".
-  typeset -g POWERLEVEL9K_GOENV_SHOW_SYSTEM=true
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_GOENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
+  # # Goenv color.
+  # typeset -g POWERLEVEL9K_GOENV_FOREGROUND=6
+  # # Hide go version if it doesn't come from one of these sources.
+  # typeset -g POWERLEVEL9K_GOENV_SOURCES=(shell local global)
+  # # If set to false, hide go version if it's the same as global:
+  # # $(goenv version-name) == $(goenv global).
+  # typeset -g POWERLEVEL9K_GOENV_PROMPT_ALWAYS_SHOW=false
+  # # If set to false, hide go version if it's equal to "system".
+  # typeset -g POWERLEVEL9K_GOENV_SHOW_SYSTEM=true
+  # # Custom icon.
+  # # typeset -g POWERLEVEL9K_GOENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  #
   ##########[ nodenv: node.js version from nodenv (https://github.com/nodenv/nodenv) ]##########
   # Nodenv color.
   typeset -g POWERLEVEL9K_NODENV_FOREGROUND=70
@@ -993,11 +993,13 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
 
   #######################[ go_version: go version (https://golang.org) ]########################
   # Go version color.
-  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=37
+  typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_COLOR=87
+  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=11
+  # typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=37
   # Show go version only when in a go project subdirectory.
-  typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
+  # typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
   # Custom icon.
-  # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ufcd1'
 
   #################[ rust_version: rustc version (https://www.rust-lang.org) ]##################
   # Rust version color.

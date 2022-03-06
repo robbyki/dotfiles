@@ -290,16 +290,16 @@ pddspark() {
 # }
 
 # requires first exposing secrets with `ssibm`
-pdtxologin() {
+pdltxo() {
     podman login $MYPRIVATE_REGISTRY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
 }
 
 # requires first to be logged into cluster
-pdoclogin() {
-    podman login -u kubeadmin -p $(octkn) \
-        $(oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}') \
-        --tls-verify=false
-}
+# pdloc() {
+#     podman login -u kubeadmin -p $(octkn) \
+#         $(oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}') \
+#         --tls-verify=false
+# }
 
 
 

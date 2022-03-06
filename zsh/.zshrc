@@ -33,6 +33,8 @@ plugins=(
     zsh-secrets
     flatpak
     npm
+    vi-mode
+    notify
 )
 # }}}
 
@@ -261,3 +263,12 @@ export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 
 exp SPARKCMD="/opt/spark/bin/spark-submit --class com.AppDemo --master local[*] /app/target/scala-2.12/myapp-demo-assembly-0.1.0-SNAPSHOT.jar"
 
+bindkey -v
+export KEYTIMEOUT=1
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^v' edit-command-line
+
+zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200_s.gif"
+zstyle ':notify:*' error-title "wow such #fail"
+zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
+zstyle ':notify:*' success-title "very #success. wow"

@@ -156,7 +156,7 @@ alias rvwu='gh rvwu 2>/dev/null'
 
 alias glow='glow -p'
 
-alias sk='skopeo'
+alias ski='skopeo inspect --tls-verify=false'
 
 # cloud
 alias ic='ibmcloud'
@@ -199,6 +199,7 @@ alias stt='stern --tail 10'
 alias docker='podman'
 alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
 alias pdpush='podman push --tls-verify=false'
+alias pdloc='pdl -u kubeadmin -p $(oc whoami -t) $OCHOST --tls-verify=false'
 alias pdcls='podman container list --all'
 alias pde='podman exec'
 alias pd='podman'

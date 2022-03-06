@@ -6,8 +6,8 @@ local lualine = require("lualine")
 local colors = require("kanagawa.colors").setup()
 
 local function lualine_orgmode()
-    local orgmode = require('orgmode')
-	return orgmode.statusline()
+    local orgmode = require("orgmode")
+    return orgmode.statusline()
 end
 
 local conditions = {
