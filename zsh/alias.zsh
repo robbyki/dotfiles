@@ -13,6 +13,7 @@ alias tmuxcfg="$EDITOR $DOTFILES/tmux/.tmux.conf"
 alias kbcfg="$EDITOR ~/.kube/config"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
+alias sl="slides"
 
 # "I didn't say they'll take you places you'd want to go"
 alias rkeeweb="copy ~/Documents/notes/webex-rkee.txt"
@@ -204,7 +205,7 @@ alias pdcls='podman container list --all'
 alias pde='podman exec'
 alias pd='podman'
 alias pdl='podman login'
-alias pdb='podman build'
+alias pdb='podman build --tls-verify=false'
 alias pdi='podman images'
 alias pdprune='podman system prune --all --force'
 alias pdt='podman tag'
