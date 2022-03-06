@@ -134,6 +134,7 @@ wk.register({
         name = "+terminal",
         b = { "<Cmd>lua require('plugins.terminal.custom').broot_toggle()<CR>", "broot" },
         k = { "<Cmd>lua require('plugins.terminal.custom').k9s_toggle()<CR>", "k9s" },
+        t = { "<Cmd>ToggleTerm<CR>", "terminal" },
         -- t = { "<Cmd>FloatermNew --height=0.6 --width=0.8<CR>", "terminal" },
         -- a = { "<Cmd>FloatermNew --name=ammonite --height=0.4 --width=0.9 amm<CR>", "ammonite" },
         -- p = { "<Cmd>FloatermNew --name=python --height=0.4 --width=0.9 python<CR>", "python" },

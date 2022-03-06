@@ -100,7 +100,6 @@ telescope.setup({
             "ScalaResources/",
             "^lua-language-server/",
             "cache",
-            "db",
             "gif",
             "jpeg",
             "jpg",
