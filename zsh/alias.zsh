@@ -109,6 +109,9 @@ alias blr='bloop run'
 alias blrr='bloop run root'
 alias blrv='bloop run --verbose'
 
+# cockroach
+alias crdb='cockroach'
+
 # Buildah
 alias bu='buildah'
 alias bub='buildah build' # same as buildah build
