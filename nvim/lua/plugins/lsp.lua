@@ -209,8 +209,25 @@ end
 ----------------------------------------------------------------------
 --                              SCALA                               --
 ----------------------------------------------------------------------
-local dap = require("dap")
+--TODO: This is terrible. Need to update this from scratch.
 local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+nvim_lsp.util.default_config = vim.tbl_extend("force", nvim_lsp.util.default_config, {
+	handlers = {
+		["textDocument/publishDiagnostics"] = shared_diagnostic_settings,
+	},
+	capabilities = capabilities,
+})
+vim.lsp.diagnostic.show_line_diagnostics()
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	virtual_text = false,
+	signs = true,
+	underline = true,
+	update_on_insert = false,
+})
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]])
+local dap = require("dap")
 Metals_config = require("metals").bare_config()
 Metals_config.settings = {
 	showImplicitArguments = true,
@@ -259,7 +276,7 @@ dap.configurations.scala = {
 		},
 	},
 }
-
+--
 ----------------------------------------------------------------------
 --                               LUA                                --
 ----------------------------------------------------------------------

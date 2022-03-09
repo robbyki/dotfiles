@@ -1,0 +1,13 @@
+{
+    "scala": {
+        "prefix": [
+            "sparksql"
+        ],
+        "body": [
+            "import org.apache.spark.sql._"
+        ],
+        "description": [
+            "common import for spark sql"
+        ]
+    }
+}
