@@ -1,0 +1,13 @@
+{
+    "bash": {
+        "prefix": [
+            "jsonpath"
+        ],
+        "body": [
+            "ocg packagemanifest -n openshift-marketplace ${1:package} -o jsonpath='{${2:schema}}{\"\\n\"}'"
+        ],
+        "description": [
+            "test"
+        ]
+    }
+}
