@@ -239,7 +239,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.sendKeybindingsToShell": true,
   "terminal.external.linuxExec": "alacritty",
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontSize": 12,
   "debug.console.fontFamily": "Operator Mono SSm Lig Book",
   "debug.console.wordWrap": false,
   "debug.console.fontSize": 12,

@@ -272,9 +272,9 @@ ocy() {
 #     oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
 # }
 
-occ() {
-	oc $@ | yq eval --colors -P
-}
+# occ() {
+# 	oc $@ | yq eval --colors -P
+# }
 
 ocimages() {
     oc get images | grep $OCREGISTRY
@@ -294,6 +294,9 @@ pdltxo() {
     podman login $MYPRIVATE_REGISTRY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
 }
 
+pdlrcrh() {
+    podman login registry.connect.redhat.com -u $RCRHUSER -p $RCRHTKN
+}
 # requires first to be logged into cluster
 # pdloc() {
 #     podman login -u kubeadmin -p $(octkn) \

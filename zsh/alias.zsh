@@ -42,6 +42,7 @@ alias se="secrets encrypt"
 alias ssrc="secrets source"
 alias ssibm="secrets source ibm-secrets"
 alias sdibm="secrets decrypt ibm-secrets"
+alias seibm="secrets encrypt ibm-secrets"
 
 # system helpers
 alias exp='export'
@@ -256,6 +257,7 @@ alias ocvars='source ~/bin/ocvars'
 alias ocg='oc get'
 alias ocaf='oc apply -f'
 alias occd='oc create deployment'
+alias occ='oc create'
 alias occf='oc create -f'
 alias occs='oc create secret'
 alias ocd='oc describe'
