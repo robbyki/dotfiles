@@ -13,22 +13,16 @@ vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 
 -- vim.g.loaded_matchit = 1
 
-vim.bo.expandtab = true
-vim.bo.shiftwidth = vim.bo.tabstop
-vim.bo.softtabstop = vim.bo.tabstop
-vim.bo.tabstop = 4
-vim.o.autoindent = true
-vim.bo.autoindent = true
-vim.o.expandtab = true
-vim.o.shiftwidth = vim.bo.tabstop
-vim.o.softtabstop = vim.bo.tabstop
-vim.o.tabstop = 4
-vim.o.wrap = false
+vim.opt.smarttab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 vim.opt.backup = false
+vim.opt.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
 vim.opt.colorcolumn = "100"
 vim.opt.completeopt = "menu,menuone,noselect,noinsert"
 vim.opt.conceallevel = 0
 vim.opt.cursorline = true
+vim.opt.expandtab = true
 vim.opt.fileencoding = "utf-8"
 vim.opt.guifont = "Operator Mono SSm Lig Book"
 vim.opt.hidden = true
@@ -39,37 +33,42 @@ vim.opt.laststatus = 2
 vim.opt.list = true
 vim.opt.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
 vim.opt.mouse = ""
+vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.ruler = true
 vim.opt.rulerformat = [[%-14.(%l,%c   %o%)]]
+vim.opt.shiftwidth = vim.bo.tabstop
 vim.opt.showmatch = true
+vim.opt.showmode = true
 vim.opt.showtabline = 2
 vim.opt.smartcase = true
+vim.opt.softtabstop = vim.bo.tabstop
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
-vim.o.undodir = vim.fn.stdpath("cache") .. "/undodir/"
-vim.bo.undofile = true
-vim.o.undofile = true
+vim.opt.tabstop = 4
 vim.opt.termguicolors = true
--- vim.opt.textwidth = 80
-vim.o.hidden = true
-vim.o.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
-vim.o.showmode = true
 vim.opt.timeoutlen = 700
 vim.opt.title = false
+vim.opt.undodir = vim.fn.stdpath("cache") .. "/undodir/"
+vim.opt.undofile = true
 vim.opt.updatetime = 300
 vim.opt.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloop", ".ammonite"
+vim.opt.wrap = false
 vim.opt.writebackup = false
 vim.wo.cursorline = true
 vim.wo.foldlevel = 99
-vim.o.number = true
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.o.relativenumber = true
 vim.wo.signcolumn = "yes"
 vim.wo.wrap = false
-vim.cmd("filetype plugin on")
-vim.cmd("filetype indent on")
+vim.cmd([[
+filetype on
+filetype plugin on
+filetype plugin indent on
+]])
+
+-- vim.opt.textwidth = 80
 
 -- copy buffer path
 vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
@@ -101,9 +100,7 @@ vim.g.hardtime_maxcount = 0
 vim.g.hardtime_ignore_buffer_patterns = { "LuaTree", "alpha", "NvimTree", "fugitiveblame", "magit" }
 
 vim.g.glow_binary_path = "/usr/local/bin"
-
 vim.g.vsnip_snippet_dir = "/home/robbyk/.dotfiles/nvim/.vsnip"
-
 vim.g.rainbow_active = 1
 
 vim.cmd([[ highlight CopilotSuggestion guifg=#2e5d7d ctermfg=8 ]])
@@ -119,18 +116,18 @@ vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 vim.cmd("autocmd FileType,BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 vim.cmd("autocmd BufRead,BufNewFile *Dockerfile* :set ft=dockerfile")
-vim.cmd("autocmd BufRead,BufNewFile *config :set ft=bash")
-vim.cmd("autocmd BufRead,BufNewFile *.zsh* :set ft=bash")
-vim.cmd("autocmd BufRead,BufNewFile *zsh* :set ft=bash")
-vim.cmd("autocmd BufRead,BufNewFile ~/bin/* :set ft=bash")
-vim.cmd("autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=bash")
+vim.cmd("autocmd BufRead,BufNewFile *config :set ft=sh")
+vim.cmd("autocmd BufRead,BufNewFile *.zsh* :set ft=sh")
+vim.cmd("autocmd BufRead,BufNewFile *zsh* :set ft=sh")
+vim.cmd("autocmd BufRead,BufNewFile ~/bin/* :set ft=sh")
+vim.cmd("autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=sh")
 vim.cmd("autocmd BufRead,BufNewFile */.kube/config :set ft=yaml")
 vim.cmd([[autocmd BufEnter *.js call matchadd('ColorColumn', '\%81v', 100)]])
 vim.cmd(
-    "autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell"
+	"autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell"
 )
 vim.cmd("autocmd TermOpen * startinsert")
-vim.cmd("autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=bash")
+vim.cmd("autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=sh")
 -- vim.cmd("set formatoptions-=cro")
 
 -- LSP
@@ -141,15 +138,15 @@ vim.cmd([[autocmd!]])
 vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
 vim.cmd([[augroup end]])
-vim.fn.sign_define("LspDiagnosticsSignError", { text = "▬" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "▬" })
-vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "▬" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })
 vim.cmd([[hi! link LspReferenceText CursorColumn]])
 vim.cmd([[hi! link LspReferenceRead CursorColumn]])
 vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
 vim.cmd([[hi! link LspSagaFinderSelection CursorColumn]])
 vim.cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
+vim.fn.sign_define("LspDiagnosticsSignError", { text = "▬" })
+vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "▬" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "▬" })
+vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })
 
 vim.cmd("highlight! Comment cterm=italic, gui=italic")
 vim.cmd("highlight! Special cterm=italic, gui=italic")

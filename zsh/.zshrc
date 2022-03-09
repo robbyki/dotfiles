@@ -261,7 +261,6 @@ export BUILDAH_FORMAT=docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 # }}}
 
-exp SPARKCMD="/opt/spark/bin/spark-submit --class com.AppDemo --master local[*] /app/target/scala-2.12/myapp-demo-assembly-0.1.0-SNAPSHOT.jar"
 
 bindkey -v
 export KEYTIMEOUT=1
@@ -272,3 +271,5 @@ zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200
 zstyle ':notify:*' error-title "wow such #fail"
 zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
 zstyle ':notify:*' success-title "very #success. wow"
+
+export OCREGISTRY=image-registry.openshift-image-registry.svc:5000
