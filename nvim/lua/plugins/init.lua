@@ -200,7 +200,7 @@ require("packer").startup({
 		use({
 			"j-hui/fidget.nvim",
 			config = function()
-				require("plugins.fidget-spinner")
+				require("fidget").setup()
 			end,
 		})
 		use({

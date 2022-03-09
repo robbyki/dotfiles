@@ -1,41 +1,216 @@
-local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
-local lsp_config = require("lspconfig")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local dap = require("dap")
+--TODO: Fix all of the scala metals confg
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
+-- 	handlers = {
+-- 		["textDocument/publishDiagnostics"] = shared_diagnostic_settings,
+-- 	},
+-- 	capabilities = capabilities,
+-- })
+-- vim.lsp.diagnostic.show_line_diagnostics()
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+-- 	virtual_text = false,
+-- 	signs = true,
+-- 	underline = true,
+-- 	update_on_insert = false,
+-- })
+-- local signs = {
+-- 	Error = "ﰸ",
+-- 	Warn = "",
+-- 	Hint = "",
+-- 	Info = "",
+-- }
+-- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]])
+--
+-- ----------------------------------------------------------------------
+-- --                               BASH                               --
+-- ----------------------------------------------------------------------
+-- lsp_config.bashls.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	filetypes = { "bash", "sh", "zsh" },
+-- })
+--
+-- ----------------------------------------------------------------------
+-- --                              PYTHON                              --
+-- ----------------------------------------------------------------------
+-- require("lspconfig").pyright.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+--
+-- ----------------------------------------------------------------------
+-- --                              DOCKER                              --
+-- ----------------------------------------------------------------------
+-- require("lspconfig").dockerls.setup({
+-- 	cmd = { "docker-langserver", "--stdio" },
+-- 	filetypes = { "dockerfile" },
+-- 	single_file_support = true,
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	flags = {
+-- 		debounce_text_changes = 150,
+-- 	},
+-- })
+--
+-- ----------------------------------------------------------------------
+-- --                               HTML                               --
+-- ----------------------------------------------------------------------
+-- lsp_config.html.setup({})
+--
+-- ----------------------------------------------------------------------
+-- --                               JSON                               --
+-- ----------------------------------------------------------------------
+-- lsp_config.jsonls.setup({
+-- 	handlers = handlers,
+-- 	flags = flags,
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	commands = {
+-- 		Format = {
+-- 			function()
+-- 				vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+-- 			end,
+-- 		},
+-- 	},
+-- })
+--
+--
+-- ----------------------------------------------------------------------
+-- --                              RACKET                              --
+-- ----------------------------------------------------------------------
+-- lsp_config.racket_langserver.setup({})
+--
+-- ----------------------------------------------------------------------
+-- --                                GO                                --
+-- ----------------------------------------------------------------------
+-- lsp_config.gopls.setup({
+-- 	settings = {
+-- 		gopls = {
+-- 			analyses = { unusedparams = true, shadow = true },
+-- 			staticcheck = true,
+-- 			experimentalPostfixCompletions = true,
+-- 		},
+-- 	},
+-- 	init_options = { usePlaceholders = true, completeUnimported = true },
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	flags = flags,
+-- })
 
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local nvim_lsp = require("lspconfig")
+local configs = require("lspconfig.configs")
 
-require("lsp_signature").setup()
-require("lsp_signature").on_attach()
-
-lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
-	handlers = {
-		["textDocument/publishDiagnostics"] = shared_diagnostic_settings,
-	},
-	capabilities = capabilities,
-})
-vim.lsp.diagnostic.show_line_diagnostics()
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = false,
-	signs = true,
-	underline = true,
-	update_on_insert = false,
-})
-local signs = {
-	Error = "ﰸ",
-	Warn = "",
-	Hint = "",
-	Info = "",
-}
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = nil })
+local function lspSymbol(name, icon)
+	local hl = "DiagnosticSign" .. name
+	vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]])
+
+lspSymbol("Error", "")
+lspSymbol("Info", "")
+lspSymbol("Hint", "")
+lspSymbol("Warn", "")
+
+-- suppress error messages from lang servers
+vim.notify = function(msg, log_level)
+	if msg:match("exit code") then
+		return
+	end
+	if log_level == vim.log.levels.ERROR then
+		vim.api.nvim_err_writeln(msg)
+	else
+		vim.api.nvim_echo({ { msg } }, true, {})
+	end
+end
+
+local function on_attach(_, bufnr)
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
+	local function buf_set_option(...)
+		vim.api.nvim_buf_set_option(bufnr, ...)
+	end
+
+	-- Enable completion triggered by <c-x><c-o>
+	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+	-- Mappings.
+	local opts = { noremap = true, silent = true }
+
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	buf_set_keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	buf_set_keymap("n", "ge", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+	buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+	properties = {
+		"documentation",
+		"detail",
+		"additionalTextEdits",
+	},
+}
+
+local function set_augroup(group_name, definition)
+	vim.cmd("augroup " .. group_name)
+	vim.cmd("autocmd!")
+	for _, def in pairs(definition) do
+		-- local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
+		local command = "autocmd " .. table.concat(def, " ")
+		vim.cmd(command)
+	end
+	vim.cmd("augroup END")
+end
+
+-- Format on save
+set_augroup("lsp_format", {
+	{ "BufWritePre", "*", "lua vim.lsp.buf.formatting_seq_sync(nil, 10000)" },
+})
+
+require("lsp-colors").setup({
+	Error = "#db4b4b",
+	Warning = "#e0af68",
+	Information = "#0db9d7",
+	Hint = "#00FF00",
+	-- Hint = "#10B981",
+})
+
+local default_servers = {
+	"bashls",
+	"dockerls",
+	"gopls",
+	"pyright",
+}
+
+for _, lsp in ipairs(default_servers) do
+	nvim_lsp[lsp].setup({
+		on_attach = on_attach,
+		flags = {
+			debounce_text_changes = 150,
+		},
+	})
+end
 
 ----------------------------------------------------------------------
 --                              SCALA                               --
 ----------------------------------------------------------------------
+local dap = require("dap")
+local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 Metals_config = require("metals").bare_config()
 Metals_config.settings = {
 	showImplicitArguments = true,
@@ -51,7 +226,6 @@ Metals_config.init_options.statusBarProvider = "on"
 Metals_config.init_options.compilerOptions.isCompletionItemResolve = false
 Metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_settings
 Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
 Metals_config.on_attach = function(client, bufnr)
 	vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
 	vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
@@ -89,7 +263,7 @@ dap.configurations.scala = {
 ----------------------------------------------------------------------
 --                               LUA                                --
 ----------------------------------------------------------------------
-lsp_config.sumneko_lua.setup({
+nvim_lsp.sumneko_lua.setup({
 	cmd = {
 		"/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
 		"-E",
@@ -124,48 +298,13 @@ lsp_config.sumneko_lua.setup({
 })
 
 ----------------------------------------------------------------------
---                               BASH                               --
-----------------------------------------------------------------------
-lsp_config.bashls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = { "bash", "sh", "zsh" },
-})
-
-----------------------------------------------------------------------
---                              PYTHON                              --
-----------------------------------------------------------------------
-require("lspconfig").pyright.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-----------------------------------------------------------------------
---                              DOCKER                              --
-----------------------------------------------------------------------
-require("lspconfig").dockerls.setup({
-	cmd = { "docker-langserver", "--stdio" },
-	filetypes = { "dockerfile" },
-	single_file_support = true,
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = {
-		debounce_text_changes = 150,
-	},
-})
-
-----------------------------------------------------------------------
---                               HTML                               --
-----------------------------------------------------------------------
-lsp_config.html.setup({})
-
-----------------------------------------------------------------------
 --                               JSON                               --
 ----------------------------------------------------------------------
-lsp_config.jsonls.setup({
-	handlers = handlers,
-	flags = flags,
-	on_attach = on_attach,
+nvim_lsp.jsonls.setup({
+	on_attach = function(client)
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
+	end,
 	capabilities = capabilities,
 	commands = {
 		Format = {
@@ -179,8 +318,7 @@ lsp_config.jsonls.setup({
 ----------------------------------------------------------------------
 --                            JAVASCRIPT                            --
 ----------------------------------------------------------------------
-lsp_config.tsserver.setup({
-	flags = flags,
+nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	filetypes = {
@@ -201,9 +339,7 @@ lsp_config.tsserver.setup({
 ----------------------------------------------------------------------
 --                               YAML                               --
 ----------------------------------------------------------------------
-lsp_config.yamlls.setup({
-	handlers = handlers,
-	flags = flags,
+nvim_lsp.yamlls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
@@ -211,14 +347,10 @@ lsp_config.yamlls.setup({
 		yaml = {
 			format = { enable = true },
 			validate = false,
-			-- schemaDownload = { enable = true },
+			schemaDownload = { enable = true },
 			completion = true,
 			hover = true,
 			-- editor = { formatOnType = true },
-			schemaStore = {
-				enable = true,
-				url = "https://www.schemastore.org/api/json/catalog.json",
-			},
 			schemas = {
 				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
 				["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
@@ -236,26 +368,4 @@ lsp_config.yamlls.setup({
 			},
 		},
 	},
-})
-
-----------------------------------------------------------------------
---                              RACKET                              --
-----------------------------------------------------------------------
-lsp_config.racket_langserver.setup({})
-
-----------------------------------------------------------------------
---                                GO                                --
-----------------------------------------------------------------------
-lsp_config.gopls.setup({
-	settings = {
-		gopls = {
-			analyses = { unusedparams = true, shadow = true },
-			staticcheck = true,
-			experimentalPostfixCompletions = true,
-		},
-	},
-	init_options = { usePlaceholders = true, completeUnimported = true },
-	on_attach = on_attach,
-	capabilities = capabilities,
-	flags = flags,
 })

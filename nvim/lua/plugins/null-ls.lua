@@ -3,11 +3,11 @@ if not null_ls_status_ok then
 	return
 end
 
-local null_ls = require("null-ls")
 local builtins = null_ls.builtins
 local formatting = builtins.formatting
-local diagnostics = builtins.diagnostics
-local code_actions = builtins.code_actions
+-- local null_ls = require("null-ls")
+-- local diagnostics = builtins.diagnostics
+-- local code_actions = builtins.code_actions
 
 null_ls.setup({
 	debug = false,
@@ -19,7 +19,10 @@ null_ls.setup({
 		formatting.gofmt,
 		formatting.goimports,
 		formatting.json_tool,
-		formatting.scalafmt,
+		-- formatting.scalafmt,
+		null_ls.builtins.formatting.prettier.with({
+			extra_filetypes = { "scala, sbt" },
+		}),
 	},
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then

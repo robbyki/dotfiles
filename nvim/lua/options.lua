@@ -13,9 +13,7 @@ vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 
 -- vim.g.loaded_matchit = 1
 
-vim.opt.smarttab = true
 vim.opt.autoindent = true
-vim.opt.smartindent = true
 vim.opt.backup = false
 vim.opt.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
 vim.opt.colorcolumn = "100"
@@ -42,6 +40,8 @@ vim.opt.showmatch = true
 vim.opt.showmode = true
 vim.opt.showtabline = 2
 vim.opt.smartcase = true
+vim.opt.smartindent = true
+vim.opt.smarttab = true
 vim.opt.softtabstop = vim.bo.tabstop
 vim.opt.splitbelow = true
 vim.opt.splitright = true
