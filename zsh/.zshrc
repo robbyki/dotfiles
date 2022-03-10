@@ -33,8 +33,8 @@ plugins=(
     zsh-secrets
     flatpak
     npm
-    vi-mode
     notify
+    vi-mode
 )
 # }}}
 
@@ -141,8 +141,18 @@ export TMOUT=0
 # color scheme for bat viewer
 export BAT_THEME="OneHalfDark"
 
-# {{{ fzf settings
-# ctrl-O to open a file with fzf into nvim
+# I think I do this around 2 million times a day.
+fancyctrlz () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancyctrlz
+
 fzf_then_open_in_editor() {
     file="$(__fsel)"
     file_no_whitespace="$(echo -e "${file}" | tr -d '[:space:]')"
@@ -166,12 +176,12 @@ fzf-open-file-current-dir() {
 }
 zle -N fzf-open-file-current-dir
 
+bindkey '^ ' autosuggest-accept
+bindkey -a '^ ' autosuggest-accept
+bindkey '^Z' fancyctrlz
 bindkey -s "^[o" 'lfcd\n'
 bindkey '^O' fzf_then_open_in_editor
 bindkey '^P' fzf-open-file-current-dir
-
-bindkey '^ ' autosuggest-accept
-bindkey -a '^ ' autosuggest-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -238,8 +248,6 @@ zle -N fzf_functions
 bindkey -M emacs '\ef' fzf_functions
 bindkey -M vicmd '\ef' fzf_functions
 bindkey -M viins '\ef' fzf_functions
-zle -N fancyctrlz
-bindkey '^Z' fancyctrlz
 bindkey "^[l" clear-screen
 bindkey -s "^[=" 'k9s^M'
 
@@ -248,7 +256,6 @@ autoload -Uz $fpath[1]/*(.:t)
 
 # used for gpg zsh secrets plugin
 export RECIPIENT="robbmk@gmail.com"
-
 export GPGKEY=9D0BE3B364886BBCE5C6B4551D020EA33FE2A6A8
 
 # deduplicate env paths for now
@@ -260,32 +267,32 @@ export BUILDAH_FORMAT=docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 # }}}
 
-
+# shortcut for using vi at command line
 bindkey -v
 export KEYTIMEOUT=1
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 # Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+# function zle-keymap-select {
+#   if [[ ${KEYMAP} == vicmd ]] ||
+#      [[ $1 = 'block' ]]; then
+#     echo -ne '\e[1 q'
+#   elif [[ ${KEYMAP} == main ]] ||
+#        [[ ${KEYMAP} == viins ]] ||
+#        [[ ${KEYMAP} = '' ]] ||
+#        [[ $1 = 'beam' ]]; then
+#     echo -ne '\e[5 q'
+#   fi
+# }
+# zle -N zle-keymap-select
+# zle-line-init() {
+#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+#     echo -ne "\e[5 q"
+# }
+# zle -N zle-line-init
+# echo -ne '\e[5 q' # Use beam shape cursor on startup.
+# preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200_s.gif"
 zstyle ':notify:*' error-title "wow such #fail"
@@ -293,4 +300,5 @@ zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a
 zstyle ':notify:*' success-title "very #success. wow"
 
 export OCREGISTRY=image-registry.openshift-image-registry.svc:5000
-export alc=~/.dotfiles/alacritty/alacritty.yml
+
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true

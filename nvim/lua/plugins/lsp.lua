@@ -192,7 +192,7 @@ require("lsp-colors").setup({
 })
 
 local default_servers = {
-	"bashls",
+	-- "bashls",
 	"dockerls",
 	"pyright",
 }

@@ -12,7 +12,7 @@ local formatting = builtins.formatting
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.shfmt,
+		formatting.shfmt.with({ extra_args = { "-i", "2", "-ci", "-bn" } }),
 		formatting.prettier,
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,

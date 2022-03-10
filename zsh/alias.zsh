@@ -8,7 +8,7 @@ alias al="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabcfg="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
 alias nvimcfg="$EDITOR $DOTFILES/nvim/init.lua"
 alias codecfg="$EDITOR $DOTFILES/vscode/settings.json"
-alias alacrittycfg="$EDITOR $DOTFILES/alacritty/alacritty.yml"
+alias alcfg="$EDITOR $DOTFILES/alacritty/alacritty.yml"
 alias tmuxcfg="$EDITOR $DOTFILES/tmux/.tmux.conf"
 alias kbcfg="$EDITOR ~/.kube/config"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
@@ -40,9 +40,6 @@ alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
 alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
-alias ssibm="secrets source ibm-secrets"
-alias sdibm="secrets decrypt ibm-secrets"
-alias seibm="secrets encrypt ibm-secrets"
 
 # system helpers
 alias exp='export'
@@ -170,8 +167,8 @@ alias ski='skopeo inspect --tls-verify=false'
 # cloud
 alias ic='ibmcloud'
 alias ocdelc='ic oc cluster rm -f --force-delete-storage -c'
-alias iclogin='ssrc ibm-secrets;IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login -q &>/dev/null'
 alias iccr-rm='ic cr image-rm'
+alias icvars='source ~/bin/icvars'
 
 # artifactory
 alias jf=jfrog
@@ -207,8 +204,6 @@ alias stt='stern --tail 10'
 # containers
 alias docker='podman'
 alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
-alias pdpush='podman push --tls-verify=false'
-alias pdloc='pdl -u kubeadmin -p $(oc whoami -t) $OCHOST --tls-verify=false'
 alias pdcls='podman container list --all'
 alias pde='podman exec'
 alias pd='podman'
@@ -255,8 +250,6 @@ alias lsg="ls --git-status"
 alias lst="ls -tr"
 
 # openshift oc
-alias ocroutes='oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name'
-alias icvars='source ~/bin/icvars'
 alias ocvars='source ~/bin/ocvars'
 alias ocg='oc get'
 alias ocaf='oc apply -f'
@@ -309,8 +302,8 @@ alias -g @json='| jq'
 
 alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 zrc() {
-	$EDITOR $DOTFILES/zsh/.zshrc
-	source $DOTFILES/zsh/.zshrc
+  $EDITOR $DOTFILES/zsh/.zshrc
+  source $DOTFILES/zsh/.zshrc
 }
 
 # audio
@@ -324,5 +317,6 @@ alias ptop='tput cup $((LINES/4)) 0' # Clear quarter
 # alias pmid='tput cup $((LINES/2)) 0'  # Clear half
 alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th
 
-alias demofont="yq -i '.font.size=18' $alc"
-alias workfont="yq -i '.font.size=14' $alc"
+# for quickly switching for videos
+alias demofont="yq -i '.font.size=19' ~/.dotfiles/alacritty/alacritty.yml"
+alias workfont="yq -i '.font.size=16' ~/.dotfiles/alacritty/alacritty.yml"

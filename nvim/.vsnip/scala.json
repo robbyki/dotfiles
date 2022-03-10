@@ -1,5 +1,5 @@
 {
-    "scala": {
+    "SparkSQL": {
         "prefix": [
             "sparksql"
         ],
@@ -9,5 +9,35 @@
         "description": [
             "common import for spark sql"
         ]
+    },
+    "Small spark data reader for demo": {
+        "prefix": "sparkdemo",
+        "body": [
+            "  case class Person(ID: Int, name: String, age: Int, numFriends: Int)",
+            "  def mapper(line: String): Person = {",
+            "    val fields = line.split(',')",
+            "    val person: Person = Person(fields(0).toInt, fields(1), fields(2).toInt, fields(3).toInt)",
+            "    person",
+            "  }",
+            "  def main(args: Array[String]): Unit = {",
+            "    val spark = SparkSession.builder",
+            "      .appName(\"SparkSQL\")",
+            "      .master(\"local[*]\") //only for local mode",
+            "      .getOrCreate()",
+            "    import spark.implicits._",
+            "    val lines  = spark.sparkContext.textFile(\"./src/main/resources/datasets/fakefriends.csv\")",
+            "    val people = lines.map(mapper).toDS().cache()",
+            "    println(\"Here is our inferred schema:\")",
+            "    people.printSchema()",
+            "    println(\"Filter out anyone over 21:\")",
+            "    people.filter(people(\"age\") < 21).show()",
+            "    println(\"Group by age:\")",
+            "    people.groupBy(\"age\").count().show()",
+            "    println(\"Make everyone 20 years older:\")",
+            "    people.select(people(\"name\"), people(\"age\") + 23).show()",
+            "  }",
+            ""
+        ],
+        "description": "Small spark data reader for demo"
     }
 }

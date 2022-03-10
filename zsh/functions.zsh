@@ -58,69 +58,86 @@ function gccd() {
 #                          System functions                          #
 #--------------------------------------------------------------------#
 # moves my prompt to middle of screen. Helpful during video presentations.
-function prompt-middle() { tput cup $((LINES/2)) 0; zle reset-prompt; zle redisplay}
+function prompt-middle() {
+  tput cup $((LINES / 2)) 0
+  zle reset-prompt
+  zle redisplay
+}
 
 function fzf_alias() {
-    FZF_TMUX_OPTS="-p 90%,30%"
-    local selection
-    if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
-        BUFFER=$selection
-    fi
-    zle redisplay
+  FZF_TMUX_OPTS="-p 90%,30%"
+  local selection
+  if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} \
+    --preview-window=:hidden \
+    --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+    BUFFER=$selection
+  fi
+  zle redisplay
 }
 
 function fzf_functions() {
-    FZF_TMUX_OPTS="-p 90%,30%"
-    local selection
-    if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} --preview-window=:hidden --query="$BUFFER" | sed -re 's/=.+$/ /'); then
-        BUFFER=$selection
-    fi
-    zle redisplay
+  FZF_TMUX_OPTS="-p 90%,30%"
+  local selection
+  if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} \
+    --preview-window=:hidden \
+    --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+    BUFFER=$selection
+  fi
+  zle redisplay
 }
 
+# function fzf_functions() {
+#     FZF_TMUX_OPTS="-p 90%,30%"
+#     local selection
+#     if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} \
+#             --preview-window=:hidden \
+#             --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+#         BUFFER=$selection
+#     fi
+#     zle redisplay
+# }
+
 # Usage: Ex <File>
-ex ()
-{
-  if [ -f $1 ] ; then
+ex() {
+  if [ -f $1 ]; then
     case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unar $1      ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjvf $1  ;;
-      *.tbz)      tar xjvf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+      *.tar.bz2) tar xjf $1 ;;
+      *.tar.gz) tar xzf $1 ;;
+      *.bz2) bunzip2 $1 ;;
+      *.rar) unar $1 ;;
+      *.gz) gunzip $1 ;;
+      *.tar) tar xf $1 ;;
+      *.tbz2) tar xjvf $1 ;;
+      *.tbz) tar xjvf $1 ;;
+      *.tgz) tar xzf $1 ;;
+      *.zip) unzip $1 ;;
+      *.Z) uncompress $1 ;;
+      *.7z) 7z x $1 ;;
+      *.deb) ar x $1 ;;
+      *.tar.xz) tar xf $1 ;;
+      *.tar.zst) unzstd $1 ;;
+      *) echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
     echo "'$1' is not a valid file"
   fi
 }
 
-lg()
-{
-    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+lg() {
+  export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
 
-    lazygit "$@"
+  lazygit "$@"
 
-    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-    fi
+  if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+    cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+    rm -f $LAZYGIT_NEW_DIR_FILE >/dev/null
+  fi
 }
 
 # fuzzy search all of the gnome desktop files
 fapp() {
-	selected="$(/bin/ls /usr/share/applications | fzf -e)"
-	nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
+  selected="$(/bin/ls /usr/share/applications | fzf -e)"
+  nohup $(grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//') >/dev/null 2>&1 &
 }
 
 # can just use `take` with zsh
@@ -133,35 +150,23 @@ fapp() {
 #lfcd
 LFCD="$HOME/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
-    source "$LFCD"
+  source "$LFCD"
 fi
 
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
+lfcd() {
+  tmp="$(mktemp)"
+  lf -last-dir-path="$tmp" "$@"
+  if [ -f "$tmp" ]; then
+    dir="$(cat "$tmp")"
+    rm -f "$tmp"
+    if [ -d "$dir" ]; then
+      if [ "$dir" != "$(pwd)" ]; then
+        cd "$dir"
+      fi
     fi
-    ll # list files after exiting lf
-}
-
-# I think I do this around 2 million times a day.
-fancyctrlz () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
   fi
+  ll # list files after exiting lf
 }
-
 
 timezsh() {
   shell=${1-$SHELL}
@@ -170,36 +175,36 @@ timezsh() {
 
 # search for string in history until I figure out zsh search substring plugin
 agh() {
-	ag $1 .
+  ag $1 .
 }
 
 findalias() {
- 	alias | grep ${1}
+  alias | grep ${1}
 }
 
 # a bunch of really ugly functions that could use a lot of improvements
 
 # delete any target directory recursively in a jvm project. helpful for debugging.
 deletetarget() {
- 	find . -type d -name target -prune -exec rm -r {} +
+  find . -type d -name target -prune -exec rm -r {} +
 }
 
 # find files with extension in location given
-fde(){
-	fd . -e ${1} ${2}
+fde() {
+  fd . -e ${1} ${2}
 }
 
 gotolocalbin() {
- 	sudo mv $1 /usr/local/bin/$1
+  sudo mv $1 /usr/local/bin/$1
 }
 
 gotocompletions() {
- 	sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
+  sudo mv $1 /home/robbyk/.oh-my-zsh/completions/$1
 }
 
 # usage: newdir/newfile.txt
 mktch() {
-  mkdir -p $(dirname $1) && touch $1;
+  mkdir -p $(dirname $1) && touch $1
 }
 
 #--------------------------------------------------------------------#
@@ -207,97 +212,103 @@ mktch() {
 #--------------------------------------------------------------------#
 # use mc to list all files in cos dm location
 mcdmls() {
-	mc ls dm/${1}
+  mc ls dm/${1}
 }
 
 # use mc to list files in dm location. seriously needs to pamaterized.
 mcdmfiles() {
-	mc $1 dm/datamaze-dev-analytics-sp-files/${2}
+  mc $1 dm/datamaze-dev-analytics-sp-files/${2}
 }
 
 mcdmjars() {
-	mc $1 dm/datamaze-dev-analytics-sp-jars/${2}
+  mc $1 dm/datamaze-dev-analytics-sp-jars/${2}
 }
 
 mcdmlogs() {
-	mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
+  mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
 }
 
 #--------------------------------------------------------------------#
-#                             Openshift                              #
+#                             Openshift (Active Development)         #
 #--------------------------------------------------------------------#
 occonf() {
- 	ic oc cluster get -c $OCID
+  ic oc cluster get -c $OCID
 }
-
-ocgetconf() { ic oc cluster config -c $OCID --admin }
-
+ocgetconf() {
+  ic oc cluster config -c $OCID --admin
+}
 ocprune() {
-    oc adm prune images --registry-url=$OCREGISTRY --confirm
+  oc adm prune images --registry-url=$OCREGISTRY --confirm
 }
-
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
 oclogin() {
-    oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$OCMASTER --insecure-skip-tls-verify=true
+  oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$OCMASTER --insecure-skip-tls-verify=true
 }
-
 # ocgetdefaultroute() {
 #     oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
 # }
-
 # colorize oc commands
 ocy() {
-	oc --output yaml $@ | yq eval --colors
+  oc --output yaml $@ | yq eval --colors
 }
-
 # ocnodeip() {
 #     oc get nodes -o=jsonpath='{ .items[0].metadata.name }'
 # }
-
 # occlusterip() {
 #     echo "$(oc get svc -o=jsonpath='{ .items[0].spec.clusterIP }'):`ocport`"
 # }
-
 # ocport() {
 #     oc get svc -o=jsonpath='{ .items[0].spec.ports[0].port }'
 # }
-
 # usage for clipboard and then node debug: ocgetextroute | ccc
 # ocextroute() {
 #     oc get route -o=jsonpath='{.items..spec.host}'
 # }
-
 # ocdefaultroute() {
 #     # oc get route -n openshift-image-registry -o=json | jq '.items[].spec.host'
 #     oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
 # }
-
 # occ() {
 # 	oc $@ | yq eval --colors -P
 # }
 
 ocimages() {
-    oc get images | grep $OCREGISTRY
+  oc get images | grep $OCREGISTRY
 }
 
-# pdrunc() {
-#     pd run -id $1 bash
-# }
-
-# requires first exposing secrets with `ssibm`
 pdltxo() {
-    podman login $MYPRIVATE_REGISTRY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
+  podman login $MYPRIVATE_REGISTRY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
 }
 
 pdlrcrh() {
-    podman login registry.connect.redhat.com -u $RCRHUSER -p $RCRHTKN
+  podman login registry.connect.redhat.com -u $RCRHUSER -p $RCRHTKN
 }
+
+pdpush() {
+  podman push --tls-verify=false
+}
+
+ocroutes() {
+  oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name
+}
+
+iclogin() {
+  secrets source ibm-secrets 2>/dev/null
+  IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login --quiet >/dev/null 2>&1
+}
+
+# alias ssibm="secrets source ibm-secrets 2>/dev/null"
+# alias sdibm="secrets decrypt ibm-secrets"
+# alias seibm="secrets encrypt ibm-secrets"
+
+# pdloginoc() {
+#         pdl -u kubeadmin -p $(oc whoami -t) $OCHOST --tls-verify=false
+# }
+#
+
 # requires first to be logged into cluster
 # pdloc() {
 #     podman login -u kubeadmin -p $(octkn) \
 #         $(oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}') \
 #         --tls-verify=false
 # }
-
-
-
