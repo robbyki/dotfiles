@@ -109,7 +109,6 @@ export GIT_HOME=/usr/bin/git
 export STEWARD_DIR=$HOME/dev/scala-steward/
 export GH_HOST=github.ibm.com
 export GH_EDITOR=/usr/local/bin/nvim
-# export GOROOT=/usr/local/go
 export GOPATH=${HOME}/go
 export CARGO=$HOME/.cargo
 export NPM=${HOME}/.npm
@@ -294,3 +293,4 @@ zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a
 zstyle ':notify:*' success-title "very #success. wow"
 
 export OCREGISTRY=image-registry.openshift-image-registry.svc:5000
+export alc=~/.dotfiles/alacritty/alacritty.yml

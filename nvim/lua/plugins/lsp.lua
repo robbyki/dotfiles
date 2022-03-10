@@ -100,6 +100,7 @@
 
 local nvim_lsp = require("lspconfig")
 local configs = require("lspconfig.configs")
+util = require("lspconfig/util")
 
 local function lspSymbol(name, icon)
 	local hl = "DiagnosticSign" .. name
@@ -193,7 +194,6 @@ require("lsp-colors").setup({
 local default_servers = {
 	"bashls",
 	"dockerls",
-	"gopls",
 	"pyright",
 }
 
@@ -333,6 +333,28 @@ nvim_lsp.jsonls.setup({
 })
 
 ----------------------------------------------------------------------
+--                              GOLANG                              --
+----------------------------------------------------------------------
+nvim_lsp.gopls.setup({
+	cmd = { "gopls" },
+	-- for postfix snippets and analyzers
+	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+	single_file_support = true,
+	settings = {
+		gopls = {
+			experimentalPostfixCompletions = true,
+			analyses = {
+				unusedparams = true,
+				shadow = true,
+			},
+			staticcheck = true,
+		},
+	},
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+----------------------------------------------------------------------
 --                            JAVASCRIPT                            --
 ----------------------------------------------------------------------
 nvim_lsp.tsserver.setup({
@@ -386,3 +408,57 @@ nvim_lsp.yamlls.setup({
 		},
 	},
 })
+
+function OrgImports(wait_ms)
+	local params = vim.lsp.util.make_range_params()
+	params.context = { only = { "source.organizeImports" } }
+	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+	for _, res in pairs(result or {}) do
+		for _, r in pairs(res.result or {}) do
+			if r.edit then
+				vim.lsp.util.apply_workspace_edit(r.edit)
+			else
+				vim.lsp.buf.execute_command(r.command)
+			end
+		end
+	end
+end
+
+vim.cmd([[ autocmd BufWritePre *.go lua OrgImports(1000) ]])
+
+-- function goimports(timeoutms)
+-- 	local context = { source = { organizeImports = true } }
+-- 	vim.validate({ context = { context, "t", true } })
+--
+-- 	local params = vim.lsp.util.make_range_params()
+-- 	params.context = context
+--
+-- 	-- See the implementation of the textDocument/codeAction callback
+-- 	-- (lua/vim/lsp/handler.lua) for how to do this properly.
+-- 	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+-- 	if not result or next(result) == nil then
+-- 		return
+-- 	end
+-- 	local actions = result[1].result
+-- 	if not actions then
+-- 		return
+-- 	end
+-- 	local action = actions[1]
+--
+-- 	-- textDocument/codeAction can return either Command[] or CodeAction[]. If it
+-- 	-- is a CodeAction, it can have either an edit, a command or both. Edits
+-- 	-- should be executed first.
+-- 	if action.edit or type(action.command) == "table" then
+-- 		if action.edit then
+-- 			vim.lsp.util.apply_workspace_edit(action.edit)
+-- 		end
+-- 		if type(action.command) == "table" then
+-- 			vim.lsp.buf.execute_command(action.command)
+-- 		end
+-- 	else
+-- 		vim.lsp.buf.execute_command(action)
+-- 	end
+-- end
+--
+-- vim.cmd([[ autocmd BufWritePre *.go lua vim.lsp.buf.formatting() ]])
+-- vim.cmd([[ autocmd BufWritePre *.go lua goimports(1000) ]])

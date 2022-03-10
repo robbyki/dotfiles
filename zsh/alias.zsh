@@ -70,7 +70,7 @@ alias vi=$EDITOR
 alias vim=$EDITOR
 alias wi='which'
 alias x=exit
-alias zz='omz reload'
+alias zz='source ~/.zshrc'
 alias sus="systemctl suspend"
 alias hib="systemctl hibernate"
 alias off="systemctl poweroff"
@@ -98,6 +98,10 @@ alias alo='argo logs'
 alias as='argo submit'
 alias asw='argo submit --watch'
 alias aw='argo watch'
+
+# golang
+alias gowi='go work init'
+alias gow='go work'
 
 # bloop Scala
 alias bl='bloop'
@@ -304,7 +308,10 @@ alias -g @yaml='| yq eval -P'
 alias -g @json='| jq'
 
 alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
-zrc() { $EDITOR $DOTFILES/zsh/.zshrc; source $DOTFILES/zsh/.zshrc; }
+zrc() {
+	$EDITOR $DOTFILES/zsh/.zshrc
+	source $DOTFILES/zsh/.zshrc
+}
 
 # audio
 alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-output-0"
@@ -313,6 +320,9 @@ alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
 
 # I don't really need these since I can just use `magic-enter` but I like them anyway
-alias ptop='tput cup $((LINES/4)) 0'  # Clear quarter
+alias ptop='tput cup $((LINES/4)) 0' # Clear quarter
 # alias pmid='tput cup $((LINES/2)) 0'  # Clear half
 alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th
+
+alias demofont="yq -i '.font.size=18' $alc"
+alias workfont="yq -i '.font.size=14' $alc"

@@ -219,14 +219,14 @@ require("packer").startup({
 			end,
 		})
 
-		-- code
 		use({
-			"fatih/vim-go",
-			run = ":GoUpdateBinaries",
+			"ray-x/go.nvim",
 			config = function()
-				require("plugins.golang")
+				require("go").setup()
 			end,
 		})
+
+		-- code
 		use({ "Einenlum/yaml-revealer" })
 		use({ "wellle/targets.vim" })
 		use({ "brooth/far.vim" })

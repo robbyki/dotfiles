@@ -280,11 +280,6 @@ ocimages() {
     oc get images | grep $OCREGISTRY
 }
 
-# this is just a temporary hack for testing
-pddspark() {
-    podman exec -it $1 bash -c "/opt/spark/bin/spark-submit --class com.AppDemo --master local[*] /app/target/scala-2.12/spark-tekton-assembly-0.1.0-SNAPSHOT.jar"
-}
-
 # pdrunc() {
 #     pd run -id $1 bash
 # }

@@ -16,8 +16,8 @@ null_ls.setup({
 		formatting.prettier,
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
-		formatting.gofmt,
-		formatting.goimports,
+		-- formatting.gofmt,
+		-- formatting.goimports,
 		formatting.json_tool,
 		-- formatting.scalafmt,
 		null_ls.builtins.formatting.prettier.with({
