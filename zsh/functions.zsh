@@ -285,7 +285,7 @@ pdlrcrh() {
 }
 
 pdpush() {
-  podman push --tls-verify=false
+  podman push --tls-verify=false $1
 }
 
 ocroutes() {
