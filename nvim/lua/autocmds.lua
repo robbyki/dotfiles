@@ -27,11 +27,11 @@ nvim_create_augroups({
 	quick_close = {
 		{ "Filetype", "help,startuptime,lspinfo,qf", [[nnoremap <buffer><silent> q :close<cr>]] },
 	},
-	cursorword = {
-		{ "Vimenter,ColorScheme", "*", [[lua require('modules.cursorword').highlight()]] },
-		{ "CursorMoved,CursorMovedI", "*", [[lua require('modules.cursorword').matchadd()]] },
-		{ "WinLeave", "*", [[lua require('modules.cursorword').matchdelete()]] },
-	},
+	-- cursorword = {
+	-- 	{ "Vimenter,ColorScheme", "*", [[lua require('modules.cursorword').highlight()]] },
+	-- 	{ "CursorMoved,CursorMovedI", "*", [[lua require('modules.cursorword').matchadd()]] },
+	-- 	{ "WinLeave", "*", [[lua require('modules.cursorword').matchdelete()]] },
+	-- },
 	whitespace = {
 		{ "InsertEnter", "*", [[lua require('modules.whitespace').onInsertEnter()]] },
 		{ "InsertLeave", "*", [[lua require('modules.whitespace').onInsertLeave()]] },

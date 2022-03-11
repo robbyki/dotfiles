@@ -38,6 +38,7 @@
     status                  # exit code of the last command
     dir                     # current directory
     vcs                     # git status
+    kubecontext
     # =========================[ Line #2 ]=========================
     newline                 # \n
     command_execution_time  # duration of the last command
@@ -50,8 +51,9 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    secrets
     # prompt_example
+    vpn_ip                # virtual private network indicator
+    secrets
     background_jobs         # presence of background jobs
     # instant_prompt_example
     # direnv                  # direnv status (https://direnv.net/)
@@ -61,7 +63,6 @@
     # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
     # goenv                     # go environment (https://github.com/syndbg/goenv)
     go_version            # go version (https://golang.org)
-    kubecontext
     node_version          # node.js version
     # java_version          # java version (https://www.java.com/)
 #    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
@@ -75,13 +76,11 @@
     # disk_usage            # disk usage
     time                    # current time
     battery
-    # =========================[ Line #2 ]=========================
     # newline
     # public_ip             # public IP address
     # ip                    # ip address and bandwidth usage for a specified network interface
     # kubecontext
     # prompt_example
-    vpn_ip                # virtual private network indicator
     # newline
     # kubecontext
 
@@ -1455,7 +1454,7 @@ typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=201
 
   ########################[ vpn_ip: virtual private network indicator ]#########################
   # VPN IP color.
-  typeset -g POWERLEVEL9K_VPN_IP_FOREGROUND=81
+  typeset -g POWERLEVEL9K_VPN_IP_FOREGROUND=226
   # When on VPN, show just an icon without the IP address.
   # Tip: To display the private IP address when on VPN, remove the next line.
   typeset -g POWERLEVEL9K_VPN_IP_CONTENT_EXPANSION=
@@ -1468,7 +1467,7 @@ typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=201
   # Tip: If you set it to true, you'll probably want to unset POWERLEVEL9K_VPN_IP_CONTENT_EXPANSION.
   typeset -g POWERLEVEL9K_VPN_IP_SHOW_ALL=false
   # Custom icon.
-  # typeset -g POWERLEVEL9K_VPN_IP_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_VPN_IP_VISUAL_IDENTIFIER_EXPANSION='旅'
 
   ###########[ ip: ip address and bandwidth usage for a specified network interface ]###########
   # IP color.

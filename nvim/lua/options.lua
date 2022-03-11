@@ -54,21 +54,17 @@ vim.opt.undodir = vim.fn.stdpath("cache") .. "/undodir/"
 vim.opt.undofile = true
 vim.opt.updatetime = 300
 vim.opt.wildignore = ".git", "*/node_modules/*", "*/target/*", ".metals", ".bloop", ".ammonite"
-vim.opt.wrap = false
 vim.opt.writebackup = false
 vim.wo.cursorline = true
 vim.wo.foldlevel = 99
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
-vim.wo.wrap = false
 vim.cmd([[
 filetype on
 filetype plugin on
 filetype plugin indent on
 ]])
-
--- vim.opt.textwidth = 80
 
 -- copy buffer path
 vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
@@ -128,6 +124,8 @@ vim.cmd(
 )
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=sh")
+vim.cmd("autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab")
+-- vim.cmd("autocmd FileType sh setlocal ts=2 sts=2 sw=2 ai expandtab")
 -- vim.cmd("set formatoptions-=cro")
 
 -- LSP
@@ -162,4 +160,6 @@ vim.cmd([[
 
 vim.cmd("colorscheme kanagawa")
 vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
-vim.cmd("autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab")
+vim.wo.wrap = false
+vim.opt.wrap = false
+vim.opt.textwidth = 0

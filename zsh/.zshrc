@@ -80,13 +80,15 @@ SAVEHIST=100000
 setopt bang_hist              # Treat the '!' character specially during expansion
 setopt inc_append_history     # Write to the history file immediately, not when the shell exits
 setopt share_history          # Share history between all sessions
+
+# duplication treatment
 setopt hist_expire_dups_first # Expire a duplicate event first when trimming history
 setopt hist_ignore_dups       # Do not record an event that was just recorded again
 setopt hist_ignore_all_dups   # Delete an old recorded event if a new event is a duplicate
-setopt hist_find_no_dups      # Do not display a previously found event
+setopt hist_save_no_dups      # Do not write a duplicate event to the history file
+
 setopt hist_ignore_space      # Do not record an event starting with a space
 setopt hist_reduce_blanks     # Remove superfluous blanks from commands added to history
-setopt hist_save_no_dups      # Do not write a duplicate event to the history file
 setopt hist_verify            # Do not execute immediately upon history expansion
 setopt extended_history       # Show timestamp in history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # Do not store failed commands to history
@@ -101,8 +103,6 @@ export VISUAL=/usr/local/bin/nvim
 export EDITOR=/usr/local/bin/nvim
 export SUDO_EDITOR=/usr/local/bin/nvim
 export MYVIMRC=$HOME/.config/nvim/init.lua
-
-# {{{ application path settings
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
@@ -176,27 +176,38 @@ fzf-open-file-current-dir() {
 }
 zle -N fzf-open-file-current-dir
 
+zle -N prompt-middle
+zle -N fzf_functions
+zle -N fzf_alias
+
 bindkey '^ ' autosuggest-accept
 bindkey -a '^ ' autosuggest-accept
 bindkey '^Z' fancyctrlz
 bindkey -s "^[o" 'lfcd\n'
 bindkey '^O' fzf_then_open_in_editor
 bindkey '^P' fzf-open-file-current-dir
+bindkey '^[m' prompt-middle
+bindkey -M emacs '\ea' fzf_alias
+bindkey -M vicmd '\ea' fzf_alias
+bindkey -M viins '\ea' fzf_alias
+bindkey -M emacs '\ef' fzf_functions
+bindkey -M vicmd '\ef' fzf_functions
+bindkey -M viins '\ef' fzf_functions
+bindkey "^[l" clear-screen
+bindkey -s "^[=" 'k9s^M'
 
+# FZF Settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_DEFAULT_OPTS="-i --no-mouse --ansi --layout=default --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
-export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
-
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--height 80% --preview 'tree -NC {} | head -200'"
 export FZF_TMUX_OPTS="-p 90%,30%"
-# }}}
+export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 
 #export number of processors on linux
 # cpuinfo
@@ -232,24 +243,11 @@ export UPDATE_ZSH_DAYS=10
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export OCPSCHEMA=${HOME}/dev/openshift-json-schema
+export ocregistry=image-registry.openshift-image-registry.svc:5000
+export ocpschema=${HOME}/dev/openshift-json-schema
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
-
-# keybindings
-zle -N prompt-middle
-bindkey '^[m' prompt-middle
-zle -N fzf_alias
-bindkey -M emacs '\ea' fzf_alias
-bindkey -M vicmd '\ea' fzf_alias
-bindkey -M viins '\ea' fzf_alias
-zle -N fzf_functions
-bindkey -M emacs '\ef' fzf_functions
-bindkey -M vicmd '\ef' fzf_functions
-bindkey -M viins '\ef' fzf_functions
-bindkey "^[l" clear-screen
-bindkey -s "^[=" 'k9s^M'
 
 fpath=( ~/.zshfunctions "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
@@ -273,32 +271,11 @@ export KEYTIMEOUT=1
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^v' edit-command-line
 
-# Change cursor shape for different vi modes.
-# function zle-keymap-select {
-#   if [[ ${KEYMAP} == vicmd ]] ||
-#      [[ $1 = 'block' ]]; then
-#     echo -ne '\e[1 q'
-#   elif [[ ${KEYMAP} == main ]] ||
-#        [[ ${KEYMAP} == viins ]] ||
-#        [[ ${KEYMAP} = '' ]] ||
-#        [[ $1 = 'beam' ]]; then
-#     echo -ne '\e[5 q'
-#   fi
-# }
-# zle -N zle-keymap-select
-# zle-line-init() {
-#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-#     echo -ne "\e[5 q"
-# }
-# zle -N zle-line-init
-# echo -ne '\e[5 q' # Use beam shape cursor on startup.
-# preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
 zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200_s.gif"
 zstyle ':notify:*' error-title "wow such #fail"
 zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
 zstyle ':notify:*' success-title "very #success. wow"
 
-export OCREGISTRY=image-registry.openshift-image-registry.svc:5000
-
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+
+source ~/dev/tutorial/oc-app-demo/ocvars

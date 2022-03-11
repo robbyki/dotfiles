@@ -1,2 +1,2 @@
-require("modules.whitespace")
-require("modules.cursorword")
+-- require("modules.whitespace")
+-- require("modules.cursorword")

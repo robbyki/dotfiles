@@ -102,8 +102,9 @@ map zi z_fzf
 map zj push :z<space>
 
 # fzf mappings
-map gf :fzf
-map gF :fzf_jump
+map gf :fzfhere
+map gF :fzfglobal
+map gD :fzf_to_dir
 
 # map g/ :fzf_select
 # map gf :fzf_loc
@@ -155,28 +156,39 @@ cmd copy-path ${{
 }}
 
 # jump to any directory
-cmd fzf_jump ${{
+cmd fzf_to_dir ${{
    FZF_DEFAULT_COMMAND="$FZF_ALT_C_COMMAND" 
    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS"
-
    res="$(fzf)"
    cmd="cd"                                                       
    lf -remote "send $id $cmd \"$res\""
 }}
 
 # jump to anything in directory
-cmd fzf ${{
-   FZF_DEFAULT_COMMAND="fd --follow --exclude .git --color=always"
-   FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS"
-
+cmd fzfglobal ${{
+   FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
+   # FZF_DEFAULT_COMMAND="fd --follow --exclude .git --color=always"
+   # FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS"
+   FZF_DEFAULT_OPTS="-i --no-mouse --ansi --layout=default --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
    res="$(fzf)"
+   if [ -f "$res" ]; then
+     cmd="select"
+   elif [ -d "$res" ]; then
+     cmd="cd"
+   fi
+   lf -remote "send $id $cmd \"$res\""
+}}
 
+# jump to anything in directory
+cmd fzfhere ${{
+   FZF_DEFAULT_COMMAND="fd -tf -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
+   FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS"
+   res="$(fzf)"
    if [ -f "$res" ]; then
      cmd="select"
    elif [ -d "$res" ]; then
      cmd="cd"                                                       
    fi
-
    lf -remote "send $id $cmd \"$res\""
 }}
 

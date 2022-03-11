@@ -357,24 +357,24 @@ nvim_lsp.gopls.setup({
 ----------------------------------------------------------------------
 --                            JAVASCRIPT                            --
 ----------------------------------------------------------------------
-nvim_lsp.tsserver.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = {
-		"javascript",
-		"javascript.jsx",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact",
-		"typescript.tsx",
-	},
-	init_options = {
-		importModuleSpecifierEnding = "auto",
-		importModuleSpecifierPreference = "project-relative",
-		includePackageJsonAutoImports = "auto",
-	},
-})
-
+-- nvim_lsp.tsserver.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	filetypes = {
+-- 		"javascript",
+-- 		"javascript.jsx",
+-- 		"javascriptreact",
+-- 		"typescript",
+-- 		"typescriptreact",
+-- 		"typescript.tsx",
+-- 	},
+-- 	init_options = {
+-- 		importModuleSpecifierEnding = "auto",
+-- 		importModuleSpecifierPreference = "project-relative",
+-- 		includePackageJsonAutoImports = "auto",
+-- 	},
+-- })
+--
 ----------------------------------------------------------------------
 --                               YAML                               --
 ----------------------------------------------------------------------

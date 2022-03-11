@@ -231,18 +231,26 @@ mcdmlogs() {
 #--------------------------------------------------------------------#
 #                             Openshift (Active Development)         #
 #--------------------------------------------------------------------#
-occonf() {
-  ic oc cluster get -c $OCID
+ocgetmaster() {
+  ibmcloud oc cluster get --cluster test-cluster-rk --output=json | jq -r '.serverURL'
+}
+
+ocgetid() {
+  ibmcloud oc cluster get --cluster test-cluster-rk --output=json | jq -r '.id'
+}
+
+ocviewconf() {
+  ic oc cluster get -c $(ocid)
 }
 ocgetconf() {
-  ic oc cluster config -c $OCID --admin
+  ic oc cluster config -c $(ocid) --admin
 }
 ocprune() {
   oc adm prune images --registry-url=$OCREGISTRY --confirm
 }
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
 oclogin() {
-  oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$OCMASTER --insecure-skip-tls-verify=true
+  oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$(ocmaster) --insecure-skip-tls-verify=true
 }
 # ocgetdefaultroute() {
 #     oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
@@ -272,15 +280,21 @@ ocy() {
 # 	oc $@ | yq eval --colors -P
 # }
 
-ocimages() {
+ocgetimages() {
   oc get images | grep $OCREGISTRY
 }
 
-pdltxo() {
+pdlogintxo() {
   podman login $MYPRIVATE_REGISTRY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
 }
 
-pdlrcrh() {
+pdloginoc() {
+  podman login -u kubeadmin -p $(octkn) \
+    $(oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}') \
+    --tls-verify=false
+}
+
+pdloginrcrh() {
   podman login registry.connect.redhat.com -u $RCRHUSER -p $RCRHTKN
 }
 
@@ -288,7 +302,7 @@ pdpush() {
   podman push --tls-verify=false $1
 }
 
-ocroutes() {
+ocgetroutes() {
   oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name
 }
 
@@ -297,18 +311,23 @@ iclogin() {
   IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_RK ic login --quiet >/dev/null 2>&1
 }
 
-# alias ssibm="secrets source ibm-secrets 2>/dev/null"
-# alias sdibm="secrets decrypt ibm-secrets"
-# alias seibm="secrets encrypt ibm-secrets"
+decryptibm() {
+  secrets decrypt ibm-secrets >ibm-secrets
+}
+
+encryptibm() {
+  secrets encrypt ibm-secrets
+}
+
+ssibm() {
+  secrets source ibm-secrets 2>/dev/null
+}
 
 # pdloginoc() {
 #         pdl -u kubeadmin -p $(oc whoami -t) $OCHOST --tls-verify=false
 # }
 #
 
-# requires first to be logged into cluster
-# pdloc() {
-#     podman login -u kubeadmin -p $(octkn) \
-#         $(oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}') \
-#         --tls-verify=false
-# }
+ocgethost() {
+  oc get route default-route -n openshift-image-registry -o jsonpath='{ .spec.host }{"\n"}'
+}

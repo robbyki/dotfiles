@@ -3,6 +3,7 @@ export DOTFILES="$HOME/.dotfiles"
 
 # Quick files and directories
 alias dots="cd $DOTFILES"
+alias p10cfg="$EDITOR $DOTFILES/zsh/.p10k.zsh"
 alias zshcfg="$EDITOR $DOTFILES/zsh/.zshrc"
 alias al="$EDITOR $DOTFILES/zsh/alias.zsh"
 alias fzftabcfg="$EDITOR $DOTFILES/zsh/fzf-tab.zsh"
@@ -59,6 +60,7 @@ alias fp='flatpak'
 alias hg='history | grep'
 alias h='`history | sed "s/^ *[^ ]* *//" | sort | uniq | fzf`'
 alias envg='env | grep'
+alias setg='typeset | grep'
 alias mkdir='mkdir -pv'
 alias mv='mv -iv'
 alias mytemp='curl wttr.in'
@@ -250,7 +252,7 @@ alias lsg="ls --git-status"
 alias lst="ls -tr"
 
 # openshift oc
-alias ocvars='source ~/bin/ocvars'
+# alias ocvars='source ~/bin/ocvars'
 alias ocg='oc get'
 alias ocaf='oc apply -f'
 alias occd='oc create deployment'
@@ -275,6 +277,8 @@ alias ocnp='oc new-project'
 alias ocrf='oc replace --force -f'
 alias octkn='oc whoami -t'
 alias ocwho='oc whoami'
+# alias ocmaster="ibmcloud oc cluster get --cluster test-cluster-rk --output=json | jq -r '.serverURL'"
+# alias ocid="ibmcloud oc cluster get --cluster test-cluster-rk --output=json | jq -r '.id'"
 
 # tekton
 alias tkb='tekton bundle'

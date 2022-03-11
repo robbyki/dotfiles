@@ -20,9 +20,9 @@ null_ls.setup({
 		-- formatting.goimports,
 		formatting.json_tool,
 		-- formatting.scalafmt,
-		null_ls.builtins.formatting.prettier.with({
-			extra_filetypes = { "scala, sbt" },
-		}),
+		-- null_ls.builtins.formatting.prettier.with({
+		-- 	extra_filetypes = { "scala, sbt" },
+		-- }),
 	},
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then
