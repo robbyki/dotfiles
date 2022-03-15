@@ -3,23 +3,18 @@ if not null_ls_status_ok then
     return
 end
 
-local builtins = null_ls.builtins
-local formatting = builtins.formatting
--- local null_ls = require("null-ls")
--- local diagnostics = builtins.diagnostics
--- local code_actions = builtins.code_actions
-
 null_ls.setup({
     debug = false,
     sources = {
-        formatting.shfmt.with({ extra_args = { "-i", "2", "-ci", "-bn" } }),
-        formatting.prettier,
-        formatting.black.with({ extra_args = { "--fast" } }),
-        formatting.stylua,
-        formatting.json_tool,
+        null_ls.builtins.formatting.shfmt.with({ extra_args = { "-i", "2", "-ci", "-bn" } }),
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.json_tool,
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.formatting.gofmt,
+        null_ls.builtins.formatting.goimports,
         -- formatting.scalafmt,
-        -- formatting.gofmt,
-        -- formatting.goimports,
         -- null_ls.builtins.formatting.prettier.with({
         -- 	extra_filetypes = { "scala, sbt" },
         -- }),
