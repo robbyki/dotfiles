@@ -1,0 +1,74 @@
+-- local on_attach_normal = function(client, bufnr)
+-- 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+-- 		vim.lsp.handlers.hover,
+-- 		{ border = "single", focusable = false }
+-- 	)
+-- 	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+-- 		vim.lsp.handlers.hover,
+-- 		{ border = "single", focusable = false }
+-- 	)
+-- end
+--
+-- require("go").setup({
+-- 	-- goimport = "gopls",
+-- 	-- gofmt = "gofumpt",
+-- 	gofmt = "gopls",
+-- 	-- max_line_len = 120,
+-- 	comment_placeholder = "   ",
+-- 	lsp_cfg = true, -- false: use your own lspconfig
+-- 	-- lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+-- 	lsp_codelens = true,
+-- 	lsp_on_attach = on_attach_normal, -- use on_attach from go.nvim
+-- 	dap_debug = true,
+-- })
+
+-- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+--
+--
+-- require("go.format").goimport() -- goimport + gofmt
+-- require("go.format").gofmt()
+--
+-- -- Run gofmt + goimport on save
+-- -- Run gofmt + goimport on save
+-- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+-- -- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
+--
+-- vim.g.go_auto_type_info = 1
+-- vim.g.go_test_show_name = 1
+-- vim.g.go_doc_max_height = 40
+-- vim.g.go_doc_popup_window = 1
+-- vim.g.go_diagnostics_enabled = 1
+-- vim.g.go_diagnostics_level = 2
+-- vim.g.go_template_autocreate = 0
+-- vim.g.go_metalinter_command = "golangci-lint"
+-- vim.g.go_metalinter_autosave = 0
+-- vim.g.go_metalinter_autosave_enabled = {}
+-- vim.g.go_metalinter_enabled = {}
+-- vim.g.go_gopls_gofumpt = 1
+-- -- vim.g.go_fmt_command                 = "golines"
+-- vim.g.go_fmt_options = {
+-- 	gofmt = "-s",
+-- 	golines = "-m 80 -t 2",
+-- }
+
+-- local util = require 'lspconfig.util'
+--
+-- return {
+--   default_config = {
+--     cmd = { 'gopls' },
+--     filetypes = { 'go', 'gomod', 'gotmpl' },
+--     root_dir = function(fname)
+--       return util.root_pattern 'go.work'(fname) or util.root_pattern('go.mod', '.git')(fname)
+--     end,
+--     single_file_support = true,
+--   },
+--   docs = {
+--     description = [[
+-- https://github.com/golang/tools/tree/master/gopls
+-- Google's lsp server for golang.
+-- ]],
+--     default_config = {
+--       root_dir = [[root_pattern("go.mod", ".git")]],
+--     },
+--   },
+-- }

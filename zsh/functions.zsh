@@ -331,3 +331,13 @@ ssibm() {
 ocgethost() {
   oc get route default-route -n openshift-image-registry -o jsonpath='{ .spec.host }{"\n"}'
 }
+
+ocpatchroute() {
+  oc patch configs.imageregistry.operator.openshift.io/cluster --type merge -p '{"spec":{"defaultRoute":true}}'
+}
+
+ocinstallspark() {
+  helm install my-release spark-operator/spark-operator \
+    --namespace spark-operator --set sparkJobNamespace=default \
+    --create-namespace
+}

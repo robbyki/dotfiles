@@ -12,20 +12,20 @@ vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true })
 map("i", "<C-c>", "<Esc>")
 
 vim.cmd([[
-  noremap <C-e> 5<C-e>
-  noremap <C-y> 5<C-y>
+ noremap <C-e> 5<C-e>
+ noremap <C-y> 5<C-y>
 ]])
 
 vim.cmd([[
-  nmap <F1> :echo<CR>
-  imap <F1> <C-o>:echo<CR>
+ nmap <F1> :echo<CR>
+ imap <F1> <C-o>:echo<CR>
 ]])
 
 vim.cmd([[
-  nnoremap <silent> <C-Up> : resize -2<CR>
-  nnoremap <silent> <C-Down> : resize +2<CR>
-  nnoremap <silent> <C-Left> : vertical resize -2<CR>
-  nnoremap <silent> <C-Right> : vertical resize +2<CR>
+ nnoremap <silent> <C-Up> : resize -2<CR>
+ nnoremap <silent> <C-Down> : resize +2<CR>
+ nnoremap <silent> <C-Left> : vertical resize -2<CR>
+ nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
 map("n", "<CR>", "<cmd>FineCmdline<CR>")
@@ -93,9 +93,10 @@ wk.register({
 wk.register({
     ["<leader>f"] = {
         name = "+search",
+        g = { "<Cmd>:Telescope git_status<CR>", "buffers" },
         B = { "<Cmd>:Telescope buffers<CR>", "buffers" },
         f = {
-            "<Cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>",
+            "<Cmd>lua require('telescope.builtin').find_files({ hidden = true, preview = true })<CR>",
             "find files here",
         },
         D = {
@@ -135,13 +136,6 @@ wk.register({
         b = { "<Cmd>lua require('plugins.terminal.custom').broot_toggle()<CR>", "broot" },
         k = { "<Cmd>lua require('plugins.terminal.custom').k9s_toggle()<CR>", "k9s" },
         t = { "<Cmd>ToggleTerm<CR>", "terminal" },
-        -- t = { "<Cmd>FloatermNew --height=0.6 --width=0.8<CR>", "terminal" },
-        -- a = { "<Cmd>FloatermNew --name=ammonite --height=0.4 --width=0.9 amm<CR>", "ammonite" },
-        -- p = { "<Cmd>FloatermNew --name=python --height=0.4 --width=0.9 python<CR>", "python" },
-        -- k = { "<Cmd>FloatermNew --name=k9s --autoclose=2 --height=0.9 --width=0.9 k9s<CR>", "k9s" },
-        -- b = { "<Cmd>FloatermNew --name=btm --autoclose=2 --height=0.9 --width=0.9 btm<CR>", "btm" },
-        -- B = { "<Cmd>FloatermNew --name=broot --autoclose=2 --height=0.9 --width=0.9 broot<CR>", "broot" },
-        -- l = { "<Cmd>FloatermNew --name=lazydocker --height=0.9 --width=0.9 ld<CR>", "ld" },
     },
     ["<leader>h"] = {
         name = "hop",

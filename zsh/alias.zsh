@@ -2,6 +2,7 @@ export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
 # Quick files and directories
+alias nvim=/usr/local/bin/nvim
 alias dots="cd $DOTFILES"
 alias p10cfg="$EDITOR $DOTFILES/zsh/.p10k.zsh"
 alias zshcfg="$EDITOR $DOTFILES/zsh/.zshrc"
@@ -67,6 +68,7 @@ alias mytemp='curl wttr.in'
 alias update='dnfu'
 alias vi=$EDITOR
 alias vim=$EDITOR
+alias vimbak='/usr/bin/vim'
 alias wi='which'
 alias x=exit
 alias zz='source ~/.zshrc'

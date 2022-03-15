@@ -12,4 +12,10 @@ require("kanagawa").setup({
     dimInactive = true, -- dim inactive regions
     colors = {},
     overrides = {},
+    --    overrides = {
+    --        CursorLine = { bg = "NONE" },
+    --        TelescopeBorder = { bg = "NONE" }
+    --    },
 })
+
+vim.cmd("colorscheme kanagawa")
