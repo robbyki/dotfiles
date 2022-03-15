@@ -99,12 +99,17 @@ vim.cmd([[autocmd BufRead,BufNewFile *zsh* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile ~/bin/* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */.kube/config :set ft=yaml]])
-vim.cmd(
-    [[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
-)
+vim.cmd([[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
 vim.cmd([[autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=sh]])
 vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
+-- vim.cmd([[autocmd BufWritePost *.lua lua require("stylua-nvim").format_file()]])
+vim.cmd([[
+  augroup stylua_format_on_save
+    autocmd!
+    autocmd BufWritePost *.lua lua require("stylua-nvim").format_file()
+  augroup end
+]])
 -- vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
 -- vim.cmd([[augroup end]])
 -- vim.cmd([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]])
@@ -126,3 +131,5 @@ vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
 vim.wo.wrap = false
 vim.opt.wrap = false
 vim.opt.textwidth = 0
+vim.cmd("colorscheme kanagawa")
+-- vim.cmd([[hi Visual guifg=White guibg=LightBlue gui=none]])

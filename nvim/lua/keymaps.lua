@@ -1,10 +1,4 @@
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local map = require("utils").map
 
 vim.g.mapleader = ","
 
@@ -45,23 +39,13 @@ map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
 map("n", "<esc>", ":noh<CR><esc>", { silent = true })
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
 map("n", "<leader>so", ":SymbolsOutline<CR>")
-map("n", "<leader>F", ":Format<CR>")
 map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
 map("n", "/", "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>")
 map("n", "<leader>L", "<Cmd>lua require('plugins.terminal.custom').lf_toggle()<CR>")
-
-map(
-    "n",
-    "<leader>gO",
-    "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
-)
-map(
-    "n",
-    "<leader>go",
-    "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
-)
+map("n", "<leader>gO", "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
+map("n", "<leader>go", "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
 
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",
@@ -87,44 +71,27 @@ wk.register({
     ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
 })
 
--- FIXME: Need to make this look nicer. Maybe just use better function organization.
--- I like how this is doing it as inspiration: https://github.com/CalinLeafshade/dots/blob/1632cfce0f2412a0333993223e5e5a8c5a62ef5c/nvim/.config/nvim/lua/leafshade/telescope/init.lua
-
 wk.register({
     ["<leader>f"] = {
         name = "+search",
-        g = { "<Cmd>:Telescope git_status<CR>", "buffers" },
         B = { "<Cmd>:Telescope buffers<CR>", "buffers" },
-        f = {
-            "<Cmd>lua require('telescope.builtin').find_files({ hidden = true, preview = true })<CR>",
-            "find files here",
-        },
-        D = {
-            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>",
-            "find Docs",
-        },
-        z = {
-            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.oh-my-zsh' })<CR>",
-            "find oh-my-zsh",
-        },
-        s = {
-            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/bin', hidden = true })<CR>",
-            "scripts",
-        },
-        d = {
-            "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>",
-            "dotfiles",
-        },
-        h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
-        l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
-        p = { "<Cmd>lua require'telescope'.extensions.project.project{}<CR>", "projects" },
-        b = { "<Cmd>:require'telescope'.extensions.file_browser.file_browser<CR>", "file browser" },
-        S = { "<Cmd>:Telescope grep_string<CR>", "string search" },
-        t = { "<Cmd>:Telescope tags<CR>", "tags" },
-        r = { "<Cmd>:Telescope registers<CR>", "registers" },
-        m = { "<Cmd>:Telescope marks<CR>", "marks" },
-        j = { "<Cmd>:Telescope jumplist<CR>", "jumps" },
         C = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
+        D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>", "find Docs" },
+        S = { "<Cmd>:Telescope grep_string<CR>", "string search" },
+        b = { "<Cmd>:require'telescope'.extensions.file_browser.file_browser<CR>", "file browser" },
+        d = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>", "dotfiles" },
+        f = { "<Cmd>lua require('telescope.builtin').find_files({ hidden = true, preview = true })<CR>", "find files here" },
+        G = { '<Cmd>lua require("plugins.telescope").my_git_commits()<CR>', "git commits" },
+        h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
+        j = { "<Cmd>:Telescope jumplist<CR>", "jumps" },
+        l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
+        m = { "<Cmd>:Telescope marks<CR>", "marks" },
+        n = { '<cmd>lua require("plugins.telescope").edit_neovim()<CR>', "dotfiles" },
+        p = { "<Cmd>lua require'telescope'.extensions.project.project{}<CR>", "projects" },
+        r = { "<Cmd>:Telescope registers<CR>", "registers" },
+        s = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/bin', hidden = true })<CR>", "scripts" },
+        t = { "<Cmd>:Telescope tags<CR>", "tags" },
+        z = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.oh-my-zsh' })<CR>", "find oh-my-zsh" },
         -- c = { "<Cmd>:Telescope neoclip<CR>", "neoclip" },
     },
     ["<leader>i"] = {
@@ -181,19 +148,10 @@ wk.register({
     },
     ["<leader>p"] = {
         name = "+preview",
-        d = {
-            "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
-            "Definition Preview",
-        },
-        i = {
-            "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
-            "Implementation Preview",
-        },
+        d = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "Definition Preview" },
+        i = { "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "Implementation Preview" },
         c = { "<cmd>lua require('goto-preview').close_all_win()<CR>", "Close Preview" },
-        r = {
-            "<cmd>lua require('goto-preview').goto_preview_references()<CR>",
-            "References Preview",
-        },
+        r = { "<cmd>lua require('goto-preview').goto_preview_references()<CR>", "References Preview" },
     },
     ["<leader>y"] = {
         name = "+yaml",
@@ -237,10 +195,7 @@ wk.register({
     ["<leader>c"] = {
         name = "+code",
         c = { "<Cmd>lua require('nvim-comment-frame').add_comment()<CR>", "comment line" },
-        C = {
-            "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>",
-            "comment multi",
-        },
+        C = { "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>", "comment multi" },
     },
     ["<leader>l"] = {
         name = "+lsp",
@@ -251,14 +206,8 @@ wk.register({
         f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
         g = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "signature" },
         r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-        l = {
-            "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-            "Next Diagnostic",
-        },
-        h = {
-            "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-            "Prev Diagnostic",
-        },
+        l = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
+        h = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
         C = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "code lens run" },
         I = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
         R = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
@@ -270,20 +219,11 @@ wk.register({
         i = { "<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>", "implementation" },
         d = { "<Cmd>lua require'telescope.builtin'.diagnostics()<CR>", "diagnostics" },
         a = { "<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>", "code actions" },
-        s = {
-            "<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>",
-            "document symbols",
-        },
-        S = {
-            "<Cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>",
-            "workspace symbols",
-        },
+        s = { "<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>", "document symbols" },
+        S = { "<Cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>", "workspace symbols" },
         r = { "<Cmd>lua require'telescope.builtin'.lsp_references()<CR>", "references" },
         f = { "<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>", "lsp definitions" },
-        t = {
-            "<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>",
-            "lsp type definitions",
-        },
+        t = { "<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", "lsp type definitions" },
         D = { "<cmd>Telescope lsp_document_diagnostics<CR>", "Document Diagnostics" },
         w = { "<cmd>Telescope lsp_workspace_diagnostics<CR>", "Workspace Diagnostics" },
     },

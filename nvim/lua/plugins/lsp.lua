@@ -1,76 +1,73 @@
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.resolveSupport = {
---     properties = {
---         "documentation",
---         "detail",
---         "additionalTextEdits",
---     },
--- }
--- capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
--- local nvim_lsp = require("lspconfig")
+local nvim_lsp = require("lspconfig")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits",
+    },
+}
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 --
--- -- Use an on_attach function to only map the following keys
--- -- after the language server attaches to the current buffer
--- local on_attach = function(client, bufnr)
---     local function buf_set_keymap(...)
---         vim.api.nvim_buf_set_keymap(bufnr, ...)
---     end
---     local function buf_set_option(...)
---         vim.api.nvim_buf_set_option(bufnr, ...)
---     end
---     -- Mappings.
---     local opts = { noremap = true, silent = true }
---     buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
---     buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
---     buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
---     buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
---     buf_set_keymap("n", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
---     buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
---     buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
---     buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
---     buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
---     buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
---     buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
---     buf_set_keymap("n", "<space>CA", "<cmd>:CodeActionMenu<CR>", opts)
---     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
---     buf_set_keymap("n", "<space>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
---     buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
---     buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
---     buf_set_keymap("n", "<space>ql", "<cmd>lua vim.lsp.diagnostic.set_qflist()<CR>", opts)
---     buf_set_keymap("n", "<space>ll", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
---     buf_set_keymap("n", "<space>fc", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
--- end
+local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+    local function buf_set_option(...)
+        vim.api.nvim_buf_set_option(bufnr, ...)
+    end
+    -- Mappings.
+    local opts = { noremap = true, silent = true }
+    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    buf_set_keymap("n", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+    buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_set_keymap("n", "<space>CA", "<cmd>:CodeActionMenu<CR>", opts)
+    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    buf_set_keymap("n", "<space>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+    buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<space>ql", "<cmd>lua vim.lsp.diagnostic.set_qflist()<CR>", opts)
+    buf_set_keymap("n", "<space>ll", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+    buf_set_keymap("n", "<space>fc", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+end
+
+-- use custom icons
+local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " ",
+}
 --
--- -- use custom icons
--- local signs = {
---     Error = " ",
---     Warn = " ",
---     Hint = " ",
---     Info = " ",
--- }
--- --
--- -- -- lspSymbol("Error", "")
--- -- -- lspSymbol("Info", "")
--- -- -- lspSymbol("Hint", "")
--- -- -- lspSymbol("Warn", "")
--- --
--- for type, icon in pairs(signs) do
---     local hl = "DiagnosticSign" .. type
---     vim.fn.sign_define(hl, {
---         text = icon,
---         texthl = hl,
---         numhl = hl,
---     })
--- end
+-- -- lspSymbol("Error", "")
+-- -- lspSymbol("Info", "")
+-- -- lspSymbol("Hint", "")
+-- -- lspSymbol("Warn", "")
 --
--- vim.diagnostic.config({
---     virtual_text = true,
--- })
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {
+        text = icon,
+        texthl = hl,
+        numhl = hl,
+    })
+end
+
+vim.diagnostic.config({
+    virtual_text = true,
+})
+
+-- local servers = { "tsserver", "html", "bashls" }
 --
--- local servers = { "pyright", "tsserver", "html", "bashls" }
---
--- -- load the default servers and then customize individual servers
 -- for _, lsp in ipairs(servers) do
 --     nvim_lsp[lsp].setup({
 --         on_attach = on_attach,
@@ -80,27 +77,10 @@
 --         capabilities = capabilities,
 --     })
 -- end
--- --
--- -- -- nvim_lsp.gopls.setup({
--- -- -- 	on_attach = on_attach,
--- -- -- 	cmd = { "gopls", "serve" },
--- -- -- 	flags = {
--- -- -- 		debounce_text_changes = 150,
--- -- -- 	},
--- -- -- 	capabilities = capabilities,
--- -- -- 	settings = {
--- -- -- 		gopls = {
--- -- -- 			analyses = {
--- -- -- 				unusedparams = true,
--- -- -- 			},
--- -- -- 			staticcheck = true,
--- -- -- 		},
--- -- -- 	},
--- -- -- })
--- --
--- ----------------------------------------------------------------------
--- --                               LUA                                --
--- ----------------------------------------------------------------------
+--
+----------------------------------------------------------------------
+--                               LUA                                --
+----------------------------------------------------------------------
 -- nvim_lsp.sumneko_lua.setup({
 --     cmd = {
 --         "/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
@@ -134,84 +114,82 @@
 --         },
 --     },
 -- })
---
--- -- -- vim.cmd [[
--- -- --     augroup Format
--- -- --       autocmd!
--- -- --         autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.graphql lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --         autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1000)
--- -- --       augroup END
--- -- --     ]]
--- ----------------------------------------------------------------------
--- --                               YAML                               --
--- ----------------------------------------------------------------------
--- nvim_lsp.yamlls.setup({
---     on_attach = on_attach,
---     capabilities = capabilities,
---     filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
---     settings = {
---         yaml = {
---             format = { enable = true },
---             validate = false,
---             schemaDownload = { enable = true },
---             completion = true,
---             hover = true,
---             -- editor = { formatOnType = true },
---             schemas = {
---                 ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
---                 ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
---                 ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
---                 ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
---                 ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
---                 ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
---                 ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
---                 ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
---                 ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
---                 ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
---                 ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.{yml,yaml}",
---                 ["https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json"] = "/*.yaml",
---                 kubernetes = { "/*.yaml" },
---             },
---         },
---     },
--- })
+
+----------------------------------------------------------------------
+--                               YAML                               --
+----------------------------------------------------------------------
+nvim_lsp.yamlls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
+    settings = {
+        yaml = {
+            format = { enable = true },
+            validate = false,
+            schemaDownload = { enable = true },
+            completion = true,
+            hover = true,
+            -- editor = { formatOnType = true },
+            schemas = {
+                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
+                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+                ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.{yml,yaml}",
+                ["https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json"] = "/*.yaml",
+                kubernetes = { "/*.yaml" },
+            },
+        },
+    },
+})
+
+----------------------------------------------------------------------
+--                               JSON                               --
+----------------------------------------------------------------------
+nvim_lsp.jsonls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    commands = {
+        Format = {
+            function()
+                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+            end,
+        },
+    },
+})
+
+-- vim.cmd([[
+-- augroup lsp
+--   autocmd!
+--   autocmd BufWritePre * lua require'utils'.auto_format_lsp()
+-- augroup END
+-- ]])
+
+-- vim.cmd [[
+--     augroup Format
+--       autocmd!
+--         autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.graphql lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)
+--         autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1000)
+--       augroup END
+--     ]]
+
 -- --
--- ----------------------------------------------------------------------
--- --                              DOCKER                              --
--- ----------------------------------------------------------------------
--- nvim_lsp.dockerls.setup({
---     cmd = { "docker-langserver", "--stdio" },
---     filetypes = { "dockerfile" },
---     single_file_support = true,
---     capabilities = capabilities,
---     on_attach = on_attach,
---     flags = {
---         debounce_text_changes = 150,
---     },
--- })
---
--- ----------------------------------------------------------------------
--- --                               JSON                               --
--- ----------------------------------------------------------------------
--- nvim_lsp.jsonls.setup({
---     on_attach = on_attach,
---     capabilities = capabilities,
---     commands = {
---         Format = {
---             function()
---                 vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
---             end,
---         },
---     },
--- })
+-- --
+
 -- --
 -- -- -- -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- -- -- -- capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -257,9 +235,26 @@
 -- -- -- -- })
 -- -- -- --
 -- --
+--TODO: Create proper golang server settings
 -- -- -- ----------------------------------------------------------------------
 -- -- -- --                              GOLANG                              --
 -- -- -- ----------------------------------------------------------------------
+-- -- -- nvim_lsp.gopls.setup({
+-- -- -- 	on_attach = on_attach,
+-- -- -- 	cmd = { "gopls", "serve" },
+-- -- -- 	flags = {
+-- -- -- 		debounce_text_changes = 150,
+-- -- -- 	},
+-- -- -- 	capabilities = capabilities,
+-- -- -- 	settings = {
+-- -- -- 		gopls = {
+-- -- -- 			analyses = {
+-- -- -- 				unusedparams = true,
+-- -- -- 			},
+-- -- -- 			staticcheck = true,
+-- -- -- 		},
+-- -- -- 	},
+-- -- -- })
 -- -- -- -- nvim_lsp.gopls.setup({
 -- -- -- -- 	-- on_attach = on_attach,
 -- -- -- -- 	-- capabilities = capabilities,
@@ -298,14 +293,13 @@
 -- -- -- -- vim.cmd([[ autocmd BufWritePre *.go lua OrgImports(1000) ]])
 -- -- -- -- vim.cmd([[ autocmd BufWritePre *.go lua vim.lsp.buf.formatting() ]])
 --- LSP
--- vim.cmd([[highlight LspDiagnosticsUnderlineWarning guifg=None]])
--- vim.cmd([[hi Visual guifg=White guibg=LightBlue gui=none]])
--- vim.cmd([[hi! link LspReferenceText CursorColumn]])
--- vim.cmd([[hi! link LspReferenceRead CursorColumn]])
--- vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
--- vim.cmd([[hi! link LspSagaFinderSelection CursorColumn]])
--- vim.cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
--- vim.fn.sign_define("LspDiagnosticsSignError", { text = "▬" })
--- vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "▬" })
--- vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "▬" })
--- vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })
+vim.cmd([[highlight LspDiagnosticsUnderlineWarning guifg=None]])
+vim.cmd([[hi! link LspReferenceText CursorColumn]])
+vim.cmd([[hi! link LspReferenceRead CursorColumn]])
+vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
+vim.cmd([[hi! link LspSagaFinderSelection CursorColumn]])
+vim.cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
+vim.fn.sign_define("LspDiagnosticsSignError", { text = "▬" })
+vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "▬" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "▬" })
+vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })

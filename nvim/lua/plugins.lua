@@ -339,14 +339,15 @@ return packer.startup(function(use)
             require("plugins.autopairs")
         end,
     })
+    use("tpope/vim-surround")
     --
-    --use({
+    -- use({
     --    "machakann/vim-sandwich",
     --    after = "nvim-cmp",
     --    config = function()
     --        require("plugins.sandwich")
     --    end,
-    --})
+    -- })
     use({
         "github/copilot.vim",
         required = {
@@ -504,13 +505,12 @@ return packer.startup(function(use)
     --		--use({ "caenrique/nvim-maximize-window-toggle" })
     --
 
-    ---- use({
-    ---- 	"jose-elias-alvarez/null-ls.nvim",
-    ---- 	config = function()
-    ---- 		require("plugins.null-ls")
-    ---- 	end,
-    ---- })
-    -- formatting
+    use({
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            require("plugins.null-ls")
+        end,
+    })
     -- use({
     --     "AckslD/nvim-neoclip.lua",
     --     requires = { "tami5/sqlite.lua", module = "sqlite" },

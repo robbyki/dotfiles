@@ -1,7 +1,7 @@
 local telescope = require("telescope")
 local telescope_actions = require("telescope.actions")
-local previewers = require('telescope.previewers')
-local builtin    = require('telescope.builtin')
+local previewers = require("telescope.previewers")
+local builtin = require("telescope.builtin")
 
 local toggle_modes = function()
     local mode = vim.api.nvim_get_mode().mode
@@ -175,7 +175,7 @@ telescope.load_extension("gh")
 telescope.load_extension("project")
 telescope.load_extension("zoxide")
 telescope.load_extension("file_browser")
-telescope.load_extension('repo')
+telescope.load_extension("repo")
 -- telescope.load_extension('hop')
 --telescope.load_extension "media_files"
 --telescope.load_extension "file_browser"
@@ -185,62 +185,64 @@ telescope.load_extension('repo')
 
 local M = {}
 
-local delta_bcommits = previewers.new_termopen_previewer {
-  get_command = function(entry)
-    return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--', entry.current_file }
-  end
-}
+local delta_bcommits = previewers.new_termopen_previewer({
+    get_command = function(entry)
+        return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.value .. "^!", "--", entry.current_file }
+    end,
+})
 
-local delta = previewers.new_termopen_previewer {
-  get_command = function(entry)
-    return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
-  end
-}
+local delta = previewers.new_termopen_previewer({
+    get_command = function(entry)
+        return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.value .. "^!" }
+    end,
+})
 
 M.my_git_commits = function(opts)
-  opts = opts or {}
-  opts.previewer = {
-    delta,
-    previewers.git_commit_message.new(opts),
-    previewers.git_commit_diff_as_was.new(opts),
-  }
+    opts = opts or {}
+    opts.previewer = {
+        delta,
+        previewers.git_commit_message.new(opts),
+        previewers.git_commit_diff_as_was.new(opts),
+    }
 
-  builtin.git_commits(opts)
+    builtin.git_commits(opts)
 end
 
 M.my_git_bcommits = function(opts)
-  opts = opts or {}
-  opts.previewer = {
-    delta_bcommits,
-    previewers.git_commit_message.new(opts),
-    previewers.git_commit_diff_as_was.new(opts),
-  }
+    opts = opts or {}
+    opts.previewer = {
+        delta_bcommits,
+        previewers.git_commit_message.new(opts),
+        previewers.git_commit_diff_as_was.new(opts),
+    }
 
-  builtin.git_bcommits(opts)
+    builtin.git_bcommits(opts)
 end
 
 M.edit_neovim = function()
-  builtin.git_files {
-    cwd = "~/.config/nvim",
-    prompt = "~ dotfiles ~",
-    color_devicons   = true,
-    sorting_strategy = "ascending",
-    layout_config = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-      prompt_position = "top",
-    },
-  }
+    builtin.git_files({
+        cwd = "~/.config/nvim",
+        prompt = "~ dotfiles ~",
+        color_devicons = true,
+        sorting_strategy = "ascending",
+        layout_config = {
+            horizontal = {
+                mirror = false,
+            },
+            vertical = {
+                mirror = false,
+            },
+            prompt_position = "top",
+        },
+    })
 end
 
 M.project_files = function()
-  local opts = {} -- define here if you want to define something
-  local ok = pcall(require"telescope.builtin".git_files, opts)
-  if not ok then require"telescope.builtin".find_files(opts) end
+    local opts = {} -- define here if you want to define something
+    local ok = pcall(require("telescope.builtin").git_files, opts)
+    if not ok then
+        require("telescope.builtin").find_files(opts)
+    end
 end
 
 return M

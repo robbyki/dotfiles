@@ -1,3 +1,11 @@
+local colors = require("kanagawa.colors").setup()
+
+local overrides = {
+    LspReferenceText = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+    LspReferenceRead = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+    LspReferenceWrite = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+}
+
 require("kanagawa").setup({
     undercurl = true, -- enable undercurls
     commentStyle = "italic",
@@ -8,14 +16,12 @@ require("kanagawa").setup({
     variablebuiltinStyle = "italic",
     specialReturn = true, -- special highlight for the return keyword
     specialException = true, -- special highlight for exception handling keywords
-    transparent = true, -- do not set background color
+    -- transparent = true, -- do not set background color
     dimInactive = true, -- dim inactive regions
     colors = {},
-    overrides = {},
+    overrides = overrides,
     --    overrides = {
     --        CursorLine = { bg = "NONE" },
     --        TelescopeBorder = { bg = "NONE" }
     --    },
 })
-
-vim.cmd("colorscheme kanagawa")
