@@ -104,7 +104,6 @@ vim.cmd([[
     autocmd BufWritePost *.lua lua require("stylua-nvim").format_file()
   augroup end
 ]])
--- vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
 -- vim.cmd([[augroup end]])
 -- vim.cmd([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]])
 -- vim.cmd([[augroup lsp]])

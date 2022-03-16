@@ -25,7 +25,7 @@
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 --
 -- lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
--- 	capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
+--     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
 -- })
 --
 -- --================================
@@ -34,107 +34,101 @@
 -- local metals_config = require("metals").bare_config()
 --
 -- metals_config.settings = {
--- 	showImplicitArguments = true,
--- 	showImplicitConversionsAndClasses = true,
--- 	showInferredType = true,
--- 	--testUserInterface = "test explorer",
--- 	excludedPackages = {
--- 		"akka.actor.typed.javadsl",
--- 		"com.github.swagger.akka.javadsl",
--- 		"akka.stream.javadsl",
--- 		"akka.http.javadsl",
--- 	},
--- 	--fallbackScalaVersion = "2.13.7",
--- 	serverVersion = "0.11.2+30-f9261de6-SNAPSHOT",
--- 	--serverVersion = "0.11.3-SNAPSHOT",
+--     showImplicitArguments = true,
+--     showImplicitConversionsAndClasses = true,
+--     showInferredType = true,
+--     --testUserInterface = "test explorer",
+--     excludedPackages = {
+--         "akka.actor.typed.javadsl",
+--         "com.github.swagger.akka.javadsl",
+--         "akka.stream.javadsl",
+--         "akka.http.javadsl",
+--     },
+--     --fallbackScalaVersion = "2.13.7",
+--     serverVersion = "0.11.2+30-f9261de6-SNAPSHOT",
+--     --serverVersion = "0.11.3-SNAPSHOT",
 -- }
 --
 -- metals_config.init_options.statusBarProvider = "on"
 -- metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
---
 -- metals_config.on_attach = function(client, bufnr)
--- 	vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
--- 	vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
--- 	vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
+--     vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
+--     vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
+--     vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
 --
--- 	-- nvim-dap
--- 	-- I only use nvim-dap with Scala, so we keep it all in here
--- 	local dap = require("dap")
+--     -- nvim-dap
+--     -- I only use nvim-dap with Scala, so we keep it all in here
+--     local dap = require("dap")
 --
--- 	dap.configurations.scala = {
--- 		{
--- 			type = "scala",
--- 			request = "launch",
--- 			name = "RunOrTest",
--- 			metals = {
--- 				runType = "runOrTestFile",
--- 				--args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
--- 			},
--- 		},
--- 		{
--- 			type = "scala",
--- 			request = "launch",
--- 			name = "Run",
--- 			metals = {
--- 				runType = "run",
--- 				--args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
--- 			},
--- 		},
--- 		{
--- 			type = "scala",
--- 			request = "launch",
--- 			name = "Test Target",
--- 			metals = {
--- 				runType = "testTarget",
--- 			},
--- 		},
--- 	}
+--     dap.configurations.scala = {
+--         {
+--             type = "scala",
+--             request = "launch",
+--             name = "RunOrTest",
+--             metals = {
+--                 runType = "runOrTestFile",
+--                 --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+--             },
+--         },
+--         {
+--             type = "scala",
+--             request = "launch",
+--             name = "Run",
+--             metals = {
+--                 runType = "run",
+--                 --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+--             },
+--         },
+--         {
+--             type = "scala",
+--             request = "launch",
+--             name = "Test Target",
+--             metals = {
+--                 runType = "testTarget",
+--             },
+--         },
+--     }
 --
--- 	map("n", "<leader>dc", [[<cmd>lua require("dap").continue()<CR>]])
--- 	map("n", "<leader>dr", [[<cmd>lua require("dap").repl.toggle()<CR>]])
--- 	map(
--- 		"n",
--- 		"<leader>ds",
--- 		[[<cmd>lua require("dap.ui.widgets").sidebar(require("dap.ui.widgets").scopes).toggle()<CR>]]
--- 	)
--- 	map("n", "<leader>dK", [[<cmd>lua require("dap.ui.widgets").hover()<CR>]])
--- 	map("n", "<leader>dt", [[<cmd>lua require("dap").toggle_breakpoint()<CR>]])
--- 	map("n", "<leader>dbc", [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]])
--- 	map("n", "<leader>dso", [[<cmd>lua require("dap").step_over()<CR>]])
--- 	map("n", "<leader>dsi", [[<cmd>lua require("dap").step_into()<CR>]])
--- 	map("n", "<leader>dl", [[<cmd>lua require("dap").run_last()<CR>]])
---
--- 	require("metals").setup_dap()
+--     map("n", "<leader>dc", [[<cmd>lua require("dap").continue()<CR>]])
+--     map("n", "<leader>dr", [[<cmd>lua require("dap").repl.toggle()<CR>]])
+--     map("n", "<leader>ds", [[<cmd>lua require("dap.ui.widgets").sidebar(require("dap.ui.widgets").scopes).toggle()<CR>]])
+--     map("n", "<leader>dK", [[<cmd>lua require("dap.ui.widgets").hover()<CR>]])
+--     map("n", "<leader>dt", [[<cmd>lua require("dap").toggle_breakpoint()<CR>]])
+--     map("n", "<leader>dbc", [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]])
+--     map("n", "<leader>dso", [[<cmd>lua require("dap").step_over()<CR>]])
+--     map("n", "<leader>dsi", [[<cmd>lua require("dap").step_into()<CR>]])
+--     map("n", "<leader>dl", [[<cmd>lua require("dap").run_last()<CR>]])
+--     require("metals").setup_dap()
 -- end
 --
 -- local lsp_group = api.nvim_create_augroup("lsp", { clear = true })
 -- api.nvim_create_autocmd("FileType", {
--- 	pattern = { "scala", "sbt", "java" },
--- 	callback = function()
--- 		require("metals").initialize_or_attach(metals_config)
--- 	end,
--- 	group = lsp_group,
+--     pattern = { "scala", "sbt", "java" },
+--     callback = function()
+--         require("metals").initialize_or_attach(metals_config)
+--     end,
+--     group = lsp_group,
 -- })
 --
 -- lsp_config.dockerls.setup({})
 -- lsp_config.html.setup({})
 -- lsp_config.jsonls.setup({
--- 	commands = {
--- 		Format = {
--- 			function()
--- 				vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
--- 			end,
--- 		},
--- 	},
+--     commands = {
+--         Format = {
+--             function()
+--                 vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+--             end,
+--         },
+--     },
 -- })
 -- lsp_config.tsserver.setup({})
 -- lsp_config.yamlls.setup({})
 -- lsp_config.racket_langserver.setup({})
 -- lsp_config.gopls.setup({
--- 	cmd = { "gopls", "serve" },
--- 	settings = {
--- 		gopls = { analyses = { unusedparams = true }, staticcheck = true },
--- 	},
+--     cmd = { "gopls", "serve" },
+--     settings = {
+--         gopls = { analyses = { unusedparams = true }, staticcheck = true },
+--     },
 -- })
 --
 -- ----------------------------------------------------------------------

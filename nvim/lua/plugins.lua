@@ -36,6 +36,8 @@ return packer.startup(function(use)
 
     use({ "lewis6991/impatient.nvim" })
 
+    use({ "markstory/vim-zoomwin" })
+
     use({ "ptzz/lf.vim" })
 
     use({

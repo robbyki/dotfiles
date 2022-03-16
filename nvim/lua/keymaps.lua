@@ -131,7 +131,7 @@ wk.register({
     ["<leader>g"] = {
         name = "+git",
         c = { '<Cmd>lua require("plugins.telescope").my_git_commits()<CR>', "git commits delta" },
-        s = { '<Cmd>lua require("plugins.telescope").git_status()<CR>', "git status" },
+        s = { "<Cmd>:Telescope git_status<CR>", "git status" },
         g = { "<Cmd>lua require('plugins.terminal.custom').lazygit_toggle()<CR>", "lazygit" },
         b = { "<Cmd>GitBlameToggle<CR>", "blame" },
         d = { "<Cmd>DiffviewOpen<CR>", "Diff view" },
@@ -171,18 +171,20 @@ wk.register({
         s = { "<Cmd>lua require'dap'.step_over()<CR>", "Step Over" },
         u = { "<Cmd>lua require'dapui'.toggle()<CR>", "Open UI" },
     },
+    -- map("n", "<leader>dK", [[<cmd>lua require("dap.ui.widgets").hover()<CR>]])
+    -- map("n", "<leader>dbc", [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]])
+    -- map("n", "<leader>dc", [[<cmd>lua require("dap").continue()<CR>]])
+    -- map("n", "<leader>dl", [[<cmd>lua require("dap").run_last()<CR>]])
+    -- map("n", "<leader>dr", [[<cmd>lua require("dap").repl.toggle()<CR>]])
+    -- map("n", "<leader>ds", [[<cmd>lua require("dap.ui.widgets").sidebar(require("dap.ui.widgets").scopes).toggle()<CR>]])
+    -- map("n", "<leader>dt", [[<cmd>lua require("dap").toggle_breakpoint()<CR>]])
     -- map("n", "<space>dK", [[<cmd>lua require'dap'.ui.widgets".hover()<CR>]])
-    -- map("n", "<space>dc", [[<cmd>lua require'dap'.continue()<CR>]])
     -- map("n", "<space>ddd", [[<cmd>lua require'dap'.list_breakpoints()<CR>]])
     -- map("n", "<space>dl", [[<cmd>lua require'dap'.run_last()<CR>]])
-    -- map("n", "<space>dr", [[<cmd>lua require'dap'.repl.toggle()<CR>)]])
     -- map("n", "<space>dr", [[<cmd>lua require'dap'.repl.toggle()<CR>]])
     -- map("n", "<space>ds", [[<cmd>lua require'dap'.step_into()<CR>]])
     -- map("n", "<space>ds", [[<cmd>lua require'dap'.step_over()<CR>]])
     -- map("n", "<space>ds", [[<cmd>lua require'dap'.ui.variables".scopes()<CR>]])
-    -- map("n", "<space>dsi", [[<cmd>lua require'dap'.step_into()<CR>)]])
-    -- map("n", "<space>dso", [[<cmd>lua require'dap'.step_over()<CR>]])
-    -- map("n", "<space>dt", [[<cmd>lua require'dap'.toggle_breakpoint()<CR>]])
     ["<space>"] = {
         name = "+explorer",
         c = { "<Cmd>NvimTreeClose<CR>", "close" },
@@ -198,6 +200,7 @@ wk.register({
         c = { "<Cmd>lua require('nvim-comment-frame').add_comment()<CR>", "comment line" },
         C = { "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>", "comment multi" },
     },
+    -- TODO: A lot of deprecations here need to be updated. see: :h deprecated
     ["<leader>l"] = {
         name = "+lsp",
         L = { ":LspInfo<CR>", "Connected Language" },
@@ -212,7 +215,7 @@ wk.register({
         C = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "code lens run" },
         I = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
         R = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
-        d = { "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "line diagnostics" },
+        d = { "<Cmd>lua vim.diagnostic.open_float()<CR>", "line diagnostics" },
         i = { "<Cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
         s = { "<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "loc list" },
     },
