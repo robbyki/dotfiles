@@ -11,6 +11,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 --
 local on_attach = function(client, bufnr)
+    if client.name == "yamlls" then
+        client.resolved_capabilities.document_formatting = true
+    end
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -66,17 +69,17 @@ vim.diagnostic.config({
     virtual_text = true,
 })
 
--- local servers = { "tsserver", "html", "bashls" }
---
--- for _, lsp in ipairs(servers) do
---     nvim_lsp[lsp].setup({
---         on_attach = on_attach,
---         flags = {
---             debounce_text_changes = 150,
---         },
---         capabilities = capabilities,
---     })
--- end
+local servers = { "tsserver", "html", "pyright", "bashls", "dockerls" }
+
+for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup({
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        },
+        capabilities = capabilities,
+    })
+end
 --
 ----------------------------------------------------------------------
 --                               LUA                                --
@@ -171,6 +174,12 @@ nvim_lsp.jsonls.setup({
 -- augroup END
 -- ]])
 
+vim.cmd([[
+    augroup Format
+      autocmd!
+        autocmd BufWritePre *.yaml lua vim.lsp.buf.formatting_sync(nil, 1000)
+      augroup END
+    ]])
 -- vim.cmd [[
 --     augroup Format
 --       autocmd!

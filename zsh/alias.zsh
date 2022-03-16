@@ -1,8 +1,11 @@
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
+alias vi=$EDITOR
+alias vim=$EDITOR
+alias nvim=$EDITOR
 
 # Quick files and directories
-alias nvim=/usr/local/bin/nvim
+alias nvim=/bin/nvim
 alias dots="cd $DOTFILES"
 alias p10cfg="$EDITOR $DOTFILES/zsh/.p10k.zsh"
 alias zshcfg="$EDITOR $DOTFILES/zsh/.zshrc"
@@ -66,8 +69,6 @@ alias mkdir='mkdir -pv'
 alias mv='mv -iv'
 alias mytemp='curl wttr.in'
 alias update='dnfu'
-alias vi=$EDITOR
-alias vim=$EDITOR
 alias vimbak='/usr/bin/vim'
 alias wi='which'
 alias x=exit
@@ -306,11 +307,12 @@ alias -g @yml='| yq eval -P'
 alias -g @yaml='| yq eval -P'
 alias -g @json='| jq'
 
-alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 zrc() {
   $EDITOR $DOTFILES/zsh/.zshrc
   source $DOTFILES/zsh/.zshrc
 }
+alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
+alias ecs=zrc
 
 # audio
 alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-output-0"

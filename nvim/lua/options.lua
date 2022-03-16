@@ -86,24 +86,18 @@ vim.g.glow_binary_path = "/usr/local/bin"
 vim.g.vsnip_snippet_dir = "/home/robbyk/.dotfiles/nvim/.vsnip"
 vim.g.rainbow_active = 1
 
-vim.cmd([[ highlight CopilotSuggestion guifg=#2e5d7d ctermfg=8 ]])
-
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 -- autocommands
 vim.cmd([[autocmd FileType,BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 vim.cmd([[autocmd BufRead,BufNewFile *Dockerfile* :set ft=dockerfile]])
-vim.cmd([[autocmd BufRead,BufNewFile *config :set ft=sh]])
-vim.cmd([[autocmd BufRead,BufNewFile *.zsh* :set ft=sh]])
-vim.cmd([[autocmd BufRead,BufNewFile *zsh* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile ~/bin/* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */.kube/config :set ft=yaml]])
 vim.cmd([[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
-vim.cmd([[autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=sh]])
+-- vim.cmd([[autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=sh]])
 vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
--- vim.cmd([[autocmd BufWritePost *.lua lua require("stylua-nvim").format_file()]])
 vim.cmd([[
   augroup stylua_format_on_save
     autocmd!

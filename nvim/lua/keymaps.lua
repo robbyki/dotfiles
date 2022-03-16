@@ -2,9 +2,11 @@ local map = require("utils").map
 
 vim.g.mapleader = ","
 
+-- who cares about space
 vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true })
 map("i", "<C-c>", "<Esc>")
 
+-- bigger scrolling increments
 vim.cmd([[
  noremap <C-e> 5<C-e>
  noremap <C-y> 5<C-y>
@@ -15,6 +17,7 @@ vim.cmd([[
  imap <F1> <C-o>:echo<CR>
 ]])
 
+-- Rezize vim panes
 vim.cmd([[
  nnoremap <silent> <C-Up> : resize -2<CR>
  nnoremap <silent> <C-Down> : resize +2<CR>
@@ -62,10 +65,7 @@ end
 
 wk.register({
     ["<leader>"] = { name = "+leader" },
-    ["<leader><leader>b"] = {
-        "<Cmd>lua require('telescope.builtin').builtin()<CR>",
-        "telescope builtins",
-    },
+    ["<leader><leader>b"] = { "<Cmd>lua require('telescope.builtin').builtin()<CR>", "telescope builtins" },
     ["<leader>?"] = { "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", "recent files" },
     ["<leader>r"] = { "<Cmd>lua require('renamer').rename()<CR>", "rename" },
     ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
@@ -76,12 +76,11 @@ wk.register({
         name = "+search",
         B = { "<Cmd>:Telescope buffers<CR>", "buffers" },
         C = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
-        D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>", "find Docs" },
+        D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>", "find docs" },
         S = { "<Cmd>:Telescope grep_string<CR>", "string search" },
         b = { "<Cmd>:require'telescope'.extensions.file_browser.file_browser<CR>", "file browser" },
         d = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>", "dotfiles" },
         f = { "<Cmd>lua require('telescope.builtin').find_files({ hidden = true, preview = true })<CR>", "find files here" },
-        G = { '<Cmd>lua require("plugins.telescope").my_git_commits()<CR>', "git commits" },
         h = { "<Cmd>lua require('telescope.builtin').help_tags()<CR>", "help tags" },
         j = { "<Cmd>:Telescope jumplist<CR>", "jumps" },
         l = { "<Cmd>:Telescope live_grep<CR>", "live grep" },
@@ -131,6 +130,8 @@ wk.register({
     },
     ["<leader>g"] = {
         name = "+git",
+        c = { '<Cmd>lua require("plugins.telescope").my_git_commits()<CR>', "git commits delta" },
+        s = { '<Cmd>lua require("plugins.telescope").git_status()<CR>', "git status" },
         g = { "<Cmd>lua require('plugins.terminal.custom').lazygit_toggle()<CR>", "lazygit" },
         b = { "<Cmd>GitBlameToggle<CR>", "blame" },
         d = { "<Cmd>DiffviewOpen<CR>", "Diff view" },
