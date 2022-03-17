@@ -279,3 +279,5 @@ export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 # enable this to make it easier during demos and creating many tmux panes
 # source ~/dev/tutorial/oc-app-demo/ocvars
+
+ssibm

@@ -360,7 +360,7 @@ return packer.startup(function(use)
         end,
     })
 
-    use({ "iamcco/markdown-preview.nvim" })
+    use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && npm install" })
     use({ "ellisonleao/glow.nvim", ft = { "markdown" } })
     use({ "aklt/plantuml-syntax", ft = { "plantuml" } })
     use({ "b0o/schemastore.nvim" })
