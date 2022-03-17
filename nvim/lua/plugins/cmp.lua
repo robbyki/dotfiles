@@ -183,6 +183,7 @@ function conf.setup()
             { name = "buffer" },
             { name = "vsnip" },
             { name = "path" },
+            { name = "emoji" },
             {
                 name = "tmux",
                 option = {
