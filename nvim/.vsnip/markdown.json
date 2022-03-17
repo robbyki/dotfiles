@@ -22,7 +22,7 @@
         ]
     },
     "jsx frontmatter": {
-        "prefix": "jsxfm",
+        "prefix": "blogfm",
         "description": "Creates frontmatter for jsx markdown posts",
         "body": [
             "---",

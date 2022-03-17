@@ -190,9 +190,9 @@ bindkey '^[m' prompt-middle
 bindkey -M emacs '\ea' fzf_alias
 bindkey -M vicmd '\ea' fzf_alias
 bindkey -M viins '\ea' fzf_alias
-bindkey -M emacs '\ef' fzf_functions
-bindkey -M vicmd '\ef' fzf_functions
-bindkey -M viins '\ef' fzf_functions
+# bindkey -M emacs '\ef' fzf_functions
+# bindkey -M vicmd '\ef' fzf_functions
+# bindkey -M viins '\ef' fzf_functions
 bindkey "^[l" clear-screen
 bindkey -s "^[=" 'k9s^M'
 

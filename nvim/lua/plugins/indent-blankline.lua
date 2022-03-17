@@ -48,6 +48,7 @@ require("indent_blankline").setup({
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
+
 local indent_blankline_styles = {
     line_left = "▏",
     long_dash = "¦",

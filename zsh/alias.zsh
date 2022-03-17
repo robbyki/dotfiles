@@ -326,5 +326,6 @@ alias ptop='tput cup $((LINES/4)) 0' # Clear quarter
 alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th
 
 # for quickly switching for videos
-alias demofont="yq -i '.font.size=19' ~/.dotfiles/alacritty/alacritty.yml"
-alias workfont="yq -i '.font.size=16' ~/.dotfiles/alacritty/alacritty.yml"
+alias demofont="yq -i '.font.size=20' ~/.dotfiles/alacritty/alacritty.yml"
+alias workfont="yq -i '.font.size=15' ~/.dotfiles/alacritty/alacritty.yml"
+alias slidefont="yq -i '.font.size=30' ~/.dotfiles/alacritty/alacritty.yml"

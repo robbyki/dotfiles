@@ -49,6 +49,7 @@ map("n", "/", "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()
 map("n", "<leader>L", "<Cmd>lua require('plugins.terminal.custom').lf_toggle()<CR>")
 map("n", "<leader>gO", "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
 map("n", "<leader>go", "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
+map("n", "Q", "<Nop>")
 
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",

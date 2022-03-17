@@ -240,17 +240,17 @@ ocgetid() {
 }
 
 ocviewconf() {
-  ic oc cluster get -c $(ocid)
+  ic oc cluster get -c $(ocgetid)
 }
 ocgetconf() {
-  ic oc cluster config -c $(ocid) --admin
+  ic oc cluster config -c $(ocgetid) --admin
 }
 ocprune() {
   oc adm prune images --registry-url=$OCREGISTRY --confirm
 }
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
 oclogin() {
-  oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$(ocmaster) --insecure-skip-tls-verify=true
+  oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$(ocgetmaster) --insecure-skip-tls-verify=true
 }
 # ocgetdefaultroute() {
 #     oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
@@ -280,11 +280,8 @@ ocy() {
 # 	oc $@ | yq eval --colors -P
 # }
 
-ocgetimages() {
-  oc get images | grep $OCREGISTRY
-}
 
-pdlogintxo() {
+pdloginpr() {
   podman login $MYPRIVATE_REGISTRY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
 }
 
@@ -323,21 +320,14 @@ ssibm() {
   secrets source ibm-secrets 2>/dev/null
 }
 
-# pdloginoc() {
-#         pdl -u kubeadmin -p $(oc whoami -t) $OCHOST --tls-verify=false
-# }
-#
-
 ocgethost() {
-  oc get route default-route -n openshift-image-registry -o jsonpath='{ .spec.host }{"\n"}'
+  
 }
 
 ocpatchroute() {
   oc patch configs.imageregistry.operator.openshift.io/cluster --type merge -p '{"spec":{"defaultRoute":true}}'
 }
 
-ocinstallspark() {
-  helm install my-release spark-operator/spark-operator \
-    --namespace spark-operator --set sparkJobNamespace=default \
-    --create-namespace
+ocgetimages() {
+        oc get images | grep $(oc get route default-route -n openshift-image-registry -o jsonpath='{ .spec.host }{"\n"}')
 }
