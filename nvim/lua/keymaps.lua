@@ -159,6 +159,7 @@ wk.register({
         name = "+yaml",
         s = { ":call SearchYamlKey()<CR>", "search key (e.g. level1 > level2)" },
     },
+    -- TODO: Add telescope dap commands keymaps
     ["<leader>D"] = {
         name = "+debug",
         C = { "<Cmd>lua require'dap'.close()<CR>", "Close" },

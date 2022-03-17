@@ -1,6 +1,26 @@
 #--------------------------------------------------------------------#
 #                         github gh commands                         #
 #--------------------------------------------------------------------#
+function ghlogin-personal() {
+        gh auth login -h github.com --with-token <<<"$GHPERSONAL"
+        export GH_HOST=github.com
+}
+
+function ghlogin-ibm() {
+        gh auth login -h github.ibm.com --with-token <<<"$GHIBM"
+        export GH_HOST=github.ibm.com
+}
+
+function ghlogin() {
+  if [[ $(pwd) =~ ~/dev/personal ]]; then
+        gh auth login -h github.com --with-token <<<"$GHPERSONAL"
+        export GH_HOST=github.com
+  else
+        gh auth login -h github.ibm.com --with-token <<<"$GHIBM"
+        export GH_HOST=github.ibm.com
+  fi
+}
+
 function ge() {
   # Quoting switches between single and double quotes to leverage and avoid
   # string interpolation as necessary. There is probably a better way to do

@@ -204,6 +204,42 @@ Metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_se
 Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local dap = require("dap")
+--
+--     local pythonAdapter = {
+--         type = 'python';
+--         request = 'launch';
+--         name = "Launch file";
+--         program = "${file}";
+--         console = 'integratedTerminal';
+--     }
+--     local session = dap.launch(pythonAdapter, {}, {})
+--     if session == nil then
+--         io.write("Error launching adapter");
+--     end
+--     dap.repl.open({}, 'vsplit')
+--
+-- require('dap').configurations.python = {
+--     {
+--         type = 'python';
+--         request = 'launch';
+--         name = "Launch file";
+--         program = "${file}";
+--         console = 'integratedTerminal';
+--     },
+-- }
+
+dap.configurations.python = {
+    {
+        type = "python",
+        request = "launch",
+        name = "Launch file",
+        program = "${file}",
+        pythonPath = function()
+            return "/usr/bin/python"
+        end,
+        -- console = 'integratedTerminal';
+    },
+}
 
 dap.configurations.scala = {
     {

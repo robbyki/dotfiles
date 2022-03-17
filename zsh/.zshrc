@@ -107,7 +107,6 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
 export STEWARD_DIR=$HOME/dev/scala-steward/
-export GH_HOST=github.ibm.com
 export GH_EDITOR=/bin/nvim
 export GOPATH=${HOME}/go
 export CARGO=$HOME/.cargo
@@ -278,4 +277,5 @@ zstyle ':notify:*' success-title "very #success. wow"
 
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
-source ~/dev/tutorial/oc-app-demo/ocvars
+# enable this to make it easier during demos and creating many tmux panes
+# source ~/dev/tutorial/oc-app-demo/ocvars
