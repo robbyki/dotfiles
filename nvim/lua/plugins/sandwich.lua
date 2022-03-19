@@ -1,5 +1,5 @@
--- vim.cmd("runtime macros/sandwich/keymap/surround.vim")
--- local set_keymap = vim.api.nvim_set_keymap
+vim.cmd("runtime macros/sandwich/keymap/surround.vim")
+local set_keymap = vim.api.nvim_set_keymap
 
 -- set_keymap("x", "is", "<Plug>(textobj-sandwich-query-i)", {})
 -- set_keymap("x", "as", "<Plug>(textobj-sandwich-query-a)", {})

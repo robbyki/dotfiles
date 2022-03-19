@@ -52,7 +52,7 @@ function ghprs() {
   # Quoting switches between single and double quotes to leverage and avoid
   # string interpolation as necessary. There is probably a better way to do
   # this.
-  gh pr view -w $(
+  gh pr view $(
     gh pr list --limit 100 \
       | fzf --preview 'gh pr view $(echo {}'" | awk '{ print \$1 }') | bat --color=always -l md" \
       | awk '{ print $1 }'

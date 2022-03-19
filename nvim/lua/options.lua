@@ -11,6 +11,9 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
 vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 
+vim.opt.spellfile = "~/.dotfiles/nvim/spell/en.utf-8.add"
+vim.opt.spell = true
+vim.opt.spelllang = "en"
 vim.opt.autoindent = true
 vim.opt.backup = false
 vim.opt.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
@@ -33,18 +36,17 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ruler = true
 vim.opt.rulerformat = [[%-14.(%l,%c   %o%)]]
-vim.opt.shiftwidth = vim.bo.tabstop
 vim.opt.showmatch = true
 vim.opt.showmode = true
 vim.opt.showtabline = 2
 vim.opt.smartcase = true
-vim.opt.smartindent = true
 vim.opt.smarttab = true
-vim.opt.softtabstop = vim.bo.tabstop
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 700
 vim.opt.title = false
@@ -89,13 +91,13 @@ vim.g.rainbow_active = 1
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 -- autocommands
+vim.cmd([[autocmd FileType lua setlocal shiftwidth=4 tabstop=4 expandtab]])
 vim.cmd([[autocmd FileType,BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 vim.cmd([[autocmd BufRead,BufNewFile *Dockerfile* :set ft=dockerfile]])
 vim.cmd([[autocmd BufRead,BufNewFile ~/bin/* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */.kube/config :set ft=yaml]])
 vim.cmd([[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
--- vim.cmd([[autocmd BufRead,BufNewFile /home/robbyk/.zshfunctions/* :set ft=sh]])
 vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
 vim.cmd([[

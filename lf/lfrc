@@ -47,6 +47,8 @@ map x
 map y
 map r
 
+cmd select-all :unselect; invert
+
 cmd paste-async &{{
     set -- $(cat ~/.local/share/lf/files)
     mode="$1"
@@ -65,6 +67,7 @@ cmd paste-async &{{
     lf -remote "send clear"
 }}
 
+map sa select-all
 map C clear
 map DD delete
 map P paste-async

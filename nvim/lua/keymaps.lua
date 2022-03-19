@@ -77,7 +77,7 @@ wk.register({
         name = "+search",
         B = { "<Cmd>:Telescope buffers<CR>", "buffers" },
         C = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
-        D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>", "find docs" },
+        D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/dev' })<CR>", "find in dev" },
         S = { "<Cmd>:Telescope grep_string<CR>", "string search" },
         b = { "<Cmd>:require'telescope'.extensions.file_browser.file_browser<CR>", "file browser" },
         d = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>", "dotfiles" },
