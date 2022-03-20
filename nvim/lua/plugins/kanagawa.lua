@@ -1,3 +1,6 @@
+--todo: add this to override the default behavior
+-- NormalNC⋅=⋅config.dimInactive⋅and⋅{⋅fg⋅=⋅colors.fg_dark,⋅bg⋅=⋅colors.bg_light0⋅}⋅or⋅{⋅link⋅=⋅"Normal"⋅},
+
 local colors = require("kanagawa.colors").setup()
 
 local overrides = {

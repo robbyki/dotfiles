@@ -100,12 +100,12 @@ vim.cmd([[autocmd BufRead,BufNewFile */.kube/config :set ft=yaml]])
 vim.cmd([[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
 vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
-vim.cmd([[
-  augroup stylua_format_on_save
-    autocmd!
-    autocmd BufWritePost *.lua lua require("stylua-nvim").format_file()
-  augroup end
-]])
+-- vim.cmd([[
+--   augroup stylua_format_on_save
+--     autocmd!
+--     autocmd BufWritePost *.lua lua require("stylua-nvim").format_file()
+--   augroup end
+-- ]])
 -- vim.cmd([[augroup end]])
 -- vim.cmd([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]])
 -- vim.cmd([[augroup lsp]])

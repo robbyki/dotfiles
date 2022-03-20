@@ -34,11 +34,11 @@ return packer.startup(function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
 
-    use({ "lewis6991/impatient.nvim" })
+    use("lewis6991/impatient.nvim")
 
-    use({ "ptzz/lf.vim" })
+    use("ptzz/lf.vim")
 
-    use({ "christoomey/vim-tmux-navigator" })
+    use("christoomey/vim-tmux-navigator")
 
     -- Debugging
     use({
@@ -49,6 +49,7 @@ return packer.startup(function(use)
         end,
     })
 
+    -- keybindings
     use({
         "folke/which-key.nvim",
         config = function()
@@ -56,10 +57,87 @@ return packer.startup(function(use)
         end,
     })
 
+    --    use({
+    --        "nacro90/numb.nvim",
+    --        config = function()
+    --            require("plugins.numb")
+    --        end,
+    --    })
+
+    -- dashboard
     use({
-        "dkarter/bullets.vim",
+        "goolord/alpha-nvim",
         config = function()
-            require("plugins.bullets")
+            require("plugins.alpha")
+        end,
+    })
+
+    -- ui
+    use({
+        "j-hui/fidget.nvim",
+        config = function()
+            require("fidget").setup()
+        end,
+    })
+    use({ "luochen1990/rainbow" })
+
+    use({ "kosayoda/nvim-lightbulb" })
+
+    use({ "nvim-lua/popup.nvim" })
+
+    use({
+        "luukvbaal/stabilize.nvim",
+        config = function()
+            require("plugins.stabilize")
+        end,
+    })
+
+    use({
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            require("plugins.statusline")
+        end,
+        event = "VimEnter",
+        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    })
+
+    use({
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("plugins.colorizer")
+        end,
+    })
+
+    use({
+        "rcarriga/nvim-notify",
+        config = function()
+            require("plugins.notify")
+        end,
+    })
+
+    use({
+        "gelguy/wilder.nvim",
+        requires = { "romgrk/fzy-lua-native", after = "wilder.nvim" },
+        config = function()
+            require("plugins.wilder")
+        end,
+    })
+
+    use({ "ryanoasis/vim-devicons" })
+
+    use({ "kyazdani42/nvim-web-devicons" })
+
+    use({
+        "kyazdani42/nvim-tree.lua",
+        requires = {
+            "kyazdani42/nvim-web-devicons",
+            config = function()
+                require("nvim-web-devicons").setup()
+            end,
+        },
+        cmd = { "NvimTreeToggle", "NvimTreeRefresh" },
+        config = function()
+            require("plugins.nvimtree")
         end,
     })
 
@@ -77,50 +155,21 @@ return packer.startup(function(use)
             require("plugins.bufferline")
         end,
     })
-    --    use({
-    --        "nacro90/numb.nvim",
-    --        config = function()
-    --            require("plugins.numb")
-    --        end,
-    --    })
-    use({ "ryanoasis/vim-devicons" })
-    use({ "kyazdani42/nvim-web-devicons" })
-    -- File explorer
+
     use({
-        "kyazdani42/nvim-tree.lua",
-        requires = {
-            "kyazdani42/nvim-web-devicons",
-            config = function()
-                require("nvim-web-devicons").setup()
-            end,
-        },
-        cmd = { "NvimTreeToggle", "NvimTreeRefresh" },
+        "dkarter/bullets.vim",
         config = function()
-            require("plugins.nvimtree")
+            require("plugins.bullets")
         end,
     })
 
-    use({
-        "goolord/alpha-nvim",
-        config = function()
-            require("plugins.alpha")
-        end,
-    })
-    use({
-        "gelguy/wilder.nvim",
-        requires = { "romgrk/fzy-lua-native", after = "wilder.nvim" },
-        config = function()
-            require("plugins.wilder")
-        end,
-    })
-
-    -- ui
     use({
         "rebelot/kanagawa.nvim",
         config = function()
             require("plugins.kanagawa")
         end,
     })
+
     use({
         "lukas-reineke/indent-blankline.nvim",
         config = function()
@@ -128,39 +177,10 @@ return packer.startup(function(use)
         end,
     })
 
+    -- windows and pane management
     use({ "markstory/vim-zoomwin" })
-    use({
-        "rcarriga/nvim-notify",
-        config = function()
-            require("plugins.notify")
-        end,
-    })
 
-    use({ "luochen1990/rainbow" })
-    use({ "kosayoda/nvim-lightbulb" })
-    use({ "nvim-lua/popup.nvim" })
-    use({
-        "luukvbaal/stabilize.nvim",
-        config = function()
-            require("plugins.stabilize")
-        end,
-    })
-    use({
-        "nvim-lualine/lualine.nvim",
-        config = function()
-            require("plugins.statusline")
-        end,
-        event = "VimEnter",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    })
-    use({
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("plugins.colorizer")
-        end,
-    })
-
-    -- Telescope
+    -- Searching
     use({
         "nvim-telescope/telescope.nvim",
         requires = {
@@ -183,18 +203,21 @@ return packer.startup(function(use)
 
     --    -- use({ "ThePrimeagen/harpoon" })
     use({ "haya14busa/incsearch.vim" })
+
     use({
         "ethanholz/nvim-lastplace",
         config = function()
             require("plugins.lastplace")
         end,
     })
+
     use({
         "sQVe/sort.nvim",
         config = function()
             require("plugins.sort")
         end,
     })
+
     use({
         "rmagatti/goto-preview",
         config = function()
@@ -222,12 +245,6 @@ return packer.startup(function(use)
     })
 
     use({
-        "j-hui/fidget.nvim",
-        config = function()
-            require("fidget").setup()
-        end,
-    })
-    use({
         "ruifm/gitlinker.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
@@ -237,7 +254,6 @@ return packer.startup(function(use)
 
     use("xiyaowong/nvim-cursorword")
 
-    -- code
     use({ "Einenlum/yaml-revealer" })
     use({ "wellle/targets.vim" })
     use({ "brooth/far.vim" })
@@ -286,17 +302,22 @@ return packer.startup(function(use)
             require("plugins.renamer")
         end,
     })
+
     use({
         "gbprod/substitute.nvim",
         config = function()
             require("plugins.substitute")
         end,
     })
+
     use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
 
     use({ "sindrets/diffview.nvim" })
+
     use({ "pwntester/octo.nvim" })
+
     use({ "f-person/git-blame.nvim" })
+
     use({
         "lewis6991/gitsigns.nvim",
         requires = { "nvim-lua/plenary.nvim" },
@@ -308,7 +329,7 @@ return packer.startup(function(use)
 
     -- metals
     use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })
-    --
+
     -- motion
     use({
         "chaoren/vim-wordmotion",
@@ -316,6 +337,7 @@ return packer.startup(function(use)
             require("plugins.motion")
         end,
     })
+
     use({
         "phaazon/hop.nvim",
         branch = "v1",
@@ -325,10 +347,15 @@ return packer.startup(function(use)
     })
 
     use("lewis6991/spellsitter.nvim")
+
     use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && npm install" })
+
     use({ "ellisonleao/glow.nvim", ft = { "markdown" } })
+
     use({ "aklt/plantuml-syntax", ft = { "plantuml" } })
+
     use({ "b0o/schemastore.nvim" })
+
     use({
         "RishabhRD/nvim-cheat.sh",
         requires = "RishabhRD/popfix",
@@ -342,19 +369,21 @@ return packer.startup(function(use)
             "CheatListWithoutComments",
         },
     })
+
     use({ "mfussenegger/nvim-dap" })
     --
     use("mortepau/codicons.nvim")
 
-    -- Automatic pair matching
+    -- Completion
     use({
         "windwp/nvim-autopairs",
         config = function()
             require("plugins.autopairs")
         end,
     })
+
     use("tpope/vim-surround")
-    use("ThePrimeagen/vim-apm")
+
     use({
         "machakann/vim-sandwich",
         after = "nvim-cmp",
@@ -362,6 +391,16 @@ return packer.startup(function(use)
             require("plugins.sandwich")
         end,
     })
+
+    use({
+        "abecodes/tabout.nvim",
+        wants = { "nvim-treesitter" },
+        after = { "nvim-cmp", "copilot.vim" },
+        config = function()
+            require("plugins.tabout")
+        end,
+    })
+
     use({
         "github/copilot.vim",
         required = {
@@ -400,6 +439,7 @@ return packer.startup(function(use)
     use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
     use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
 
+    -- treesitter
     use({
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
@@ -414,6 +454,7 @@ return packer.startup(function(use)
             require("plugins.treesitter")
         end,
     })
+
     use({
         "SmiteshP/nvim-gps",
         requires = "nvim-trreesitter/nvim-treesitter",
@@ -421,6 +462,7 @@ return packer.startup(function(use)
             require("plugins.gps")
         end,
     })
+
     use({
         "p00f/nvim-ts-rainbow",
         config = function()
@@ -432,6 +474,8 @@ return packer.startup(function(use)
             })
         end,
     })
+
+    -- Commenting
     use({
         "s1n7ax/nvim-comment-frame",
         requires = {
@@ -441,15 +485,8 @@ return packer.startup(function(use)
             require("plugins.comment-frame")
         end,
     })
-    use({
-        "abecodes/tabout.nvim",
-        wants = { "nvim-treesitter" },
-        after = { "nvim-cmp", "copilot.vim" },
-        config = function()
-            require("plugins.tabout")
-        end,
-    })
-    -- Annotation generator
+
+    -- Code
     use({
         "danymat/neogen",
         after = "nvim-treesitter",
@@ -474,6 +511,7 @@ return packer.startup(function(use)
         end,
     })
 
+    -- orgmode
     use({
         "akinsho/org-bullets.nvim",
         config = function()
@@ -489,7 +527,10 @@ return packer.startup(function(use)
             require("plugins.orgmode")
         end,
     })
-    use({ "ckipp01/stylua-nvim" })
+
+    -- Formattngi
+    -- use({ "ckipp01/stylua-nvim" })
+
     --use({ "maxmellon/vim-jsx-pretty" })
     --use({ "yuezk/vim-js" })
 
@@ -516,7 +557,6 @@ return packer.startup(function(use)
     --		--		require("plugins.session-manager")
     --		--	end,
     --		--})
-    --		--use({ "numtostr/bufonly.nvim" })
     --		--use({ "caenrique/nvim-maximize-window-toggle" })
     --
 
