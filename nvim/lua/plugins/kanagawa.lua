@@ -7,7 +7,8 @@ local overrides = {
     LspReferenceText = { bg = colors.roninYellow, fg = colors.sumiInk1 },
     LspReferenceRead = { bg = colors.roninYellow, fg = colors.sumiInk1 },
     LspReferenceWrite = { bg = colors.roninYellow, fg = colors.sumiInk1 },
-    -- VertSplit = { fg = colors.bg_dark, bg = "NONE" },
+    CursorLine = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+    VertSplit = { fg = colors.bg_dark, bg = "NONE" },
 }
 
 require("kanagawa").setup({
@@ -25,7 +26,6 @@ require("kanagawa").setup({
     colors = {},
     overrides = overrides,
     --    overrides = {
-    --        CursorLine = { bg = "NONE" },
     --        TelescopeBorder = { bg = "NONE" }
     --    },
 })
