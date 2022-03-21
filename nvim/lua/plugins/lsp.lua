@@ -204,7 +204,7 @@ Metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_se
 Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local dap = require("dap")
---
+
 --     local pythonAdapter = {
 --         type = 'python';
 --         request = 'launch';
@@ -218,28 +218,76 @@ local dap = require("dap")
 --     end
 --     dap.repl.open({}, 'vsplit')
 --
--- require('dap').configurations.python = {
---     {
---         type = 'python';
---         request = 'launch';
---         name = "Launch file";
---         program = "${file}";
---         console = 'integratedTerminal';
---     },
--- }
-
-dap.configurations.python = {
+require("dap").configurations.python = {
     {
         type = "python",
         request = "launch",
         name = "Launch file",
         program = "${file}",
         pythonPath = function()
-            return "/usr/bin/python"
+            return "/bin/python"
         end,
-        -- console = 'integratedTerminal';
+        console = "integratedTerminal",
     },
 }
+
+-- dap.configurations.python = {
+--     {
+--         type = "python",
+--         request = "launch",
+--         name = "Debug file",
+--         program = "${file}",
+--         pythonPath = "python",
+--     },
+--     {
+--         type = "python",
+--         request = "launch",
+--         name = "Debug tests",
+--         module = "pytest",
+--     },
+-- }
+
+-- -- go debug
+-- dap.adapters.go = {
+--   type = 'executable';
+--   command = 'node';
+--   args ={ '/home/lijie/.local/share/nvim/dapinstall/go/vscode-go/dist/debugAdapter.js'};
+-- }
+-- dap.configurations.go = {
+--     {
+--         type = 'go';
+--         name = 'Debug';
+--         request = 'launch';
+--         showLog = false;
+--         program = "${file}";
+--         dlvToolPath = vim.fn.exepath('dlv')  -- Adjust to where delve is installed
+--     },
+--     {
+--         type = "go",
+--         name = "Attach",
+--         request = "attach",
+--         processId = require("dap.utils").pick_process,
+--         -- program = "${workspaceFolder}",
+--         dlvToolPath = vim.fn.exepath('dlv')
+--     },
+--     {
+--         type = "go",
+--         name = "Debug curr test",
+--         request = "launch",
+--         mode = "test",
+--         program = "${file}",
+--         dlvToolPath = vim.fn.exepath('dlv')
+--     },
+--     {
+--         type = "go",
+--         name = "Debug test",
+--         request = "launch",
+--         mode = "test",
+--         program = "${workspaceFolder}",
+--         dlvToolPath = vim.fn.exepath('dlv')
+--     },
+--
+-- }
 
 dap.configurations.scala = {
     {

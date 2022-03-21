@@ -1,3 +1,13 @@
+require("nvim-dap-virtual-text").setup({ commented = true })
+-- Fancy breakpoint symbol.
+local breakpoint = "DapBreakpoint"
+local logpoint = "DapLogPoint"
+local stopped = "DapStopped"
+
+vim.fn.sign_define(breakpoint, { text = "⭕", texthl = breakpoint, linehl = "", numhl = "" })
+vim.fn.sign_define(logpoint, { text = "🟡", texthl = logpoint, linehl = "", numhl = "" })
+vim.fn.sign_define(stopped, { text = "🔴", texthl = stopped, linehl = "debugPC", numhl = "" })
+
 require("dapui").setup({
     icons = { expanded = "▾", collapsed = "▸" },
     mappings = {

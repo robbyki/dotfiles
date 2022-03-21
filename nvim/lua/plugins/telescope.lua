@@ -176,11 +176,11 @@ telescope.load_extension("project")
 telescope.load_extension("zoxide")
 telescope.load_extension("file_browser")
 telescope.load_extension("dap")
+-- telescope.load_extension("neoclip")
 -- telescope.load_extension("repo")
 -- telescope.load_extension('hop')
 --telescope.load_extension "media_files"
 --telescope.load_extension "file_browser"
--- telescope.load_extension("neoclip")
 
 -- Implement delta as previewer for diffs
 

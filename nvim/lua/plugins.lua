@@ -36,28 +36,9 @@ return packer.startup(function(use)
     use("lewis6991/impatient.nvim")
 
     ----------------------------------------------------------------------
-    --                                Debug                                --
-    ----------------------------------------------------------------------
-    use({ "mfussenegger/nvim-dap" })
-    use({
-        "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("plugins.trouble")
-        end,
-        cmd = "Trouble",
-    })
-    use({
-        "rcarriga/nvim-dap-ui",
-        requires = "mfussenegger/nvim-dap",
-        config = function()
-            require("plugins.dap")
-        end,
-    })
-
-    ----------------------------------------------------------------------
     --                                UI                                --
     ----------------------------------------------------------------------
+    use("dstein64/nvim-scrollview")
     use({
         "folke/which-key.nvim",
         config = function()
@@ -199,6 +180,28 @@ return packer.startup(function(use)
     })
 
     ----------------------------------------------------------------------
+    --                                Debug                                --
+    ----------------------------------------------------------------------
+    use({ "mfussenegger/nvim-dap" })
+    use({
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("plugins.trouble")
+        end,
+        cmd = "Trouble",
+    })
+    use({
+        "rcarriga/nvim-dap-ui",
+        requires = "mfussenegger/nvim-dap",
+        config = function()
+            require("plugins.dapui")
+        end,
+    })
+    use({ "theHamsta/nvim-dap-virtual-text" })
+    use("leoluz/nvim-dap-go")
+
+    ----------------------------------------------------------------------
     --                            Navigation                            --
     ----------------------------------------------------------------------
     use({
@@ -301,7 +304,14 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     --                             Spelling                             --
     ----------------------------------------------------------------------
-    use("lewis6991/spellsitter.nvim")
+    use({
+        "lewis6991/spellsitter.nvim",
+        config = function()
+            require("spellsitter").setup({
+                enable = true,
+            })
+        end,
+    })
 
     ----------------------------------------------------------------------
     --                              Cheat                               --
@@ -486,6 +496,11 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     use({
         "jose-elias-alvarez/null-ls.nvim",
+        run = {
+            "go install github.com/daixiang0/gci@latest",
+            "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+            "go install golang.org/x/tools/cmd/goimports@latest",
+        },
         config = function()
             require("plugins.null-ls")
         end,
@@ -559,13 +574,16 @@ return packer.startup(function(use)
     --		--use({ "caenrique/nvim-maximize-window-toggle" })
     --
 
-    -- use({
-    --     "AckslD/nvim-neoclip.lua",
-    --     requires = { "tami5/sqlite.lua", module = "sqlite" },
-    --     setup = function()
-    --         require("plugins.neoclip")
-    --     end,
-    -- })
+    use({
+        "AckslD/nvim-neoclip.lua",
+        disable = true,
+        requires = { "tami5/sqlite.lua", module = "sqlite" },
+        config = function()
+            require("neoclip").setup({
+                enable_persistant_history = true,
+            })
+        end,
+    })
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

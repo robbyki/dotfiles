@@ -159,34 +159,46 @@ wk.register({
         name = "+yaml",
         s = { ":call SearchYamlKey()<CR>", "search key (e.g. level1 > level2)" },
     },
-    -- TODO: Add telescope dap commands keymaps
     ["<leader>D"] = {
         name = "+debug",
-        C = { "<Cmd>lua require'dap'.close()<CR>", "Close" },
-        D = { "<Cmd>lua require'dapui'.disconnect()<CR>", "Disconnect" },
-        R = { "<Cmd>lua require'dap'.repl.open()<CR>", "REPL" },
-        S = { "<Cmd>lua require'dap'.step_into()<CR>", "Step Into" },
-        b = { "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", "Toggle Breakpoint" },
-        c = { "<Cmd>lua require'dap'.continue()<CR>", "Continue" },
-        e = { "<Cmd>lua require'dapui'.eval()<CR>", "Evaluate" },
-        o = { "<Cmd>lua require'dap'.step_out()<CR>", "Step Out" },
-        s = { "<Cmd>lua require'dap'.step_over()<CR>", "Step Over" },
-        u = { "<Cmd>lua require'dapui'.toggle()<CR>", "Open UI" },
+        D = { "<Cmd>lua require'dapui'.disconnect()<CR>", "Dap Disconnect" },
+        O = { "<Cmd>lua require'dap'.step_over()<CR>", "Dap Step Over" },
+        R = { "<Cmd>lua require'dap'.repl.open()<CR>", "Dap Repl Open" },
+        -- b = { "<Cmd>lua require'dap'.list_breakpoints()<CR>", "Dap List Breakpoints" },
+        b = { "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", "Dap Toggle Breakpoint" },
+        C = { "<Cmd>lua require'dap'.continue()<CR>", "Dap Continue" },
+        c = { "<Cmd>lua require'telescope'.extensions.dap.commands{}<CR>", "Dap Commands" },
+        e = { "<Cmd>lua require'dapui'.eval()<CR>", "Dap Evaluate" },
+        f = { "<Cmd>lua require'telescope'.extensions.dap.frames{}<CR>", "Dap Frames" },
+        g = { "<Cmd>lua require'telescope'.extensions.dap.configurations{}<CR>", "Dap Configurations" },
+        h = { "<Cmd>lua require'dap.ui.variables'.hover()<CR>", "Dap Hover" },
+        l = { "<Cmd>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>", "Dap List Breakpoints" },
+        o = { "<Cmd>lua require'dap'.step_out()<CR>", "Dap Step Out" },
+        r = { "<Cmd>lua require'dap'.repl.toggle()<CR>", "Dap Repl Toggle" },
+        i = { "<Cmd>lua require'dap'.step_into()<CR>", "Dap Step Into" },
+        u = { "<Cmd>lua require'dapui'.toggle()<CR>", "Dap Open UI" },
+        v = { "<Cmd>lua require'telescope'.extensions.dap.variables{}<CR>", "Dap Variables" },
+        x = { "<Cmd>lua require'dap'.close()<CR>", "Dap Close" },
     },
     -- map("n", "<leader>dK", [[<cmd>lua require("dap.ui.widgets").hover()<CR>]])
     -- map("n", "<leader>dbc", [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]])
-    -- map("n", "<leader>dc", [[<cmd>lua require("dap").continue()<CR>]])
     -- map("n", "<leader>dl", [[<cmd>lua require("dap").run_last()<CR>]])
-    -- map("n", "<leader>dr", [[<cmd>lua require("dap").repl.toggle()<CR>]])
     -- map("n", "<leader>ds", [[<cmd>lua require("dap.ui.widgets").sidebar(require("dap.ui.widgets").scopes).toggle()<CR>]])
-    -- map("n", "<leader>dt", [[<cmd>lua require("dap").toggle_breakpoint()<CR>]])
     -- map("n", "<space>dK", [[<cmd>lua require'dap'.ui.widgets".hover()<CR>]])
-    -- map("n", "<space>ddd", [[<cmd>lua require'dap'.list_breakpoints()<CR>]])
     -- map("n", "<space>dl", [[<cmd>lua require'dap'.run_last()<CR>]])
-    -- map("n", "<space>dr", [[<cmd>lua require'dap'.repl.toggle()<CR>]])
-    -- map("n", "<space>ds", [[<cmd>lua require'dap'.step_into()<CR>]])
-    -- map("n", "<space>ds", [[<cmd>lua require'dap'.step_over()<CR>]])
     -- map("n", "<space>ds", [[<cmd>lua require'dap'.ui.variables".scopes()<CR>]])
+    -- map('n', '<leader>dct', '<cmd>lua require"dap".continue()<CR>')
+    -- map('n', '<leader>dhh', '<cmd>lua require"dap.ui.variables".hover()<CR>')
+    -- map('n', '<leader>dlb', '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>')
+    -- map('n', '<leader>drl', '<cmd>lua require"dap".repl.run_last()<CR>')
+    -- map('n', '<leader>dro', '<cmd>lua require"dap".repl.open()<CR>')
+    -- map('n', '<leader>dsbm', '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>')
+    -- map('n', '<leader>dsbr', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>')
+    -- map('n', '<leader>dsc', '<cmd>lua require"dap.ui.variables".scopes()<CR>')
+    -- map('n', '<leader>dtb', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
+    -- map('n', '<leader>duf', "<cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>")
+    -- map('n', '<leader>duh', '<cmd>lua require"dap.ui.widgets".hover()<CR>')
+    -- map('v', '<leader>dhv', '<cmd>lua require"dap.ui.variables".visual_hover()<CR>')
     ["<space>"] = {
         name = "+explorer",
         c = { "<Cmd>NvimTreeClose<CR>", "close" },
@@ -194,7 +206,6 @@ wk.register({
         i = { "<Cmd>NvimTreeFindFile<CR>", "find" },
         p = { "<Cmd>NvimTreeClipboard<CR>", "clipboard" },
         r = { "<Cmd>NvimTreeRefresh<CR>", "refresh" },
-        -- s = { "<Cmd>NvimTreeResize<CR>", "resize" },
         e = { "<Cmd>NvimTreeToggle<CR>", "toggle" },
     },
     ["<leader>c"] = {
@@ -202,7 +213,6 @@ wk.register({
         c = { "<Cmd>lua require('nvim-comment-frame').add_comment()<CR>", "comment line" },
         C = { "<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>", "comment multi" },
     },
-    -- TODO: A lot of deprecations here need to be updated. see: :h deprecated
     ["<leader>l"] = {
         name = "+lsp",
         L = { ":LspInfo<CR>", "Connected Language" },
