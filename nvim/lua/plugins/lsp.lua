@@ -44,6 +44,151 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>fc", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
+local dap = require("dap")
+dap.configurations.scala = {
+    {
+        type = "scala",
+        request = "launch",
+        name = "Run",
+        metals = {
+            runType = "run",
+        },
+    },
+    {
+        type = "scala",
+        request = "launch",
+        name = "Test File",
+        metals = {
+            runType = "testFile",
+        },
+    },
+    {
+        type = "scala",
+        request = "launch",
+        name = "Test Target",
+        metals = {
+            runType = "testTarget",
+        },
+    },
+}
+-- dap.adapters.python = {
+--     type = "executable",
+--     command = "python",
+--     args = { "-m", "debugpy.adapter" },
+-- }
+--
+
+-- require("dap-python").setup("/bin/python3")
+-- require("dap-python").test_runner = "pytest"
+
+dap.adapters.python = {
+    type = "executable",
+    command = "/bin/python",
+    args = {
+        "-m",
+        "debugpy.adapter",
+    },
+}
+
+local dap = require("dap")
+dap.configurations.python = {
+    {
+        -- The first three options are required by nvim-dap
+        type = "python", -- the type here established the link to the adapter definition: `dap.adapters.python`
+        request = "launch",
+        name = "Launch file",
+
+        -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+
+        program = "${file}", -- This configuration will launch the current file if used.
+        pythonPath = function()
+            -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+            -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+            -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+            local cwd = vim.fn.getcwd()
+            if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+                return cwd .. "/venv/bin/python"
+            elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+                return cwd .. "/.venv/bin/python"
+            else
+                return "/usr/bin/python"
+            end
+        end,
+    },
+}
+
+-- dap.configurations.python = {
+--     {
+--         type = "python",
+--         request = "attach",
+--         name = "Launch file",
+--         program = "${file}",
+--         console = "internalConsole",
+--         autoReload = { enable = true },
+--         pythonPath = "/bin/python3",
+--     },
+--     {
+--         type = "python",
+--         request = "attach",
+--         name = "Pytest file",
+--         program = "-m pytest ${file}",
+--         console = "externalTerminal",
+--         pythonPath = "/bin/python3",
+--     },
+--     {
+--         type = "python",
+--         request = "launch",
+--         name = "Launch file",
+--         program = "${file}",
+--         console = "internalConsole",
+--         pythonPath = "/bin/python3",
+--     },
+-- }
+
+-- dap.configurations.python = {
+--     -- {
+--     --     type = "python",
+--     --     request = "attach",
+--     --     name = "Launch file",
+--     --     program = "${file}",
+--     --     console = "internalConsole",
+--     --     autoReload = { enable = true },
+--     --     pythonPath = "/bin/python3",
+--     -- },
+--     {
+--         type = "python",
+--         request = "attach",
+--         name = "Pytest file",
+--         program = "-m pytest ${file}",
+--         console = "externalTerminal",
+--         pythonPath = "/bin/python3",
+--     },
+--     {
+--         type = "python",
+--         request = "launch",
+--         name = "Launch file",
+--         program = "${file}",
+--         console = "internalConsole",
+--         pythonPath = "/bin/python3",
+--     },
+-- }
+--
+-- dap.configurations.python = {
+--     {
+--         type = "python",
+--         request = "launch",
+--         name = "Debug file",
+--         program = "${file}",
+--         pythonPath = "python",
+--     },
+--     {
+--         type = "python",
+--         request = "launch",
+--         name = "Debug tests",
+--         module = "pytest",
+--     },
+-- }
+
 -- use custom icons
 local signs = {
     Error = " ",
@@ -70,7 +215,7 @@ vim.diagnostic.config({
     virtual_text = true,
 })
 
-local servers = { "tsserver", "html", "pyright", "bashls", "dockerls" }
+local servers = { "tsserver", "html", "bashls", "dockerls" }
 
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup({

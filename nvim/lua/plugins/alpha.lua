@@ -56,6 +56,12 @@ local plugin_count = {
     },
 }
 
+-- local footer {
+--     local plugins = #vim.tbl_keys(packer_plugins)
+--     local v = vim.version()
+--     local datetime = os.date(" %d-%m-%Y   %H:%M:%S")
+--     string.format(" %s   v%s.%s.%s  %s", plugins, v.major, v.minor, v.patch, datetime)
+-- }
 local footer = {
     type = "text",
     val = require("alpha.fortune")(),

@@ -183,6 +183,7 @@ return packer.startup(function(use)
     --                                Debug                                --
     ----------------------------------------------------------------------
     use({ "mfussenegger/nvim-dap" })
+    use("mfussenegger/nvim-dap-python")
     use({
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",

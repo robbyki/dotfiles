@@ -162,23 +162,24 @@ wk.register({
     ["<leader>D"] = {
         name = "+debug",
         D = { "<Cmd>lua require'dapui'.disconnect()<CR>", "Dap Disconnect" },
+        t = { "<Cmd>lua require'dap'.terminate()<CR>", "Dap Terminate" }, --works=yes
         O = { "<Cmd>lua require'dap'.step_over()<CR>", "Dap Step Over" },
         R = { "<Cmd>lua require'dap'.repl.open()<CR>", "Dap Repl Open" },
         -- b = { "<Cmd>lua require'dap'.list_breakpoints()<CR>", "Dap List Breakpoints" },
-        b = { "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", "Dap Toggle Breakpoint" },
-        C = { "<Cmd>lua require'dap'.continue()<CR>", "Dap Continue" },
+        b = { "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", "Dap Toggle Breakpoint" }, --works=yes
+        C = { "<Cmd>lua require'dap'.continue()<CR>", "Dap Continue" }, -- works=yes
         c = { "<Cmd>lua require'telescope'.extensions.dap.commands{}<CR>", "Dap Commands" },
         e = { "<Cmd>lua require'dapui'.eval()<CR>", "Dap Evaluate" },
-        f = { "<Cmd>lua require'telescope'.extensions.dap.frames{}<CR>", "Dap Frames" },
-        g = { "<Cmd>lua require'telescope'.extensions.dap.configurations{}<CR>", "Dap Configurations" },
         h = { "<Cmd>lua require'dap.ui.variables'.hover()<CR>", "Dap Hover" },
-        l = { "<Cmd>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>", "Dap List Breakpoints" },
-        o = { "<Cmd>lua require'dap'.step_out()<CR>", "Dap Step Out" },
-        r = { "<Cmd>lua require'dap'.repl.toggle()<CR>", "Dap Repl Toggle" },
+        o = { "<Cmd>lua require'dap'.step_out()<CR>", "Dap Step Out" }, -- works=yes
+        r = { "<Cmd>lua require'dap'.repl.toggle()<CR>", "Dap Repl Toggle" }, -- works=yes
         i = { "<Cmd>lua require'dap'.step_into()<CR>", "Dap Step Into" },
-        u = { "<Cmd>lua require'dapui'.toggle()<CR>", "Dap Open UI" },
-        v = { "<Cmd>lua require'telescope'.extensions.dap.variables{}<CR>", "Dap Variables" },
-        x = { "<Cmd>lua require'dap'.close()<CR>", "Dap Close" },
+        u = { "<Cmd>lua require'dapui'.toggle()<CR>", "Dap Open UI" }, --works=yes
+        x = { "<Cmd>lua require'dap'.close()<CR>", "Dap Close" }, --works=no
+        v = { "<Cmd>lua require'telescope'.extensions.dap.variables{}<CR>", "Telescope Dap Variables" }, --works=yes
+        l = { "<Cmd>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>", "Telescope Dap List Breakpoints" }, --works=yes
+        f = { "<Cmd>lua require'telescope'.extensions.dap.frames{}<CR>", "Telescope Dap Frames" }, --works=yes
+        g = { "<Cmd>lua require'telescope'.extensions.dap.configurations{}<CR>", "Telescope Dap Configurations" }, --works=yes
     },
     -- map("n", "<leader>dK", [[<cmd>lua require("dap.ui.widgets").hover()<CR>]])
     -- map("n", "<leader>dbc", [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]])
