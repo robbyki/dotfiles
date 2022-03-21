@@ -36,7 +36,7 @@ map("n", "<leader>xml", ":%!xmllint --format -<CR>")
 map("n", "<Esc><Esc>", ":nohlsearch<CR>")
 map("n", "<leader>n", ":set number! norelativenumber<CR>")
 map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
-map("n", "<leader>lc", ":lcl<CR>") -- close quickfix window
+-- map("n", "<leader>lc", ":lcl<CR>") -- close quickfix window
 map("n", "<leader>ev", ":vs $myvimrc<CR>")
 map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
 map("n", "<esc>", ":noh<CR><esc>", { silent = true })
