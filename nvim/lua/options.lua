@@ -11,9 +11,9 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
 vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 
-vim.opt.spellfile = "~/.dotfiles/nvim/spell/en.utf-8.add"
-vim.opt.spell = true
-vim.opt.spelllang = "en"
+-- vim.opt.spellfile = "~/.dotfiles/nvim/spell/en.utf-8.add"
+-- vim.opt.spell = true
+-- vim.opt.spelllang = "en"
 vim.opt.autoindent = true
 vim.opt.backup = false
 vim.opt.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything

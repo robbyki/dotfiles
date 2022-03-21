@@ -305,14 +305,14 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     --                             Spelling                             --
     ----------------------------------------------------------------------
-    use({
-        "lewis6991/spellsitter.nvim",
-        config = function()
-            require("spellsitter").setup({
-                enable = true,
-            })
-        end,
-    })
+    -- use({
+    --     "lewis6991/spellsitter.nvim",
+    --     config = function()
+    --         require("spellsitter").setup({
+    --             enable = true,
+    --         })
+    --     end,
+    -- })
 
     ----------------------------------------------------------------------
     --                              Cheat                               --

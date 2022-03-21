@@ -45,7 +45,7 @@ map("n", "<leader>so", ":SymbolsOutline<CR>")
 map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
-map("n", "/", "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>")
+-- map("n", "/", "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>")
 map("n", "<leader>L", "<Cmd>lua require('plugins.terminal.custom').lf_toggle()<CR>")
 map("n", "<leader>gO", "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
 map("n", "<leader>go", "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
@@ -75,6 +75,7 @@ wk.register({
 wk.register({
     ["<leader>f"] = {
         name = "+search",
+        ["/"] = { "<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "Fuzzy Find" },
         B = { "<Cmd>:Telescope buffers<CR>", "buffers" },
         C = { "<Cmd>lua require('telescope').extensions.zoxide.list{}<CR>", "zoxide cd" },
         D = { "<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/dev' })<CR>", "find in dev" },
@@ -162,7 +163,7 @@ wk.register({
     ["<leader>D"] = {
         name = "+debug",
         D = { "<Cmd>lua require'dapui'.disconnect()<CR>", "Dap Disconnect" },
-        t = { "<Cmd>lua require'dap'.terminate()<CR>", "Dap Terminate" }, --works=yes
+        t = { "<Cmd>lua require'dap'.terminate()<CR>", "Dap Terminate" }, --works=y()
         O = { "<Cmd>lua require'dap'.step_over()<CR>", "Dap Step Over" },
         R = { "<Cmd>lua require'dap'.repl.open()<CR>", "Dap Repl Open" },
         -- b = { "<Cmd>lua require'dap'.list_breakpoints()<CR>", "Dap List Breakpoints" },

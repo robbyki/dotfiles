@@ -1,5 +1,25 @@
-local api = vim.api
+local on_attach = function(_, bufnr)
+    require("lsp_signature").on_attach({ doc_lines = 1 }, bufnr)
+    -- local function buf_set_option(...)
+    --     vim.api.nvim_buf_set_option(bufnr, ...)
+    -- end
+    -- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+end
+
+-- local api = vim.api
 local nvim_lsp = require("lspconfig")
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+})
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "rounded",
+})
+vim.lsp.handlers["window/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    border = "rounded",
+})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -10,39 +30,40 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     },
 }
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 --
-local on_attach = function(client, bufnr)
-    if client.name == "yamlls" then
-        client.resolved_capabilities.document_formatting = true
-    end
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-    -- Mappings.
-    local opts = { noremap = true, silent = true }
-    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_set_keymap("n", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-    buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_set_keymap("n", "<space>CA", "<cmd>:CodeActionMenu<CR>", opts)
-    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "<space>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<space>ql", "<cmd>lua vim.lsp.diagnostic.set_qflist()<CR>", opts)
-    buf_set_keymap("n", "<space>ll", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-    buf_set_keymap("n", "<space>fc", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-end
+-- local on_attach = function(client, bufnr)
+--     if client.name == "yamlls" then
+--         client.resolved_capabilities.document_formatting = true
+--     end
+--     -- local function buf_set_keymap(...)
+--     vim.api.nvim_buf_set_keymap(bufnr, ...)
+-- end
+-- local function buf_set_option(...)
+--     vim.api.nvim_buf_set_option(bufnr, ...)
+-- end
+-- Mappings.
+-- local opts = { noremap = true, silent = true }
+-- buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+-- buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+-- buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+-- buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+-- buf_set_keymap("n", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+-- buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+-- buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+-- buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+-- buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+-- buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+-- buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+-- buf_set_keymap("n", "<space>CA", "<cmd>:CodeActionMenu<CR>", opts)
+-- buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+-- buf_set_keymap("n", "<space>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+-- buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+-- buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+-- buf_set_keymap("n", "<space>ql", "<cmd>lua vim.lsp.diagnostic.set_qflist()<CR>", opts)
+-- buf_set_keymap("n", "<space>ll", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+-- buf_set_keymap("n", "<space>fc", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+-- end
 
 local dap = require("dap")
 dap.configurations.scala = {
@@ -90,7 +111,6 @@ dap.adapters.python = {
     },
 }
 
-local dap = require("dap")
 dap.configurations.python = {
     {
         -- The first three options are required by nvim-dap
@@ -191,17 +211,16 @@ dap.configurations.python = {
 
 -- use custom icons
 local signs = {
-    Error = " ",
-    Warn = " ",
-    Hint = " ",
-    Info = " ",
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " ",
+    -- Error = " ",
+    -- Warn = " ",
+    -- Hint = " ",
+    -- Info = " ",
 }
---
--- -- lspSymbol("Error", "")
--- -- lspSymbol("Info", "")
--- -- lspSymbol("Hint", "")
--- -- lspSymbol("Warn", "")
---
+
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, {
@@ -215,54 +234,61 @@ vim.diagnostic.config({
     virtual_text = true,
 })
 
-local servers = { "tsserver", "html", "bashls", "dockerls" }
-
+local servers = { "bashls", "pyright", "tsserver", "dockerls" }
+local lspconfig = require("lspconfig")
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup({
+    lspconfig[lsp].setup({
         on_attach = on_attach,
-        flags = {
-            debounce_text_changes = 150,
+        -- capabilities = Capabilities,
+        opts = {
+            inlay_hints = {
+                show_parameter_hints = true,
+                parameter_hints_prefix = "",
+                other_hints_prefix = "",
+            },
+            flags = {
+                debounce_text_changes = 150,
+            },
         },
-        capabilities = capabilities,
     })
 end
---
+
 ----------------------------------------------------------------------
 --                               LUA                                --
 ----------------------------------------------------------------------
--- nvim_lsp.sumneko_lua.setup({
---     cmd = {
---         "/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
---         "-E",
---         "/home/robbyk/tools/lua-language-server/main.lua",
---     },
---     commands = {
---         Format = {
---             function()
---                 require("stylua-nvim").format_file()
---             end,
---         },
---     },
---     settings = {
---         Lua = {
---             runtime = {
---                 version = "LuaJIT", -- since using mainly for neovim
---                 path = vim.split(package.path, ";"),
---             },
---             diagnostics = { globals = { "vim" } },
---             workspace = {
---                 -- checkThirdParty = false,
---                 -- preloadFileSize = 10000,
---                 -- maxPreload = 10000,
---                 library = {
---                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
---                     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
---                 },
---             },
---             telemetry = { enable = false },
---         },
---     },
--- })
+nvim_lsp.sumneko_lua.setup({
+    cmd = {
+        "/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
+        "-E",
+        "/home/robbyk/tools/lua-language-server/main.lua",
+    },
+    commands = {
+        Format = {
+            function()
+                require("stylua-nvim").format_file()
+            end,
+        },
+    },
+    settings = {
+        Lua = {
+            runtime = {
+                version = "LuaJIT", -- since using mainly for neovim
+                path = vim.split(package.path, ";"),
+            },
+            diagnostics = { globals = { "vim" } },
+            workspace = {
+                -- checkThirdParty = false,
+                -- preloadFileSize = 10000,
+                -- maxPreload = 10000,
+                library = {
+                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                },
+            },
+            telemetry = { enable = false },
+        },
+    },
+})
 
 ----------------------------------------------------------------------
 --                               YAML                               --
@@ -323,6 +349,7 @@ vim.cmd([[
 ----------------------------------------------------------------------
 --                              SCALA                               --
 ----------------------------------------------------------------------
+local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 nvim_lsp.util.default_config = vim.tbl_extend("force", nvim_lsp.util.default_config, {
     handlers = {
         ["textDocument/publishDiagnostics"] = shared_diagnostic_settings,
@@ -341,6 +368,7 @@ Metals_config.settings = {
         "akka.stream.javadsl",
     },
     superMethodLensesEnabled = true,
+    -- serverProperties = {"-Xmx3G", "-Xms3G", "-Xss4m"},
 }
 
 Metals_config.init_options.statusBarProvider = "on"
@@ -348,7 +376,7 @@ Metals_config.init_options.compilerOptions.isCompletionItemResolve = false
 Metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_settings
 Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-Metals_config.on_attach = function(client, bufnr)
+Metals_config.on_attach = function(_, _)
     vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
     vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
     vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
@@ -434,43 +462,46 @@ vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(
 -- -- -- ----------------------------------------------------------------------
 -- -- -- --                              GOLANG                              --
 -- -- -- ----------------------------------------------------------------------
--- -- -- nvim_lsp.gopls.setup({
--- -- -- 	on_attach = on_attach,
--- -- -- 	cmd = { "gopls", "serve" },
--- -- -- 	flags = {
--- -- -- 		debounce_text_changes = 150,
--- -- -- 	},
--- -- -- 	capabilities = capabilities,
--- -- -- 	settings = {
--- -- -- 		gopls = {
--- -- -- 			analyses = {
--- -- -- 				unusedparams = true,
--- -- -- 			},
--- -- -- 			staticcheck = true,
--- -- -- 		},
--- -- -- 	},
--- -- -- })
--- -- -- -- nvim_lsp.gopls.setup({
--- -- -- -- 	-- on_attach = on_attach,
--- -- -- -- 	-- capabilities = capabilities,
--- -- -- -- 	-- root_dir = util.root_pattern("go.work", "go.mod", ".git"),
--- -- -- -- 	-- -- single_file_support = true,
--- -- -- -- 	-- -- flags = {
--- -- -- -- 	-- -- 	debounce_text_changes = 150,
--- -- -- -- 	-- -- },
--- -- -- -- 	-- cmd = { "gopls", "serve" },
--- -- -- -- 	-- settings = {
--- -- -- -- 	-- 	gopls = {
--- -- -- -- 	-- 		-- experimentalPostfixCompletions = true,
--- -- -- -- 	-- 		analyses = {
--- -- -- -- 	-- 			unusedparams = true,
--- -- -- -- 	-- 			-- shadow = true,
--- -- -- -- 	-- 		},
--- -- -- -- 	-- 		staticcheck = true,
--- -- -- -- 	-- 	},
--- -- -- -- 	-- },
--- -- -- -- })
--- -- --
+-- nvim_lsp.gopls.setup({
+--     on_attach = on_attach,
+--     cmd = { "gopls", "serve" },
+--     flags = {
+--         debounce_text_changes = 150,
+--     },
+--     capabilities = capabilities,
+--     settings = {
+--         gopls = {
+--             analyses = {
+--                 unusedparams = true,
+--             },
+--             staticcheck = true,
+--         },
+--     },
+-- })
+nvim_lsp.gopls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = require("lspconfig").util.root_pattern(".git", "go.mod", "."),
+    flags = {
+        debounce_text_changes = 150,
+    },
+    cmd = { "gopls", "serve" },
+    settings = {
+        gopls = {
+            -- experimentalPostfixCompletions = true,
+            analyses = {
+                nilness = true,
+                simplifyrange = true,
+                unusedwrite = true,
+                unusedparams = true,
+                shadow = true,
+            },
+            staticcheck = true,
+        },
+    },
+})
+-- Run gofmt + goimport on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
 -- -- -- -- function OrgImports(wait_ms)
 -- -- -- -- 	local params = vim.lsp.util.make_range_params()
 -- -- -- -- 	params.context = { only = { "source.organizeImports" } }
