@@ -218,8 +218,16 @@ local dap = require("dap")
 --     end
 --     dap.repl.open({}, 'vsplit')
 --
-require("dap").configurations.python = {
+
+dap.adapters.python3 = {
+    type = "executable",
+    command = "python3",
+    args = { "-m", "debugpy.adapter" },
+}
+
+dap.configurations.python = {
     {
+        name = "Run file (Python3)",
         type = "python",
         request = "launch",
         name = "Launch file",
@@ -228,6 +236,9 @@ require("dap").configurations.python = {
             return "/bin/python"
         end,
         console = "integratedTerminal",
+        internalConsoleOptions = "neverOpen",
+        disableOptimisticBPs = true,
+        cwd = "${workspaceFolder}",
     },
 }
 
