@@ -394,21 +394,21 @@ vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(
 --     group = lsp_group,
 -- })
 
--- vim.cmd [[
---     augroup Format
---       autocmd!
---         autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.graphql lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)
---         autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1000)
---       augroup END
---     ]]
+vim.cmd([[
+    augroup Format
+      autocmd!
+        autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
+      augroup END
+    ]])
+-- autocmd BufWritePre *.graphql lua vim.lsp.buf.formatting_sync(nil, 1000)
+-- autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 1000)
+-- autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)
+-- autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 1000)
+-- autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
+-- autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
+-- autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
+-- autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)
+-- autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 -- --
 -- --

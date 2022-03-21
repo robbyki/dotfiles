@@ -527,22 +527,22 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     --                              Golang                              --
     ----------------------------------------------------------------------
-    --use({
-    --	"ray-x/go.nvim",
-    --	config = function()
-    --		require("go").setup({
-    --			-- goimport = "gopls",
-    --			-- gofmt = "gopls",
-    --			-- max_line_len = 120,
-    --			-- comment_placeholder = "   ",
-    --			-- -- lsp_cfg = true, -- false: use your own lspconfig
-    --			-- -- lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
-    --			-- -- lsp_codelens = true,
-    --			-- lsp_on_attach = on_attach_normal, -- use on_attach from go.nvim
-    --			-- dap_debug = true,
-    --		})
-    --	end,
-    --})
+    use({
+        "ray-x/go.nvim",
+        config = function()
+            require("go").setup({
+                -- goimport = "gopls",
+                -- gofmt = "gopls",
+                -- max_line_len = 120,
+                -- comment_placeholder = "   ",
+                -- -- lsp_cfg = true, -- false: use your own lspconfig
+                -- -- lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+                -- -- lsp_codelens = true,
+                -- lsp_on_attach = on_attach_normal, -- use on_attach from go.nvim
+                -- dap_debug = true,
+            })
+        end,
+    })
 
     ----------------------------------------------------------------------
     --                             Rogmade                              --
