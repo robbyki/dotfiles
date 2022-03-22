@@ -9,6 +9,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local on_attach = function(_, bufnr)
+  --FIXME: Clean this up
   require("lsp_signature").on_attach({ doc_lines = 1 }, bufnr)
   -- local function buf_set_option(...)
   --     vim.api.nvim_buf_set_option(bufnr, ...)
