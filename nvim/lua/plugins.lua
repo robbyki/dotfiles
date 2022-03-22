@@ -180,7 +180,7 @@ return packer.startup(function(use)
     })
 
     ----------------------------------------------------------------------
-    --                                Debug                                --
+    --                                Debug                             --
     ----------------------------------------------------------------------
     use({ "mfussenegger/nvim-dap" })
     use("mfussenegger/nvim-dap-python")
@@ -205,14 +205,14 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     --                            Navigation                            --
     ----------------------------------------------------------------------
-    use({
-        "airblade/vim-rooter",
-        config = function()
-            vim.g.rooter_patterns = { ".git/" }
-            vim.g.rooter_silent_chdir = 1
-            vim.g.rooter_cd_cmd = "lcd"
-        end,
-    })
+    -- use({
+    --     "airblade/vim-rooter",
+    --     config = function()
+    --         vim.g.rooter_patterns = { ".git/" }
+    --         vim.g.rooter_silent_chdir = 1
+    --         vim.g.rooter_cd_cmd = "lcd"
+    --     end,
+    -- })
 
     use({
         "phaazon/hop.nvim",
@@ -230,7 +230,7 @@ return packer.startup(function(use)
         end,
     })
     use({ "markstory/vim-zoomwin" })
-    -- Searching
+
     use({ "brooth/far.vim" })
     use({ "Einenlum/yaml-revealer" })
     use({
@@ -259,7 +259,7 @@ return packer.startup(function(use)
             require("plugins.lastplace")
         end,
     })
-    --    -- use({ "ThePrimeagen/harpoon" })
+    -- use({ "ThePrimeagen/harpoon" })
 
     ----------------------------------------------------------------------
     --                              Files                               --
@@ -305,14 +305,14 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     --                             Spelling                             --
     ----------------------------------------------------------------------
-    -- use({
-    --     "lewis6991/spellsitter.nvim",
-    --     config = function()
-    --         require("spellsitter").setup({
-    --             enable = true,
-    --         })
-    --     end,
-    -- })
+    --use({
+    --    "lewis6991/spellsitter.nvim",
+    --    config = function()
+    --        require("spellsitter").setup({
+    --            enable = true,
+    --        })
+    --    end,
+    --})
 
     ----------------------------------------------------------------------
     --                              Cheat                               --
@@ -493,7 +493,7 @@ return packer.startup(function(use)
     })
 
     ----------------------------------------------------------------------
-    --                               Language Server                                --
+    --                               Language Server                    --
     ----------------------------------------------------------------------
     use({
         "jose-elias-alvarez/null-ls.nvim",
@@ -524,13 +524,15 @@ return packer.startup(function(use)
     use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && npm install" })
     use({ "b0o/schemastore.nvim" })
 
-    ----------------------------------------------------------------------
-    --                              Golang                              --
-    ----------------------------------------------------------------------
+    -------------------------------------------------------------------
+    --                             Golang                            --
+    -------------------------------------------------------------------
     use({
         "ray-x/go.nvim",
         config = function()
             require("go").setup({
+                -- verbose = false,
+                -- run_in_floaterm = true,
                 -- goimport = "gopls",
                 -- gofmt = "gopls",
                 -- max_line_len = 120,
@@ -543,9 +545,11 @@ return packer.startup(function(use)
             })
         end,
     })
+    use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
+    use({ "ray-x/navigator.lua", requires = { "ray-x/guihua.lua", run = "cd lua/fzy && make" } })
 
     ----------------------------------------------------------------------
-    --                             Rogmade                              --
+    --                             Orgmode                              --
     ----------------------------------------------------------------------
     use({
         "akinsho/org-bullets.nvim",

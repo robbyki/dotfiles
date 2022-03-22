@@ -1,13 +1,37 @@
+local nvim_lsp = require("lspconfig")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits",
+    },
+}
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local on_attach = function(_, bufnr)
     require("lsp_signature").on_attach({ doc_lines = 1 }, bufnr)
     -- local function buf_set_option(...)
     --     vim.api.nvim_buf_set_option(bufnr, ...)
     -- end
     -- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    -- Set autocommands conditional on server_capabilities
+    -- if client.resolved_capabilities.document_highlight then
+    --     vim.api.nvim_exec(
+    --         [[
+    --         hi LspReferenceText CursorColumn
+    --         hi LspReferenceRead CursorColumn
+    --         hi LspReferenceWrite CursorColumn
+    --   augroup lsp_document_highlight
+    --     autocmd! * <buffer>
+    --     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    --     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    --   augroup END
+    -- ]],
+    --         false
+    --     )
+    -- end
 end
-
--- local api = vim.api
-local nvim_lsp = require("lspconfig")
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
@@ -19,17 +43,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 vim.lsp.handlers["window/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     border = "rounded",
 })
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits",
-    },
-}
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 --
 -- local on_attach = function(client, bufnr)
@@ -394,12 +407,12 @@ vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(
 --     group = lsp_group,
 -- })
 
-vim.cmd([[
-    augroup Format
-      autocmd!
-        autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
-      augroup END
-    ]])
+-- vim.cmd([[
+--     augroup Format
+--       autocmd!
+--         autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
+--       augroup END
+--     ]])
 -- autocmd BufWritePre *.graphql lua vim.lsp.buf.formatting_sync(nil, 1000)
 -- autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 1000)
 -- autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)
@@ -462,23 +475,8 @@ vim.cmd([[
 -- -- -- ----------------------------------------------------------------------
 -- -- -- --                              GOLANG                              --
 -- -- -- ----------------------------------------------------------------------
--- nvim_lsp.gopls.setup({
---     on_attach = on_attach,
---     cmd = { "gopls", "serve" },
---     flags = {
---         debounce_text_changes = 150,
---     },
---     capabilities = capabilities,
---     settings = {
---         gopls = {
---             analyses = {
---                 unusedparams = true,
---             },
---             staticcheck = true,
---         },
---     },
--- })
 nvim_lsp.gopls.setup({
+    -- lsp_cfg = false,
     on_attach = on_attach,
     capabilities = capabilities,
     root_dir = require("lspconfig").util.root_pattern(".git", "go.mod", "."),
@@ -488,7 +486,7 @@ nvim_lsp.gopls.setup({
     cmd = { "gopls", "serve" },
     settings = {
         gopls = {
-            -- experimentalPostfixCompletions = true,
+            experimentalPostfixCompletions = true,
             analyses = {
                 nilness = true,
                 simplifyrange = true,
@@ -519,7 +517,7 @@ vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').
 -- -- -- -- vim.cmd([[ autocmd BufWritePre *.go lua OrgImports(1000) ]])
 -- -- -- -- vim.cmd([[ autocmd BufWritePre *.go lua vim.lsp.buf.formatting() ]])
 --- LSP
-vim.cmd([[highlight LspDiagnosticsUnderlineWarning guifg=None]])
+vim.cmd([[hi! LspDiagnosticsUnderlineWarning guifg=None]])
 vim.cmd([[hi! link LspReferenceText CursorColumn]])
 vim.cmd([[hi! link LspReferenceRead CursorColumn]])
 vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
@@ -529,3 +527,7 @@ vim.fn.sign_define("LspDiagnosticsSignError", { text = "▬" })
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "▬" })
 vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "▬" })
 vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })
+
+-- Go
+-- vim.g.go_term_enabled = true
+-- vim.g.go_term_mode = "split"

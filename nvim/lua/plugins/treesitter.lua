@@ -4,9 +4,9 @@
 --
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
-        -- "org",
         "bash",
         "dockerfile",
+        "typescript",
         "go",
         "hocon",
         "html",
@@ -18,6 +18,7 @@ require("nvim-treesitter.configs").setup({
         "http",
         "json",
         "yaml",
+        "lua",
     },
     highlight = {
         enable = true,

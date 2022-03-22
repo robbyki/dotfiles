@@ -1,6 +1,12 @@
+startuppopupversion: 1
 gui:
   theme:
     selectedLineBgColor:
       - reverse
     selectedRangeBgColor:
       - reverse
+        #git:
+        #    paging:
+        #        colorArg: always
+        #        # pager: diff-so-fancy
+        #        pager: delta --dark --paging=never --24-bit-color=always

@@ -1,11 +1,11 @@
 require("notify").setup({
-    -- stages = "fade_in_slide_out",
-    stages = "static",
-
-    timeout = 4000,
-
-    -- For stages that change opacity this is treated as the highlight behind the window
+    stages = "slide",
+    timeout = 2500,
+    render = "minimal",
     background_colour = "#24292e",
+    max_width = 65,
+    max_height = 3,
+    minimum_width = 35,
 
     -- Icons for the different levels
     icons = {
@@ -17,3 +17,11 @@ require("notify").setup({
     },
 })
 vim.notify = require("notify")
+vim.cmd([[
+        hi NotifyINFOBorder guifg=#80ff95
+        hi link NotifyINFOBody NotifyINFOBorder
+        hi NotifyWARNBorder guifg=#fff454
+        hi link NotifyWARNBody NotifyWARNBorder
+        hi NotifyERRORBorder guifg=#c44323
+        hi link NotifyERRORBody NotifyERRORBorder
+    ]])
