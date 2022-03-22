@@ -1,20 +1,20 @@
 require("notify").setup({
-    stages = "slide",
-    timeout = 2500,
-    render = "minimal",
-    background_colour = "#24292e",
-    max_width = 65,
-    max_height = 3,
-    minimum_width = 35,
+  stages = "slide",
+  timeout = 2500,
+  render = "minimal",
+  background_colour = "#24292e",
+  max_width = 65,
+  max_height = 3,
+  minimum_width = 35,
 
-    -- Icons for the different levels
-    icons = {
-        ERROR = "",
-        WARN = "",
-        INFO = "",
-        DEBUG = "",
-        TRACE = "✎",
-    },
+  -- Icons for the different levels
+  icons = {
+    ERROR = "",
+    WARN = "",
+    INFO = "",
+    DEBUG = "",
+    TRACE = "✎",
+  },
 })
 vim.notify = require("notify")
 vim.cmd([[

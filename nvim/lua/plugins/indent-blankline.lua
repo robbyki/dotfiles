@@ -7,11 +7,11 @@ vim.cmd([[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]])
 vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
 
 vim.g.indent_blankline_buftype_exclude = {
-    "terminal",
-    "lsp-installer",
-    "lspinfo",
-    "TelescopePrompt",
-    "nofile",
+  "terminal",
+  "lsp-installer",
+  "lspinfo",
+  "TelescopePrompt",
+  "nofile",
 }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 vim.g.indent_blankline_show_first_indent_level = false
@@ -19,41 +19,41 @@ vim.g.indent_blankline_show_first_indent_level = false
 -- vim.g.indent_blankline_show_current_context = true
 
 require("indent_blankline").setup({
-    use_treesitter = true,
-    show_current_context = true,
-    space_char_blankline = " ",
-    filetype_exclude = {
-        "terminal",
-        "alpha",
-        "notify",
-        "markdown",
-        "help",
-        "dashboard",
-        "packer",
-        "NvimTree",
-        "Trouble",
-        "TelescopePrompt",
-        "Float",
-        "help",
-    },
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
-    },
+  use_treesitter = true,
+  show_current_context = true,
+  space_char_blankline = " ",
+  filetype_exclude = {
+    "terminal",
+    "alpha",
+    "notify",
+    "markdown",
+    "help",
+    "dashboard",
+    "packer",
+    "NvimTree",
+    "Trouble",
+    "TelescopePrompt",
+    "Float",
+    "help",
+  },
+  char_highlight_list = {
+    "IndentBlanklineIndent1",
+    "IndentBlanklineIndent2",
+    "IndentBlanklineIndent3",
+    "IndentBlanklineIndent4",
+    "IndentBlanklineIndent5",
+    "IndentBlanklineIndent6",
+  },
 })
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 
 local indent_blankline_styles = {
-    line_left = "▏",
-    long_dash = "¦",
-    short_dash = "┆",
-    line_center = "│",
-    thin_line_left = "⎸",
-    short_line_center = "|",
+  line_left = "▏",
+  long_dash = "¦",
+  short_dash = "┆",
+  line_center = "│",
+  thin_line_left = "⎸",
+  short_line_center = "|",
 }
