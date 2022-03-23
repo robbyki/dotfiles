@@ -88,7 +88,7 @@ telescope.setup({
             "%.zcompdump",
             ".bloop",
             ".dropbox%-dist/",
-            -- ".git/*",
+            ".git/",
             ".jfrog/",
             ".m2",
             ".metals",

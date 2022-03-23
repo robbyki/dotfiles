@@ -1,49 +1,13 @@
 local lspconfig = require("lspconfig")
 local lsp_status = require("lsp-status")
-local lsp_signature = require("lsp_signature")
+-- local lsp_signature = require("lsp_signature")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local null_ls = require("null-ls")
+-- local null_ls = require("null-ls")
 local dap = require("dap")
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits",
-    },
-}
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-
-local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    -- Enable completion triggered by <c-x><c-o>
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    local opts = { noremap = true, silent = true }
-
-    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-    buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "<space>b", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-end
-
+----------------------------------------------------------------------
+--                             Handlers                             --
+----------------------------------------------------------------------
 local signs = {
     Error = " ",
     Warn = " ",
@@ -81,6 +45,87 @@ lsp_status.register_progress()
 vim.diagnostic.config({
     virtual_text = true,
 })
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits",
+    },
+}
+capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+
+local on_attach = function(_, bufnr)
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+    local function buf_set_option(...)
+        vim.api.nvim_buf_set_option(bufnr, ...)
+    end
+
+    -- Enable completion triggered by <c-x><c-o>
+    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+    local opts = { noremap = true, silent = true }
+
+    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+    buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    buf_set_keymap("n", "<space>b", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+end
+
+vim.cmd([[
+    augroup Format
+      autocmd!
+        autocmd BufWritePre *.yaml lua vim.lsp.buf.formatting_sync(nil, 1000)
+      augroup END
+    ]])
+
+lspconfig.sumneko_lua.setup({
+    cmd = {
+        "/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
+        "-E",
+        "/home/robbyk/tools/lua-language-server/main.lua",
+    },
+    commands = {
+        Format = {
+            function()
+                require("stylua-nvim").format_file()
+            end,
+        },
+    },
+    settings = {
+        Lua = {
+            runtime = {
+                version = "LuaJIT", -- since using mainly for neovim
+                path = vim.split(package.path, ";"),
+            },
+            diagnostics = { globals = { "vim", "it", "describe", "before_each" } },
+            workspace = {
+                checkThirdParty = false,
+                preloadFileSize = 10000,
+                maxPreload = 10000,
+                library = {
+                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                },
+            },
+            telemetry = { enable = false },
+        },
+    },
+})
+
 ----------------------------------------------------------------------
 --                         Language Servers                         --
 ----------------------------------------------------------------------
@@ -135,40 +180,24 @@ lspconfig.yamlls.setup({
             schemaDownload = { enable = true },
             completion = true,
             hover = true,
+            schemas = {
+                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
+                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+                ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.{yml,yaml}",
+                ["https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json"] = "/*.yaml",
+                kubernetes = { "/*.yaml" },
+            },
         },
     },
 })
-
--- lspconfig.yamlls.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
---   settings = {
---     yaml = {
---       format = { enable = true },
---       editor = { formatOnType = true },
---       validate = false,
---       schemaDownload = { enable = true },
---       completion = true,
---       hover = true,
---       schemas = {
---         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
---         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
---         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
---         ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
---         ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
---         ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
---         ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
---         ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
---         ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
---         ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
---         ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose.{yml,yaml}",
---         ["https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json"] = "/*.yaml",
---         kubernetes = { "/*.yaml" },
---       },
---     },
---   },
--- })
 
 ----------------------------------------------------------------------
 --                               JSON                               --
@@ -185,16 +214,10 @@ lspconfig.jsonls.setup({
     },
 })
 
-vim.cmd([[
-    augroup Format
-      autocmd!
-        autocmd BufWritePre *.yaml lua vim.lsp.buf.formatting_sync(nil, 1000)
-      augroup END
-    ]])
-
 ----------------------------------------------------------------------
 --                              SCALA                               --
 ----------------------------------------------------------------------
+--todo: this must need a nice redo and update
 local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
     handlers = {
@@ -232,11 +255,14 @@ vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(
 lspconfig.gopls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern(".git", "go.mod", "go.work"),
-    flags = {
-        debounce_text_changes = 150,
+    filetypes = { "go", "gomod" },
+    root_dir = lspconfig.util.root_pattern(".git", "go.mod", "go.work", "."),
+    flags = { allow_incremental_sync = true, debounce_text_changes = 150 },
+    cmd = {
+        "gopls", -- share the gopls instance if there is one already
+        "-remote.debug=:0",
     },
-    cmd = { "gopls", "serve" },
+    -- cmd = { "gopls", "serve" },
     settings = {
         gopls = {
             analyses = {
@@ -245,10 +271,12 @@ lspconfig.gopls.setup({
                 nilness = true,
             },
             codelenses = {
-                generate = true,
-                gc_details = true,
                 test = true,
                 tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+                generate = true,
+                gc_details = true,
             },
             usePlaceholders = true,
             semanticTokens = true,
@@ -264,8 +292,6 @@ lspconfig.gopls.setup({
         },
     },
 })
--- Run gofmt + goimport on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
 
 -- function OrgImports(wait_ms)
 --   local params = vim.lsp.util.make_range_params()
@@ -394,6 +420,66 @@ dap.configurations.python = {
         end,
     },
 }
+
+-- ==============================================================================
+-- dap {{{
+-- ==============================================================================
+dap.adapters.go = function(callback, config)
+    local stdout = vim.loop.new_pipe(false)
+    local handle
+    local pid_or_err
+    local port = 38697
+    local opts = {
+        stdio = { nil, stdout },
+        args = { "dap", "-l", "127.0.0.1:" .. port },
+        detached = true,
+    }
+    handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
+        stdout:close()
+        handle:close()
+        if code ~= 0 then
+            print("dlv exited with code", code)
+        end
+    end)
+    assert(handle, "Error running dlv: " .. tostring(pid_or_err))
+    stdout:read_start(function(err, chunk)
+        assert(not err, err)
+        if chunk then
+            vim.schedule(function()
+                require("dap.repl").append(chunk)
+            end)
+        end
+    end)
+    -- Wait for delve to start
+    vim.defer_fn(function()
+        callback({ type = "server", host = "127.0.0.1", port = port })
+    end, 100)
+end
+
+dap.configurations.go = {
+    {
+        type = "go",
+        name = "Debug",
+        request = "launch",
+        program = "${file}",
+    },
+    {
+        type = "go",
+        name = "Debug test", -- configuration for debugging test files
+        request = "launch",
+        mode = "test",
+        program = "${file}",
+    },
+    -- works with go.mod packages and sub packages
+    {
+        type = "go",
+        name = "Debug test (go.mod)",
+        request = "launch",
+        mode = "test",
+        program = "./${relativeFileDirname}",
+    },
+}
+-- }}}
 
 -- dap.configurations.python = {
 --     {

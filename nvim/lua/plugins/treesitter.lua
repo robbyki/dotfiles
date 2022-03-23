@@ -20,16 +20,22 @@ require("nvim-treesitter.configs").setup({
         "yaml",
         "lua",
     },
+    matchup = {
+        enable = false, -- mandatory, false will disable the whole extension
+    },
     highlight = {
         enable = true,
         -- disable = { 'org' },
         additional_vim_regex_highlighting = true,
     },
+    autopairs = {
+        enable = true,
+    },
     indent = {
         enable = true,
-        disable = { "yaml", "yml", "python" },
+        disable = { "yaml", "yml", "python", "org" },
     },
-    sync_install = true,
+    sync_install = false,
     ignore_install = {},
     textsubjects = {
         enable = true,
@@ -41,6 +47,7 @@ require("nvim-treesitter.configs").setup({
         },
     },
     textobjects = {
+        lookahead = true,
         move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
@@ -86,16 +93,5 @@ require("nvim-treesitter.configs").setup({
     --     enable = true,
     --     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     --     max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- },
-    -- autotag = {
-    --     enable = true,
-    --     filetypes = {
-    --         "scala",
-    --         "python",
-    --         "html",
-    --         "javascript",
-    --         "typescript",
-    --         "markdown",
-    --     },
     -- },
 })
