@@ -2,22 +2,22 @@
 #                         github gh commands                         #
 #--------------------------------------------------------------------#
 function ghlogin-personal() {
-        gh auth login -h github.com --with-token <<<"$GHPERSONAL"
-        export GH_HOST=github.com
+  gh auth login -h github.com --with-token <<<"$GHPERSONAL"
+  export GH_HOST=github.com
 }
 
 function ghlogin-ibm() {
-        gh auth login -h github.ibm.com --with-token <<<"$GHIBM"
-        export GH_HOST=github.ibm.com
+  gh auth login -h github.ibm.com --with-token <<<"$GHIBM"
+  export GH_HOST=github.ibm.com
 }
 
 function ghlogin() {
   if [[ $(pwd) =~ ~/dev/personal ]]; then
-        gh auth login -h github.com --with-token <<<"$GHPERSONAL"
-        export GH_HOST=github.com
+    gh auth login -h github.com --with-token <<<"$GHPERSONAL"
+    export GH_HOST=github.com
   else
-        gh auth login -h github.ibm.com --with-token <<<"$GHIBM"
-        export GH_HOST=github.ibm.com
+    gh auth login -h github.ibm.com --with-token <<<"$GHIBM"
+    export GH_HOST=github.ibm.com
   fi
 }
 
@@ -268,13 +268,15 @@ ocgetconf() {
 ocprune() {
   oc adm prune images --registry-url=$OCREGISTRY --confirm
 }
+
 # need to run `ssibm` before this to export ibm api key to login without temp passcode
 oclogin() {
   oc login -u apikey -p $IBMCLOUD_API_KEY_RK --server=$(ocgetmaster) --insecure-skip-tls-verify=true
 }
-# ocgetdefaultroute() {
-#     oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
-# }
+
+ocgethost() {
+  oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
+}
 # colorize oc commands
 ocy() {
   oc --output yaml $@ | yq eval --colors
@@ -299,7 +301,6 @@ ocy() {
 # occ() {
 # 	oc $@ | yq eval --colors -P
 # }
-
 
 pdloginpr() {
   podman login $MYPRIVATE_REGISTRY -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY
@@ -341,7 +342,7 @@ ssibm() {
 }
 
 ocgethost() {
-  
+
 }
 
 ocpatchroute() {
@@ -349,5 +350,5 @@ ocpatchroute() {
 }
 
 ocgetimages() {
-        oc get images | grep $(oc get route default-route -n openshift-image-registry -o jsonpath='{ .spec.host }{"\n"}')
+  oc get images | grep $(oc get route default-route -n openshift-image-registry -o jsonpath='{ .spec.host }{"\n"}')
 }

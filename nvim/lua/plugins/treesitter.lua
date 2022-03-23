@@ -3,23 +3,26 @@
 -- -- require("orgmode").setup_ts_grammar()
 --
 require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-        "bash",
-        "dockerfile",
-        "typescript",
-        "go",
-        "hocon",
-        "html",
-        "javascript",
-        "json5",
-        "lua",
-        "scala",
-        "python",
-        "http",
-        "json",
-        "yaml",
-        "lua",
-    },
+    ensure_installed = "all",
+    -- ensure_installed = {
+    --     -- "gomode",
+    --     "gowork",
+    --     "bash",
+    --     "dockerfile",
+    --     "typescript",
+    --     "go",
+    --     "hocon",
+    --     "html",
+    --     "javascript",
+    --     "json5",
+    --     "lua",
+    --     "scala",
+    --     "python",
+    --     "http",
+    --     "json",
+    --     "yaml",
+    --     "lua",
+    -- },
     matchup = {
         enable = false, -- mandatory, false will disable the whole extension
     },

@@ -108,11 +108,12 @@ export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
 export STEWARD_DIR=$HOME/dev/scala-steward/
 export GH_EDITOR=/bin/nvim
-export GOPATH=${HOME}/go
 export CARGO=$HOME/.cargo
 export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
 export SCRIPTS=${HOME}/bin
+# export GOROOT=${HOME}/sdk/go1.18beta2
+export GOPATH=${HOME}/go
 export GOROOT=/usr/local/go
 
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH

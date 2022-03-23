@@ -993,7 +993,7 @@ POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
   #######################[ go_version: go version (https://golang.org) ]########################
   # Go version color.
   typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_COLOR=87
-  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=11
+  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=37
   # typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=37
   # Show go version only when in a go project subdirectory.
   # typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true

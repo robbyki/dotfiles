@@ -73,9 +73,9 @@ vim.diagnostic.config({
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local custom_attach = function(client, _)
-    vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.lsp').show_line_diagnostics() ]])
+vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.lsp').show_line_diagnostics() ]])
 
+local custom_attach = function(client, _)
     if client.resolved_capabilities.document_highlight then
         vim.cmd([[
       hi! link LspReferenceRead Visual
@@ -267,16 +267,15 @@ vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(
 --                              GOLANG                              --
 ----------------------------------------------------------------------
 lspconfig.gopls.setup({
-    on_attach = custom_attach,
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end,
     capabilities = capabilities,
     filetypes = { "go", "gomod" },
-    root_dir = lspconfig.util.root_pattern(".git", "go.mod", "go.work", "."),
+    root_dir = require("lspconfig/util").root_pattern("go.work", "go.mod", ".git"),
     flags = { allow_incremental_sync = true, debounce_text_changes = 150 },
-    cmd = {
-        "gopls", -- share the gopls instance if there is one already
-        "-remote.debug=:0",
-    },
-    -- cmd = { "gopls", "serve" },
+    cmd = { "gopls", "serve" },
     settings = {
         gopls = {
             analyses = {
