@@ -157,6 +157,49 @@ wk.register({
         name = "+yaml",
         s = { [[:call SearchYamlKey()<CR>]], "search key (e.g. level1 > level2)" },
     },
+    ["<space>"] = {
+        name = "+explorer",
+        c = { [[<Cmd>NvimTreeClose<CR>]], "close" },
+        f = { [[<Cmd>NvimTreeFocus<CR>]], "focus" },
+        i = { [[<Cmd>NvimTreeFindFile<CR>]], "find" },
+        p = { [[<Cmd>NvimTreeClipboard<CR>]], "clipboard" },
+        r = { [[<Cmd>NvimTreeRefresh<CR>]], "refresh" },
+        e = { [[<Cmd>NvimTreeToggle<CR>]], "toggle" },
+    },
+    ["<leader>c"] = {
+        name = "+code",
+        c = { [[<Cmd>lua require('nvim-comment-frame').add_comment()<CR>]], "comment line" },
+        C = { [[<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>]], "comment multi" },
+        r = { [[<Cmd>lua require('renamer').rename()<CR>]], "rename" },
+    },
+    -- ["<leader>l"] = {
+    --     name = "+lsp",
+    --     L = { ":LspInfo<CR>", "Connected Language" },
+    --     F = { [[<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]], "add folder" },
+    --     H = { [[<Cmd>lua vim.lsp.buf.hover()<CR>]], "hover" },
+    --     a = { [[<cmd>lua vim.lsp.buf.code_action()<CR>]], "Code Action" },
+    --     f = { [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], "format" },
+    --     g = { [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], "signature" },
+    --     r = { [[<Cmd>lua vim.lsp.buf.rename()<CR>]], "rename" },
+    --     l = { [[<cmd>lua vim.lsp.diagnostic.goto_next()<CR>]], "Next Diagnostic" },
+    --     h = { [[<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>]], "Prev Diagnostic" },
+    --     C = { [[<Cmd>lua vim.lsp.codelens.run()<CR>]], "code lens run" },
+    --     I = { [[<Cmd>lua vim.lsp.buf.definition()<CR>]], "goto definition" },
+    --     R = { [[<Cmd>lua vim.lsp.buf.references()<CR>]], "references" },
+    --     d = { [[<Cmd>lua vim.diagnostic.open_float()<CR>]], "open diagnostics" },
+    --     i = { [[<Cmd>lua vim.lsp.buf.implementation()<CR>]], "implementation" },
+    --     s = { [[<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>]], "loc list" },
+    -- },
+    ["<leader>l"] = {
+        i = { [[<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>]], "implementations" },
+        d = { [[<Cmd>lua require'telescope.builtin'.diagnostics()<CR>]], "line diagnostics" },
+        a = { [[<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>]], "code actions" },
+        s = { [[<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>]], "document symbols" },
+        S = { [[<Cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>]], "workspace symbols" },
+        r = { [[<Cmd>lua require'telescope.builtin'.lsp_references()<CR>]], "references" },
+        f = { [[<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>]], "definitions" },
+        t = { [[<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>]], "type definitions" },
+    },
     ["<leader>D"] = {
         name = "+debug",
         C = { [[<Cmd>lua require'dap'.continue()<CR>]], "dap continue" }, -- works=yes
@@ -178,66 +221,4 @@ wk.register({
         v = { [[<Cmd>lua require'telescope'.extensions.dap.variables{}<CR>]], "telescope dap variables" }, --works=yes
         x = { [[<Cmd>lua require'dap'.close()<CR>]], "dap close" }, --works=no
     },
-    -- map("n", "<leader>dK", [[<cmd>lua require("dap.ui.widgets").hover()<CR>]])
-    -- map("n", "<leader>dbc", [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]])
-    -- map("n", "<leader>dl", [[<cmd>lua require("dap").run_last()<CR>]])
-    -- map("n", "<leader>ds", [[<cmd>lua require("dap.ui.widgets").sidebar(require("dap.ui.widgets").scopes).toggle()<CR>]])
-    -- map("n", "<space>dK", [[<cmd>lua require'dap'.ui.widgets".hover()<CR>]])
-    -- map("n", "<space>dl", [[<cmd>lua require'dap'.run_last()<CR>]])
-    -- map("n", "<space>ds", [[<cmd>lua require'dap'.ui.variables".scopes()<CR>]])
-    -- map('n', '<leader>dct', '<cmd>lua require"dap".continue()<CR>')
-    -- map('n', '<leader>dhh', '<cmd>lua require"dap.ui.variables".hover()<CR>')
-    -- map('n', '<leader>dlb', '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>')
-    -- map('n', '<leader>drl', '<cmd>lua require"dap".repl.run_last()<CR>')
-    -- map('n', '<leader>dro', '<cmd>lua require"dap".repl.open()<CR>')
-    -- map('n', '<leader>dsbm', '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>')
-    -- map('n', '<leader>dsbr', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>')
-    -- map('n', '<leader>dsc', '<cmd>lua require"dap.ui.variables".scopes()<CR>')
-    -- map('n', '<leader>dtb', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
-    -- map('n', '<leader>duf', "<cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>")
-    -- map('n', '<leader>duh', '<cmd>lua require"dap.ui.widgets".hover()<CR>')
-    -- map('v', '<leader>dhv', '<cmd>lua require"dap.ui.variables".visual_hover()<CR>')
-    ["<space>"] = {
-        name = "+explorer",
-        c = { [[<Cmd>NvimTreeClose<CR>]], "close" },
-        f = { [[<Cmd>NvimTreeFocus<CR>]], "focus" },
-        i = { [[<Cmd>NvimTreeFindFile<CR>]], "find" },
-        p = { [[<Cmd>NvimTreeClipboard<CR>]], "clipboard" },
-        r = { [[<Cmd>NvimTreeRefresh<CR>]], "refresh" },
-        e = { [[<Cmd>NvimTreeToggle<CR>]], "toggle" },
-    },
-    ["<leader>c"] = {
-        name = "+code",
-        c = { [[<Cmd>lua require('nvim-comment-frame').add_comment()<CR>]], "comment line" },
-        C = { [[<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>]], "comment multi" },
-        r = { [[<Cmd>lua require('renamer').rename()<CR>]], "rename" },
-    },
-    -- ["<leader>l"] = {
-    --     name = "+lsp",
-    --     L = { ":LspInfo<CR>", "Connected Language" },
-    --     F = { [[<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]], "add folder" },
-    --     H = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "hover" },
-    --     a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-    --     f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
-    --     g = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "signature" },
-    --     r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-    --     l = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
-    --     h = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
-    --     C = { "<Cmd>lua vim.lsp.codelens.run()<CR>", "code lens run" },
-    --     I = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "goto definition" },
-    --     R = { "<Cmd>lua vim.lsp.buf.references()<CR>", "references" },
-    --     d = { "<Cmd>lua vim.diagnostic.open_float()<CR>", "open diagnostics" },
-    --     i = { "<Cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
-    --     s = { "<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "loc list" },
-    -- },
-    -- ["<leader><leader>l"] = {
-    --     i = { [[<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>]], "implementations" },
-    --     d = { [[<Cmd>lua require'telescope.builtin'.diagnostics()<CR>]], "line diagnostics" },
-    --     a = { [[<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>]], "code actions" },
-    --     s = { [[<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>]], "document symbols" },
-    --     S = { [[<Cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>]], "workspace symbols" },
-    --     r = { [[<Cmd>lua require'telescope.builtin'.lsp_references()<CR>]], "references" },
-    --     f = { [[<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>]], "definitions" },
-    --     t = { [[<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>]], "type definitions" },
-    -- },
 })

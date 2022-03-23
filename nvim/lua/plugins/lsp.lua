@@ -1,90 +1,133 @@
+local api = vim.api
 local lspconfig = require("lspconfig")
-local lsp_status = require("lsp-status")
--- local lsp_signature = require("lsp_signature")
+-- local lsp_status = require("lsp-status")
+local lsp_signature = require("lsp_signature")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
--- local null_ls = require("null-ls")
 local dap = require("dap")
+local lsp = vim.lsp
+
+----------------------------------------------------------------------
+--                            Signature                             --
+----------------------------------------------------------------------
+lsp_signature.setup({
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    handler_opts = {
+        border = "rounded",
+    },
+    hint_prefix = "",
+    floating_window_above_cur_line = false,
+    hint_enable = false,
+    toggle_key = "<C-x>",
+})
 
 ----------------------------------------------------------------------
 --                             Handlers                             --
 ----------------------------------------------------------------------
-local signs = {
-    Error = " ",
-    Warn = " ",
-    Hint = " ",
-    Info = " ",
-}
+-- local signs = {
+--     Error = " ",
+--     Warn = " ",
+--     Hint = " ",
+--     Info = " ",
+-- }
+--
+-- for type, icon in pairs(signs) do
+--     local hl = "DiagnosticSign" .. type
+--     vim.fn.sign_define(hl, {
+--         text = icon,
+--         texthl = hl,
+--         numhl = hl,
+--     })
+-- end
 
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {
-        text = icon,
-        texthl = hl,
-        numhl = hl,
-    })
+local M = {}
+
+function M.show_line_diagnostics()
+    local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = "none",
+        source = "always", -- show source in diagnostic popup window
+        prefix = " ",
+    }
+    vim.diagnostic.open_float(nil, opts)
 end
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-})
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-})
-vim.lsp.handlers["window/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    border = "rounded",
-    virtual_text = {
-        prefix = "●",
-    },
-    signs = true,
-    underline = true,
-    update_in_insert = false,
-})
-lsp_status.register_progress()
+-- Change diagnostic signs.
+vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
--- use custom icons
+lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+})
+
+-- global config for diagnostic
 vim.diagnostic.config({
+    underline = true,
     virtual_text = true,
+    signs = true,
+    severity_sort = true,
+    float = { border = "single" },
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits",
-    },
-}
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
-local on_attach = function(_, bufnr)
+local custom_attach = function(client, bufnr)
     local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
+        api.nvim_buf_set_keymap(bufnr, ...)
     end
 
-    -- Enable completion triggered by <c-x><c-o>
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
+    -- Mappings.
     local opts = { noremap = true, silent = true }
-
-    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "<C-]>", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<space>d", "<cmd>lua require('config.lsp').show_line_diagnostics()<CR>", opts)
     buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
     buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-    buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
     buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "<space>b", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setqflist({open = true})<CR>", opts)
+    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_set_keymap("n", "<space>d", "<cmd>lua vim.diagnostic.open_float(0, { scope = 'line', border = 'none' })<CR>", opts)
+
+    vim.cmd([[ autocmd CursorHold <buffer> lua require('config.lsp').show_line_diagnostics() ]])
+
+    -- Set some key bindings conditional on server capabilities
+    if client.resolved_capabilities.document_formatting then
+        buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
+    end
+    if client.resolved_capabilities.document_range_formatting then
+        buf_set_keymap("x", "<space>F", "<cmd>lua vim.lsp.buf.range_formatting()<CR><ESC>", opts)
+    end
+
+    -- The blow command will highlight the current variable and its usages in the buffer.
+    if client.resolved_capabilities.document_highlight then
+        vim.cmd([[
+      hi! link LspReferenceRead Visual
+      hi! link LspReferenceText Visual
+      hi! link LspReferenceWrite Visual
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]])
+    end
+
+    if vim.g.logging_level == "debug" then
+        local msg = string.format("Language server %s started!", client.name)
+        vim.notify(msg, "info", { title = "Nvim-config" })
+    end
 end
 
+--TODO: this needs to move to autocmds dedicated file soon
 vim.cmd([[
     augroup Format
       autocmd!
@@ -92,6 +135,9 @@ vim.cmd([[
       augroup END
     ]])
 
+----------------------------------------------------------------------
+--                               Lua                                --
+----------------------------------------------------------------------
 lspconfig.sumneko_lua.setup({
     cmd = {
         "/home/robbyk/tools/lua-language-server/bin/Linux/lua-language-server",
@@ -132,7 +178,7 @@ lspconfig.sumneko_lua.setup({
 local servers = { "bashls", "tsserver", "dockerls" }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
-        on_attach = on_attach,
+        on_attach = custom_attach,
         -- capabilities = Capabilities,
         opts = {
             inlay_hints = {
@@ -151,7 +197,7 @@ end
 --                              Python                              --
 ----------------------------------------------------------------------
 lspconfig.pyright.setup({
-    on_attach = on_attach,
+    on_attach = custom_attach,
     capabilities = capabilities,
     settings = {
         python = {
@@ -169,7 +215,7 @@ lspconfig.pyright.setup({
 --                               YAML                               --
 ----------------------------------------------------------------------
 lspconfig.yamlls.setup({
-    on_attach = on_attach,
+    on_attach = custom_attach,
     capabilities = capabilities,
     filetypes = { "yml", "yaml", "yaml.docker-compose", "config" },
     settings = {
@@ -203,7 +249,7 @@ lspconfig.yamlls.setup({
 --                               JSON                               --
 ----------------------------------------------------------------------
 lspconfig.jsonls.setup({
-    on_attach = on_attach,
+    on_attach = custom_attach,
     capabilities = capabilities,
     commands = {
         Format = {
@@ -218,7 +264,7 @@ lspconfig.jsonls.setup({
 --                              SCALA                               --
 ----------------------------------------------------------------------
 --todo: this must need a nice redo and update
-local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true })
 lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
     handlers = {
         ["textDocument/publishDiagnostics"] = shared_diagnostic_settings,
@@ -247,13 +293,17 @@ Metals_config.on_attach = function(_, _)
     vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
     require("metals").setup_dap()
 end
+vim.cmd([[augroup lsp]])
+vim.cmd([[autocmd!]])
+vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
+vim.cmd([[augroup end]])
 
 ----------------------------------------------------------------------
 --                              GOLANG                              --
 ----------------------------------------------------------------------
 lspconfig.gopls.setup({
-    on_attach = on_attach,
+    on_attach = custom_attach,
     capabilities = capabilities,
     filetypes = { "go", "gomod" },
     root_dir = lspconfig.util.root_pattern(".git", "go.mod", "go.work", "."),
@@ -313,7 +363,7 @@ lspconfig.gopls.setup({
 --                            JAVASCRIPT                            --
 ----------------------------------------------------------------------
 lspconfig.tsserver.setup({
-    on_attach = on_attach,
+    on_attach = custom_attach,
     capabilities = capabilities,
     filetypes = {
         "javascript",
@@ -346,19 +396,9 @@ lspconfig.tsserver.setup({
 -- autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)
 -- autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1000)
 
---- LSP
-vim.cmd([[hi! LspDiagnosticsUnderlineWarning guifg=None]])
-vim.cmd([[hi! link LspReferenceText CursorColumn]])
-vim.cmd([[hi! link LspReferenceRead CursorColumn]])
-vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
-vim.cmd([[hi! link LspSagaFinderSelection CursorColumn]])
-vim.cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
-vim.fn.sign_define("LspDiagnosticsSignError", { text = "▬" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "▬" })
-vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "▬" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { text = "▬" })
-
---todo: need to get dap out of here at some point soon
+----------------------------------------------------------------------
+--                           Debug Scala                            --
+----------------------------------------------------------------------
 dap.configurations.scala = {
     {
         type = "scala",
@@ -395,6 +435,9 @@ dap.adapters.python = {
     },
 }
 
+----------------------------------------------------------------------
+--                           Debug Python                           --
+----------------------------------------------------------------------
 dap.configurations.python = {
     {
         -- The first three options are required by nvim-dap
@@ -421,64 +464,65 @@ dap.configurations.python = {
     },
 }
 
+return M
 -- ==============================================================================
 -- dap {{{
 -- ==============================================================================
-dap.adapters.go = function(callback, config)
-    local stdout = vim.loop.new_pipe(false)
-    local handle
-    local pid_or_err
-    local port = 38697
-    local opts = {
-        stdio = { nil, stdout },
-        args = { "dap", "-l", "127.0.0.1:" .. port },
-        detached = true,
-    }
-    handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
-        stdout:close()
-        handle:close()
-        if code ~= 0 then
-            print("dlv exited with code", code)
-        end
-    end)
-    assert(handle, "Error running dlv: " .. tostring(pid_or_err))
-    stdout:read_start(function(err, chunk)
-        assert(not err, err)
-        if chunk then
-            vim.schedule(function()
-                require("dap.repl").append(chunk)
-            end)
-        end
-    end)
-    -- Wait for delve to start
-    vim.defer_fn(function()
-        callback({ type = "server", host = "127.0.0.1", port = port })
-    end, 100)
-end
-
-dap.configurations.go = {
-    {
-        type = "go",
-        name = "Debug",
-        request = "launch",
-        program = "${file}",
-    },
-    {
-        type = "go",
-        name = "Debug test", -- configuration for debugging test files
-        request = "launch",
-        mode = "test",
-        program = "${file}",
-    },
-    -- works with go.mod packages and sub packages
-    {
-        type = "go",
-        name = "Debug test (go.mod)",
-        request = "launch",
-        mode = "test",
-        program = "./${relativeFileDirname}",
-    },
-}
+-- dap.adapters.go = function(callback, config)
+--     local stdout = vim.loop.new_pipe(false)
+--     local handle
+--     local pid_or_err
+--     local port = 38697
+--     local opts = {
+--         stdio = { nil, stdout },
+--         args = { "dap", "-l", "127.0.0.1:" .. port },
+--         detached = true,
+--     }
+--     handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
+--         stdout:close()
+--         handle:close()
+--         if code ~= 0 then
+--             print("dlv exited with code", code)
+--         end
+--     end)
+--     assert(handle, "Error running dlv: " .. tostring(pid_or_err))
+--     stdout:read_start(function(err, chunk)
+--         assert(not err, err)
+--         if chunk then
+--             vim.schedule(function()
+--                 require("dap.repl").append(chunk)
+--             end)
+--         end
+--     end)
+--     -- Wait for delve to start
+--     vim.defer_fn(function()
+--         callback({ type = "server", host = "127.0.0.1", port = port })
+--     end, 100)
+-- end
+--
+-- dap.configurations.go = {
+--     {
+--         type = "go",
+--         name = "Debug",
+--         request = "launch",
+--         program = "${file}",
+--     },
+--     {
+--         type = "go",
+--         name = "Debug test", -- configuration for debugging test files
+--         request = "launch",
+--         mode = "test",
+--         program = "${file}",
+--     },
+--     -- works with go.mod packages and sub packages
+--     {
+--         type = "go",
+--         name = "Debug test (go.mod)",
+--         request = "launch",
+--         mode = "test",
+--         program = "./${relativeFileDirname}",
+--     },
+-- }
 -- }}}
 
 -- dap.configurations.python = {
@@ -506,49 +550,5 @@ dap.configurations.go = {
 --         program = "${file}",
 --         console = "internalConsole",
 --         pythonPath = "/bin/python3",
---     },
--- }
-
--- dap.configurations.python = {
---     -- {
---     --     type = "python",
---     --     request = "attach",
---     --     name = "Launch file",
---     --     program = "${file}",
---     --     console = "internalConsole",
---     --     autoReload = { enable = true },
---     --     pythonPath = "/bin/python3",
---     -- },
---     {
---         type = "python",
---         request = "attach",
---         name = "Pytest file",
---         program = "-m pytest ${file}",
---         console = "externalTerminal",
---         pythonPath = "/bin/python3",
---     },
---     {
---         type = "python",
---         request = "launch",
---         name = "Launch file",
---         program = "${file}",
---         console = "internalConsole",
---         pythonPath = "/bin/python3",
---     },
--- }
---
--- dap.configurations.python = {
---     {
---         type = "python",
---         request = "launch",
---         name = "Debug file",
---         program = "${file}",
---         pythonPath = "python",
---     },
---     {
---         type = "python",
---         request = "launch",
---         name = "Debug tests",
---         module = "pytest",
 --     },
 -- }
