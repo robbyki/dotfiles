@@ -68,7 +68,6 @@ wk.register({
     ["<leader><leader>b"] = { [[<Cmd>lua require('telescope.builtin').builtin()<CR>]], "telescope builtins" },
     ["<leader>?"] = { [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], "recent files" },
     ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
-    -- ["<leader>lL"] = { ":LspInfo<CR>", "Connected Language" },
 })
 
 wk.register({
@@ -175,10 +174,11 @@ wk.register({
     },
     ["<leader>l"] = {
         name = "+lsp",
+        L = { [[<Cmd>:LspInfo<CR>]], "lsp info" },
         F = { [[<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]], "add folder" },
         K = { [[<Cmd>lua vim.lsp.buf.hover()<CR>]], "hover" },
         a = { [[<cmd>lua vim.lsp.buf.code_action()<CR>]], "code action" },
-        L = { [[<cmd>lua require('plugins.lsp').show_line_diagnostics()<CR>]], "show line diagnostics" },
+        d = { [[<cmd>lua require('plugins.lsp').show_line_diagnostics()<CR>]], "show line diagnostics" },
         f = { [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], "format" },
         g = { [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], "signature" },
         l = { [[<cmd>lua vim.diagnostic.goto_next()<CR>]], "next diagnostic" },
@@ -186,7 +186,7 @@ wk.register({
         C = { [[<Cmd>lua vim.lsp.codelens.run()<CR>]], "code lens run" },
         I = { [[<Cmd>lua vim.lsp.buf.definition()<CR>]], "goto definition" },
         R = { [[<Cmd>lua vim.lsp.buf.references()<CR>]], "references" },
-        d = { [[<Cmd>lua vim.diagnostic.open_float()<CR>]], "open diagnostics" },
+        D = { [[<Cmd>lua vim.diagnostic.open_float()<CR>]], "open diagnostics" },
         i = { [[<Cmd>lua vim.buf.lsp.implementation()<CR>]], "implementation" },
         s = { [[<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>]], "loc list" },
     },
