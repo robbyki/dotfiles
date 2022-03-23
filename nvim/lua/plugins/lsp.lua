@@ -74,7 +74,7 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local custom_attach = function(client, _)
-    vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.config.lsp').show_line_diagnostics() ]])
+    vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.lsp').show_line_diagnostics() ]])
 
     if client.resolved_capabilities.document_highlight then
         vim.cmd([[
@@ -232,12 +232,12 @@ lspconfig.jsonls.setup({
 --                              SCALA                               --
 ----------------------------------------------------------------------
 --todo: this must need a nice redo and update
-local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true })
-lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
+local shared_diagnostic_settings = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+require("lspconfig").util.default_config = vim.tbl_extend("force", require("lspconfig").util.default_config, {
     handlers = {
         ["textDocument/publishDiagnostics"] = shared_diagnostic_settings,
     },
-    capabilities = cmp_nvim_lsp.update_capabilities(capabilities),
+    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
 })
 Metals_config = require("metals").bare_config()
 Metals_config.settings = {
@@ -254,18 +254,14 @@ Metals_config.settings = {
 Metals_config.init_options.statusBarProvider = "on"
 Metals_config.init_options.compilerOptions.isCompletionItemResolve = false
 Metals_config.handlers["textDocument/publishDiagnostics"] = shared_diagnostic_settings
-Metals_config.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 Metals_config.on_attach = function(_, _)
     vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
     vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
     vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
     require("metals").setup_dap()
 end
-vim.cmd([[augroup lsp]])
-vim.cmd([[autocmd!]])
-vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]])
-vim.cmd([[augroup end]])
 
 ----------------------------------------------------------------------
 --                              GOLANG                              --
