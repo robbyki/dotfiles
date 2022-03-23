@@ -1,3 +1,3 @@
 require("neogen").setup({
-  enabled = true,
+    enabled = true,
 })

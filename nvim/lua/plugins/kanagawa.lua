@@ -4,28 +4,28 @@
 local colors = require("kanagawa.colors").setup()
 
 local overrides = {
-  LspReferenceText = { bg = colors.roninYellow, fg = colors.sumiInk1 },
-  LspReferenceRead = { bg = colors.roninYellow, fg = colors.sumiInk1 },
-  LspReferenceWrite = { bg = colors.roninYellow, fg = colors.sumiInk1 },
-  CursorLine = { bg = colors.roninYellow, fg = colors.sumiInk1 },
-  VertSplit = { fg = colors.bg_dark, bg = "NONE" },
+    LspReferenceText = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+    LspReferenceRead = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+    LspReferenceWrite = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+    CursorLine = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+    VertSplit = { fg = colors.bg_dark, bg = "NONE" },
 }
 
 require("kanagawa").setup({
-  undercurl = true, -- enable undercurls
-  commentStyle = "italic",
-  functionStyle = "NONE",
-  keywordStyle = "italic",
-  statementStyle = "bold",
-  typeStyle = "NONE",
-  variablebuiltinStyle = "italic",
-  specialReturn = true, -- special highlight for the return keyword
-  specialException = true, -- special highlight for exception handling keywords
-  -- transparent = true, -- do not set background color
-  dimInactive = true, -- dim inactive regions
-  colors = {},
-  overrides = overrides,
-  --    overrides = {
-  --        TelescopeBorder = { bg = "NONE" }
-  --    },
+    undercurl = true, -- enable undercurls
+    commentStyle = "italic",
+    functionStyle = "NONE",
+    keywordStyle = "italic",
+    statementStyle = "bold",
+    typeStyle = "NONE",
+    variablebuiltinStyle = "italic",
+    specialReturn = true, -- special highlight for the return keyword
+    specialException = true, -- special highlight for exception handling keywords
+    -- transparent = true, -- do not set background color
+    dimInactive = true, -- dim inactive regions
+    colors = {},
+    overrides = overrides,
+    --    overrides = {
+    --        TelescopeBorder = { bg = "NONE" }
+    --    },
 })
