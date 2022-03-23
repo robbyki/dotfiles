@@ -36,7 +36,7 @@ map("n", "<leader>so", ":SymbolsOutline<CR>")
 map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
-map("n", "<leader>L", "<Cmd>lua require('plugins.terminal.custom').lf_toggle()<CR>")
+map("n", "<leader>L", "<Cmd>lua require('plugins.toggleterm').lf_toggle()<CR>")
 map("n", "<leader>gO", "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
 map("n", "<leader>go", "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
 map("n", "Q", "<Nop>")
@@ -68,6 +68,7 @@ wk.register({
     ["<leader><leader>b"] = { [[<Cmd>lua require('telescope.builtin').builtin()<CR>]], "telescope builtins" },
     ["<leader>?"] = { [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], "recent files" },
     ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
+    -- ["<leader>lL"] = { ":LspInfo<CR>", "Connected Language" },
 })
 
 wk.register({
@@ -98,8 +99,8 @@ wk.register({
     },
     ["<leader>t"] = {
         name = "+terminal",
-        b = { [[<Cmd>lua require('plugins.terminal.custom').broot_toggle()<CR>]], "broot" },
-        k = { [[<Cmd>lua require('plugins.terminal.custom').k9s_toggle()<CR>]], "k9s" },
+        b = { [[<Cmd>lua require('plugins.toggleterm').broot_toggle()<CR>]], "broot" },
+        k = { [[<Cmd>lua require('plugins.toggleterm').k9s_toggle()<CR>]], "k9s" },
         t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
     },
     ["<leader>h"] = {
@@ -172,25 +173,24 @@ wk.register({
         C = { [[<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>]], "comment multi" },
         r = { [[<Cmd>lua require('renamer').rename()<CR>]], "rename" },
     },
-    -- ["<leader>l"] = {
-    --     name = "+lsp",
-    --     L = { ":LspInfo<CR>", "Connected Language" },
-    --     F = { [[<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]], "add folder" },
-    --     H = { [[<Cmd>lua vim.lsp.buf.hover()<CR>]], "hover" },
-    --     a = { [[<cmd>lua vim.lsp.buf.code_action()<CR>]], "Code Action" },
-    --     f = { [[<Cmd>lua vim.lsp.buf.formatting()<CR>]], "format" },
-    --     g = { [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], "signature" },
-    --     r = { [[<Cmd>lua vim.lsp.buf.rename()<CR>]], "rename" },
-    --     l = { [[<cmd>lua vim.lsp.diagnostic.goto_next()<CR>]], "Next Diagnostic" },
-    --     h = { [[<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>]], "Prev Diagnostic" },
-    --     C = { [[<Cmd>lua vim.lsp.codelens.run()<CR>]], "code lens run" },
-    --     I = { [[<Cmd>lua vim.lsp.buf.definition()<CR>]], "goto definition" },
-    --     R = { [[<Cmd>lua vim.lsp.buf.references()<CR>]], "references" },
-    --     d = { [[<Cmd>lua vim.diagnostic.open_float()<CR>]], "open diagnostics" },
-    --     i = { [[<Cmd>lua vim.lsp.buf.implementation()<CR>]], "implementation" },
-    --     s = { [[<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>]], "loc list" },
-    -- },
     ["<leader>l"] = {
+        name = "+lsp",
+        F = { [[<Cmd>lua vim.buf.add_workspace_folder()<CR>]], "add folder" },
+        K = { [[<Cmd>lua vim.buf.hover()<CR>]], "hover" },
+        a = { [[<cmd>lua vim.buf.code_action()<CR>]], "code action" },
+        L = { [[<cmd>lua require('plugins.lsp').show_line_diagnostics()<CR>]], "show line diagnostics" },
+        f = { [[<Cmd>lua vim.buf.formatting()<CR>]], "format" },
+        g = { [[<Cmd>lua vim.buf.signature_help()<CR>]], "signature" },
+        l = { [[<cmd>lua vim.diagnostic.goto_next()<CR>]], "next diagnostic" },
+        h = { [[<cmd>lua vim.diagnostic.goto_prev()<cr>]], "prev diagnostic" },
+        C = { [[<Cmd>lua vim.codelens.run()<CR>]], "code lens run" },
+        I = { [[<Cmd>lua vim.buf.definition()<CR>]], "goto definition" },
+        R = { [[<Cmd>lua vim.buf.references()<CR>]], "references" },
+        d = { [[<Cmd>lua vim.diagnostic.open_float()<CR>]], "open diagnostics" },
+        i = { [[<Cmd>lua vim.buf.implementation()<CR>]], "implementation" },
+        s = { [[<Cmd>lua vim.diagnostic.set_loclist()<CR>]], "loc list" },
+    },
+    ["<leader><leader>l"] = {
         i = { [[<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>]], "implementations" },
         d = { [[<Cmd>lua require'telescope.builtin'.diagnostics()<CR>]], "line diagnostics" },
         a = { [[<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>]], "code actions" },

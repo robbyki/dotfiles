@@ -1,10 +1,9 @@
-local api = vim.api
+-- local api = vim.api
 local lspconfig = require("lspconfig")
 -- local lsp_status = require("lsp-status")
 local lsp_signature = require("lsp_signature")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local dap = require("dap")
-local lsp = vim.lsp
 
 ----------------------------------------------------------------------
 --                            Signature                             --
@@ -14,8 +13,8 @@ lsp_signature.setup({
     handler_opts = {
         border = "rounded",
     },
-    hint_prefix = "",
-    floating_window_above_cur_line = false,
+    hint_prefix = "🦄 ",
+    floating_window_above_cur_line = true,
     hint_enable = false,
     toggle_key = "<C-x>",
 })
@@ -58,7 +57,7 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignW
 vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
-lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
 })
 
@@ -71,43 +70,12 @@ vim.diagnostic.config({
     float = { border = "single" },
 })
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local custom_attach = function(client, bufnr)
-    local function buf_set_keymap(...)
-        api.nvim_buf_set_keymap(bufnr, ...)
-    end
+local custom_attach = function(client, _)
+    vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.config.lsp').show_line_diagnostics() ]])
 
-    -- Mappings.
-    local opts = { noremap = true, silent = true }
-    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "<C-]>", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<space>d", "<cmd>lua require('config.lsp').show_line_diagnostics()<CR>", opts)
-    buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-    buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setqflist({open = true})<CR>", opts)
-    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_set_keymap("n", "<space>d", "<cmd>lua vim.diagnostic.open_float(0, { scope = 'line', border = 'none' })<CR>", opts)
-
-    vim.cmd([[ autocmd CursorHold <buffer> lua require('config.lsp').show_line_diagnostics() ]])
-
-    -- Set some key bindings conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
-    end
-    if client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("x", "<space>F", "<cmd>lua vim.lsp.buf.range_formatting()<CR><ESC>", opts)
-    end
-
-    -- The blow command will highlight the current variable and its usages in the buffer.
     if client.resolved_capabilities.document_highlight then
         vim.cmd([[
       hi! link LspReferenceRead Visual
