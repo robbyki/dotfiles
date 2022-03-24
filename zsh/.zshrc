@@ -282,3 +282,5 @@ export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 # source ~/dev/tutorial/oc-app-demo/ocvars
 
 ssibm
+
+source /home/robbyk/.config/broot/launcher/bash/br

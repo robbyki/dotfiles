@@ -260,7 +260,7 @@ return packer.startup(function(use)
             require("plugins.lastplace")
         end,
     })
-    -- use({ "ThePrimeagen/harpoon" })
+    use({ "ThePrimeagen/harpoon" })
 
     ----------------------------------------------------------------------
     --                              Files                               --

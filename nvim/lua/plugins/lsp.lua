@@ -1,8 +1,6 @@
 -- local api = vim.api
 local lspconfig = require("lspconfig")
--- local lsp_status = require("lsp-status")
 local lsp_signature = require("lsp_signature")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local dap = require("dap")
 
 ----------------------------------------------------------------------
@@ -22,21 +20,21 @@ lsp_signature.setup({
 ----------------------------------------------------------------------
 --                             Handlers                             --
 ----------------------------------------------------------------------
--- local signs = {
---     Error = " ",
---     Warn = " ",
---     Hint = " ",
---     Info = " ",
--- }
---
--- for type, icon in pairs(signs) do
---     local hl = "DiagnosticSign" .. type
---     vim.fn.sign_define(hl, {
---         text = icon,
---         texthl = hl,
---         numhl = hl,
---     })
--- end
+local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " ",
+}
+
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {
+        text = icon,
+        texthl = hl,
+        numhl = hl,
+    })
+end
 
 local M = {}
 
@@ -52,10 +50,10 @@ function M.show_line_diagnostics()
 end
 
 -- Change diagnostic signs.
-vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+-- vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
+-- vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
+-- vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
+-- vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
@@ -73,9 +71,8 @@ vim.diagnostic.config({
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.lsp').show_line_diagnostics() ]])
-
 local custom_attach = function(client, _)
+    vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.lsp').show_line_diagnostics() ]])
     if client.resolved_capabilities.document_highlight then
         vim.cmd([[
       hi! link LspReferenceRead Visual
@@ -267,10 +264,11 @@ vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(
 --                              GOLANG                              --
 ----------------------------------------------------------------------
 lspconfig.gopls.setup({
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-    end,
+    on_attach = custom_attach,
+    -- on_attach = function(client)
+    --     client.resolved_capabilities.document_formatting = false
+    --     client.resolved_capabilities.document_range_formatting = false
+    -- end,
     capabilities = capabilities,
     filetypes = { "go", "gomod" },
     root_dir = require("lspconfig/util").root_pattern("go.work", "go.mod", ".git"),
@@ -284,7 +282,6 @@ lspconfig.gopls.setup({
                 nilness = true,
             },
             codelenses = {
-                test = true,
                 tidy = true,
                 upgrade_dependency = true,
                 vendor = true,

@@ -42,12 +42,15 @@ map("n", "<leader>go", "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { act
 map("n", "Q", "<Nop>")
 
 -- Trouble
-map("n", "<leader>xx", "<cmd>Trouble<cr>")
-map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>")
-map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
-map("n", "<leader>xl", "<cmd>Trouble loclist<cr>")
-map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>")
-map("n", "gR", "<cmd>Trouble lsp_references<cr>")
+map("n", "<leader>xx", "<cmd>trouble<cr>")
+map("n", "<leader>xw", "<cmd>trouble workspace_diagnostics<cr>")
+map("n", "<leader>xd", "<cmd>trouble document_diagnostics<cr>")
+map("n", "<leader>xl", "<cmd>trouble loclist<cr>")
+map("n", "<leader>xq", "<cmd>trouble quickfix<cr>")
+map("n", "<leader>xc", "<cmd>trouble close<cr>")
+map("n", "<leader>xr", "<cmd>trouble refresh<cr>")
+map("n", "<leader>xt", "<cmd>trouble toggle<cr>")
+map("n", "gR", "<cmd>trouble lsp_references<cr>")
 
 vim.g.which_key_display_names = {
     ["<CR>"] = "↵",
@@ -133,8 +136,8 @@ wk.register({
         s = { [[<Cmd>:Telescope git_status<CR>]], "git status" },
         g = { [[<Cmd>lua require('plugins.toggleterm').lazygit_toggle()<CR>]], "lazygit" },
         b = { [[<Cmd>GitBlameToggle<CR>]], "blame" },
-        d = { [[<Cmd>DiffviewOpen<CR>]], "Diff view" },
-        D = { [[<Cmd>DiffviewClose<CR>]], "Diff view close" },
+        d = { [[<Cmd>DiffviewOpen<CR>]], "diff view open" },
+        D = { [[<Cmd>DiffviewClose<CR>]], "diff view close" },
         B = { [[<Cmd>:Telescope git_branches<CR>]], "git branches" },
         f = { [[<Cmd>:Telescope git_files<CR>]], "git files" },
     },
