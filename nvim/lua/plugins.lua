@@ -287,7 +287,7 @@ return packer.startup(function(use)
             require("plugins.gitlinker")
         end,
     })
-    use({ "sindrets/diffview.nvim" })
+    use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
     use({ "pwntester/octo.nvim" })
     use({ "f-person/git-blame.nvim" })
     use({

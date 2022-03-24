@@ -24,4 +24,10 @@ require("go").setup({
 -- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
 -- refresh codelens
 vim.cmd('autocmd BufEnter,CursorHold,InsertLeave *.go lua require("go.codelens").refresh()')
+
+-- Format on Save
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
+-- Import on save
+
+-- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require("go.format").goimport() ]], false)
+-- vim.cmd('autocmd BufEnter,CursorHold,InsertLeave *.go lua require("go.codelens").refresh()')

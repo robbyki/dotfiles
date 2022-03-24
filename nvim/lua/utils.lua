@@ -17,11 +17,11 @@ function M.map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-function M.auto_format_lsp()
-    local id, client = next(vim.lsp.buf_get_clients())
-    if id ~= nil and client.resolved_capabilities.document_formatting then
-        vim.lsp.buf.formatting_sync(nil, 100)
-    end
-end
+-- function M.auto_format_lsp()
+--     local id, client = next(vim.lsp.buf_get_clients())
+--     if id ~= nil and client.resolved_capabilities.document_formatting then
+--         vim.lsp.buf.formatting_sync(nil, 100)
+--     end
+-- end
 
 return M
