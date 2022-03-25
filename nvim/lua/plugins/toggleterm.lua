@@ -3,8 +3,14 @@ if not status_ok then
     return
 end
 toggleterm.setup({
-    size = 20,
-    open_mapping = [[<Leader>t]],
+    size = function(term)
+        if term.direction == "horizontal" then
+            return 15
+        elseif term.direction == "vertical" then
+            return vim.o.columns * 0.4
+        end
+    end,
+    open_mapping = [[<space>t]],
     hide_numbers = true,
     shade_filetypes = {},
     shade_terminals = true,
@@ -17,6 +23,8 @@ toggleterm.setup({
     shell = vim.o.shell,
     float_opts = {
         border = "curved",
+        width = 140,
+        height = 20,
         winblend = 0,
         highlights = {
             border = "Normal",

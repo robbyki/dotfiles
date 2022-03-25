@@ -16,6 +16,14 @@ vim.cmd([[
  nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
+-- toggleterm mappings
+map("t", "<esc>", [[<C-\><C-n>]])
+map("t", "jk", [[<C-\><C-n>]])
+map("t", "<C-h>", [[<C-\><C-n><C-W>h]])
+map("t", "<C-j>", [[<C-\><C-n><C-W>j]])
+map("t", "<C-k>", [[<C-\><C-n><C-W>k]])
+-- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
 map("n", "<Space>", "<Nop>")
 map("i", "<C-c>", "<Esc>")
 map("n", "<CR>", "<cmd>FineCmdline<CR>")
@@ -103,7 +111,7 @@ wk.register({
         name = "+terminal",
         b = { [[<Cmd>lua require('plugins.toggleterm').broot_toggle()<CR>]], "broot" },
         k = { [[<Cmd>lua require('plugins.toggleterm').k9s_toggle()<CR>]], "k9s" },
-        -- t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
+        t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
     },
     ["<leader>h"] = {
         name = "hop",
@@ -129,6 +137,10 @@ wk.register({
         m = { [[<Cmd>lua require('telescope').extensions.metals.commands()<CR>]], "metals commands" },
         d = { [[<Cmd>lua require('metals').open_all_diagnostics()<CR>]], "metals diagnostics" },
         h = { [[<Cmd>lua require('metals').hover_worksheet()<CR>]], "hover" },
+    },
+    ["<leader>G"] = {
+        name = "+go",
+        d = { [[<Cmd>:GoDoc<CR>]], "go doc" },
     },
     ["<leader>g"] = {
         name = "+git",
