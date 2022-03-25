@@ -233,7 +233,7 @@ return packer.startup(function(use)
     use({ "markstory/vim-zoomwin" })
 
     use({ "brooth/far.vim" })
-    use({ "Einenlum/yaml-revealer" })
+    -- use({ "Einenlum/yaml-revealer" })
     use({
         "nvim-telescope/telescope.nvim",
         requires = {

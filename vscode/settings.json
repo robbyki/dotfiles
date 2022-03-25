@@ -37,7 +37,7 @@
   "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.settings.editor": "json",
   "editor.fontFamily": "Operator Mono SSm Lig Book",
-  "editor.fontSize": 13,
+  "editor.fontSize": 15,
   "terminal.integrated.fontFamily": "Operator Mono SSm Lig Book",
   "editor.fontLigatures": true,
   "security.workspace.trust.untrustedFiles": "open",
@@ -131,7 +131,7 @@
   "tabnine.experimentalAutoImports": true,
   "workbench.iconTheme": "vscode-icons",
   "metals.sbtScript": "/usr/bin/sbt",
-  "metals.serverVersion": "0.11.1",
+  "metals.serverVersion": "0.11.2",
   "metals.javaHome": "/usr/lib/jvm/java-11-openjdk",
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.gitCommands.skipConfirmations": [
@@ -277,5 +277,9 @@
   "vs-kubernetes": {
     "vscode-kubernetes.minikube-path.linux": "/home/robbyk/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
   },
-  "WhiteSource Advise.enableAutomaticScanningInWorkspace": false
+  "WhiteSource Advise.enableAutomaticScanningInWorkspace": false,
+  "go.buildFlags": [
+    "-buildvcs=false"
+  ],
+  "WhiteSource Advise.Diff.NotifyOnNewOS Vulnerabilities": false
 }

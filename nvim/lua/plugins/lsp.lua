@@ -363,12 +363,12 @@ lspconfig.tsserver.setup({
     },
 })
 
--- vim.cmd([[
---     augroup Format
---       autocmd!
---         autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
---       augroup END
---     ]])
+vim.cmd([[
+    augroup Format
+      autocmd!
+        autocmd BufWritePre *.scala lua vim.lsp.buf.formatting_sync(nil, 1000)
+      augroup END
+    ]])
 -- autocmd BufWritePre *.graphql lua vim.lsp.buf.formatting_sync(nil, 1000)
 -- autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 1000)
 -- autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)
