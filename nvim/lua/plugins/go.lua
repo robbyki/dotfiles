@@ -1,7 +1,8 @@
 require("go").setup({
+    run_in_floaterm = true,
     -- goimport = "gopls", -- goimport command
     -- gofmt = "gopls", --gofmt cmd,
-    -- max_line_len = 120, -- max line length in goline format
+    max_line_len = 120, -- max line length in goline format
     -- tag_transform = false, -- tag_transfer  check gomodifytags for details
     -- test_template = "", -- default to testify if not set; g:go_nvim_tests_template  check gotests for details
     -- test_template_dir = "", -- default to nil if not set; g:go_nvim_tests_template_dir  check gotests for details
@@ -31,3 +32,6 @@ vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').
 
 -- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require("go.format").goimport() ]], false)
 -- vim.cmd('autocmd BufEnter,CursorHold,InsertLeave *.go lua require("go.codelens").refresh()')
+vim.cmd("autocmd FileType go nmap <leader>gr  :GoRun -buildvcs=false .<CR>")
+
+vim.api.nvim_set_keymap("n", "<Leader>cf", '<cmd>lua require"go.term".close()<CR>', { noremap = true })

@@ -1,7 +1,15 @@
+local M = {}
+
 -- local api = vim.api
 local lspconfig = require("lspconfig")
 local lsp_signature = require("lsp_signature")
 local dap = require("dap")
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = false,
+    virtual_text = true,
+    update_in_insert = true,
+})
 
 ----------------------------------------------------------------------
 --                            Signature                             --
@@ -20,6 +28,22 @@ lsp_signature.setup({
 ----------------------------------------------------------------------
 --                             Handlers                             --
 ----------------------------------------------------------------------
+local function lsp_highlight_document(client)
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec(
+            [[
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]],
+            false
+        )
+    end
+end
+
 local signs = {
     Error = " ",
     Warn = " ",
@@ -36,8 +60,6 @@ for type, icon in pairs(signs) do
     })
 end
 
-local M = {}
-
 function M.show_line_diagnostics()
     local opts = {
         focusable = false,
@@ -48,6 +70,7 @@ function M.show_line_diagnostics()
     }
     vim.diagnostic.open_float(nil, opts)
 end
+vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.lsp').show_line_diagnostics() ]])
 
 -- Change diagnostic signs.
 -- vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
@@ -72,17 +95,17 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local custom_attach = function(client, _)
-    vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.lsp').show_line_diagnostics() ]])
+    lsp_highlight_document(client)
     if client.resolved_capabilities.document_highlight then
         vim.cmd([[
       hi! link LspReferenceRead Visual
       hi! link LspReferenceText Visual
       hi! link LspReferenceWrite Visual
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
+      " augroup lsp_document_highlight
+      "   autocmd! * <buffer>
+      "   autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+      "   autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      " augroup END
     ]])
     end
 

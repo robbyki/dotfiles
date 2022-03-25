@@ -36,7 +36,7 @@ require("nvim-treesitter.configs").setup({
     },
     indent = {
         enable = true,
-        disable = { "yaml", "yml", "python", "org" },
+        disable = { "go", "yaml", "yml", "python", "org" },
     },
     sync_install = false,
     ignore_install = {},

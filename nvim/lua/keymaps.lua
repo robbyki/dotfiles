@@ -103,7 +103,7 @@ wk.register({
         name = "+terminal",
         b = { [[<Cmd>lua require('plugins.toggleterm').broot_toggle()<CR>]], "broot" },
         k = { [[<Cmd>lua require('plugins.toggleterm').k9s_toggle()<CR>]], "k9s" },
-        t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
+        -- t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
     },
     ["<leader>h"] = {
         name = "hop",

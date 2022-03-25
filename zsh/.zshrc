@@ -115,6 +115,7 @@ export SCRIPTS=${HOME}/bin
 # export GOROOT=${HOME}/sdk/go1.18beta2
 export GOPATH=${HOME}/go
 export GOROOT=/usr/local/go
+# export GOROOT=/usr/local/go1.17.8
 
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
 

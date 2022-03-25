@@ -6,6 +6,8 @@ vim.cmd([[command! PI packadd packer.nvim | lua require('plugins').install()]])
 vim.cmd([[command! PS packadd packer.nvim | lua require('plugins').sync()]])
 vim.cmd([[command! PC packadd packer.nvim | lua require('plugins').clean()]])
 
+vim.cmd([[command! GoRun GoRun -buildvcs=false .]])
+
 -- global
 vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
@@ -16,7 +18,7 @@ vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 -- vim.opt.spelllang = "en"
 vim.o.autoindent = true
 vim.bo.autoindent = true
-vim.o.smartindent = true
+-- vim.o.smartindent = true
 vim.opt.backup = false
 vim.opt.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
 vim.opt.colorcolumn = "100"
@@ -106,7 +108,7 @@ vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
 vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
 vim.cmd([[autocmd FileType go setlocal ts=4 sts=4 sw=4 ai noexpandtab]])
-vim.cmd([[autocmd FileType gomod setlocal ts=4 sts=4 sw=4 ai noexpandtab]])
+vim.cmd([[autocmd FileType gomod setlocal ts=4 sts=4 ai sw=4 noexpandtab]])
 
 -- vim.cmd([[
 --   augroup stylua_format_on_save

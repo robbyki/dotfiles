@@ -104,6 +104,8 @@ alias aw='argo watch'
 # golang
 alias gowi='go work init'
 alias gow='go work'
+# this error seems to be happening only with 1.18 so this is a workaround
+alias gor='go run -buildvcs=false'
 
 # bloop Scala
 alias bl='bloop'
@@ -333,6 +335,6 @@ alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th
 alias demofont="yq -i '.font.size=22' ~/.dotfiles/alacritty/alacritty.yml"
 alias workfont="yq -i '.font.size=15' ~/.dotfiles/alacritty/alacritty.yml"
 alias slidefont="yq -i '.font.size=30' ~/.dotfiles/alacritty/alacritty.yml"
- 
+
 alias resume='python resume.py --no-html'
 alias ok=okular

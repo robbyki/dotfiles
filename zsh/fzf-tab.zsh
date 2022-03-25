@@ -82,20 +82,18 @@ bat_preview_simple='bat --style=numbers --color=always --line-range :500 {}'
 # zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
 # zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-
-
 zstyle ':fzf-tab:*' show-group brief
 zstyle ':fzf-tab:*' continuous-trigger '/'
 zstyle ':fzf-tab:*' fzf-flags --preview-window=right:hidden:wrap
-zstyle ':fzf-tab:*' print-query ctrl-c        # Use input as result when ctrl-c
+zstyle ':fzf-tab:*' print-query ctrl-c         # Use input as result when ctrl-c
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup # fzf, ftb-tmux-popup # this is where you can switch to tmux popup
-zstyle ':fzf-tab:*' prefix ''                 # No dot prefix
-zstyle ':fzf-tab:*' single-group color header # Show header for single groups
+zstyle ':fzf-tab:*' prefix ''                  # No dot prefix
+zstyle ':fzf-tab:*' single-group color header  # Show header for single groups
 FZF_TAB_GROUP_COLORS=(
-  $'\033[94m' $'\033[32m' $'\033[33m' $'\033[35m' $'\033[31m' $'\033[38;5;27m' $'\033[36m' \
-    $'\033[38;5;100m' $'\033[38;5;98m' $'\033[91m' $'\033[38;5;80m' $'\033[92m' \
-    $'\033[38;5;214m' $'\033[38;5;165m' $'\033[38;5;124m' $'\033[38;5;120m'
-  )
+  $'\033[94m' $'\033[32m' $'\033[33m' $'\033[35m' $'\033[31m' $'\033[38;5;27m' $'\033[36m'
+  $'\033[38;5;100m' $'\033[38;5;98m' $'\033[91m' $'\033[38;5;80m' $'\033[92m'
+  $'\033[38;5;214m' $'\033[38;5;165m' $'\033[38;5;124m' $'\033[38;5;120m'
+)
 zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
 
 # zstyle ':fzf-tab:complete:cd:*' popup-pad 100 5
@@ -128,7 +126,7 @@ zstyle ':fzf-tab:complete:(\\|*/|)man:*' fzf-flags --preview-window=right:65%
 
 # git
 zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview 'git diff $word | delta'
-zstyle ':fzf-tab:complete:git-log:*' fzf-preview  'git log --color=always $word'
+zstyle ':fzf-tab:complete:git-log:*' fzf-preview 'git log --color=always $word'
 zstyle ':fzf-tab:complete:git-help:*' fzf-preview 'git help $word | bat -plman --color=always'
 zstyle ':fzf-tab:complete:git-show:*' fzf-preview \
   'case "$group" in
@@ -136,9 +134,8 @@ zstyle ':fzf-tab:complete:git-show:*' fzf-preview \
   *) git show --color=always $word | delta ;;
   esac'
 zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
- 'case "$group" in
+  'case "$group" in
   "modified file") git diff $word | delta ;;
   "recent commit object name") git show --color=always $word | delta ;;
   *) git log --color=always $word ;;
   esac'
-
