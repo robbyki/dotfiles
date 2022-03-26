@@ -341,36 +341,6 @@ return packer.startup(function(use)
     --                            Completion                            --
     ----------------------------------------------------------------------
     use({
-        "windwp/nvim-autopairs",
-        config = function()
-            require("plugins.autopairs")
-        end,
-    })
-    use({
-        "machakann/vim-sandwich",
-        after = "nvim-cmp",
-        config = function()
-            require("plugins.sandwich")
-        end,
-    })
-    use({
-        "abecodes/tabout.nvim",
-        wants = { "nvim-treesitter" },
-        after = { "nvim-cmp", "copilot.vim" },
-        config = function()
-            require("plugins.tabout")
-        end,
-    })
-    use({
-        "github/copilot.vim",
-        required = {
-            "hrsh7th/cmp-copilot",
-        },
-        config = function()
-            require("plugins.copilot")
-        end,
-    })
-    use({
         "hrsh7th/nvim-cmp",
         requires = {
             "hrsh7th/cmp-buffer",
@@ -391,11 +361,41 @@ return packer.startup(function(use)
             },
         },
         config = function()
-            require("plugins.cmp").setup()
+            require("plugins.cmp")
+        end,
+    })
+    use({
+        "github/copilot.vim",
+        required = {
+            "hrsh7th/cmp-copilot",
+        },
+        config = function()
+            require("plugins.copilot")
         end,
     })
     use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
     use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
+    use({
+        "windwp/nvim-autopairs",
+        config = function()
+            require("plugins.autopairs")
+        end,
+    })
+    use({
+        "machakann/vim-sandwich",
+        after = "nvim-cmp",
+        config = function()
+            require("plugins.sandwich")
+        end,
+    })
+    use({
+        "abecodes/tabout.nvim",
+        wants = { "nvim-treesitter" },
+        after = { "nvim-cmp", "copilot.vim" },
+        config = function()
+            require("plugins.tabout")
+        end,
+    })
 
     ----------------------------------------------------------------------
     --                            Treesitter                            --
