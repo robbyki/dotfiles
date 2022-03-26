@@ -1,6 +1,7 @@
 # env:
 # TERM: xterm-256color
 window:
+  opacity: 0.9
   dynamic_padding: true
   # decorations: full
   # Startup Mode (changes require restart)
@@ -87,7 +88,6 @@ visual_bell:
   animation: EaseOutExpo
   duration: 0
   color: '0x1a1a1a'
-# background_opacity: 0.90
 # Allow terminal applications to change Alacritty's window title.
 dynamic_title: true
 live_config_reload: true

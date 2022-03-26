@@ -21,7 +21,7 @@ require("kanagawa").setup({
     variablebuiltinStyle = "italic",
     specialReturn = true, -- special highlight for the return keyword
     specialException = true, -- special highlight for exception handling keywords
-    -- transparent = true, -- do not set background color
+    transparent = true, -- do not set background color
     dimInactive = true, -- dim inactive regions
     colors = {},
     overrides = overrides,
