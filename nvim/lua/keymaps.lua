@@ -16,12 +16,13 @@ vim.cmd([[
  nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
+-- TODO: need to figure out how to make this not conflict with vim movements after opening embeds
 -- toggleterm mappings
-map("t", "<esc>", [[<C-\><C-n>]])
-map("t", "jk", [[<C-\><C-n>]])
-map("t", "<C-h>", [[<C-\><C-n><C-W>h]])
-map("t", "<C-j>", [[<C-\><C-n><C-W>j]])
-map("t", "<C-k>", [[<C-\><C-n><C-W>k]])
+-- map("t", "<esc>", [[<C-\><C-n>]])
+-- map("t", "jk", [[<C-\><C-n>]])
+-- map("t", "<C-h>", [[<C-\><C-n><C-W>h]])
+-- map("t", "<C-j>", [[<C-\><C-n><C-W>j]])
+-- map("t", "<C-k>", [[<C-\><C-n><C-W>k]])
 -- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 map("n", "<Space>", "<Nop>")
@@ -89,7 +90,7 @@ wk.register({
         C = { [[<Cmd>lua require('telescope').extensions.zoxide.list()<CR>]], "zoxide cd" },
         D = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/dev' })<CR>]], "find in dev" },
         S = { [[<Cmd>lua require('telescope.builtin').grep_string()<CR>]], "string search" },
-        b = { [[<Cmd>lua require('telescope').extensions.file_browser.file_browser<CR>]], "file browser" },
+        b = { [[<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>]], "file browser" },
         d = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>]], "dotfiles" },
         f = { [[<Cmd>lua require('telescope.builtin').find_files({ hidden = true, preview = true })<CR>]], "find files here" },
         h = { [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], "help tags" },
@@ -121,12 +122,12 @@ wk.register({
         p = { [[<Cmd>lua require'hop'.hint_patterns()<CR>]], "Hop to pattern" },
         w = { [[<Cmd>lua require'hop'.hint_words()<CR>]], "Hop to word" },
     },
-    -- ["<leader>H"] = {
-    --     name = "+harpoon",
-    --     m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "toggle quick menu" },
-    --     a = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "harpoon add file" },
-    --     c = { "<Cmd>lua require('harpoon.mark').clear_all()<CR>", "harpoon clear" },
-    -- },
+    ["<leader>H"] = {
+        name = "+harpoon",
+        m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "toggle quick menu" },
+        a = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "harpoon add file" },
+        c = { "<Cmd>lua require('harpoon.mark').clear_all()<CR>", "harpoon clear" },
+    },
     ["<leader>M"] = {
         name = "+markdown",
         p = { [[<Cmd>:MarkdownPreview<CR>]], "markdown preview" },

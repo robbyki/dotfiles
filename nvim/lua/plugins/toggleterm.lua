@@ -24,7 +24,7 @@ toggleterm.setup({
     float_opts = {
         border = "curved",
         width = 140,
-        height = 20,
+        height = 40,
         winblend = 0,
         highlights = {
             border = "Normal",

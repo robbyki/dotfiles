@@ -35,40 +35,11 @@ telescope.setup({
         initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "ascending",
-        -- layout_config = {
-        --   horizontal = {
-        --     preview_width = 0.6,
-        --   },
-        -- },
         layout_strategy = "flex",
         layout_config = {
             horizontal = { width = 0.90, height = 0.70, preview_width = 0.5 },
             vertical = { width = 0.90, height = 0.70, preview_height = 0.7 },
-            -- horizontal = {
-            --   prompt_position = "bottom",
-            --   preview_width = 0.55,
-            -- },
-            -- vertical = {
-            --   mirror = false,
-            -- },
-            -- width = 0.87,
-            -- height = 0.80,
-            -- preview_cutoff = 120,
         },
-
-        -- layout_strategy = "horizontal",
-        -- layout_config = {
-        --     horizontal = {
-        --         prompt_position = "top",
-        --         preview_width = 0.55,
-        --         results_width = 0.8,
-        --     },
-        --     vertical = { mirror = false },
-        --     width = 0.87,
-        --     height = 0.80,
-        --     preview_cutoff = 120,
-        -- },
-        -- layout_config = {horizontal = {mirror = false}, vertical = {mirror = false}},
         file_sorter = require("telescope.sorters").get_fzy_sorter,
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -180,7 +151,6 @@ telescope.load_extension("dap")
 -- telescope.load_extension("repo")
 -- telescope.load_extension('hop')
 --telescope.load_extension "media_files"
---telescope.load_extension "file_browser"
 
 -- Implement delta as previewer for diffs
 
