@@ -1,6 +1,7 @@
 vim.o.shortmess = string.gsub(vim.o.shortmess, "F", "") .. "c"
 vim.o.path = vim.o.path .. "**"
 
+-- update packer with command mode
 vim.cmd([[command! PU packadd packer.nvim | lua require('plugins').update()]])
 vim.cmd([[command! PI packadd packer.nvim | lua require('plugins').install()]])
 vim.cmd([[command! PS packadd packer.nvim | lua require('plugins').sync()]])
@@ -8,7 +9,6 @@ vim.cmd([[command! PC packadd packer.nvim | lua require('plugins').clean()]])
 
 vim.cmd([[command! GoRun GoRun -buildvcs=false .]])
 
--- global
 vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
 vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
@@ -16,9 +16,9 @@ vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 -- vim.opt.spellfile = "~/.dotfiles/nvim/spell/en.utf-8.add"
 -- vim.opt.spell = true
 -- vim.opt.spelllang = "en"
+-- vim.o.smartindent = true
 vim.o.autoindent = true
 vim.bo.autoindent = true
--- vim.o.smartindent = true
 vim.opt.backup = false
 vim.opt.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
 vim.opt.colorcolumn = "100"
@@ -110,18 +110,6 @@ vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
 -- vim.cmd([[autocmd FileType go setlocal ts=4 sts=4 sw=4 ai]])
 -- vim.cmd([[autocmd FileType gomod setlocal ts=4 sts=4 ai sw=4]])
 -- vim.cmd([[autocmd FileType go setlocal formatprg=gofmt]])
-
--- vim.cmd([[
---   augroup stylua_format_on_save
---     autocmd!
---     autocmd BufWritePost *.lua lua require("stylua-nvim").format_file()
---   augroup end
--- ]])
--- vim.cmd([[augroup end]])
--- vim.cmd([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]])
--- vim.cmd([[augroup lsp]])
--- vim.cmd([[autocmd!]])
--- vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 
 vim.cmd("highlight! Comment cterm=italic, gui=italic")
 vim.cmd("highlight! Special cterm=italic, gui=italic")

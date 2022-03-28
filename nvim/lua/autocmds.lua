@@ -13,8 +13,25 @@ end
 local autocmds = {
     lua_highlight = {
         { "TextYankPost", "*", [[silent! lua vim.highlight.on_yank() {higroup="IncSearch", timeout=400}]] },
-        -- { "BufWritePost", "plugins.lua", [[source <afile> | PackerSync]] },
     },
+    whitespace = {
+        { "InsertEnter", "*", [[lua require('whitespace').onInsertEnter()]] },
+        { "InsertLeave", "*", [[lua require('whitespace').onInsertLeave()]] },
+        { "TextChangedI", "*", [[lua require('whitespace').onTextChangedI()]] },
+        { "TextChanged", "*", [[lua require('whitespace').onTextChanged()]] },
+        { "BufEnter", "*", [[lua require('whitespace').onBufEnter()]] },
+        { "BufLeave", "*", [[lua require('whitespace').onBufLeave()]] },
+    },
+    telescope = {
+        {
+            "User",
+            "TelescopeFindPre",
+            [[
+				lua vim.o.laststatus=0; vim.cmd'autocmd BufWinLeave * ++once lua vim.o.laststatus=2'
+			]],
+        },
+    },
+    -- { "BufWritePost", "plugins.lua", [[source <afile> | PackerSync]] },
 }
 
 nvim_create_augroups(autocmds)
@@ -29,24 +46,7 @@ nvim_create_augroups(autocmds)
 --     -- 	{ "CursorMoved,CursorMovedI", "*", [[lua require('modules.cursorword').matchadd()]] },
 --     -- 	{ "WinLeave", "*", [[lua require('modules.cursorword').matchdelete()]] },
 --     -- },
---     whitespace = {
---         { "InsertEnter", "*", [[lua require('modules.whitespace').onInsertEnter()]] },
---         { "InsertLeave", "*", [[lua require('modules.whitespace').onInsertLeave()]] },
---         { "TextChangedI", "*", [[lua require('modules.whitespace').onTextChangedI()]] },
---         { "TextChanged", "*", [[lua require('modules.whitespace').onTextChanged()]] },
---         { "BufEnter", "*", [[lua require('modules.whitespace').onBufEnter()]] },
---         { "BufLeave", "*", [[lua require('modules.whitespace').onBufLeave()]] },
---     },
 --     mkdir = { { "BufWritePre", "*", [[lua require('modules.mkdir').mkdir()]] }, },
---     telescope = {
---         {
---             "User",
---             "TelescopeFindPre",
---             [[
--- 				lua vim.o.laststatus=0; vim.cmd'autocmd BufWinLeave * ++once lua vim.o.laststatus=2'
--- 			]],
---         },
---     },
 -- })
 
 -- vim.cmd([[
@@ -155,3 +155,14 @@ nvim_create_augroups(autocmds)
 -- if builtin.lsp.automatical_show_line_diagnostics.active then
 --     vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 -- end
+-- vim.cmd([[
+--   augroup stylua_format_on_save
+--     autocmd!
+--     autocmd BufWritePost *.lua lua require("stylua-nvim").format_file()
+--   augroup end
+-- ]])
+-- vim.cmd([[augroup end]])
+-- vim.cmd([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]])
+-- vim.cmd([[augroup lsp]])
+-- vim.cmd([[autocmd!]])
+-- vim.cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])

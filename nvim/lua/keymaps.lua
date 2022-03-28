@@ -91,7 +91,7 @@ wk.register({
         D = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/dev' })<CR>]], "find in dev" },
         S = { [[<Cmd>lua require('telescope.builtin').grep_string()<CR>]], "string search" },
         b = { [[<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>]], "file browser" },
-        d = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.dotfiles', hidden = true })<CR>]], "dotfiles" },
+        d = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/Documents' })<CR>]], "docs" },
         f = { [[<Cmd>lua require('telescope.builtin').find_files({ hidden = true, preview = true })<CR>]], "find files here" },
         h = { [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], "help tags" },
         j = { [[<Cmd>lua require('telescope.builtin').jumplist()<CR>]], "jumps" },

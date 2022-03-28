@@ -153,7 +153,6 @@ telescope.load_extension("dap")
 --telescope.load_extension "media_files"
 
 -- Implement delta as previewer for diffs
-
 local M = {}
 
 local delta_bcommits = previewers.new_termopen_previewer({
