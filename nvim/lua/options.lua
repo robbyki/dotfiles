@@ -107,8 +107,9 @@ vim.cmd([[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wra
 vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
 vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
-vim.cmd([[autocmd FileType go setlocal ts=4 sts=4 sw=4 ai noexpandtab]])
-vim.cmd([[autocmd FileType gomod setlocal ts=4 sts=4 ai sw=4 noexpandtab]])
+-- vim.cmd([[autocmd FileType go setlocal ts=4 sts=4 sw=4 ai]])
+-- vim.cmd([[autocmd FileType gomod setlocal ts=4 sts=4 ai sw=4]])
+-- vim.cmd([[autocmd FileType go setlocal formatprg=gofmt]])
 
 -- vim.cmd([[
 --   augroup stylua_format_on_save

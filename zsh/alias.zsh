@@ -104,9 +104,10 @@ alias aw='argo watch'
 # golang
 alias gowi='go work init'
 alias gow='go work'
-# this error seems to be happening only with 1.18 so this is a workaround
+# this error seems to be happening only with 1.18 so this is a workaround for now
 alias gor='go run -buildvcs=false'
 alias goi='go install -buildvcs=false'
+alias gob='go build -buildvcs=false'
 alias godocw='godoc -http=:8001'
 
 # bloop Scala

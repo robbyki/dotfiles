@@ -123,7 +123,6 @@ cmp.setup({
         { name = "cmp_tabnine" },
         { name = "path" },
         { name = "emoji" },
-        { name = "buffer" },
         { name = "copilot" },
     }),
     experimental = {
