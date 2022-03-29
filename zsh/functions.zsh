@@ -193,7 +193,7 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-# search for string in history until I figure out zsh search substring plugin
+# I'm a little amazed how useful this is turning out to be.
 agh() {
   ag $1 .
 }
