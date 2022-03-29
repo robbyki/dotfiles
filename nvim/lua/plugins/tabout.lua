@@ -4,7 +4,7 @@ require("tabout").setup({
     act_as_tab = true, -- shift content if tab out is not possible
     act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
     enable_backwards = true, -- well ...
-    completion = false, -- if the tabkey is used in a completion pum
+    completion = true, -- if the tabkey is used in a completion pum
     tabouts = {
         { open = "'", close = "'" },
         { open = '"', close = '"' },
