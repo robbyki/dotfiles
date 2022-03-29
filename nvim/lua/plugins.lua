@@ -457,13 +457,7 @@ return packer.startup(function(use)
         end,
     })
     use("tpope/vim-surround")
-    use({
-        "arthurxavierx/vim-caser",
-        config = function()
-            require("plugins.caser")
-        end,
-        keys = "gw",
-    })
+    use("arthurxavierx/vim-caser")
     use({
         "gbprod/substitute.nvim",
         config = function()

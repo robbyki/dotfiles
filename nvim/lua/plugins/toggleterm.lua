@@ -75,11 +75,6 @@ local lazygit = Terminal:new({
         border = "curved",
         width = 200,
         height = 100,
-        -- winblend = 3,
-        -- highlights = {
-        --   border = "Normal",
-        --   background = "Normal",
-        -- },
     },
 })
 M.lazygit_toggle = function()
