@@ -56,6 +56,7 @@ cmp.setup({
         ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        -- Need to comment this out in order to not conflict with vsnip jumping
         -- ["<Tab>"] = cmp.mapping(function(fallback)
         --     if cmp.visible() then
         --         cmp.select_next_item()
