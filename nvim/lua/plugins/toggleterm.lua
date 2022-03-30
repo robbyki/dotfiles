@@ -44,9 +44,8 @@ local lazygit = Terminal:new({
     dir = "git_dir",
     float_opts = {
         border = "curved",
-        width = 200,
-        height = 100,
-        winblend = 1,
+        width = 100,
+        height = 60,
     },
 })
 
@@ -84,6 +83,11 @@ local lf = Terminal:new({
     hidden = true,
     direction = "float",
     close_on_exit = true,
+    float_opts = {
+        border = "curved",
+        width = 100,
+        height = 50,
+    },
     -- highlights = {
     --     border = "Normal",
     --     background = "Normal",
