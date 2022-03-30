@@ -25,7 +25,7 @@ toggleterm.setup({
     float_opts = {
         border = "curved",
         width = 120,
-        height = 20,
+        height = 40,
         winblend = 0,
         highlights = {
             border = "Normal",
@@ -46,6 +46,7 @@ local lazygit = Terminal:new({
         border = "curved",
         width = 200,
         height = 100,
+        winblend = 1,
     },
 })
 
@@ -56,6 +57,11 @@ local k9s = Terminal:new({
     hidden = true,
     direction = "float",
     close_on_exit = true,
+    float_opts = {
+        border = "curved",
+        width = 200,
+        height = 100,
+    },
     -- highlights = {
     --     border = "Normal",
     --     background = "Normal",
