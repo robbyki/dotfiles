@@ -1,10 +1,14 @@
-startuppopupversion: 1
 gui:
   theme:
     selectedLineBgColor:
       - reverse
     selectedRangeBgColor:
       - reverse
+# git:
+#   paging:
+#     colorArg: always
+#     useConfig: true
+        # this would be nice but need to trouble shoot terrible performance issue        
         #git:
         #    paging:
         #        colorArg: always

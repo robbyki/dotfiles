@@ -102,6 +102,7 @@ alias asw='argo submit --watch'
 alias aw='argo watch'
 
 # golang
+alias gomi='go mod init'
 alias gowi='go work init'
 alias gow='go work'
 # this error seems to be happening only with 1.18 so this is a workaround for now
