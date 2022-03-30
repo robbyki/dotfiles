@@ -114,7 +114,7 @@ wk.register({
         b = { [[<Cmd>lua _BROOT_TOGGLE()<CR>]], "broot" },
         k = { [[<Cmd>lua _K9S_TOGGLE()<CR>]], "k9s" },
         h = { [[<Cmd>lua _HTOP_TOGGLE()<CR>]], "htop" },
-        -- t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
+        t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
     },
     ["<leader>h"] = {
         name = "hop",

@@ -126,4 +126,7 @@ vim.wo.wrap = false
 vim.opt.wrap = false
 vim.opt.textwidth = 0
 vim.cmd("colorscheme kanagawa")
--- vim.cmd([[hi Visual guifg=White guibg=LightBlue gui=none]])
+
+vim.cmd([[ 
+    highlight ScrollView ctermbg=159 guibg=LightCyan
+]])
