@@ -2,6 +2,7 @@ local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
     return
 end
+
 toggleterm.setup({
     size = function(term)
         if term.direction == "horizontal" then
@@ -10,11 +11,11 @@ toggleterm.setup({
             return vim.o.columns * 0.4
         end
     end,
-    open_mapping = [[c-\]],
+    open_mapping = [[<C-G>]],
     hide_numbers = true,
     shade_filetypes = {},
     shade_terminals = true,
-    shading_factor = 2,
+    shading_factor = 1,
     start_in_insert = true,
     insert_mappings = true,
     persist_size = true,
@@ -35,36 +36,6 @@ toggleterm.setup({
 
 local Terminal = require("toggleterm.terminal").Terminal
 
-local M = {}
-
-local k9s = Terminal:new({
-    cmd = "k9s",
-    hidden = true,
-    direction = "float",
-    close_on_exit = true,
-    highlights = {
-        border = "Normal",
-        background = "Normal",
-    },
-})
-M.k9s_toggle = function()
-    k9s:toggle()
-end
-
-local broot = Terminal:new({
-    cmd = "broot",
-    hidden = true,
-    direction = "float",
-    close_on_exit = true,
-    highlights = {
-        border = "Normal",
-        background = "Normal",
-    },
-})
-M.broot_toggle = function()
-    broot:toggle()
-end
-
 local lazygit = Terminal:new({
     cmd = "lazygit",
     hidden = true,
@@ -77,22 +48,58 @@ local lazygit = Terminal:new({
         height = 100,
     },
 })
-M.lazygit_toggle = function()
-    lazygit:toggle()
-end
+
+local htop = Terminal:new({ cmd = "htop", hidden = true })
+
+local k9s = Terminal:new({
+    cmd = "k9s",
+    hidden = true,
+    direction = "float",
+    close_on_exit = true,
+    -- highlights = {
+    --     border = "Normal",
+    --     background = "Normal",
+    -- },
+})
+
+local broot = Terminal:new({
+    cmd = "broot",
+    hidden = true,
+    direction = "float",
+    close_on_exit = true,
+    -- highlights = {
+    --     border = "Normal",
+    --     background = "Normal",
+    -- },
+})
 
 local lf = Terminal:new({
     cmd = "lf",
     hidden = true,
     direction = "float",
     close_on_exit = true,
-    highlights = {
-        border = "Normal",
-        background = "Normal",
-    },
+    -- highlights = {
+    --     border = "Normal",
+    --     background = "Normal",
+    -- },
 })
-M.lf_toggle = function()
+
+function _LF_TOGGLE()
     lf:toggle()
 end
 
-return M
+function _BROOT_TOGGLE()
+    broot:toggle()
+end
+
+function _LAZYGIT_TOGGLE()
+    lazygit:toggle()
+end
+
+function _HTOP_TOGGLE()
+    htop:toggle()
+end
+
+function _K9S_TOGGLE()
+    k9s:toggle()
+end

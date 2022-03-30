@@ -17,12 +17,13 @@ vim.cmd([[
 ]])
 
 -- TODO: need to figure out how to make this not conflict with vim movements after opening embeds
+-- although I don't feel like these should persist and like the idea of quick one-offs and close
 -- toggleterm mappings
 -- map("t", "<esc>", [[<C-\><C-n>]])
--- map("t", "jk", [[<C-\><C-n>]])
--- map("t", "<C-h>", [[<C-\><C-n><C-W>h]])
--- map("t", "<C-j>", [[<C-\><C-n><C-W>j]])
--- map("t", "<C-k>", [[<C-\><C-n><C-W>k]])
+-- map("t", "<C-j><C-k>", [[<C-\><C-n>]])
+-- -- map("t", "<C-S-h>", [[<C-/><C-n><C-W>h]])
+-- map("t", "<C-n><C-W>j", [[<C-\><C-n><C-W>j]])
+-- map("t", "<C-S-k>", [[<C-\><C-n><C-W>k]])
 -- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 map("n", "<Space>", "<Nop>")
@@ -45,7 +46,7 @@ map("n", "<leader>so", ":SymbolsOutline<CR>")
 map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
-map("n", "<leader>L", "<Cmd>lua require('plugins.toggleterm').lf_toggle()<CR>")
+map("n", "<leader>L", "<Cmd>lua _LF_TOGGLE()<CR>")
 map("n", "<leader>gO", "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
 map("n", "<leader>go", "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>")
 map("n", "Q", "<Nop>")
@@ -110,9 +111,10 @@ wk.register({
     },
     ["<leader>t"] = {
         name = "+terminal",
-        b = { [[<Cmd>lua require('plugins.toggleterm').broot_toggle()<CR>]], "broot" },
-        k = { [[<Cmd>lua require('plugins.toggleterm').k9s_toggle()<CR>]], "k9s" },
-        t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
+        b = { [[<Cmd>lua _BROOT_TOGGLE()<CR>]], "broot" },
+        k = { [[<Cmd>lua _K9S_TOGGLE()<CR>]], "k9s" },
+        h = { [[<Cmd>lua _HTOP_TOGGLE()<CR>]], "htop" },
+        -- t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
     },
     ["<leader>h"] = {
         name = "hop",
@@ -147,7 +149,7 @@ wk.register({
         name = "+git",
         c = { [[<Cmd>lua require('plugins.telescope').my_git_commits()<CR>]], "git commits delta" },
         s = { [[<Cmd>:Telescope git_status<CR>]], "git status" },
-        g = { [[<Cmd>lua require('plugins.toggleterm').lazygit_toggle()<CR>]], "lazygit" },
+        g = { [[<cmd>lua _LAZYGIT_TOGGLE()<CR>]], "Lazygit" },
         b = { [[<Cmd>GitBlameToggle<CR>]], "blame" },
         d = { [[<Cmd>DiffviewOpen<CR>]], "diff view open" },
         D = { [[<Cmd>DiffviewClose<CR>]], "diff view close" },
