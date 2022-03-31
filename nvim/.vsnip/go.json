@@ -1,0 +1,14 @@
+{
+    "go-client-config-loader": {
+        "prefix": "clientset",
+        "body": [
+            "    rules := clientcmd.NewDefaultClientConfigLoadingRules()",
+            "    kubeconfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(rules, &clientcmd.ConfigOverrides{})",
+            "    config, err := kubeconfig.ClientConfig()",
+            "    if err != nil { panic(err) }",
+            "    clientset := kubernetes.NewForConfigOrDie(config)",
+            ""
+        ],
+        "description": "go-client-config-loader"
+    }
+}

@@ -203,7 +203,15 @@ findalias() {
 }
 
 stdead() {
-  stern --tail 20 --container-state terminated | grep -i ${1}
+  st --container-state terminated ${1} --tail 20 | grep -i "${2}"
+}
+
+strun() {
+  st --container-state running ${1} --tail 20 | grep -i "${2}"
+}
+
+stwait() {
+  st --container-state waiting ${1} --tail 20 | grep -i "${2}"
 }
 
 # a bunch of really ugly functions that could use a lot of improvements
