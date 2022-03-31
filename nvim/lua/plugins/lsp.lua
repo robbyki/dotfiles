@@ -346,23 +346,30 @@ lspconfig.gopls.setup({
 --                            JAVASCRIPT                            --
 ----------------------------------------------------------------------
 lspconfig.tsserver.setup({
-    on_attach = custom_attach,
-    capabilities = capabilities,
-    filetypes = {
-        "javascript",
-        "javascript.jsx",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-    },
-    init_options = {
-        importModuleSpecifierEnding = "auto",
-        importModuleSpecifierPreference = "project-relative",
-        includePackageJsonAutoImports = "auto",
-    },
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+    end,
 })
 
+-- lspconfig.tsserver.setup({
+--     on_attach = custom_attach,
+--     capabilities = capabilities,
+--     filetypes = {
+--         "javascript",
+--         "javascript.jsx",
+--         "javascriptreact",
+--         "typescript",
+--         "typescriptreact",
+--         "typescript.tsx",
+--     },
+--     init_options = {
+--         importModuleSpecifierEnding = "auto",
+--         importModuleSpecifierPreference = "project-relative",
+--         includePackageJsonAutoImports = "auto",
+--     },
+-- })
+--
 vim.cmd([[
     augroup Format
       autocmd!
