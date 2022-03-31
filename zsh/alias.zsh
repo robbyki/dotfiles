@@ -237,11 +237,7 @@ alias pdrmcls='podman rm -fa'
 alias pdnuke='podman rmi -fa'
 alias pdsc='podman stop $(docker ps -aq)'
 alias pds='podman search'
-alias pdif="pdi --format '{{.Repository}} -> {{.ID}}'"
-# alias di='docker images'
-# alias drmi='docker images -q | xargs docker rmi'
-# alias drmif='docker rmi --force $(docker images -q)'
-# alias docker-reset='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+alias pdif="pdi --format '{{.Repository}}'"
 alias lzd='lazydocker'
 
 # keepassxc
@@ -313,9 +309,9 @@ alias tlint='tekton-lint'
 alias ylint='yamllint'
 # alias y='yq eval -C'
 # type yq > /dev/null && alias yq='yq -C'
-alias -g @yml='| yq eval -P'
-alias -g @yaml='| yq eval -P'
-alias -g @json='| jq'
+alias -g @yml=' | yq eval -P'
+alias -g @yaml=' | yq eval -P'
+alias -g @json=' | jq'
 
 zrc() {
   $EDITOR $DOTFILES/zsh/.zshrc
@@ -330,7 +326,7 @@ alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.i
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
 
-# I don't really need these since I can just use `magic-enter` but I like them anyway
+# I don't really need these since I can just use $(magic-enter) but I like them anyway
 alias ptop='tput cup $((LINES/4)) 0' # Clear quarter
 # alias pmid='tput cup $((LINES/2)) 0'  # Clear half
 alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th

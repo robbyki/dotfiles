@@ -45,7 +45,7 @@ local lazygit = Terminal:new({
     float_opts = {
         border = "curved",
         width = 100,
-        height = 60,
+        height = 100,
     },
 })
 

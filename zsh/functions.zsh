@@ -202,6 +202,10 @@ findalias() {
   alias | grep ${1}
 }
 
+stdead() {
+  stern --tail 20 --container-state terminated | grep -i ${1}
+}
+
 # a bunch of really ugly functions that could use a lot of improvements
 
 # delete any target directory recursively in a jvm project. helpful for debugging.
@@ -275,7 +279,8 @@ oclogin() {
 }
 
 ocgethost() {
-  oc get route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}'
+  echo "$(ocg route/default-route -n openshift-image-registry -o=jsonpath='{.spec.host}')"
+
 }
 # colorize oc commands
 ocy() {
@@ -339,10 +344,6 @@ encryptibm() {
 
 ssibm() {
   secrets source ibm-secrets 2>/dev/null
-}
-
-ocgethost() {
-
 }
 
 ocpatchroute() {
