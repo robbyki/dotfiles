@@ -1,6 +1,6 @@
 require("notify").setup({
     stages = "slide",
-    timeout = 2500,
+    timeout = 2000,
     -- render = "minimal",
     -- background_colour = "#24292e",
     max_width = 65,
