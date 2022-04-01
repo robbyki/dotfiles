@@ -4,6 +4,9 @@ alias vi=$EDITOR
 alias vim=$EDITOR
 alias nvim=$EDITOR
 
+# container testing
+alias pdfedora='pdr -it fedora bash'
+
 # Quick files and directories
 alias nvim=/bin/nvim
 alias dots="cd $DOTFILES"

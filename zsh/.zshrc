@@ -15,26 +15,26 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # {{{ zsh-plugins
 plugins=(
-    fzf-alias
-    golang
-    docker
+    alias-tips
     autoupdate
+    dnf
+    docker
+    flatpak
+    fzf-alias
+    fzf-tab
     git
+    golang
+    jfrog
+    notify
+    npm
+    tmux
+    vi-mode
+    vscode
+    zsh-256color
     zsh-autosuggestions
     zsh-better-npm-completion
-    zsh-syntax-highlighting
-    dnf
-    vscode
-    jfrog
-    tmux
-    alias-tips
-    zsh-256color
-    fzf-tab
     zsh-secrets
-    flatpak
-    npm
-    notify
-    vi-mode
+    zsh-syntax-highlighting
 )
 # }}}
 
@@ -48,8 +48,8 @@ source <(minikube completion zsh)
 source $ZSH/completions/_ic
 source $ZSH/completions/_helm
 source $HOME/.config/broot/launcher/bash/br
-source <(stern --completion=zsh) # does not work
-source $ZSH/completions/_stern # does not work
+# source <(stern --completion=zsh) # does not work
+# source $ZSH/completions/_stern # does not work
 autoload -U +X bashcompinit && bashcompinit
 # }}}
 
