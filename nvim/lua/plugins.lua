@@ -565,8 +565,6 @@ return packer.startup(function(use)
     --		--		require("plugins.session-manager")
     --		--	end,
     --		--})
-    --		--use({ "caenrique/nvim-maximize-window-toggle" })
-    --
 
     use({
         "AckslD/nvim-neoclip.lua",
