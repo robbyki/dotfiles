@@ -346,6 +346,7 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     --                            Completion                            --
     ----------------------------------------------------------------------
+
     use({
         "hrsh7th/nvim-cmp",
         requires = {
@@ -379,6 +380,7 @@ return packer.startup(function(use)
             require("plugins.copilot")
         end,
     })
+
     use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
     use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
     use({

@@ -10,7 +10,7 @@ require("utils").create_augroups({
         -- Automatically create parent directories if non existent
         -- { "BufWritePre", "*", [[lua require('utils').MkNonExDir(vim.fn.expand('<afile>'), vim.fn.expand('<abuf>'))]] },
 
-        { "BufWritePost", "plugins.lua", [[source <afile> | PackerSync]] },
+        -- { "BufWritePost", "plugins.lua", [[source <afile> | PackerSync]] },
 
         -- Highlight text after yanking
         { "TextYankPost", "*", [[lua require('vim.highlight').on_yank({ higroup = 'Substitute', timeout = 200 })]] },
@@ -30,7 +30,7 @@ require("utils").create_augroups({
         },
         -- Notification after file change
         -- https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
-        { "VimEnter", "*", [[lua require('utils').update_plugins_every_day()]] },
+        -- { "VimEnter", "*", [[lua require('utils').update_plugins_every_day()]] },
         -- Open read-only automatically if swapfile exists
     },
     -- Simple one-liner filetype specific things that I don't really want to put
