@@ -244,8 +244,8 @@ export UPDATE_ZSH_DAYS=10
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export ocregistry=image-registry.openshift-image-registry.svc:5000
-export ocpschema=${HOME}/dev/openshift-json-schema
+export OCREGISTRY=image-registry.openshift-image-registry.svc:5000
+export OCPSCHEMA=${HOME}/dev/openshift-json-schema
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
@@ -285,3 +285,5 @@ export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 ssibm
 
 source /home/robbyk/.config/broot/launcher/bash/br
+
+export GOOS=linux

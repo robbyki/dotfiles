@@ -1,6 +1,6 @@
 {
     "go-client-config-loader": {
-        "prefix": "go-client-config-simple",
+        "prefix": "goclient-config-simple",
         "body": [
             "rules := clientcmd.NewDefaultClientConfigLoadingRules()",
             "kubeconfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(rules, &clientcmd.ConfigOverrides{})",
@@ -12,7 +12,7 @@
         "description": "go-client-config-loader"
     },
     "go-client-list-namespaces": {
-        "prefix": "go-client-list-ns",
+        "prefix": "goclient-list-ns",
         "body": [
             "namespaces, err := clientset.CoreV1().Namespaces().List(metav1.ListOptions{})",
             "if err != nil { panic(err) }",
@@ -24,7 +24,7 @@
         "description": "go-client-list-namespaces"
     },
     "go-client-list-pods": {
-        "prefix": "go-client-list-pods",
+        "prefix": "goclient-list-pods",
         "body": [
             "pods, err := clientset.CoreV1().Pods(\"\").List(metav1.ListOptions{})",
             "if err != nil { panic(err) }",
@@ -36,7 +36,7 @@
         "description": "go-client-list-pods"
     },
     "go-client-config-loader-flag": {
-        "prefix": "go-client-config-flag",
+        "prefix": "goclient-config-flag",
         "body": [
             "var kubeconfig *string",
             "if home := homedir.HomeDir(); home != \"\" {",
@@ -76,6 +76,7 @@
             "    \"k8s.io/client-go/kubernetes\"",
             "    \"k8s.io/client-go/tools/clientcmd\"",
             "    \"k8s.io/client-go/util/homedir\"",
+            "    \"k8s.io/client-go/rest\"",
             "    //",
             "    // Uncomment to load all auth plugins",
             "    // _ \"k8s.io/client-go/plugin/pkg/client/auth\"",
@@ -120,5 +121,22 @@
             ""
         ],
         "description": "list pods with error"
+    },
+    "In Cluster Config Loader": {
+        "prefix": "goclient-in-cluster-config-loader",
+        "body": [
+            "// creates the in-cluster config",
+            "config, err := rest.InClusterConfig()",
+            "if err != nil {",
+            "    panic(err.Error())",
+            "}",
+            "// creates the clientset",
+            "clientset, err := kubernetes.NewForConfig(config)",
+            "if err != nil {",
+            "    panic(err.Error())",
+            "}",
+            ""
+        ],
+        "description": "In Cluster Config Loader"
     }
 }

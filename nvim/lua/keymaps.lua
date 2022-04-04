@@ -38,7 +38,7 @@ map("x", "J", ":move '>+1<CR>gv-gv")
 map("n", "<Esc><Esc>", ":nohlsearch<CR>")
 map("n", "<leader>n", ":set number! norelativenumber<CR>")
 map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
-map("n", "<leader>ev", ":vs $myvimrc<CR>")
+map("n", "<leader>ev", ":vs $MYVIMRC<CR>")
 map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
 map("n", "<esc>", ":noh<CR><esc>", { silent = true })
 map("n", "<Leader>w", ":write<CR>", { noremap = true })

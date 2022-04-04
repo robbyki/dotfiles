@@ -329,9 +329,10 @@ pdloginrcrh() {
   podman login registry.connect.redhat.com -u $RCRHUSER -p $RCRHTKN
 }
 
-pdpush() {
-  podman push --tls-verify=false $1
-}
+# this prevents me from being able to autocomplete the local images
+# pdpush() {
+#   podman push --tls-verify=false $1
+# }
 
 ocgetroutes() {
   oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name
