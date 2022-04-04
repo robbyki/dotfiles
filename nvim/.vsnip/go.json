@@ -1,14 +1,124 @@
 {
     "go-client-config-loader": {
-        "prefix": "clientset",
+        "prefix": "go-client-config-simple",
         "body": [
-            "    rules := clientcmd.NewDefaultClientConfigLoadingRules()",
-            "    kubeconfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(rules, &clientcmd.ConfigOverrides{})",
-            "    config, err := kubeconfig.ClientConfig()",
-            "    if err != nil { panic(err) }",
-            "    clientset := kubernetes.NewForConfigOrDie(config)",
+            "rules := clientcmd.NewDefaultClientConfigLoadingRules()",
+            "kubeconfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(rules, &clientcmd.ConfigOverrides{})",
+            "config, err := kubeconfig.ClientConfig()",
+            "if err != nil { panic(err) }",
+            "clientset := kubernetes.NewForConfigOrDie(config)",
             ""
         ],
         "description": "go-client-config-loader"
+    },
+    "go-client-list-namespaces": {
+        "prefix": "go-client-list-ns",
+        "body": [
+            "namespaces, err := clientset.CoreV1().Namespaces().List(metav1.ListOptions{})",
+            "if err != nil { panic(err) }",
+            "for _, namespace := range namespaces.Items {",
+            "    fmt.Println(namespace.Name)",
+            "}",
+            ""
+        ],
+        "description": "go-client-list-namespaces"
+    },
+    "go-client-list-pods": {
+        "prefix": "go-client-list-pods",
+        "body": [
+            "pods, err := clientset.CoreV1().Pods(\"\").List(metav1.ListOptions{})",
+            "if err != nil { panic(err) }",
+            "for _, pod := range pods.Items {",
+            "    fmt.Printf(\"%s\\n\", pod.Name)",
+            "}",
+            ""
+        ],
+        "description": "go-client-list-pods"
+    },
+    "go-client-config-loader-flag": {
+        "prefix": "go-client-config-flag",
+        "body": [
+            "var kubeconfig *string",
+            "if home := homedir.HomeDir(); home != \"\" {",
+            "    kubeconfig = flag.String(\"kubeconfig\", filepath.Join(home, \".kube\", \"config\"), \"(optional) absolute path to the kubeconfig file\")",
+            "} else {",
+            "    kubeconfig = flag.String(\"kubeconfig\", \"\", \"absolute path to the kubeconfig file\")",
+            "}",
+            "flag.Parse()",
+            "",
+            "// use the current context in kubeconfig",
+            "config, err := clientcmd.BuildConfigFromFlags(\"\", *kubeconfig)",
+            "if err != nil {",
+            "    panic(err.Error())",
+            "}",
+            "",
+            "// create the clientset",
+            "clientset, err := kubernetes.NewForConfig(config)",
+            "if err != nil {",
+            "    panic(err.Error())",
+            "}",
+            ""
+        ],
+        "description": ""
+    },
+    "go-client-essential-imports": {
+        "prefix": "goclient-imports",
+        "body": [
+            "import (",
+            "    \"context\"",
+            "    \"flag\"",
+            "    \"fmt\"",
+            "    \"path/filepath\"",
+            "    \"time\"",
+            "    ",
+            "    \"k8s.io/apimachinery/pkg/api/errors\"",
+            "    metav1 \"k8s.io/apimachinery/pkg/apis/meta/v1\"",
+            "    \"k8s.io/client-go/kubernetes\"",
+            "    \"k8s.io/client-go/tools/clientcmd\"",
+            "    \"k8s.io/client-go/util/homedir\"",
+            "    //",
+            "    // Uncomment to load all auth plugins",
+            "    // _ \"k8s.io/client-go/plugin/pkg/client/auth\"",
+            "    //",
+            "    // Or uncomment to load specific auth plugins",
+            "    // _ \"k8s.io/client-go/plugin/pkg/client/auth/azure\"",
+            "    // _ \"k8s.io/client-go/plugin/pkg/client/auth/gcp\"",
+            "    // _ \"k8s.io/client-go/plugin/pkg/client/auth/oidc\"",
+            "    // _ \"k8s.io/client-go/plugin/pkg/client/auth/openstack\"",
+            ")",
+            "",
+            ""
+        ],
+        "description": "essential-imports"
+    },
+    "list pods with error": {
+        "prefix": "goclient-list-pods-error",
+        "body": [
+            "for {",
+            "    pods, err := clientset.CoreV1().Pods(\"\").List(context.TODO(), metav1.ListOptions{})",
+            "    if err != nil {",
+            "        panic(err.Error())",
+            "    }",
+            "    fmt.Printf(\"There are %d pods in the cluster\\n\", len(pods.Items))",
+            "",
+            "    namespace := ${1:nsname}",
+            "    pod := ${2:podname}",
+            "    _, err = clientset.CoreV1().Pods(namespace).Get(context.TODO(), pod, metav1.GetOptions{})",
+            "    if errors.IsNotFound(err) {",
+            "        fmt.Printf(\"Pod %s in namespace %s not found\\n\", pod, namespace)",
+            "    } else if statusError, isStatus := err.(*errors.StatusError); isStatus {",
+            "        fmt.Printf(\"Error getting pod %s in namespace %s: %v\\n\",",
+            "            pod, namespace, statusError.ErrStatus.Message)",
+            "    } else if err != nil {",
+            "        panic(err.Error())",
+            "    } else {",
+            "        fmt.Printf(\"Found pod %s in namespace %s\\n\", pod, namespace)",
+            "    }",
+            "    time.Sleep(10 * time.Second)",
+            "}",
+            "",
+            ""
+        ],
+        "description": "list pods with error"
     }
 }
