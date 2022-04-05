@@ -550,7 +550,13 @@ return packer.startup(function(use)
         end,
     })
     use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
-    use({ "ray-x/navigator.lua", requires = { "ray-x/guihua.lua", run = "cd lua/fzy && make" } })
+    -- use({
+    --     "ray-x/navigator.lua",
+    --     requires = { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+    --     config = function()
+    --         require(".navigator").setup({})
+    --     end,
+    -- })
 
     ----------------------------------------------------------------------
     --                             Orgmode                              --
