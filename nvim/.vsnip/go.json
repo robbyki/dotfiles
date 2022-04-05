@@ -138,5 +138,19 @@
             ""
         ],
         "description": "In Cluster Config Loader"
+    },
+    "simple entry point": {
+        "prefix": "go-entry-simple",
+        "body": [
+            "package main",
+            "",
+            "",
+            "import (",
+            "    \"fmt\"",
+            "    \"os\"",
+            ")\n\n",
+            ""
+        ],
+        "description": "simple entry point"
     }
 }

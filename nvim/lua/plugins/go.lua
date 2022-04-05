@@ -32,6 +32,6 @@ vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').
 
 -- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require("go.format").goimport() ]], false)
 -- vim.cmd('autocmd BufEnter,CursorHold,InsertLeave *.go lua require("go.codelens").refresh()')
-vim.cmd("autocmd FileType go nmap <leader>gr  :GoRun -buildvcs=false .<CR>")
+vim.cmd("autocmd FileType go nmap <leader>gr  :cd %:p:h <CR> :GoRun -buildvcs=false .<CR>")
 
 vim.api.nvim_set_keymap("n", "<Leader>cf", '<cmd>lua require"go.term".close()<CR>', { noremap = true })

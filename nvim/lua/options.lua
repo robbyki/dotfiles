@@ -130,3 +130,4 @@ vim.cmd("colorscheme kanagawa")
 vim.cmd([[ 
     highlight ScrollView ctermbg=159 guibg=LightCyan
 ]])
+vim.g.nvim_tree_respect_buf_cwd = 1

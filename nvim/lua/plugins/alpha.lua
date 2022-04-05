@@ -107,7 +107,7 @@ local buttons = {
         button("r", "  Recently Files", ":Telescope oldfiles<CR>"),
         button("u", "  Update Packer", ":PackerSync<CR>"),
         button("f", "  Telescope", ":Telescope find_files<CR>"),
-        button("p", "  Projects", ":Telescope project<CR>"),
+        button("p", "  Projects", ":Telescope projects<CR>"),
         button("t", "  Find text", ":Telescope live_grep <CR>"),
         button("d", "  Dotfiles", ":cd ~/.dotfiles | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"),
         button(

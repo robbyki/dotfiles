@@ -19,9 +19,9 @@ vim.cmd([[
 -- TODO: need to figure out how to make this not conflict with vim movements after opening embeds
 -- although I don't feel like these should persist and like the idea of quick one-offs and close
 -- toggleterm mappings
--- map("t", "<esc>", [[<C-\><C-n>]])
+-- map("t", "<C-S-n>", [[<C-\><C-n>]])
 -- map("t", "<C-j><C-k>", [[<C-\><C-n>]])
--- -- map("t", "<C-S-h>", [[<C-/><C-n><C-W>h]])
+-- map("t", "<C-S-h>", [[<C-/><C-n><C-W>h]])
 -- map("t", "<C-n><C-W>j", [[<C-\><C-n><C-W>j]])
 -- map("t", "<C-S-k>", [[<C-\><C-n><C-W>k]])
 -- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
@@ -57,7 +57,7 @@ map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>")
 map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
 map("n", "<leader>xl", "<cmd>Trouble loclist<cr>")
 map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>")
-map("n", "<leader>xc", "<cmd>Trouble close<cr>")
+map("n", "<leader>xc", "<cmd>:TroubleClose<cr>")
 map("n", "<leader>xr", "<cmd>Trouble refresh<cr>")
 map("n", "<leader>xt", "<cmd>Trouble toggle<cr>")
 map("n", "gR", "<cmd>Trouble lsp_references<cr>")
@@ -81,6 +81,7 @@ wk.register({
     ["<leader><leader>b"] = { [[<Cmd>lua require('telescope.builtin').builtin()<CR>]], "telescope builtins" },
     ["<leader>?"] = { [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], "recent files" },
     ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
+    ["<leader>cd"] = { ":cd %:p:h<CR>", "cd to current buffer" },
 })
 
 wk.register({
@@ -99,7 +100,7 @@ wk.register({
         l = { [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], "live grep" },
         m = { [[<Cmd>lua require('telescope.builtin').marks()<CR>]], "marks" },
         n = { [[<cmd>lua require('plugins.telescope').edit_neovim()<CR>]], "dotfiles" },
-        p = { [[<Cmd>lua require'telescope'.extensions.project.project{}<CR>]], "projects" },
+        p = { [[<Cmd>:Telescope projects<CR>]], "projects" },
         r = { [[<Cmd>lua require('telescope.builtin').registers()<CR>]], "registers" },
         s = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/bin', hidden = true })<CR>]], "scripts" },
         t = { [[<Cmd>lua require('telescope.builtin').tags()<CR>]], "tags" },

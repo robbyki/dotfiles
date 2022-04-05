@@ -52,6 +52,19 @@ return packer.startup(function(use)
         end,
     })
     use({
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup({
+                silent_chdir = false,
+                show_hidden = false,
+                -- detection_methods = { "lsp" },
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            })
+        end,
+    })
+    use({
         "nacro90/numb.nvim",
         config = function()
             require("plugins.numb")
@@ -241,7 +254,7 @@ return packer.startup(function(use)
             "nvim-lua/popup.nvim",
             "nvim-telescope/telescope-frecency.nvim",
             "nvim-telescope/telescope-symbols.nvim",
-            "nvim-telescope/telescope-project.nvim",
+            -- "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
             "nvim-telescope/telescope-github.nvim",
             "nvim-telescope/telescope-dap.nvim",
