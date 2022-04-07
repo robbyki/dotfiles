@@ -13,3 +13,4 @@ ln -s -f ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
 ln -s -f ~/.dotfiles/zsh/functions.zsh ~/.oh-my-zsh/custom/functions.zsh
 ln -s -f ~/.dotfiles/zsh/fzf-tab.zsh ~/.oh-my-zsh/custom/fzf-tab.zsh
 ln -s -f ~/.dotfiles/zsh/completions ~/.oh-my-zsh/completions
+ln -s -f ~/.dotfiles/git/.gitconfig ~/.gitconfig
