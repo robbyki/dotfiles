@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# oh-my-zsh settings
 export ZSH="$HOME/.oh-my-zsh"
 
 # powerlevel10k settings prompt {{{
@@ -18,16 +17,17 @@ plugins=(
     alias-tips
     autoupdate
     dnf
-    docker
-    flatpak
     fzf-alias
+    colored-man-pages
+    sudo
+    flatpak
     fzf-tab
     git
     golang
     jfrog
     notify
-    npm
     tmux
+    npm
     vi-mode
     vscode
     zsh-256color
@@ -40,14 +40,14 @@ plugins=(
 
 # {{{ completions
 autoload -U compinit && compinit
-source <(kubectl completion zsh)
-source <(tkn completion zsh)
-# this is a temp fix until upstream is fixed
-source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
-source <(minikube completion zsh)
-source $ZSH/completions/_ic
-source $ZSH/completions/_helm
+# source <(kubectl completion zsh)
+# source <(tkn completion zsh)
+# source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
+# source <(minikube completion zsh)
+# source $ZSH/completions/_ic
+# source $ZSH/completions/_helm
 source $HOME/.config/broot/launcher/bash/br
+source /home/robbyk/.config/broot/launcher/bash/br
 # source <(stern --completion=zsh) # does not work
 # source $ZSH/completions/_stern # does not work
 autoload -U +X bashcompinit && bashcompinit
@@ -73,20 +73,16 @@ export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
 # }}}
 
 # {{{ history settings
-export HISTFILESIZE=
-export HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE=~/.zsh_history
 setopt bang_hist              # Treat the '!' character specially during expansion
 setopt inc_append_history     # Write to the history file immediately, not when the shell exits
 setopt share_history          # Share history between all sessions
-
-# duplication treatment
 setopt hist_expire_dups_first # Expire a duplicate event first when trimming history
 setopt hist_ignore_dups       # Do not record an event that was just recorded again
 setopt hist_ignore_all_dups   # Delete an old recorded event if a new event is a duplicate
 setopt hist_save_no_dups      # Do not write a duplicate event to the history file
-
 setopt hist_ignore_space      # Do not record an event starting with a space
 setopt hist_reduce_blanks     # Remove superfluous blanks from commands added to history
 setopt hist_verify            # Do not execute immediately upon history expansion
@@ -96,31 +92,30 @@ HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
 HISTCONTROL='ignoreboth';
 # }}}
 
+# {{{ applications
+export EDITOR=/usr/local/bin/nvim
 export IBMCLOUD_TRACE=false
 export IBMCLOUD_COLOR=true
 export IBMCLOUD_VERSION_CHECK=true
-export VISUAL=/bin/nvim
-export EDITOR=/bin/nvim
-export SUDO_EDITOR=/bin/nvim
+export VISUAL=$EDITOR
+export SUDO_EDITOR=$EDITOR
+export GH_EDITOR=$EDITOR
 export MYVIMRC=$HOME/.config/nvim/init.lua
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
 export STEWARD_DIR=$HOME/dev/scala-steward/
-export GH_EDITOR=/bin/nvim
 export CARGO=$HOME/.cargo
 export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
 export SCRIPTS=${HOME}/bin
-# export GOROOT=${HOME}/sdk/go1.18beta2
 export GOPATH=${HOME}/go
 export GOROOT=/usr/local/go
-# export GOROOT=/usr/local/go1.17.8
-
-export PATH=${GOROOT}/bin:${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
-
 export KUBECONFIG=$HOME/.kube/config
 # export KUBECONFIG=$KUBECONFIG:my-super-config
+
+export PATH=${GOROOT}/bin:${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
+# }}}
 
 # {{{ easier pasting
 zle_highlight+=(paste:none)
@@ -142,45 +137,13 @@ export TMOUT=0
 # color scheme for bat viewer
 export BAT_THEME="OneHalfDark"
 
-# I think I do this around 2 million times a day.
-fancyctrlz () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
+# {{{ keybindings
 zle -N fancyctrlz
-
-fzf_then_open_in_editor() {
-    file="$(__fsel)"
-    file_no_whitespace="$(echo -e "${file}" | tr -d '[:space:]')"
-    if [ -n "$file_no_whitespace" ]; then
-      ${EDITOR:-nvim} "${file_no_whitespace}"
-    fi;
-    zle accept-line
-}
 zle -N fzf_then_open_in_editor
-
-fzf-open-file-current-dir() {
-  local cmd="fd -tf -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
-  local out=$(eval "$cmd" | $(__fzfcmd) -m "$@")
-  # local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
-  if [ -f "$out" ]; then
-    $EDITOR "$out" < /dev/tty
-  elif [ -d "$out" ]; then
-    cd "$out"
-  fi
-  zle reset-prompt
-}
 zle -N fzf-open-file-current-dir
-
 zle -N prompt-middle
 zle -N fzf_functions
 zle -N fzf_alias
-
 bindkey '^ ' autosuggest-accept
 bindkey -a '^ ' autosuggest-accept
 bindkey '^Z' fancyctrlz
@@ -191,13 +154,11 @@ bindkey '^[m' prompt-middle
 bindkey -M emacs '\ea' fzf_alias
 bindkey -M vicmd '\ea' fzf_alias
 bindkey -M viins '\ea' fzf_alias
-# bindkey -M emacs '\ef' fzf_functions
-# bindkey -M vicmd '\ef' fzf_functions
-# bindkey -M viins '\ef' fzf_functions
 bindkey "^[l" clear-screen
 bindkey -s "^[=" 'k9s^M'
+# }}}
 
-# FZF Settings
+# {{{ FZF Settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
@@ -209,6 +170,7 @@ export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm
 export FZF_ALT_C_OPTS="--height 80% --preview 'tree -NC {} | head -200'"
 export FZF_TMUX_OPTS="-p 90%,30%"
 export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
+# }}}
 
 #export number of processors on linux
 # cpuinfo
@@ -218,6 +180,7 @@ else
 	export NUM_OF_CORES=1
 fi
 
+# {{{ nvim settings for embedded terminal
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
 fi
@@ -229,14 +192,16 @@ else
     export VISUAL="nvim"
     export EDITOR="nvim"
 fi
+# }}}
 
 # better cd
 eval "$(zoxide init zsh)"
 
-# fnm
+# node manager
 eval "`fnm env`"
 eval "$(fnm env --use-on-cd)"
 
+# scala
 export SBT_CREDENTIALS=$HOME/.sbt/.credentials
 
 # helper file for storing ocp cluster info
@@ -250,8 +215,8 @@ export OCPSCHEMA=${HOME}/dev/openshift-json-schema
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
 
-fpath=( ~/.zshfunctions "${fpath[@]}" )
-autoload -Uz $fpath[1]/*(.:t)
+#fpath=( ~/.zshfunctions "${fpath[@]}" )
+#autoload -Uz $fpath[1]/*(.:t)
 
 # used for gpg zsh secrets plugin
 export RECIPIENT="robbmk@gmail.com"
@@ -272,6 +237,7 @@ export KEYTIMEOUT=1
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^v' edit-command-line
 
+# notifications
 zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200_s.gif"
 zstyle ':notify:*' error-title "wow such #fail"
 zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
@@ -282,8 +248,27 @@ export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 # enable this to make it easier during demos and creating many tmux panes
 # source ~/dev/tutorial/oc-app-demo/ocvars
 
-ssibm
-
-source /home/robbyk/.config/broot/launcher/bash/br
+#ssibm
 
 export GOOS=linux
+
+#if command -v go &> /dev/null
+#then
+#    export GOPATH=$(go env GOPATH)
+#
+#    # Add $GOPATH/bin to $PATH if not already there
+#    case ":$PATH:" in
+#        *:$GOPATH/bin:*) ;;
+#        *) export PATH=$PATH:$GOPATH/bin ;;
+#    esac
+#fi
+
+# LF Icons
+LF_ICONS=$(sed ~/.config/lf/icons \
+            -e '/^[ \t]*#/d'      \
+            -e '/^[ \t]*$/d'      \
+            -e 's/[ \t]\+/=/g'    \
+            -e 's/$/ /')
+LF_ICONS=${LF_ICONS//$'\n'/:}
+LF_ICONS=$(echo $LF_ICONS | tr -d '[:space:]')
+export LF_ICONS

@@ -1,5 +1,6 @@
-export EDITOR="/bin/nvim"
+export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
+
 alias vi=$EDITOR
 alias vim=$EDITOR
 alias nvim=$EDITOR
@@ -8,7 +9,7 @@ alias nvim=$EDITOR
 alias pdfedora='pdr -it fedora bash'
 
 # Quick files and directories
-alias nvim=/bin/nvim
+alias nvim=/usr/local/bin/nvim
 alias dots="cd $DOTFILES"
 alias p10cfg="$EDITOR $DOTFILES/zsh/.p10k.zsh"
 alias zshcfg="$EDITOR $DOTFILES/zsh/.zshrc"

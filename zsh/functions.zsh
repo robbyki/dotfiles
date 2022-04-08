@@ -78,6 +78,39 @@ function gccd() {
 #                          System functions                          #
 #--------------------------------------------------------------------#
 # moves my prompt to middle of screen. Helpful during video presentations.
+
+fzf_then_open_in_editor() {
+    file="$(__fsel)"
+    file_no_whitespace="$(echo -e "${file}" | tr -d '[:space:]')"
+    if [ -n "$file_no_whitespace" ]; then
+      ${EDITOR:-nvim} "${file_no_whitespace}"
+    fi;
+    zle accept-line
+}
+
+fzf-open-file-current-dir() {
+  local cmd="fd -tf -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i ."
+  local out=$(eval "$cmd" | $(__fzfcmd) -m "$@")
+  # local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
+  if [ -f "$out" ]; then
+    $EDITOR "$out" < /dev/tty
+  elif [ -d "$out" ]; then
+    cd "$out"
+  fi
+  zle reset-prompt
+}
+
+# I think I do this around 2 million times a day.
+fancyctrlz () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+
 function prompt-middle() {
   tput cup $((LINES / 2)) 0
   zle reset-prompt
