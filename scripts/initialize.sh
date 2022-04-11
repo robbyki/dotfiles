@@ -56,3 +56,5 @@ ssh-add ~/.ssh/robbmk_id_ed25519
 ssh -T git@github.com
 
 wget https://go.dev/dl/go1.18.linux-amd64.tar.gz
+
+install lfrc
