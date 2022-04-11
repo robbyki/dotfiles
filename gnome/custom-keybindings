@@ -1,0 +1,15 @@
+#/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/
+[custom0]
+binding='<Primary><Alt>r'
+command='rofi -show drun'
+name='Rofi drun'
+
+[custom1]
+binding='<Primary><Shift>a'
+command='rofi -show window'
+name='Rofi-Window'
+
+[custom2]
+binding='<Primary><Alt>t'
+command='/usr/bin/alacritty'
+name='Alacritty'
