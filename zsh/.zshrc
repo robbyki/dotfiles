@@ -112,6 +112,7 @@ export SCRIPTS=${HOME}/bin
 export GOPATH=${HOME}/go
 export GOROOT=/usr/local/go
 export KUBECONFIG=$HOME/.kube/config
+# export LUASERVER=$HOME/tools/lua-language-server
 # export KUBECONFIG=$KUBECONFIG:my-super-config
 
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
@@ -272,3 +273,6 @@ LF_ICONS=$(sed ~/.config/lf/icons \
 LF_ICONS=${LF_ICONS//$'\n'/:}
 LF_ICONS=$(echo $LF_ICONS | tr -d '[:space:]')
 export LF_ICONS
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

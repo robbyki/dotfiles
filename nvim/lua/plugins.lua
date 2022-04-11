@@ -360,6 +360,7 @@ return packer.startup(function(use)
     --                            Completion                            --
     ----------------------------------------------------------------------
 
+    use("folke/lua-dev.nvim")
     use({
         "hrsh7th/nvim-cmp",
         requires = {
@@ -530,7 +531,7 @@ return packer.startup(function(use)
     use({ "nvim-lua/lsp-status.nvim" })
     use({
         "neovim/nvim-lspconfig",
-        requires = "williamboman/nvim-lsp-installer",
+        -- requires = "williamboman/nvim-lsp-installer",
         event = "BufReadPre",
         config = function()
             require("plugins.lsp")
@@ -538,7 +539,7 @@ return packer.startup(function(use)
     })
 
     use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && npm install" })
-    use({ "b0o/schemastore.nvim" })
+    use("b0o/schemastore.nvim")
 
     -------------------------------------------------------------------
     --                             Golang                            --
@@ -550,13 +551,6 @@ return packer.startup(function(use)
         end,
     })
     use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
-    -- use({
-    --     "ray-x/navigator.lua",
-    --     requires = { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
-    --     config = function()
-    --         require(".navigator").setup({})
-    --     end,
-    -- })
 
     ----------------------------------------------------------------------
     --                             Orgmode                              --

@@ -1,6 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/robbyk/.dotfiles
+- /home/robbyk/.local/share/nvim/site/pack/packer/start/kanagawa.nvim
 startuppopupversion: 5
 customcommandshistory: []
 hidecommandlog: false

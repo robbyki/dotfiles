@@ -163,7 +163,7 @@ lspconfig.sumneko_lua.setup({
 ----------------------------------------------------------------------
 --                         Language Servers                         --
 ----------------------------------------------------------------------
-local servers = { "bashls", "tsserver", "dockerls" }
+local servers = { "tsserver", "dockerls", "bashls" }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
         on_attach = custom_attach,
@@ -305,11 +305,12 @@ lspconfig.gopls.setup({
                 nilness = true,
             },
             codelenses = {
-                tidy = true,
-                upgrade_dependency = true,
-                vendor = true,
                 generate = true,
                 gc_details = true,
+                regenerate_cgo = true,
+                tidy = true,
+                upgrade_depdendency = true,
+                vendor = true,
             },
             usePlaceholders = true,
             semanticTokens = true,
