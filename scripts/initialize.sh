@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
+# work in progress automation for everytime I have to re-install my workstation tools
+# install sudoers right away
+
+sudo dnf upgrade --refresh -y
+
+# install rpmfusion for nvidia and vlc
+# install akmod-nvidia drivers with this
 sudo dnf install -y \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-sudo dnf upgrade --refresh -y
-
+# important base packages I need
 sudo dnf install -y \
     alacritty \
     autoconf \
@@ -23,7 +29,6 @@ sudo dnf install -y \
     gcc \
     gcc-c++ \
     gettext \
-    gh \
     gimp \
     keepassxc \
     kmod-v4l2loopback \
@@ -40,7 +45,6 @@ sudo dnf install -y \
     pkgconfig \
     ruby \
     ruby-devel \
-    rust \
     slack \
     the_silver_searcher \
     trash-cli \
@@ -51,13 +55,30 @@ sudo dnf install -y \
     wmctrl \
     xclip \
     xdotool \
-    zoxide
+    zoxide \
+    libgnome \
+    java-devel \
+    gnome-tweaks \
+    qutebrowser
 
 sudo dnf groupinstall "Development Tools" "Development Libraries"
 
+# gh (get config from mc)
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh
+# install gh config into XDG Config path
+
+# rust / cargo etc
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# broot
+gh repo clone Canop/broot
+cargo install --path .
+broot --install
+
 # install discord
 
-# install gh config from mc into XDG Config path
 # download from mc and move to ~/.config/
 # install ui stuff icons,font,themes
 
@@ -85,25 +106,24 @@ sh ./install.sh
 gh repo clone b4b4r07/enhancd ~/dev/enhancd
 
 # flatpak for obs mostly
-fp remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-fp install flathub com.obsproject.Studio
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub com.obsproject.Studio
 
-# install npm and node
+# install fnm, npm and node
 curl -fsSL https://fnm.vercel.app/install | bash
-fnm install latest
 fnm install --lts
 
-# shfmt
+# shfmt bash formatting
 curl -sS https://webinstall.dev/shfmt | bash
 
-# tmux tpm
+# tmux tpm for plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # install ohmyzsh
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# ohmyzsh custom plugins
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 git clone https://github.com/djui/alias-tips.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/alias-tips
 git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins $ZSH_CUSTOM/plugins/autoupdate
 git clone git@github.com:thirteen37/fzf-alias.git $ZSH_CUSTOM/plugins/fzf-alias
@@ -137,6 +157,11 @@ npm install -g yaml-language-server
 npm install -g bash-language-server
 npm install -g pyright
 
+# schema integration for lsp yaml
+gh repo clone robbyki/schemas
+mkdir -p ~/dev/openshift-json-schema/master-standalone/
+ln -s -f ~/dev/schemas/openshift/* ~/dev/openshift-json-schema/master-standalone
+
 # begin golang install and subsequent software using go install
 go install golang.org/x/tools/...@latest
 
@@ -148,10 +173,55 @@ chmod 400 ~/.ssh/ibm_id_ed25519
 ssh-add ~/.ssh/robbmk_id_ed25519
 ssh -T git@github.com
 
+# install golang
 wget https://go.dev/dl/go1.18.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
+#export PATH=$PATH:/usr/local/go/bin
 
-install lfrc
+# lf
+env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 
+# gnome customizations. needs more work
 dconf load /org/gnome/desktop/wm/keybindings/ < ~/.dotfiles/gnome/keybindings
 dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ < ~/.dotfiles/gnome/custom-keybindings
 
+#check video driver in use:
+lspci -nnk | egrep -i --color 'vga|3d|2d' -A3 | grep 'in use'
+
+# requires go to build jfrog-cli
+git clone https://github.com/jfrog/jfrog-cli
+cd jfrog-cli
+build/build.sh
+
+#vscode
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+dnf check-update
+sudo dnf install code
+# install User folder and extensions
+
+# install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+#install lazygit
+go install github.com/jesseduffield/lazygit@latest
+
+# dropbox for keepassxc integration
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+~/.dropbox-dist/dropboxd
+
+# gnupg config and secrets folder
+mc download > ~/
+
+# install keybase
+sudo yum install https://prerelease.keybase.io/keybase_amd64.rpm
+
+# install sbt
+sudo rm -f /etc/yum.repos.d/bintray-rpm.repo
+curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
+sudo mv sbt-rpm.repo /etc/yum.repos.d/
+sudo dnf install sbt
+
+# setup up kube and containers and drop kube config in here as needed
+mkdir ~/{.kube,containers}
