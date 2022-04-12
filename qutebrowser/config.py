@@ -19,17 +19,11 @@ dracula.draw.blood(c, {
 })
 
 
-#config.load_autoconfig()
-
 # Dracula theme
 # https://github.com/evannagle/qutebrowser-dracula-theme
 # Changes: Renamed file, overwriting hint colors
 #import dracula
 #dracula.blood(c, { 'font': { 'size': 11 } })
-
-## This is here so configs done via the GUI are still loaded.
-## Remove it to not load settings done via the GUI.
-#config.load_autoconfig()
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
@@ -54,7 +48,7 @@ c.aliases = {
 
 ## Always restore open sites when qutebrowser is reopened.
 ## Type: Bool
-# c.auto_save.session = False
+c.auto_save.session = True
 
 ## Backend to use to display websites. qutebrowser supports two different
 ## web rendering engines / backends, QtWebKit and QtWebEngine. QtWebKit
@@ -988,11 +982,11 @@ c.fonts.default_size = '14pt'
 
 ## Font used for the hints.
 ## Type: Font
-# c.fonts.hints = 'bold default_size default_family'
+c.fonts.hints = 'bold 18px default_familyy'
 
 ## Font used in the keyhint widget.
 ## Type: Font
-# c.fonts.keyhint = 'default_size default_family'
+c.fonts.keyhint = '18px default_family'
 
 ## Font used for error messages.
 ## Type: Font
@@ -1722,7 +1716,7 @@ c.zoom.default = '150%'
 
 ## Available zoom levels.
 ## Type: List of Perc
-# c.zoom.levels = ['25%', '33%', '50%', '67%', '75%', '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
+c.zoom.levels = ['100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
 
 ## Number of zoom increments to divide the mouse wheel movements to.
 ## Type: Int
