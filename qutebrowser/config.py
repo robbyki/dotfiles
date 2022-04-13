@@ -982,11 +982,11 @@ c.fonts.default_size = '14pt'
 
 ## Font used for the hints.
 ## Type: Font
-c.fonts.hints = 'bold 22px default_family'
+#c.fonts.hints = 'bold 18px default_family'
 
 ## Font used in the keyhint widget.
 ## Type: Font
-c.fonts.keyhint = '22px default_family'
+#c.fonts.keyhint = '18px default_family'
 
 ## Font used for error messages.
 ## Type: Font

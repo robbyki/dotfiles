@@ -60,6 +60,7 @@ sudo dnf install -y \
     qutebrowser \
     ruby \
     ruby-devel \
+    screenkey \
     shutter \
     skopeo \
     slack \
@@ -105,9 +106,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 gh repo clone Canop/broot
 cargo install --path .
 broot --install
-
-# download from mc and move to ~/.config/
-# install ui stuff icons,font,themes
 
 # build neovim
 gh repo clone neovim/neovim
@@ -277,24 +275,26 @@ git clone git@github.com:zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-m
 git clone git@github.com:lukechilds/zsh-better-npm-completion.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-better-npm-completion
 git clone git@github.com:chuwy/zsh-secrets.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-secrets
 git clone git@github.com:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone git@github.com:jeffreytse/zsh-vi-mode.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
+git clone git@github.com:chrissicool/zsh-256color.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-256color
 
 # setup symlinks to configs. obviously there are tools that do this better. maybe one day soon
-ln -s -f ~/.dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-ln -s -f ~/.dotfiles/bat/config ~/.config/bat/config
-ln -s -f ~/.dotfiles/broot/conf.hjson ~/.config/broot/conf.hjson
+ln -s -f ~/.dotfiles/alacritty ~/.config/alacritty
+ln -s -f ~/.dotfiles/bat ~/.config/bat
+ln -s -f ~/.dotfiles/broot ~/.config/broot
 ln -s -f ~/.dotfiles/fzf/key-bindings.zsh ~/.fzf/shell/key-bindings.zsh
 ln -s -f ~/.dotfiles/gh/config.yml ~/.config/gh/config.yml
 ln -s -f ~/.dotfiles/lf ~/.config/lf
 ln -s -f ~/.dotfiles/rofi ~/.config/rofi
 ln -s -f ~/.dotfiles/zsh/alias.zsh ~/.oh-my-zsh/custom/alias.zsh
-ln -s -f ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ln -s -f ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
 ln -s -f ~/.dotfiles/zsh/functions.zsh ~/.oh-my-zsh/custom/functions.zsh
 ln -s -f ~/.dotfiles/zsh/fzf-tab.zsh ~/.oh-my-zsh/custom/fzf-tab.zsh
 ln -s -f ~/.dotfiles/zsh/completions ~/.oh-my-zsh/completions
 ln -s -f ~/.dotfiles/git/.gitconfig ~/.gitconfig
-ln -s -f ~/.dotfiles/nvim ~/.config/nvim
 ln -s -f ~/.dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
+ln -s -f ~/.dotfiles/nvim ~/.config/nvim
+ln -s -f ~/.dotfiles/zsh/.zshrc ~/.zshrc
 
 #vscode
 # need to start using built-in vscode sync
