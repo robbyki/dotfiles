@@ -3,7 +3,7 @@ configuration {
     modi:                  "drun,run,window,ssh,combi";
     terminal:              "alacritty";
     case-sensitive:        false;
-    font:                  "Operator Mono SSm Lig 24";
+    font:                  "Operator Mono SSm Lig 12";
     hide-scrollbar: true;
 }
 /* @theme "dracula" */

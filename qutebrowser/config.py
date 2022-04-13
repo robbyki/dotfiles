@@ -1712,7 +1712,7 @@ c.url.start_pages = ['https://archlinux.org/']
 
 ## Default zoom level.
 ## Type: Perc
-c.zoom.default = '250%'
+c.zoom.default = '140%'
 
 ## Available zoom levels.
 ## Type: List of Perc

@@ -342,3 +342,4 @@ alias slidefont="yq -i '.font.size=30' ~/.dotfiles/alacritty/alacritty.yml"
 
 alias resume='python resume.py --no-html'
 alias ok=okular
+alias b='buku --suggest'
