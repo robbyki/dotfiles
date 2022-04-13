@@ -16,64 +16,64 @@ lspci -nnk | egrep -i --color 'vga|3d|2d' -A3 | grep 'in use'
 
 # important base packages I need
 sudo dnf install -y \
-    alacritty \
-    autoconf \
-    automake \
-    bat \
-    buildah \
-    clang \
-    cmake \
-    curl \
-    discord \
-    exa \
-    fd-find \
-    fontawesome5-fonts-all \
-    fontconfig-devel \
-    freetype-devel \
-    g++ \
-    gcc \
-    gcc-c++ \
-    gettext \
-    gimp \
-    git-delta \
-    gnome-tweaks \
-    gstreamer1-plugins-ugly \
-    helm \
-    java-devel \
-    kdenlive \
-    keepassxc \
-    kmod-v4l2loopback \
-    libgnome \
-    libstdc++-static \
-    libtool \
-    libxcb-devel \
-    libxkbcommon-devel \
-    make \
-    ncurses-devel \
-    neofetch \
-    ninja-build \
-    okular \
-    patch \
-    peek \
-    pkgconfig \
-    plantuml \
-    qutebrowser \
-    ruby \
-    ruby-devel \
-    screenkey \
-    shutter \
-    skopeo \
-    slack \
-    the_silver_searcher \
-    trash-cli \
-    unzip \
-    vlc \
-    webex \
-    wget \
-    wmctrl \
-    xclip \
-    xdotool \
-    zoxidel
+  alacritty \
+  autoconf \
+  automake \
+  bat \
+  buildah \
+  clang \
+  cmake \
+  curl \
+  discord \
+  exa \
+  fd-find \
+  fontawesome5-fonts-all \
+  fontconfig-devel \
+  freetype-devel \
+  g++ \
+  gcc \
+  gcc-c++ \
+  gettext \
+  gimp \
+  git-delta \
+  gnome-tweaks \
+  gstreamer1-plugins-ugly \
+  helm \
+  java-devel \
+  kdenlive \
+  keepassxc \
+  kmod-v4l2loopback \
+  libgnome \
+  libstdc++-static \
+  libtool \
+  libxcb-devel \
+  libxkbcommon-devel \
+  make \
+  ncurses-devel \
+  neofetch \
+  ninja-build \
+  okular \
+  patch \
+  peek \
+  pkgconfig \
+  plantuml \
+  qutebrowser \
+  ruby \
+  ruby-devel \
+  screenkey \
+  shutter \
+  skopeo \
+  slack \
+  the_silver_searcher \
+  trash-cli \
+  unzip \
+  vlc \
+  webex \
+  wget \
+  wmctrl \
+  xclip \
+  xdotool \
+  zoxidel
 
 sudo dnf -y groupinstall "Development Tools" "Development Libraries"
 
@@ -98,6 +98,10 @@ ssh -T git@github.com
 sudo dnf install -y 'dnf-command(config-manager)'
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 sudo dnf install -y gh
+
+# gh extensions
+gh extension install kavinvalli/gh-repo-fzf
+gh extension install mislav/gh-branch
 
 # rust / cargo etc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -138,6 +142,8 @@ curl -sS https://webinstall.dev/shfmt | bash
 
 # tmux tpm for plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# install plugins from cli
+sh ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 # lsp servers from npm
 npm install -g prettier
@@ -150,10 +156,6 @@ npm install -g typescript-language-server
 npm install -g tree-sitter
 
 pip install openapi2jsonschema
-
-# gh extensions
-gh extension install kavinvalli/gh-repo-fzf
-gh extension install mislav/gh-branch
 
 # k9s
 gh repo clone derailed/k9s
@@ -213,14 +215,14 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 ~/.dropbox-dist/dropboxd
 
 # gnupg config and secrets folder
-mc download > ~/
+mc download >~/
 
 # install keybase
 sudo yum install https://prerelease.keybase.io/keybase_amd64.rpm
 
 # install sbt
 sudo rm -f /etc/yum.repos.d/bintray-rpm.repo
-curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
+curl -L https://www.scala-sbt.org/sbt-rpm.repo >sbt-rpm.repo
 sudo mv sbt-rpm.repo /etc/yum.repos.d/
 sudo dnf install -y sbt
 
@@ -295,6 +297,7 @@ ln -s -f ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -s -f ~/.dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
 ln -s -f ~/.dotfiles/nvim ~/.config/nvim
 ln -s -f ~/.dotfiles/zsh/.zshrc ~/.zshrc
+ln -s -f ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
 #vscode
 # need to start using built-in vscode sync

@@ -20,7 +20,6 @@ plugins=(
     fzf-alias
     colored-man-pages
     sudo
-    flatpak
     fzf-tab
     git
     golang
