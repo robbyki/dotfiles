@@ -20,6 +20,7 @@ sudo dnf install -y \
     autoconf \
     automake \
     bat \
+    buildah \
     clang \
     cmake \
     curl \
@@ -37,6 +38,7 @@ sudo dnf install -y \
     git-delta \
     gnome-tweaks \
     gstreamer1-plugins-ugly \
+    helm \
     java-devel \
     kdenlive \
     keepassxc \
@@ -54,9 +56,12 @@ sudo dnf install -y \
     patch \
     peek \
     pkgconfig \
+    plantuml \
     qutebrowser \
     ruby \
     ruby-devel \
+    shutter \
+    skopeo \
     slack \
     the_silver_searcher \
     trash-cli \
@@ -69,7 +74,7 @@ sudo dnf install -y \
     xdotool \
     zoxidel
 
-sudo dnf groupinstall "Development Tools" "Development Libraries"
+sudo dnf -y groupinstall "Development Tools" "Development Libraries"
 
 # gnome customization directories
 # just push these to object storage and retrieve with `mc cp <blah> .`
@@ -89,9 +94,9 @@ chmod 400 ~/.ssh/robbmk_id_ed25519
 ssh -T git@github.com
 
 # install gh config into XDG Config path
-sudo dnf install 'dnf-command(config-manager)'
+sudo dnf install -y 'dnf-command(config-manager)'
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install gh
+sudo dnf install -y gh
 
 # rust / cargo etc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -115,8 +120,9 @@ gem install colorls
 
 # stylua lua binary
 wget https://github.com/JohnnyMorganz/StyLua/releases/download/v0.13.0/stylua-linux.zip
+unzip stylua
 sudo chmod +x stylua
-mv ./stylua /usr/local/bin
+sudo mv ./stylua /usr/local/bin
 
 # better cd
 gh repo clone b4b4r07/enhancd ~/dev/enhancd
@@ -135,44 +141,6 @@ curl -sS https://webinstall.dev/shfmt | bash
 # tmux tpm for plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# install ohmyzsh
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# ohmyzsh theme
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-# ohmyzsh custom plugins
-git clone git@github.com:djui/alias-tips.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/alias-tips
-git clone git@github.com:TamCore/autoupdate-oh-my-zsh-plugins.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoupdate
-git clone git@github.com:thirteen37/fzf-alias.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-alias
-git clone git@github.com:Aloxaf/fzf-tab.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
-git clone git@github.com:marzocchi/zsh-notify.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/notify
-git clone git@github.com:zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone git@github.com:lukechilds/zsh-better-npm-completion.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-better-npm-completion
-git clone git@github.com:chuwy/zsh-secrets.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-secrets
-git clone git@github.com:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-# tmux plugin manager
-git clone git@github.com:tmux-plugins/tpm.git ~/.tmux/plugins/tpm
-
-# setup symlinks to configs. obviously there are tools that do this better. maybe one day soon
-ln -s -f ~/.dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-ln -s -f ~/.dotfiles/bat/config ~/.config/bat/config
-ln -s -f ~/.dotfiles/broot/conf.hjson ~/.config/broot/conf.hjson
-ln -s -f ~/.dotfiles/fzf/key-bindings.zsh ~/.fzf/shell/key-bindings.zsh
-ln -s -f ~/.dotfiles/gh/config.yml ~/.config/gh/config.yml
-ln -s -f ~/.dotfiles/lf ~/.config/lf
-ln -s -f ~/.dotfiles/rofi ~/.config/rofi
-ln -s -f ~/.dotfiles/zsh/alias.zsh ~/.oh-my-zsh/custom/alias.zsh
-ln -s -f ~/.dotfiles/zsh/.zshrc ~/.zshrc
-ln -s -f ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
-ln -s -f ~/.dotfiles/zsh/functions.zsh ~/.oh-my-zsh/custom/functions.zsh
-ln -s -f ~/.dotfiles/zsh/fzf-tab.zsh ~/.oh-my-zsh/custom/fzf-tab.zsh
-ln -s -f ~/.dotfiles/zsh/completions ~/.oh-my-zsh/completions
-ln -s -f ~/.dotfiles/git/.gitconfig ~/.gitconfig
-ln -s -f ~/.dotfiles/nvim ~/.config/nvim
-ln -s -f ~/.dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
-
 # lsp servers from npm
 npm install -g prettier
 npm install -g neovim
@@ -180,24 +148,36 @@ npm install -g yaml-language-server
 npm install -g bash-language-server
 npm install -g pyright
 npm install -g gatsby-cli
-npm install --save @openapi-contrib/openapi-schema-to-json-schema
+npm install -g typescript-language-server
+npm install -g tree-sitter
+
+pip install openapi2jsonschema
 
 # gh extensions
 gh extension install kavinvalli/gh-repo-fzf
 gh extension install mislav/gh-branch
+
+# k9s
+gh repo clone derailed/k9s
+cd k9s
+make build
+sudo mv execs/k9s /usr/local/bin
 
 # schema integration for lsp yaml
 gh repo clone robbyki/schemas
 mkdir -p ~/dev/openshift-json-schema/master-standalone/
 ln -s -f ~/dev/schemas/openshift/* ~/dev/openshift-json-schema/master-standalone
 
-# install golang
+# install go
 wget https://go.dev/dl/go1.18.linux-amd64.tar.gz
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 
 # go tools
 go install golang.org/x/tools/...@latest
+
+# kubeclean
+go get github.com/edsoncelio/kubeclean
 
 # lf
 env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
@@ -207,27 +187,24 @@ go install github.com/maaslalani/slides@latest
 
 #install lazygit
 go install github.com/jesseduffield/lazygit@latest
-# requires go to build jfrog-cli
 
 # install yq yaml processor
 go install github.com/mikefarah/yq/v4@latest
 
+# gore repl
+go install github.com/x-motemen/gore/cmd/gore@latest
+go install github.com/mdempsky/gocode@latest
+
 git clone https://github.com/jfrog/jfrog-cli
 cd jfrog-cli
-build/build.sh
-
-#vscode
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-dnf check-update
-sudo dnf install code
-# install User folder and extensions
+CGO_ENABLED=0 go build -o jf -ldflags '-w -extldflags "-static"' main.go
+sudo mv ./jf /usr/local/bin/
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 sh ~/.fzf/install
 
-# install fzf
+# install fzy
 git clone git@github.com:jhawthorn/fzy.git
 cd fzy
 make
@@ -247,25 +224,17 @@ sudo yum install https://prerelease.keybase.io/keybase_amd64.rpm
 sudo rm -f /etc/yum.repos.d/bintray-rpm.repo
 curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
 sudo mv sbt-rpm.repo /etc/yum.repos.d/
-sudo dnf install sbt
+sudo dnf install -y sbt
 
 # setup up kube and containers and drop kube config in here as needed
-mkdir ~/{.kube,containers}
-
-# kube tools
-sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
-sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
-sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
+# mc drop configs here
+mkdir ~/.kube
+mkdir ~/.config/containers
 
 # glow markdown rendering
 git clone https://github.com/charmbracelet/glow.git
 cd glow
 go build
-
-# ibmcloud and oc
-wget https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.6.0/binaries/IBM_Cloud_CLI_2.6.0_linux_amd64.tgz
-tar -xvzf IBM_Cloud_CLI_2.6.0_linux_amd64.tgz
-sudo mv IBM_Cloud_CLI /usr/local/
 
 # kubectl
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -277,7 +246,60 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
-sudo yum install -y kubectl
+sudo dnf install -y kubectl
+
+# kube tools
+sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
+sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
+sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 
 # kubectl convert
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl-convert"
+
+# ibmcloud and oc
+wget https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.6.0/binaries/IBM_Cloud_CLI_2.6.0_linux_amd64.tgz
+sudo tar -xvzf -C /usr/local/ IBM_Cloud_CLI_2.6.0_linux_amd64.tgz
+sudo ln -s -f /usr/local/IBM_Cloud_CLI/ibmcloud /usr/local/bin/ibmcloud
+
+# ohmyzsh
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# ohmyzsh theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# ohmyzsh custom plugins
+git clone git@github.com:djui/alias-tips.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/alias-tips
+git clone git@github.com:TamCore/autoupdate-oh-my-zsh-plugins.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoupdate
+git clone git@github.com:thirteen37/fzf-alias.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-alias
+git clone git@github.com:Aloxaf/fzf-tab.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+git clone git@github.com:marzocchi/zsh-notify.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/notify
+git clone git@github.com:zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone git@github.com:lukechilds/zsh-better-npm-completion.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-better-npm-completion
+git clone git@github.com:chuwy/zsh-secrets.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-secrets
+git clone git@github.com:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# setup symlinks to configs. obviously there are tools that do this better. maybe one day soon
+ln -s -f ~/.dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -s -f ~/.dotfiles/bat/config ~/.config/bat/config
+ln -s -f ~/.dotfiles/broot/conf.hjson ~/.config/broot/conf.hjson
+ln -s -f ~/.dotfiles/fzf/key-bindings.zsh ~/.fzf/shell/key-bindings.zsh
+ln -s -f ~/.dotfiles/gh/config.yml ~/.config/gh/config.yml
+ln -s -f ~/.dotfiles/lf ~/.config/lf
+ln -s -f ~/.dotfiles/rofi ~/.config/rofi
+ln -s -f ~/.dotfiles/zsh/alias.zsh ~/.oh-my-zsh/custom/alias.zsh
+ln -s -f ~/.dotfiles/zsh/.zshrc ~/.zshrc
+ln -s -f ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
+ln -s -f ~/.dotfiles/zsh/functions.zsh ~/.oh-my-zsh/custom/functions.zsh
+ln -s -f ~/.dotfiles/zsh/fzf-tab.zsh ~/.oh-my-zsh/custom/fzf-tab.zsh
+ln -s -f ~/.dotfiles/zsh/completions ~/.oh-my-zsh/completions
+ln -s -f ~/.dotfiles/git/.gitconfig ~/.gitconfig
+ln -s -f ~/.dotfiles/nvim ~/.config/nvim
+ln -s -f ~/.dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
+
+#vscode
+# need to start using built-in vscode sync
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+dnf check-update
+sudo dnf install code -y
+cp -R User/* ~/.config/Code/User/
