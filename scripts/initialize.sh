@@ -114,7 +114,7 @@ broot --install
 # build neovim
 gh repo clone neovim/neovim
 cd neovim
-make CMAKE_BUILD_TYPE=Release
+make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
 # prettier directory listing
@@ -175,6 +175,9 @@ export PATH=$PATH:/usr/local/go/bin
 
 # go tools
 go install golang.org/x/tools/...@latest
+
+# gopls language server for neovim
+go install golang.org/x/tools/gopls@latest
 
 # kubeclean
 go get github.com/edsoncelio/kubeclean
@@ -306,3 +309,6 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 dnf check-update
 sudo dnf install code -y
 cp -R User/* ~/.config/Code/User/
+
+mkdir ~/.config/colorls/
+cp $(dirname $(gem which colorls))/yaml/files.yaml ~/.config/colorls/files.yaml

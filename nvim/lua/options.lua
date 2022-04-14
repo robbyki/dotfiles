@@ -9,6 +9,7 @@ vim.cmd([[command! PC packadd packer.nvim | lua require('plugins').clean()]])
 
 vim.cmd([[command! GoRun GoRun -buildvcs=false .]])
 
+vim.g.python3_host_prog = "/bin/python3"
 vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
 vim.g.loaded_ruby_provider = 0 -- To disable Ruby support

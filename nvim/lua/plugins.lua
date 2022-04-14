@@ -57,10 +57,6 @@ return packer.startup(function(use)
             require("project_nvim").setup({
                 silent_chdir = false,
                 show_hidden = false,
-                -- detection_methods = { "lsp" },
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
             })
         end,
     })
@@ -78,13 +74,8 @@ return packer.startup(function(use)
     })
     use({ "ellisonleao/glow.nvim", ft = { "markdown" } })
     use("mortepau/codicons.nvim")
-    use({
-        "SmiteshP/nvim-gps",
-        requires = "nvim-trreesitter/nvim-treesitter",
-        config = function()
-            require("plugins.gps")
-        end,
-    })
+    use({ "ryanoasis/vim-devicons" })
+    use({ "kyazdani42/nvim-web-devicons" })
     use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
     use({ "luochen1990/rainbow" })
     use({
@@ -94,15 +85,15 @@ return packer.startup(function(use)
             require("plugins.outline")
         end,
     })
-    use({
-        "VonHeikemen/fine-cmdline.nvim",
-        requires = {
-            { "MunifTanjim/nui.nvim" },
-        },
-        config = function()
-            require("plugins.fine-cmdline")
-        end,
-    })
+    -- use({
+    --     "VonHeikemen/fine-cmdline.nvim",
+    --     requires = {
+    --         { "MunifTanjim/nui.nvim" },
+    --     },
+    --     config = function()
+    --         require("plugins.fine-cmdline")
+    --     end,
+    -- })
     use("xiyaowong/nvim-cursorword")
     use({
         "rmagatti/goto-preview",
@@ -114,6 +105,7 @@ return packer.startup(function(use)
     use({
         "j-hui/fidget.nvim",
         config = function()
+            -- require("plugins.fidget")
             require("fidget").setup({
                 text = { spinner = "dots_negative" },
                 window = { relative = "editor", blend = 0 },
@@ -155,8 +147,6 @@ return packer.startup(function(use)
             require("plugins.wilder")
         end,
     })
-    use({ "ryanoasis/vim-devicons" })
-    use({ "kyazdani42/nvim-web-devicons" })
     use({
         "kyazdani42/nvim-tree.lua",
         requires = {
@@ -244,9 +234,8 @@ return packer.startup(function(use)
         end,
     })
     use({ "markstory/vim-zoomwin" })
-
     use({ "brooth/far.vim" })
-    -- use({ "Einenlum/yaml-revealer" })
+    -- -- use({ "Einenlum/yaml-revealer" })
     use({
         "nvim-telescope/telescope.nvim",
         requires = {
@@ -254,12 +243,10 @@ return packer.startup(function(use)
             "nvim-lua/popup.nvim",
             "nvim-telescope/telescope-frecency.nvim",
             "nvim-telescope/telescope-symbols.nvim",
-            -- "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
             "nvim-telescope/telescope-github.nvim",
             "nvim-telescope/telescope-dap.nvim",
             "jvgrootveld/telescope-zoxide",
-            -- "cljoly/telescope-repo.nvim",
         },
         config = function()
             require("plugins.telescope")
@@ -359,8 +346,6 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     --                            Completion                            --
     ----------------------------------------------------------------------
-
-    use("folke/lua-dev.nvim")
     use({
         "hrsh7th/nvim-cmp",
         requires = {
@@ -410,14 +395,6 @@ return packer.startup(function(use)
             require("plugins.sandwich")
         end,
     })
-    use({
-        "abecodes/tabout.nvim",
-        wants = { "nvim-treesitter" },
-        after = { "nvim-cmp", "copilot.vim" },
-        config = function()
-            require("plugins.tabout")
-        end,
-    })
 
     ----------------------------------------------------------------------
     --                            Treesitter                            --
@@ -448,10 +425,13 @@ return packer.startup(function(use)
             })
         end,
     })
-
-    ----------------------------------------------------------------------
-    --                            Commenting                            --
-    ----------------------------------------------------------------------
+    use({
+        "SmiteshP/nvim-gps",
+        requires = "nvim-trreesitter/nvim-treesitter",
+        config = function()
+            require("plugins.gps")
+        end,
+    })
     use({
         "s1n7ax/nvim-comment-frame",
         requires = {
@@ -459,6 +439,21 @@ return packer.startup(function(use)
         },
         config = function()
             require("plugins.comment-frame")
+        end,
+    })
+    use({
+        "danymat/neogen",
+        after = "nvim-treesitter",
+        config = function()
+            require("plugins.neogen")
+        end,
+    })
+    use({
+        "abecodes/tabout.nvim",
+        wants = { "nvim-treesitter" },
+        after = { "nvim-cmp", "copilot.vim" },
+        config = function()
+            require("plugins.tabout")
         end,
     })
 
@@ -501,14 +496,6 @@ return packer.startup(function(use)
             require("plugins.sort")
         end,
     })
-    use({
-        "danymat/neogen",
-        after = "nvim-treesitter",
-        config = function()
-            require("plugins.neogen")
-        end,
-    })
-
     ----------------------------------------------------------------------
     --                               Language Server                    --
     ----------------------------------------------------------------------
@@ -552,35 +539,35 @@ return packer.startup(function(use)
     })
     use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
 
-    ----------------------------------------------------------------------
-    --                             Orgmode                              --
-    ----------------------------------------------------------------------
-    use({
-        "akinsho/org-bullets.nvim",
-        config = function()
-            require("org-bullets").setup({
-                symbols = { "◉", "○", "✸", "✿" },
-                -- or a function that receives the defaults and returns a list
-            })
-        end,
-    })
-    use({
-        "nvim-orgmode/orgmode",
-        config = function()
-            require("plugins.orgmode")
-        end,
-    })
-
-    --use({ "maxmellon/vim-jsx-pretty" })
-    --use({ "yuezk/vim-js" })
-    --		-- windows
-    --		--use({
-    --		--	"Shatur/neovim-session-manager",
-    --		--	setup = function()
-    --		--		require("plugins.session-manager")
-    --		--	end,
-    --		--})
-
+    -- ----------------------------------------------------------------------
+    -- --                             Orgmode                              --
+    -- ----------------------------------------------------------------------
+    -- use({
+    --     "akinsho/org-bullets.nvim",
+    --     config = function()
+    --         require("org-bullets").setup({
+    --             symbols = { "◉", "○", "✸", "✿" },
+    --             -- or a function that receives the defaults and returns a list
+    --         })
+    --     end,
+    -- })
+    -- use({
+    --     "nvim-orgmode/orgmode",
+    --     config = function()
+    --         require("plugins.orgmode")
+    --     end,
+    -- })
+    --
+    -- --use({ "maxmellon/vim-jsx-pretty" })
+    -- --use({ "yuezk/vim-js" })
+    -- --		-- windows
+    -- --		--use({
+    -- --		--	"Shatur/neovim-session-manager",
+    -- --		--	setup = function()
+    -- --		--		require("plugins.session-manager")
+    -- --		--	end,
+    -- --		--})
+    --
     use({
         "AckslD/nvim-neoclip.lua",
         disable = true,

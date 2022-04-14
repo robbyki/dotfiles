@@ -37,10 +37,9 @@ alias blog="cd ~/dev/blog"
 alias snip="cd ~/.dotfiles/nvim/.vsnip"
 alias snipf="cd $HOME/.local/share/nvim/site/pack/packer/opt/friendly-snippets/snippets/"
 alias pics="cd ~/Pictures"
-#alias roficonfig="$EDITOR $DOTFILES/rofi/config"
-#alias rtconfig="$EDITOR $DOTFILES/rofi/themes/custom-nord.rasi"
-#alias dr="rofi -show drun"
-#alias r="rofi -theme Arc-Dark -show window"
+alias roficonfig="$EDITOR $DOTFILES/rofi/config"
+alias dr="rofi -show drun"
+alias r="rofi -theme Arc-Dark -show window"
 
 alias chx="chmod +x"
 
