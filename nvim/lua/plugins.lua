@@ -85,15 +85,15 @@ return packer.startup(function(use)
             require("plugins.outline")
         end,
     })
-    -- use({
-    --     "VonHeikemen/fine-cmdline.nvim",
-    --     requires = {
-    --         { "MunifTanjim/nui.nvim" },
-    --     },
-    --     config = function()
-    --         require("plugins.fine-cmdline")
-    --     end,
-    -- })
+    use({
+        "VonHeikemen/fine-cmdline.nvim",
+        requires = {
+            { "MunifTanjim/nui.nvim" },
+        },
+        config = function()
+            require("plugins.fine-cmdline")
+        end,
+    })
     use("xiyaowong/nvim-cursorword")
     use({
         "rmagatti/goto-preview",
@@ -105,7 +105,6 @@ return packer.startup(function(use)
     use({
         "j-hui/fidget.nvim",
         config = function()
-            -- require("plugins.fidget")
             require("fidget").setup({
                 text = { spinner = "dots_negative" },
                 window = { relative = "editor", blend = 0 },
@@ -140,13 +139,9 @@ return packer.startup(function(use)
             require("plugins.notify")
         end,
     })
-    use({
-        "gelguy/wilder.nvim",
-        requires = { "romgrk/fzy-lua-native", after = "wilder.nvim" },
-        config = function()
-            require("plugins.wilder")
-        end,
-    })
+
+    use("romgrk/fzy-lua-native")
+    use({ "gelguy/wilder.nvim" })
     use({
         "kyazdani42/nvim-tree.lua",
         requires = {
