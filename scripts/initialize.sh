@@ -312,3 +312,10 @@ cp -R User/* ~/.config/Code/User/
 
 mkdir ~/.config/colorls/
 cp $(dirname $(gem which colorls))/yaml/files.yaml ~/.config/colorls/files.yaml
+
+curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d >cs
+chmod +x cs
+./cs setup
+
+# install bloop
+cs install bloop --only-prebuilt=true

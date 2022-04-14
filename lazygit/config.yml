@@ -1,9 +1,9 @@
-gui:
-  theme:
-    selectedLineBgColor:
-      - reverse
-    selectedRangeBgColor:
-      - reverse
+# gui:
+#   theme:
+#     selectedLineBgColor:
+#       - reverse
+#     selectedRangeBgColor:
+#       - reverse
 # git:
 #   paging:
 #     colorArg: always
