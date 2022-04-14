@@ -238,14 +238,14 @@
 
 		# A popular set of shortcuts for going up and down:
 		#
-		# {
-		# 	key: ctrl-k
-		# 	execution: ":line_up"
-		# }
-		# {
-		# 	key: ctrl-j
-		# 	execution: ":line_down"
-		# }
+		{
+			key: ctrl-p
+			execution: ":line_up"
+		}
+		{
+			key: ctrl-n
+			execution: ":line_down"
+		}
 		# {
 		# 	key: ctrl-u
 		# 	execution: ":page_up"

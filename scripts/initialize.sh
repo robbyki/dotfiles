@@ -39,6 +39,7 @@ sudo dnf install -y \
   gnome-tweaks \
   gstreamer1-plugins-ugly \
   helm \
+  htop \
   java-devel \
   kdenlive \
   keepassxc \
@@ -57,6 +58,7 @@ sudo dnf install -y \
   peek \
   pkgconfig \
   plantuml \
+  plazma-breeze \
   qutebrowser \
   ruby \
   ruby-devel \
@@ -313,6 +315,7 @@ cp -R User/* ~/.config/Code/User/
 mkdir ~/.config/colorls/
 cp $(dirname $(gem which colorls))/yaml/files.yaml ~/.config/colorls/files.yaml
 
+# coursier
 curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d >cs
 chmod +x cs
 ./cs setup
