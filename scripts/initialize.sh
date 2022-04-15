@@ -110,6 +110,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # broot
 gh repo clone Canop/broot
+cd broot
 cargo install --path .
 broot --install
 
@@ -220,7 +221,11 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 ~/.dropbox-dist/dropboxd
 
 # gnupg config and secrets folder
-mc download >~/
+mc cp ... .gnupg ~/
+mc cp ... .secrets ~/
+chown -R $(whoami) ~/.gnupg/
+find ~/.gnupg -type f -exec chmod 600 {} \;
+find ~/.gnupg -type d -exec chmod 700 {} \;
 
 # install keybase
 sudo yum install https://prerelease.keybase.io/keybase_amd64.rpm
