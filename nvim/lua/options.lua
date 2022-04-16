@@ -7,7 +7,7 @@ vim.cmd([[command! PI packadd packer.nvim | lua require('plugins').install()]])
 vim.cmd([[command! PS packadd packer.nvim | lua require('plugins').sync()]])
 vim.cmd([[command! PC packadd packer.nvim | lua require('plugins').clean()]])
 
-vim.cmd([[command! GoRun GoRun -buildvcs=false .]])
+-- vim.cmd([[command! GoRun GoRun -buildvcs=false .]])
 
 vim.g.python3_host_prog = "/bin/python3"
 vim.g.loaded_python_provider = 0

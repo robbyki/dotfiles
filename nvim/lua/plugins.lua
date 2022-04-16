@@ -289,7 +289,17 @@ return packer.startup(function(use)
             require("plugins.diffview")
         end,
     })
-    use({ "pwntester/octo.nvim" })
+    use({
+        "pwntester/octo.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+            "kyazdani42/nvim-web-devicons",
+        },
+        config = function()
+            require("plugins.octo")
+        end,
+    })
     use({ "f-person/git-blame.nvim" })
     use({
         "lewis6991/gitsigns.nvim",

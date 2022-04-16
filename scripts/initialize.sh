@@ -153,6 +153,7 @@ npm install -g prettier
 npm install -g neovim
 npm install -g yaml-language-server
 npm install -g bash-language-server
+npm install -g vscode-json-languageserver
 npm install -g pyright
 npm install -g gatsby-cli
 npm install -g typescript-language-server
