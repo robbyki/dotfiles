@@ -136,10 +136,6 @@ gh repo clone b4b4r07/enhancd ~/dev/enhancd
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.obsproject.Studio
 
-# install fnm, npm and node, gem
-curl -fsSL https://fnm.vercel.app/install | bash
-fnm install --lts
-
 # shfmt bash formatting
 curl -sS https://webinstall.dev/shfmt | bash
 
@@ -147,6 +143,10 @@ curl -sS https://webinstall.dev/shfmt | bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # install plugins from cli
 sh ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+
+# install fnm, npm and node, gem
+curl -fsSL https://fnm.vercel.app/install | bash
+fnm install --lts
 
 # lsp servers from npm
 npm install -g prettier

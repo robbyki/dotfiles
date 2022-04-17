@@ -544,25 +544,25 @@ return packer.startup(function(use)
     })
     use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
 
-    -- ----------------------------------------------------------------------
-    -- --                             Orgmode                              --
-    -- ----------------------------------------------------------------------
-    -- use({
-    --     "akinsho/org-bullets.nvim",
-    --     config = function()
-    --         require("org-bullets").setup({
-    --             symbols = { "◉", "○", "✸", "✿" },
-    --             -- or a function that receives the defaults and returns a list
-    --         })
-    --     end,
-    -- })
-    -- use({
-    --     "nvim-orgmode/orgmode",
-    --     config = function()
-    --         require("plugins.orgmode")
-    --     end,
-    -- })
-    --
+    ----------------------------------------------------------------------
+    --                             Orgmode                              --
+    ----------------------------------------------------------------------
+    use({
+        "akinsho/org-bullets.nvim",
+        config = function()
+            require("org-bullets").setup({
+                symbols = { "◉", "○", "✸", "✿" },
+                -- or a function that receives the defaults and returns a list
+            })
+        end,
+    })
+    use({
+        "nvim-orgmode/orgmode",
+        config = function()
+            require("plugins.orgmode")
+        end,
+    })
+
     -- --use({ "maxmellon/vim-jsx-pretty" })
     -- --use({ "yuezk/vim-js" })
     -- --		-- windows

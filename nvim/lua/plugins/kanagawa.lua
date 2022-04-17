@@ -7,7 +7,7 @@ local overrides = {
     LspReferenceText = { bg = colors.roninYellow, fg = colors.sumiInk1 },
     LspReferenceRead = { bg = colors.roninYellow, fg = colors.sumiInk1 },
     LspReferenceWrite = { bg = colors.roninYellow, fg = colors.sumiInk1 },
-    CursorLine = { bg = colors.roninYellow, fg = colors.sumiInk1 },
+    -- CursorLine = { bg = colors.roninYellow, fg = colors.sumiInk1 },
     VertSplit = { fg = colors.bg_dark, bg = "NONE" },
 }
 
