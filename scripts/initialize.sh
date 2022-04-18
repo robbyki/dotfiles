@@ -75,7 +75,8 @@ sudo dnf install -y \
   wmctrl \
   xclip \
   xdotool \
-  zoxidel
+  zoxidel \
+  pulseaudio-utils
 
 sudo dnf -y groupinstall "Development Tools" "Development Libraries"
 

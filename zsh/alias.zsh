@@ -325,7 +325,7 @@ alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 alias ecs=zrc
 
 # audio
-alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-output-0"
+alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.analog-surround-40"
 alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
