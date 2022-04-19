@@ -39,16 +39,16 @@ plugins=(
 
 # {{{ completions
 autoload -U compinit && compinit
-# source <(kubectl completion zsh)
-# source <(tkn completion zsh)
-# source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
-# source <(minikube completion zsh)
-# source $ZSH/completions/_ic
-# source $ZSH/completions/_helm
+source <(kubectl completion zsh)
+source <(tkn completion zsh)
+source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
+source <(minikube completion zsh)
+source $ZSH/completions/_ic
+source $ZSH/completions/_helm
 source $HOME/.config/broot/launcher/bash/br
 source /home/robbyk/.config/broot/launcher/bash/br
-# source <(stern --completion=zsh) # does not work
-# source $ZSH/completions/_stern # does not work
+source <(stern --completion=zsh) # does not work
+source $ZSH/completions/_stern # does not work
 autoload -U +X bashcompinit && bashcompinit
 # }}}
 
@@ -180,18 +180,19 @@ else
 	export NUM_OF_CORES=1
 fi
 
+# thanks to neovim 0.7 built-in clien-server comm, this is no longer needed
 # {{{ nvim settings for embedded terminal
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-    alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
-fi
-
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-    export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-    export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-else
-    export VISUAL="nvim"
-    export EDITOR="nvim"
-fi
+# if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+#     alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
+# fi
+#
+# if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+#     export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+#     export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+# else
+#     export VISUAL="nvim"
+#     export EDITOR="nvim"
+# fi
 # }}}
 
 # better cd

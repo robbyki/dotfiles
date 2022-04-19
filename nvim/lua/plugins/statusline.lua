@@ -1,7 +1,13 @@
 local gps = require("nvim-gps")
-local lualine = require("lualine")
-
 local colors = require("kanagawa.colors").setup()
+
+local word_count = function()
+    if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+        return string.format("%sW", vim.fn.wordcount().visual_words)
+    else
+        return string.format("%sW", vim.fn.wordcount().words)
+    end
+end
 
 local function lualine_orgmode()
     local orgmode = require("orgmode")
@@ -123,6 +129,7 @@ local plugins = {
     filetype = {
         "bo:filetype",
         upper = true,
+        icon_only = true,
     },
 
     encoding = {
@@ -133,38 +140,55 @@ local plugins = {
     },
 }
 
--- Config
-local config = {
+require("lualine").setup({
     options = {
         theme = "kanagawa",
-        component_separators = "",
-        -- component_separators = {left = '', right = ''},
-        -- section_separators = {left = '', right = ''},
+        icons_enabled = true,
+        component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
+        -- section_separators = { left = "", right = "" },
+        globalstatus = true,
     },
     sections = {
-        lualine_a = {
-            "mode",
+        lualine_a = { "mode" },
+        lualine_b = {
+            "branch",
+            {
+                "diff",
+                symbols = {
+                    added = " ",
+                    modified = " ",
+                    removed = " ",
+                },
+            },
+            {
+                "diagnostics",
+                symbols = {
+                    error = " ",
+                    warn = " ",
+                    info = " ",
+                    hint = " ",
+                },
+            },
         },
-        lualine_b = {},
         lualine_c = {
-            plugins.filename,
+            -- {
+            --     "filetype",
+            --     icon_only = true,
+            --     padding = {
+            --         left = 1,
+            --         right = 0,
+            --     },
+            --     separator = {
+            --         right = "",
+            --     },
+            -- },
+            -- { "%F" },
             { gps.get_location, cond = gps.is_available },
         },
-        lualine_x = {
-            lualine_orgmode,
-            plugins.branch,
-            plugins.diff,
-            plugins.lsp_server,
-            plugins.metals,
-            plugins.filetype,
-            plugins.encoding,
-        },
-        lualine_y = {},
-        lualine_z = {
-            "progress",
-            "location",
-        },
+        lualine_x = { plugins.filename, plugins.filetype, plugins.lsp_server, plugins.metals },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
     },
     inactive_sections = {
         -- these are to remove the defaults
@@ -172,21 +196,75 @@ local config = {
             plugins.mode_inactive,
         },
         lualine_b = {},
-        lualine_c = {
-            plugins.filename,
-        },
+        lualine_c = {},
         lualine_x = {},
         lualine_y = {},
         lualine_z = {},
     },
+    extensions = {
+        "nvim-tree",
+        "toggleterm",
+        "fzf",
+        "symbols-outline",
+    },
     disabled_filetypes = {
         "HELP",
     },
-    extensions = {
-        "quickfix",
-        "nvim-tree",
-    },
-}
+})
 
--- Now don't forget to initialize lualine
-lualine.setup(config)
+-- local config = {
+--     options = {
+--         theme = "kanagawa",
+--         component_separators = "",
+--         -- component_separators = {left = '', right = ''},
+--         -- section_separators = {left = '', right = ''},
+--         section_separators = { left = "", right = "" },
+--     },
+--     sections = {
+--         lualine_a = {
+--             "mode",
+--         },
+--         lualine_b = {},
+--         lualine_c = {
+--             plugins.filename,
+--             { gps.get_location, cond = gps.is_available },
+--         },
+--         lualine_x = {
+--             lualine_orgmode,
+--             plugins.branch,
+--             plugins.diff,
+--             plugins.lsp_server,
+--             plugins.metals,
+--             plugins.filetype,
+--             plugins.encoding,
+--         },
+--         lualine_y = {},
+--         lualine_z = {
+--             "progress",
+--             "location",
+--         },
+--     },
+--     inactive_sections = {
+--         -- these are to remove the defaults
+--         lualine_a = {
+--             plugins.mode_inactive,
+--         },
+--         lualine_b = {},
+--         lualine_c = {
+--             plugins.filename,
+--         },
+--         lualine_x = {},
+--         lualine_y = {},
+--         lualine_z = {},
+--     },
+--     disabled_filetypes = {
+--         "HELP",
+--     },
+--     extensions = {
+--         "quickfix",
+--         "nvim-tree",
+--     },
+-- }
+--
+-- -- Now don't forget to initialize lualine
+-- lualine.setup(config)
