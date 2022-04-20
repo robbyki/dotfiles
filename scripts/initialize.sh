@@ -16,17 +16,21 @@ lspci -nnk | egrep -i --color 'vga|3d|2d' -A3 | grep 'in use'
 
 # important base packages I need
 sudo dnf install -y \
+  akmod-nvidia \
   alacritty \
   autoconf \
   automake \
   bat \
   buildah \
+  buku \
   clang \
   cmake \
+  cmatrix \
   curl \
   discord \
   exa \
   fd-find \
+  ffmpeg \
   fontawesome5-fonts-all \
   fontconfig-devel \
   freetype-devel \
@@ -40,6 +44,7 @@ sudo dnf install -y \
   gstreamer1-plugins-ugly \
   helm \
   htop \
+  java-11-openjdk-src \
   java-devel \
   kdenlive \
   keepassxc \
@@ -59,7 +64,9 @@ sudo dnf install -y \
   pkgconfig \
   plantuml \
   plazma-breeze \
+  pulseaudio-utils \
   qutebrowser \
+  rofi \
   ruby \
   ruby-devel \
   screenkey \
@@ -69,16 +76,22 @@ sudo dnf install -y \
   the_silver_searcher \
   trash-cli \
   unzip \
+  util-linux-user \
   vlc \
   webex \
   wget \
   wmctrl \
   xclip \
   xdotool \
-  zoxidel \
-  pulseaudio-utils
+  xorg-x11-drv-nvidia-cuda \
+  xscreensaver \
+  zoxide \
+  zsh
 
 sudo dnf -y groupinstall "Development Tools" "Development Libraries"
+
+# check new nvidia version
+modinfo -F version nvidia
 
 # gnome customization directories
 # just push these to object storage and retrieve with `mc cp <blah> .`
@@ -160,7 +173,12 @@ npm install -g gatsby-cli
 npm install -g typescript-language-server
 npm install -g tree-sitter
 
+# some python packages
 pip install openapi2jsonschema
+pip install markdown
+pip install buku
+pip install neovim
+pip install pynvim
 
 # k9s
 gh repo clone derailed/k9s

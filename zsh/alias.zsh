@@ -27,7 +27,7 @@ alias sl="slides"
 # "I didn't say they'll take you places you'd want to go"
 alias rkeeweb="copy ~/Documents/notes/webex-rkee.txt"
 alias util="cd $HOME/dev/aide-utilities"
-# alias temp="cd $HOME/dev/ibm-projects/aide-template/"
+alias temp="cd $HOME/dev/aide-template/"
 alias nv="cd $HOME/.dotfiles/nvim"
 alias dev="cd $HOME/dev/"
 alias downloads="cd ~/Downloads"
@@ -174,7 +174,6 @@ alias grepo='gh grepo'
 alias gtemp='gh gct'
 alias rvwt='gh rvwt 2>/dev/null'
 alias rvwu='gh rvwu 2>/dev/null'
-# alias gh_cli=$(which gh)
 
 alias jup='jupyter'
 alias ipy='ipython'
@@ -290,8 +289,6 @@ alias ocnp='oc new-project'
 alias ocrf='oc replace --force -f'
 alias octkn='oc whoami -t'
 alias ocwho='oc whoami'
-# alias ocmaster="ibmcloud oc cluster get --cluster test-cluster-rk --output=json | jq -r '.serverURL'"
-# alias ocid="ibmcloud oc cluster get --cluster test-cluster-rk --output=json | jq -r '.id'"
 
 # tekton
 alias tkb='tekton bundle'
@@ -311,8 +308,6 @@ alias tlint='tekton-lint'
 
 # yamls
 alias ylint='yamllint'
-# alias y='yq eval -C'
-# type yq > /dev/null && alias yq='yq -C'
 alias -g @yml=' | yq eval -P'
 alias -g @yaml=' | yq eval -P'
 alias -g @json=' | jq'
@@ -324,7 +319,7 @@ zrc() {
 alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 alias ecs=zrc
 
-# audio
+# audio switching between speakers and headphones using pactl util
 alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.analog-surround-40"
 alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
