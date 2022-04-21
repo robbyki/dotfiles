@@ -240,6 +240,7 @@ sudo make install
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 ~/.dropbox-dist/dropboxd
 
+# TODO: need to research how to transfer this across machines in better way
 # gnupg config and secrets folder
 mc cp ... .gnupg ~/
 mc cp ... .secrets ~/
@@ -340,10 +341,25 @@ cp -R User/* ~/.config/Code/User/
 mkdir ~/.config/colorls/
 cp $(dirname $(gem which colorls))/yaml/files.yaml ~/.config/colorls/files.yaml
 
-# coursier
+# coursier artifact fetching
 curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d >cs
 chmod +x cs
 ./cs setup
 
-# install bloop
+# install bloop toolchain
 cs install bloop --only-prebuilt=true
+
+# install neomutt
+dnf install cyrus-sasl-devel docbook-dtds docbook-style-xsl elinks gcc
+dnf install gdbm-devel gettext-devel git gnutls-devel gpgme-devel krb5-devel
+dnf install libdb-devel libidn-devel libtdb-devel libxslt libzstd-devel
+dnf install lmdb-devel lua lua-devel lynx lz4-devel ncurses-devel notmuch-devel
+dnf install qdbm-devel redhat-rpm-config slang-devel sqlite sqlite-devel tar tcl
+dnf install tokyocabinet-devel w3m
+dnf install abook msmtp pass isync
+
+gh repo clone neomutt/neomutt
+cd neomutt
+./configure --notmuch --with-notmuch=/usr/local/lib/notmuch
+make
+sudo make install
