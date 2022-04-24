@@ -215,9 +215,11 @@ alias klint='kube-linter lint'
 alias kns='kubens'
 alias kval='kubeval --schema-location=file://$OCPSCHEMA'
 alias kx='kubectx'
-alias mk='minikube'
 alias st='stern'
 alias stt='stern --tail 10'
+
+alias mk='minikube'
+alias mkstart='minikube start --driver=podman'
 
 # containers
 alias docker='podman'
@@ -242,7 +244,7 @@ alias pdsc='podman stop $(docker ps -aq)'
 alias pds='podman search'
 alias pdif="pdi --format '{{.Repository}}'"
 alias lzd='lazydocker'
-
+alias pdremote='podman-remote'
 # keepassxc
 alias kpass='/usr/bin/keepassxc-cli'
 alias kpasso='keepassxc-cli open ~/Dropbox/donut-bartenders/donut-bartenders.kdbx'

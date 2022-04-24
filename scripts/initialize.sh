@@ -363,3 +363,7 @@ cd neomutt
 ./configure --notmuch --with-notmuch=/usr/local/lib/notmuch
 make
 sudo make install
+
+# minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+sudo rpm -Uvh minikube-latest.x86_64.rpm
