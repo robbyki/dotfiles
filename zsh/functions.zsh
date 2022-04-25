@@ -80,12 +80,12 @@ function gccd() {
 # moves my prompt to middle of screen. Helpful during video presentations.
 
 fzf_then_open_in_editor() {
-    file="$(__fsel)"
-    file_no_whitespace="$(echo -e "${file}" | tr -d '[:space:]')"
-    if [ -n "$file_no_whitespace" ]; then
-      ${EDITOR:-nvim} "${file_no_whitespace}"
-    fi;
-    zle accept-line
+  file="$(__fsel)"
+  file_no_whitespace="$(echo -e "${file}" | tr -d '[:space:]')"
+  if [ -n "$file_no_whitespace" ]; then
+    ${EDITOR:-nvim} "${file_no_whitespace}"
+  fi
+  zle accept-line
 }
 
 fzf-open-file-current-dir() {
@@ -93,7 +93,7 @@ fzf-open-file-current-dir() {
   local out=$(eval "$cmd" | $(__fzfcmd) -m "$@")
   # local out=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")
   if [ -f "$out" ]; then
-    $EDITOR "$out" < /dev/tty
+    $EDITOR "$out" </dev/tty
   elif [ -d "$out" ]; then
     cd "$out"
   fi
@@ -101,7 +101,7 @@ fzf-open-file-current-dir() {
 }
 
 # I think I do this around 2 million times a day.
-fancyctrlz () {
+fancyctrlz() {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
     zle accept-line
@@ -384,9 +384,9 @@ encryptibm() {
   secrets encrypt ibm-secrets
 }
 
-ssibm() {
-  secrets source ibm-secrets 2>/dev/null
-}
+# ssibm() {
+#   secrets source ibm-secrets 2>/dev/null
+# }
 
 ocpatchroute() {
   oc patch configs.imageregistry.operator.openshift.io/cluster --type merge -p '{"spec":{"defaultRoute":true}}'

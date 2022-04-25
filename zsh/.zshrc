@@ -248,21 +248,9 @@ export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 # enable this to make it easier during demos and creating many tmux panes
 # source ~/dev/tutorial/oc-app-demo/ocvars
-
 #ssibm
 
 export GOOS=linux
-
-#if command -v go &> /dev/null
-#then
-#    export GOPATH=$(go env GOPATH)
-#
-#    # Add $GOPATH/bin to $PATH if not already there
-#    case ":$PATH:" in
-#        *:$GOPATH/bin:*) ;;
-#        *) export PATH=$PATH:$GOPATH/bin ;;
-#    esac
-#fi
 
 # LF Icons
 LF_ICONS=$(sed ~/.config/lf/icons \
@@ -276,3 +264,5 @@ export LF_ICONS
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+export MINIKUBE_IN_STYLE=true

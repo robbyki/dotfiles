@@ -367,3 +367,8 @@ sudo make install
 # minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
 sudo rpm -Uvh minikube-latest.x86_64.rpm
+
+# kubefwd tool for batch port-forwarding on kubernetes
+wget https://github.com/txn2/kubefwd/releases/download/1.22.2/kubefwd_Linux_x86_64.tar.gz
+sudo tar -xvzf kubefwd_Linux_x86_64.tar.gz -C /usr/local/
+minikube addons enable registry-creds

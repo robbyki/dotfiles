@@ -11,7 +11,7 @@ require("go").setup({
     -- lsp_cfg = false, -- true: apply go.nvim non-default gopls setup
     -- lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
     -- lsp_on_attach = false, -- if a on_attach function provided:  attach on_attach function to gopls
-    lsp_codelens = true, -- set to false to disable codelens, true by default
+    lsp_codelens = false, -- set to false to disable codelens, true by default
     -- gopls_remote_auto = true, -- add -remote=auto to gopls
     -- gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile", "/var/log/gopls.log" }
     -- lsp_diag_hdlr = true, -- hook lsp diag handler
