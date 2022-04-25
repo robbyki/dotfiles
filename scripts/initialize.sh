@@ -28,6 +28,8 @@ sudo dnf install -y \
   cmatrix \
   curl \
   discord \
+  podman-remote \
+  podman-docker \
   exa \
   fd-find \
   ffmpeg \
@@ -372,3 +374,9 @@ sudo rpm -Uvh minikube-latest.x86_64.rpm
 wget https://github.com/txn2/kubefwd/releases/download/1.22.2/kubefwd_Linux_x86_64.tar.gz
 sudo tar -xvzf kubefwd_Linux_x86_64.tar.gz -C /usr/local/
 minikube addons enable registry-creds
+
+# container tools api
+# systemctl enable --now podman.socket
+systemctl --user enable --now podman.socket
+# systemctl --user status podman.socket
+# podman-remote info
