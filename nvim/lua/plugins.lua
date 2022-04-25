@@ -453,14 +453,14 @@ return packer.startup(function(use)
             require("plugins.neogen")
         end,
     })
-    use({
-        "abecodes/tabout.nvim",
-        wants = { "nvim-treesitter" },
-        after = { "nvim-cmp", "copilot.vim" },
-        config = function()
-            require("plugins.tabout")
-        end,
-    })
+    -- use({
+    --     "abecodes/tabout.nvim",
+    --     wants = { "nvim-treesitter" },
+    --     after = { "nvim-cmp", "copilot.vim" },
+    --     config = function()
+    --         require("plugins.tabout")
+    --     end,
+    -- })
 
     ----------------------------------------------------------------------
     --                               Code                               --

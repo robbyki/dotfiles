@@ -245,7 +245,7 @@ alias pdsc='podman stop $(docker ps -aq)'
 alias pds='podman search'
 alias pdif="pdi --format '{{.Repository}}'"
 alias lzd='lazydocker'
-alias pdremote='podman-remote'
+# alias pdremote='podman-remote'
 # keepassxc
 alias kpass='/usr/bin/keepassxc-cli'
 alias kpasso='keepassxc-cli open ~/Dropbox/donut-bartenders/donut-bartenders.kdbx'

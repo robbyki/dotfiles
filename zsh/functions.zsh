@@ -362,6 +362,11 @@ pdloginrcrh() {
   podman login registry.connect.redhat.com -u $RCRHUSER -p $RCRHTKN
 }
 
+pdmkregistry() {
+  podman run -d -p 5000:5000 --restart=always --name registry registry:2
+  podman start registry
+}
+
 # this prevents me from being able to autocomplete the local images
 # pdpush() {
 #   podman push --tls-verify=false $1

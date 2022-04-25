@@ -174,6 +174,7 @@ npm install -g pyright
 npm install -g gatsby-cli
 npm install -g typescript-language-server
 npm install -g tree-sitter
+npm install -g dockerfile-language-server-nodejs
 
 # some python packages
 pip install openapi2jsonschema
