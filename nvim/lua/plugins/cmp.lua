@@ -42,6 +42,17 @@ local function replace_keys(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+local border = {
+    { "╭", "CmpBorder" },
+    { "─", "CmpBorder" },
+    { "╮", "CmpBorder" },
+    { "│", "CmpBorder" },
+    { "╯", "CmpBorder" },
+    { "─", "CmpBorder" },
+    { "╰", "CmpBorder" },
+    { "│", "CmpBorder" },
+}
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -81,23 +92,6 @@ cmp.setup({
                 -- fallback()
             end
         end, { "i", "s" }),
-        -- ["<Tab>"] = cmp.mapping(function(fallback)
-        --     if vim.fn["vsnip#available"](1) == 1 then
-        --         feedkey("<Plug>(vsnip-expand-or-jump)", "")
-        --     elseif has_words_before() then
-        --         cmp.complete()
-        --     else
-        --         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-        --     end
-        -- end, { "i", "s" }),
-        -- ["<S-Tab>"] = cmp.mapping(function()
-        --     if vim.fn["vsnip#jumpable"](-1) == 1 then
-        --         feedkey("<Plug>(vsnip-jump-prev)", "")
-        --     else
-        --         vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](replace_keys("<Tab>")), "n", true)
-        --         -- fallback()
-        --     end
-        -- end, { "i", "s" }),
     },
     formatting = {
         fields = { "kind", "abbr", "menu" },
@@ -126,8 +120,18 @@ cmp.setup({
         { name = "path" },
         { name = "emoji" },
     }),
+    window = {
+        -- documentation = cmp.config.window.bordered()
+        documentation = {
+            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        },
+        completion = {
+            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        },
+    },
     experimental = {
-        ghost_text = false, -- this feature conflict to the copilot.vim's preview.
+        ghost_text = true,
+        native_menu = false,
     },
 })
 
