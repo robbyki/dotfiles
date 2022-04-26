@@ -126,7 +126,7 @@ vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
 vim.wo.wrap = false
 vim.opt.wrap = false
 vim.opt.textwidth = 0
-vim.cmd("colorscheme kanagawa")
+-- vim.cmd("colorscheme kanagawa")
 
 vim.cmd([[ 
     highlight ScrollView ctermbg=159 guibg=LightCyan

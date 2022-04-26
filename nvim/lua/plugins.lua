@@ -191,7 +191,7 @@ return packer.startup(function(use)
     ----------------------------------------------------------------------
     --                                Debug                             --
     ----------------------------------------------------------------------
-    use({ "mfussenegger/nvim-dap" })
+    use("mfussenegger/nvim-dap")
     use("mfussenegger/nvim-dap-python")
     use({
         "folke/trouble.nvim",
@@ -466,12 +466,12 @@ return packer.startup(function(use)
     --                               Code                               --
     ----------------------------------------------------------------------
     use({ "junegunn/vim-easy-align", keys = "<Plug>(EasyAlign)" })
-    use({
-        "filipdutescu/renamer.nvim",
-        config = function()
-            require("plugins.renamer")
-        end,
-    })
+    -- use({
+    --     "filipdutescu/renamer.nvim",
+    --     config = function()
+    --         require("plugins.renamer")
+    --     end,
+    -- })
     use("tpope/vim-surround")
     use("arthurxavierx/vim-caser")
     use({

@@ -1,31 +1,20 @@
---todo: add this to override the default behavior
--- NormalNC⋅=⋅config.dimInactive⋅and⋅{⋅fg⋅=⋅colors.fg_dark,⋅bg⋅=⋅colors.bg_light0⋅}⋅or⋅{⋅link⋅=⋅"Normal"⋅},
+local default_colors = require("kanagawa.colors").setup()
 
--- local colors = require("kanagawa.colors").setup()
-
--- local overrides = {
--- LspReferenceText = { bg = colors.roninYellow, fg = colors.sumiInk1 },
--- LspReferenceRead = { bg = colors.roninYellow, fg = colors.sumiInk1 },
--- LspReferenceWrite = { bg = colors.roninYellow, fg = colors.sumiInk1 },
--- -- CursorLine = { bg = colors.roninYellow, fg = colors.sumiInk1 },
--- VertSplit = { fg = colors.bg_dark, bg = "NONE" },
--- }
+local overrided_hlgroup = {
+    VertSplit = { fg = default_colors.sumiInk2, bg = "NONE" },
+    StatusLineNC = { bg = "NONE" },
+    -- NormalNC = config.dimInactive and { fg = default_colors.fg_dark, bg = default_colors.bg_light0 } or { link = "Normal" },
+    LspReferenceText = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
+    LspReferenceRead = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
+    LspReferenceWrite = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
+    CursorLine = { bg = default_colors.bg_visual },
+    LineNr = { fg = default_colors.dep },
+}
 
 require("kanagawa").setup({
-    undercurl = true, -- enable undercurls
-    commentStyle = "italic",
-    functionStyle = "NONE",
-    keywordStyle = "italic",
-    statementStyle = "bold",
-    typeStyle = "NONE",
-    variablebuiltinStyle = "italic",
-    specialReturn = true, -- special highlight for the return keyword
-    specialException = true, -- special highlight for exception handling keywords
-    transparent = true, -- do not set background color
-    dimInactive = true, -- dim inactive regions
-    -- colors = {},
-    -- overrides = overrides,
-    --    overrides = {
-    --        TelescopeBorder = { bg = "NONE" }
-    --    },
+    transparent = true,
+    dimInactive = true,
+    overrides = overrided_hlgroup,
 })
+
+vim.cmd("colorscheme kanagawa")
