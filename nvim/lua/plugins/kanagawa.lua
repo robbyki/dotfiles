@@ -1,3 +1,14 @@
+vim.opt.laststatus = 3
+vim.opt.fillchars:append({
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┨",
+    vertright = "┣",
+    verthoriz = "╋",
+})
+
 local default_colors = require("kanagawa.colors").setup()
 
 local overrided_hlgroup = {
@@ -15,6 +26,7 @@ require("kanagawa").setup({
     transparent = true,
     dimInactive = true,
     overrides = overrided_hlgroup,
+    globalStatus = true,
 })
 
 vim.cmd("colorscheme kanagawa")

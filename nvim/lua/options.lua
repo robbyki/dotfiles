@@ -33,7 +33,7 @@ vim.opt.hidden = true
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 vim.opt.list = true
 vim.opt.listchars = "tab:│ ,trail:•,precedes:❮,nbsp:.,conceal:Δ"
 vim.opt.mouse = ""
@@ -126,7 +126,6 @@ vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
 vim.wo.wrap = false
 vim.opt.wrap = false
 vim.opt.textwidth = 0
--- vim.cmd("colorscheme kanagawa")
 
 vim.cmd([[ 
     highlight ScrollView ctermbg=159 guibg=LightCyan
