@@ -121,11 +121,12 @@ return packer.startup(function(use)
     })
     use({
         "nvim-lualine/lualine.nvim",
+        event = "VimEnter",
+        after = "nvim-treesitter",
         config = function()
             require("plugins.statusline")
         end,
-        event = "VimEnter",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        wants = "nvim-web-devicons",
     })
     use({
         "norcalli/nvim-colorizer.lua",
@@ -453,15 +454,14 @@ return packer.startup(function(use)
             require("plugins.neogen")
         end,
     })
-    -- use({
-    --     "abecodes/tabout.nvim",
-    --     wants = { "nvim-treesitter" },
-    --     after = { "nvim-cmp", "copilot.vim" },
-    --     config = function()
-    --         require("plugins.tabout")
-    --     end,
-    -- })
-
+    -- IDE
+    use({
+        "antoinemadec/FixCursorHold.nvim",
+        event = "BufReadPre",
+        config = function()
+            vim.g.cursorhold_updatetime = 100
+        end,
+    })
     ----------------------------------------------------------------------
     --                               Code                               --
     ----------------------------------------------------------------------
@@ -536,6 +536,7 @@ return packer.startup(function(use)
     -------------------------------------------------------------------
     --                             Golang                            --
     -------------------------------------------------------------------
+    -- Go
     use({
         "ray-x/go.nvim",
         config = function()

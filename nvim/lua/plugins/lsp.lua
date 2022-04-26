@@ -15,14 +15,23 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 --                            Signature                             --
 ----------------------------------------------------------------------
 lsp_signature.setup({
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    bind = true,
+    doc_lines = 7,
+    floating_window = false,
+    fix_pos = true,
+    hint_enable = true,
+    -- hint_prefix = "> ",
+    hint_prefix = "🦄 ",
+    hint_scheme = "String",
+    hi_parameter = "Search",
+    max_height = 3,
+    max_width = 40,
     handler_opts = {
         border = "rounded",
     },
-    hint_prefix = "🦄 ",
-    floating_window_above_cur_line = true,
-    hint_enable = false,
-    toggle_key = "<C-x>",
+    -- floating_window_above_cur_line = true,
+    -- hint_enable = false,
+    -- toggle_key = "<C-x>",
 })
 
 ----------------------------------------------------------------------
@@ -163,7 +172,7 @@ lspconfig.sumneko_lua.setup({
 ----------------------------------------------------------------------
 --                         Language Servers                         --
 ----------------------------------------------------------------------
-local servers = { "tsserver", "dockerls", "bashls" }
+local servers = { "tsserver", "dockerls", "bashls", "pyright" }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
         on_attach = custom_attach,
@@ -184,20 +193,20 @@ end
 ----------------------------------------------------------------------
 --                              Python                              --
 ----------------------------------------------------------------------
-lspconfig.pyright.setup({
-    on_attach = custom_attach,
-    capabilities = capabilities,
-    settings = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly",
-                typeCheckingMode = "off",
-                useLibraryCodeForTypes = true,
-            },
-        },
-    },
-})
+-- lspconfig.pyright.setup({
+--     on_attach = custom_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         python = {
+--             analysis = {
+--                 autoSearchPaths = true,
+--                 diagnosticMode = "openFilesOnly",
+--                 typeCheckingMode = "off",
+--                 useLibraryCodeForTypes = true,
+--             },
+--         },
+--     },
+-- })
 
 ----------------------------------------------------------------------
 --                               YAML                               --

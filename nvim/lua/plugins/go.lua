@@ -1,12 +1,12 @@
 require("go").setup({
-    run_in_floaterm = true,
+    -- run_in_floaterm = true,
     -- goimport = "gopls", -- goimport command
     -- gofmt = "gopls", --gofmt cmd,
-    max_line_len = 100, -- max line length in goline format
+    -- max_line_len = 100, -- max line length in goline format
     -- tag_transform = false, -- tag_transfer  check gomodifytags for details
     -- test_template = "", -- default to testify if not set; g:go_nvim_tests_template  check gotests for details
     -- test_template_dir = "", -- default to nil if not set; g:go_nvim_tests_template_dir  check gotests for details
-    comment_placeholder = "   ",
+    -- comment_placeholder = "   ",
     -- verbose = false, -- output loginf in messages
     -- lsp_cfg = false, -- true: apply go.nvim non-default gopls setup
     -- lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
