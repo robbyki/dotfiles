@@ -21,8 +21,6 @@ null_ls.setup({
       filetypes = { "sh", "zsh" },
     }),
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.trim_newlines,
-    null_ls.builtins.formatting.trim_whitespace,
     null_ls.builtins.formatting.prettier.with({
       filetypes = { "javascriptreact", "typescriptreact", "javascript", "typescript" },
     }),
