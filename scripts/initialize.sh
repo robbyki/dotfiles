@@ -182,6 +182,7 @@ pip install markdown
 pip install buku
 pip install neovim
 pip install pynvim
+pip install git+https://github.com/psf/black
 
 # k9s
 gh repo clone derailed/k9s
@@ -224,6 +225,9 @@ go install github.com/mikefarah/yq/v4@latest
 go install github.com/x-motemen/gore/cmd/gore@latest
 go install github.com/mdempsky/gocode@latest
 
+# kubecolor
+go get -u github.com/hidetatz/kubecolor/cmd/kubecolor
+
 git clone https://github.com/jfrog/jfrog-cli
 cd jfrog-cli
 CGO_ENABLED=0 go build -o jf -ldflags '-w -extldflags "-static"' main.go
@@ -256,7 +260,7 @@ sudo yum install https://prerelease.keybase.io/keybase_amd64.rpm
 
 # install sbt
 sudo rm -f /etc/yum.repos.d/bintray-rpm.repo
-curl -L https://www.scala-sbt.org/sbt-rpm.repo >sbt-rpm.repo
+curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
 sudo mv sbt-rpm.repo /etc/yum.repos.d/
 sudo dnf install -y sbt
 
@@ -271,7 +275,7 @@ cd glow
 go build
 
 # kubectl
-cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+cat << EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
@@ -332,6 +336,7 @@ ln -s -f ~/.dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
 ln -s -f ~/.dotfiles/nvim ~/.config/nvim
 ln -s -f ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ln -s -f ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+ln -s -f ~/.dotfiles/k9s/skin.yml ~/.config/k9s/skin.yml
 
 #vscode
 # need to start using built-in vscode sync
@@ -345,7 +350,7 @@ mkdir ~/.config/colorls/
 cp $(dirname $(gem which colorls))/yaml/files.yaml ~/.config/colorls/files.yaml
 
 # coursier artifact fetching
-curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d >cs
+curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
 chmod +x cs
 ./cs setup
 

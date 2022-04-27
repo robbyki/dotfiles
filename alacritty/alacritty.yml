@@ -39,6 +39,8 @@ font:
     family: monospace
     style: Bold
   italic:
+    # my operator font is defined in $XDG_CONFIG_HOME/fontconfig/fonts.conf
+    # for alacritty emoji colors workaround to make it render properly
     # family: OperatorMonoSSmLig Nerd Font
     family: monospace
     style: Book Italic
@@ -57,9 +59,6 @@ colors:
     cursor:
       text: '#1d1f21'
       cursor: '#cc6666'
-    # vi_mode_cursor:
-    #   text: '#2e3440'
-    #   cursor: '#d8dee9'
     primary:
       background: '0x1f1f28'
       foreground: '0xdcd7ba'

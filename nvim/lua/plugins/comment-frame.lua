@@ -1,3 +1,3 @@
 require("nvim-comment-frame").setup({
-    disable_default_keymap = true,
+  disable_default_keymap = true,
 })

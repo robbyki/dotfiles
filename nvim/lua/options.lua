@@ -96,7 +96,7 @@ vim.g.rainbow_active = 1
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 -- autocommands
-vim.cmd([[autocmd FileType lua setlocal shiftwidth=4 tabstop=4 expandtab]])
+vim.cmd([[autocmd FileType lua setlocal shiftwidth=2 tabstop=2 expandtab]])
 vim.cmd([[autocmd FileType,BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 vim.cmd([[autocmd BufRead,BufNewFile *Dockerfile* :set ft=dockerfile]])
 vim.cmd([[autocmd BufRead,BufNewFile ~/.dotfiles/zsh/* :set ft=sh]])
@@ -104,8 +104,10 @@ vim.cmd([[autocmd BufRead,BufNewFile zsh* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile ~/bin/* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */.kube/config :set ft=yaml]])
-vim.cmd([[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]])
-vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
+vim.cmd(
+  [[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
+)
+-- vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
 vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
 -- vim.cmd([[autocmd FileType go setlocal ts=4 sts=4 sw=4 ai]])
@@ -127,7 +129,7 @@ vim.wo.wrap = false
 vim.opt.wrap = false
 vim.opt.textwidth = 0
 
-vim.cmd([[ 
+vim.cmd([[
     highlight ScrollView ctermbg=159 guibg=LightCyan
 ]])
 vim.g.nvim_tree_respect_buf_cwd = 1

@@ -49,7 +49,7 @@ alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
 alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
-alias ssibm='secrets source ibm-secrets'
+alias ssx='secrets source ibm-secrets'
 
 # system helpers
 alias exp='export'
@@ -221,6 +221,7 @@ alias stt='stern --tail 10'
 
 alias mk='minikube'
 alias mkstart='minikube start --driver=podman --container-runtime=cri-o'
+alias mkdash='minikube dashboard --url'
 
 # containers
 alias docker='podman'
@@ -325,6 +326,8 @@ alias ecs=zrc
 # audio switching between speakers and headphones using pactl util
 alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.analog-surround-40"
 alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
+alias voli="pactl -- set-sink-volume 0 +10%"
+alias vold="pactl -- set-sink-volume 0 -10%"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
 
