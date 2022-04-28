@@ -11,6 +11,9 @@ vim.cmd([[command! CB :CopyBuffer]])
 
 -- vim.cmd([[command! GoRun GoRun -buildvcs=false .]])
 
+vim.g.go_fmt_command = "gopls"
+vim.g.go_gopls_gofumpt = 1
+
 vim.g.python3_host_prog = "/bin/python3"
 vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
@@ -111,10 +114,11 @@ vim.cmd(
 )
 -- vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
-vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
+-- vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
+-- vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
 -- vim.cmd([[autocmd FileType go setlocal ts=4 sts=4 sw=4 ai]])
 -- vim.cmd([[autocmd FileType gomod setlocal ts=4 sts=4 ai sw=4]])
--- vim.cmd([[autocmd FileType go setlocal formatprg=gofmt]])
+-- vim.cmd([[autocmd FileType go setlocal formatprg=gofumpt]])
 
 vim.cmd("highlight! Comment cterm=italic, gui=italic")
 vim.cmd("highlight! Special cterm=italic, gui=italic")

@@ -25,7 +25,7 @@ toggleterm.setup({
   float_opts = {
     border = "curved",
     width = 120,
-    height = 30,
+    height = 20,
     winblend = 0,
     highlights = {
       border = "Normal",
@@ -61,10 +61,6 @@ local k9s = Terminal:new({
     width = 200,
     height = 100,
   },
-  -- highlights = {
-  --     border = "Normal",
-  --     background = "Normal",
-  -- },
 })
 
 local broot = Terminal:new({
@@ -72,10 +68,6 @@ local broot = Terminal:new({
   hidden = true,
   direction = "float",
   close_on_exit = true,
-  -- highlights = {
-  --     border = "Normal",
-  --     background = "Normal",
-  -- },
 })
 
 local lf = Terminal:new({
@@ -88,10 +80,6 @@ local lf = Terminal:new({
     width = 100,
     height = 50,
   },
-  -- highlights = {
-  --     border = "Normal",
-  --     background = "Normal",
-  -- },
 })
 
 function _LF_TOGGLE()

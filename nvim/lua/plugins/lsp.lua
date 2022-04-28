@@ -326,7 +326,7 @@ lspconfig.gopls.setup({
       matcher = "Fuzzy",
       diagnosticsDelay = "500ms",
       experimentalWatchedFileDelay = "100ms",
-      gofumpt = false,
+      gofumpt = true,
       -- buildFlags = { "-tags", "integration", "-buildvcs=false" },
       experimentalPostfixCompletions = true,
       experimentalUseInvalidMetadata = true,

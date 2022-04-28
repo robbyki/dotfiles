@@ -114,9 +114,15 @@ wk.register({
     n = { [[<cmd>lua require('plugins.telescope').edit_neovim()<CR>]], "dotfiles" },
     p = { [[<Cmd>:Telescope projects<CR>]], "projects" },
     r = { [[<Cmd>lua require('telescope.builtin').registers()<CR>]], "registers" },
-    s = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/bin', hidden = true })<CR>]], "scripts" },
+    s = {
+      [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/bin', hidden = true })<CR>]],
+      "scripts",
+    },
     t = { [[<Cmd>lua require('telescope.builtin').tags()<CR>]], "tags" },
-    z = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.oh-my-zsh' })<CR>]], "find oh-my-zsh" },
+    z = {
+      [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/.oh-my-zsh' })<CR>]],
+      "find oh-my-zsh",
+    },
   },
   ["<leader>i"] = {
     name = "+insert",
@@ -246,7 +252,10 @@ wk.register({
     g = { [[<Cmd>lua require'telescope'.extensions.dap.configurations{}<CR>]], "telescope dap configurations" }, --works=yes
     h = { [[<Cmd>lua require'dap.ui.variables'.hover()<CR>]], "dap hover" },
     i = { [[<Cmd>lua require'dap'.step_into()<CR>]], "dap step into" },
-    l = { [[<Cmd>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>]], "telescope dap list breakpoints" }, --works=yes
+    l = {
+      [[<Cmd>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>]],
+      "telescope dap list breakpoints",
+    }, --works=yes
     o = { [[<Cmd>lua require'dap'.step_out()<CR>]], "dap step out" }, -- works=yes
     r = { [[<Cmd>lua require'dap'.repl.toggle()<CR>]], "dap repl toggle" }, -- works=yes
     t = { [[<Cmd>lua require'dap'.terminate()<CR>]], "dap terminate" }, --works=y()
