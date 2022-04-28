@@ -39,6 +39,7 @@ map("n", "<Esc><Esc>", ":nohlsearch<CR>")
 map("n", "<leader>n", ":set number! norelativenumber<CR>")
 map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
 map("n", "<leader>ev", ":vs $MYVIMRC<CR>")
+map("n", "<leader>yb", ":CopyBuffer<CR>")
 map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
 map("n", "<esc>", ":noh<CR><esc>", { silent = true })
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
@@ -68,7 +69,7 @@ map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>")
 map("n", "<leader>xc", "<cmd>:TroubleClose<cr>")
 map("n", "<leader>xr", "<cmd>Trouble refresh<cr>")
 map("n", "<leader>xt", "<cmd>Trouble toggle<cr>")
-map("n", "gR", "<cmd>Trouble lsp_references<cr>")
+map("n", "<leader>gR", "<cmd>Trouble lsp_references<cr>")
 
 vim.g.which_key_display_names = {
   ["<CR>"] = "↵",
