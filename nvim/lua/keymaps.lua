@@ -16,16 +16,6 @@ vim.cmd([[
  nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
--- TODO: need to figure out how to make this not conflict with vim movements after opening embeds
--- although I don't feel like these should persist and like the idea of quick one-offs and close
--- toggleterm mappings
--- map("t", "<C-S-n>", [[<C-\><C-n>]])
--- map("t", "<C-j><C-k>", [[<C-\><C-n>]])
--- map("t", "<C-S-h>", [[<C-/><C-n><C-W>h]])
--- map("t", "<C-n><C-W>j", [[<C-\><C-n><C-W>j]])
--- map("t", "<C-S-k>", [[<C-\><C-n><C-W>k]])
--- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-
 map("n", "<Space>", "<Nop>")
 map("i", "<C-c>", "<Esc>")
 map("n", "<CR>", "<cmd>FineCmdline<CR>")

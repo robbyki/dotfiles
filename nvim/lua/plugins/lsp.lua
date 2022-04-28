@@ -175,7 +175,7 @@ lspconfig.sumneko_lua.setup({
 ----------------------------------------------------------------------
 --                         Language Servers                         --
 ----------------------------------------------------------------------
-local servers = { "tsserver", "dockerls", "bashls", "pyright" }
+local servers = { "tsserver", "dockerls", "pyright" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({
     on_attach = custom_attach,

@@ -9,10 +9,9 @@ vim.cmd([[command! PC packadd packer.nvim | lua require('plugins').clean()]])
 
 vim.cmd([[command! CB :CopyBuffer]])
 
--- vim.cmd([[command! GoRun GoRun -buildvcs=false .]])
-
 vim.g.go_fmt_command = "gopls"
 vim.g.go_gopls_gofumpt = 1
+-- vim.g.go_doc_popup_window = 1
 
 vim.g.python3_host_prog = "/bin/python3"
 vim.g.loaded_python_provider = 0
@@ -102,23 +101,19 @@ vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 -- autocommands
 vim.cmd([[autocmd FileType lua setlocal shiftwidth=2 tabstop=2 expandtab]])
+vim.cmd([[autocmd FileType sh setlocal shiftwidth=2 tabstop=2 expandtab]])
 vim.cmd([[autocmd FileType,BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 vim.cmd([[autocmd BufRead,BufNewFile *Dockerfile* :set ft=dockerfile]])
-vim.cmd([[autocmd BufRead,BufNewFile ~/.dotfiles/zsh/* :set ft=sh]])
-vim.cmd([[autocmd BufRead,BufNewFile zsh* :set ft=sh]])
+-- vim.cmd([[autocmd BufRead,BufNewFile ~/.dotfiles/zsh/* :set ft=sh]])
+vim.cmd([[autocmd BufRead,BufNewFile zsh* :set ft=sh]]) -- this is mostly for vim at command line syntax highlighting
 vim.cmd([[autocmd BufRead,BufNewFile ~/bin/* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */.kube/config :set ft=yaml]])
 vim.cmd(
   [[autocmd BufReadPost,BufNewFile *.jsx,*.md,*.txt,COMMIT_EDITMSG set wrap linebreak nolist spell spelllang=en_us complete+=kspell]]
 )
--- vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 vim.cmd([[autocmd BufRead,BufNewFile *Jenkins* setfiletype groovy]])
--- vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
--- vim.cmd([[autocmd BufRead,BufNewFile go.mod set ft=gomod]])
--- vim.cmd([[autocmd FileType go setlocal ts=4 sts=4 sw=4 ai]])
--- vim.cmd([[autocmd FileType gomod setlocal ts=4 sts=4 ai sw=4]])
--- vim.cmd([[autocmd FileType go setlocal formatprg=gofumpt]])
+-- vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 ai expandtab]])
 
 vim.cmd("highlight! Comment cterm=italic, gui=italic")
 vim.cmd("highlight! Special cterm=italic, gui=italic")

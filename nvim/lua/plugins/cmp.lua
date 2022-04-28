@@ -59,9 +59,6 @@ cmp.setup({
       vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
     end,
   },
-  -- documentation = {
-  --     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  -- },
   mapping = {
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -102,11 +99,11 @@ cmp.setup({
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         buffer = "[BUF]",
+        copilot = "[COPILOT]",
         cmp_tabnine = "[TN]",
         path = "[PATH]",
         tmux = "[TMUX]",
         vsnip = "[SNIP]",
-        copilot = "[COPILOT]",
       })[entry.source.name]
       return vim_item
     end,

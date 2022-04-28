@@ -61,6 +61,7 @@ sudo dnf install -y \
   neofetch \
   ninja-build \
   okular \
+  golang-google-protobuf \
   patch \
   peek \
   pkgconfig \
@@ -199,6 +200,9 @@ ln -s -f ~/dev/schemas/openshift/* ~/dev/openshift-json-schema/master-standalone
 wget https://go.dev/dl/go1.18.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
+
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grp@latest
 
 # go tools
 go install golang.org/x/tools/...@latest

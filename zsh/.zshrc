@@ -1,18 +1,12 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
-
-# powerlevel10k settings prompt {{{
 ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# }}}
 
-# {{{ zsh-plugins
+export ZSH="$HOME/.oh-my-zsh"
+
 plugins=(
     alias-tips
     autoupdate
@@ -35,41 +29,37 @@ plugins=(
     zsh-secrets
     zsh-syntax-highlighting
 )
-# }}}
 
-# {{{ completions
+# # {{{ completions
 autoload -U compinit && compinit
 source <(kubectl completion zsh)
-source <(tkn completion zsh)
-source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
-source <(minikube completion zsh)
-source $ZSH/completions/_ic
-source $ZSH/completions/_helm
-source $HOME/.config/broot/launcher/bash/br
-source /home/robbyk/.config/broot/launcher/bash/br
-source <(stern --completion=zsh) # does not work
-source $ZSH/completions/_stern # does not work
-autoload -U +X bashcompinit && bashcompinit
-# }}}
-
+# # source <(tkn completion zsh)
+# # source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
+# source <(minikube completion zsh)
+# # source $ZSH/completions/_helm
+# source $ZSH/completions/_ic
+# source $ZSH/completions/_stern # does not work
+# source $XDG_CONFIG_HOME/broot/launcher/bash/br
+# source <(stern --completion=zsh) # does not work
+# # autoload -U +X bashcompinit && bashcompinit
+# # }}}
+#
 source $ZSH/oh-my-zsh.sh
-
-# {{{ nvm settings
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-# }}}
-
-# {{{ better cd
+#
+# # {{{ nvm settings
+# # export NVM_DIR="$HOME/.nvm"
+# # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# # }}}
+#
 source $HOME/dev/enhancd/init.sh
 export ENHANCD_DOT_SHOW_FULLPATH=1
 export ENHANCD_FILTER=fzy:fzf
 export ENHANCD_HOOK_AFTER_CD="ll"
-# }}}
 
-# {{{ alias helper
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
-# }}}
+
+source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
 # {{{ history settings
 HISTSIZE=10000000
@@ -99,7 +89,7 @@ export IBMCLOUD_VERSION_CHECK=true
 export VISUAL=$EDITOR
 export SUDO_EDITOR=$EDITOR
 export GH_EDITOR=$EDITOR
-export MYVIMRC=$HOME/.config/nvim/init.lua
+export MYVIMRC=$XDG_CONFIG_HOME/nvim/init.lua
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JRE_HOME=/usr/lib/jvm/jre-11-openjdk
 export GIT_HOME=/usr/bin/git
@@ -113,10 +103,10 @@ export GOROOT=/usr/local/go
 export KUBECONFIG=$HOME/.kube/config
 # export LUASERVER=$HOME/tools/lua-language-server
 # export KUBECONFIG=$KUBECONFIG:my-super-config
-
+#
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$PATH
 # }}}
-
+#
 # {{{ easier pasting
 zle_highlight+=(paste:none)
 zstyle :prompt:pure:git:stash show yes
@@ -160,6 +150,7 @@ bindkey -s "^[=" 'k9s^M'
 
 # {{{ FZF Settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 export FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_DEFAULT_OPTS="-i --no-mouse --ansi --layout=default --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
@@ -169,6 +160,7 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--height 80% --preview 'tree -NC {} | head -200'"
 export FZF_TMUX_OPTS="-p 90%,30%"
+
 export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 # }}}
 
@@ -180,24 +172,9 @@ else
 	export NUM_OF_CORES=1
 fi
 
-# thanks to neovim 0.7 built-in clien-server comm, this is no longer needed
-# {{{ nvim settings for embedded terminal
-# if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-#     alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
-# fi
-#
-# if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-#     export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-#     export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-# else
-#     export VISUAL="nvim"
-#     export EDITOR="nvim"
-# fi
-# }}}
-
 # better cd
 eval "$(zoxide init zsh)"
-
+#
 # node manager
 eval "`fnm env`"
 eval "$(fnm env --use-on-cd)"
@@ -215,10 +192,10 @@ export OCPSCHEMA=${HOME}/dev/openshift-json-schema
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
-
-#fpath=( ~/.zshfunctions "${fpath[@]}" )
-#autoload -Uz $fpath[1]/*(.:t)
-
+#
+# #fpath=( ~/.zshfunctions "${fpath[@]}" )
+# #autoload -Uz $fpath[1]/*(.:t)
+#
 # used for gpg zsh secrets plugin
 export RECIPIENT="robbmk@gmail.com"
 export GPGKEY=9D0BE3B364886BBCE5C6B4551D020EA33FE2A6A8
@@ -243,7 +220,7 @@ zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200
 zstyle ':notify:*' error-title "wow such #fail"
 zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
 zstyle ':notify:*' success-title "very #success. wow"
-
+#
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 # enable this to make it easier during demos and creating many tmux panes

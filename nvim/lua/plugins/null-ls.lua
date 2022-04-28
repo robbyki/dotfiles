@@ -7,17 +7,18 @@ null_ls.setup({
   debup = false,
   sources = {
     null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.shfmt.with({
-      extra_args = {
-        "-s",
-        "-ln",
-        "posix",
-        "-i",
-        "2",
-        "-bn",
-        "-ci",
-        "-sr",
-      },
+      -- extra_args = {
+      --   "-s",
+      --   "-ln",
+      --   "posix",
+      --   "-i",
+      --   "2",
+      --   "-bn",
+      --   "-ci",
+      --   "-sr",
+      -- },
       filetypes = { "sh", "zsh" },
     }),
     null_ls.builtins.formatting.stylua,

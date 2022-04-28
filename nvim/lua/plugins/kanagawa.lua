@@ -18,7 +18,7 @@ local overrided_hlgroup = {
   LspReferenceText = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
   LspReferenceRead = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
   LspReferenceWrite = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
-  CursorLine = { bg = default_colors.bg_visual },
+  CursorLine = { bg = default_colors.bg_search },
   LineNr = { fg = default_colors.dep },
 }
 

@@ -4,7 +4,7 @@ export DOTFILES="$HOME/.dotfiles"
 alias vi=$EDITOR
 alias vim=$EDITOR
 alias nvim=$EDITOR
-
+#
 # container testing
 alias pdfedora='pdr -it fedora bash'
 
@@ -325,7 +325,7 @@ alias ecs=zrc
 
 # audio switching between speakers and headphones using pactl util
 alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.analog-surround-40"
-alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
+alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.analog-stereo"
 alias voli="pactl -- set-sink-volume 0 +10%"
 alias vold="pactl -- set-sink-volume 0 -10%"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
