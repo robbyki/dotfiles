@@ -317,8 +317,8 @@ alias -g @yaml=' | yq eval -P'
 alias -g @json=' | jq'
 
 zrc() {
-  $EDITOR $DOTFILES/zsh/.zshrc
-  source $DOTFILES/zsh/.zshrc
+	$EDITOR $DOTFILES/zsh/.zshrc
+	source $DOTFILES/zsh/.zshrc
 }
 alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 alias ecs=zrc
@@ -326,8 +326,8 @@ alias ecs=zrc
 # audio switching between speakers and headphones using pactl util
 alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.analog-surround-40"
 alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.analog-stereo"
-alias voli="pactl -- set-sink-volume 0 +10%"
-alias vold="pactl -- set-sink-volume 0 -10%"
+alias volu="pactl -- set-sink-volume 0 +5%"
+alias vold="pactl -- set-sink-volume 0 -5%"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
 

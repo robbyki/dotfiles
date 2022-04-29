@@ -98,6 +98,7 @@ wk.register({
       "find files here",
     },
     h = { [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], "help tags" },
+    q = { [[<Cmd>lua require('telescope.builtin').quickfix()<CR>]], "quickfix" },
     j = { [[<Cmd>lua require('telescope.builtin').jumplist()<CR>]], "jumps" },
     l = { [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], "live grep" },
     m = { [[<Cmd>lua require('telescope.builtin').marks()<CR>]], "marks" },

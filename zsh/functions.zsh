@@ -371,25 +371,9 @@ pdmkregistry() {
 	podman start registry
 }
 
-# this prevents me from being able to autocomplete the local images
-# pdpush() {
-#   podman push --tls-verify=false $1
-# }
-
 ocgetroutes() {
 	oc get routes --all-namespaces --output=custom-columns=NAME:.metadata.name
 }
-
-iclogin() {
-	secrets source ibm-secrets 2>/dev/null
-	# IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_${1} ic login --quiet >/dev/null 2>&1
-	IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_${1} ibmcloud login
-}
-
-# icldwlogin() {
-#   secrets source ibm-secrets 2>/dev/null
-#   IBMCLOUD_API_KEY=$IBMCLOUD_API_KEY_LDW ic login
-# }
 
 decryptibm() {
 	secrets decrypt ibm-secrets >ibm-secrets
