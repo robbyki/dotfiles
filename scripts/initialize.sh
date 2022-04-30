@@ -8,88 +8,88 @@ sudo dnf upgrade --refresh -y
 # install rpmfusion for nvidia and vlc
 # install akmod-nvidia drivers with this
 sudo dnf install -y \
-  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+	https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+	https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 #check video driver in use:
 lspci -nnk | egrep -i --color 'vga|3d|2d' -A3 | grep 'in use'
 
 # important base packages I need
 sudo dnf install -y \
-  akmod-nvidia \
-  alacritty \
-  autoconf \
-  automake \
-  bat \
-  buildah \
-  buku \
-  clang \
-  cmake \
-  cmatrix \
-  curl \
-  discord \
-  podman-remote \
-  podman-docker \
-  exa \
-  fd-find \
-  ffmpeg \
-  fontawesome5-fonts-all \
-  fontconfig-devel \
-  freetype-devel \
-  g++ \
-  gcc \
-  gcc-c++ \
-  gettext \
-  gimp \
-  git-delta \
-  gnome-tweaks \
-  gstreamer1-plugins-ugly \
-  helm \
-  htop \
-  java-11-openjdk-src \
-  java-devel \
-  kdenlive \
-  keepassxc \
-  kmod-v4l2loopback \
-  libgnome \
-  libstdc++-static \
-  libtool \
-  libxcb-devel \
-  libxkbcommon-devel \
-  make \
-  ncurses-devel \
-  neofetch \
-  ninja-build \
-  okular \
-  golang-google-protobuf \
-  patch \
-  peek \
-  pkgconfig \
-  plantuml \
-  plazma-breeze \
-  pulseaudio-utils \
-  qutebrowser \
-  rofi \
-  ruby \
-  ruby-devel \
-  screenkey \
-  shutter \
-  skopeo \
-  slack \
-  the_silver_searcher \
-  trash-cli \
-  unzip \
-  util-linux-user \
-  vlc \
-  webex \
-  wget \
-  wmctrl \
-  xclip \
-  xdotool \
-  xorg-x11-drv-nvidia-cuda \
-  xscreensaver \
-  zoxide \
-  zsh
+	akmod-nvidia \
+	alacritty \
+	autoconf \
+	automake \
+	bat \
+	buildah \
+	buku \
+	clang \
+	cmake \
+	cmatrix \
+	curl \
+	discord \
+	podman-remote \
+	podman-docker \
+	exa \
+	fd-find \
+	ffmpeg \
+	fontawesome5-fonts-all \
+	fontconfig-devel \
+	freetype-devel \
+	g++ \
+	gcc \
+	gcc-c++ \
+	gettext \
+	gimp \
+	git-delta \
+	gnome-tweaks \
+	gstreamer1-plugins-ugly \
+	helm \
+	htop \
+	java-11-openjdk-src \
+	java-devel \
+	kdenlive \
+	keepassxc \
+	kmod-v4l2loopback \
+	libgnome \
+	libstdc++-static \
+	libtool \
+	libxcb-devel \
+	libxkbcommon-devel \
+	make \
+	ncurses-devel \
+	neofetch \
+	ninja-build \
+	okular \
+	golang-google-protobuf \
+	patch \
+	peek \
+	pkgconfig \
+	plantuml \
+	plazma-breeze \
+	pulseaudio-utils \
+	qutebrowser \
+	rofi \
+	ruby \
+	ruby-devel \
+	screenkey \
+	shutter \
+	skopeo \
+	slack \
+	the_silver_searcher \
+	trash-cli \
+	unzip \
+	util-linux-user \
+	vlc \
+	webex \
+	wget \
+	wmctrl \
+	xclip \
+	xdotool \
+	xorg-x11-drv-nvidia-cuda \
+	xscreensaver \
+	zoxide \
+	zsh
 
 sudo dnf -y groupinstall "Development Tools" "Development Libraries"
 
@@ -264,7 +264,7 @@ sudo yum install https://prerelease.keybase.io/keybase_amd64.rpm
 
 # install sbt
 sudo rm -f /etc/yum.repos.d/bintray-rpm.repo
-curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
+curl -L https://www.scala-sbt.org/sbt-rpm.repo >sbt-rpm.repo
 sudo mv sbt-rpm.repo /etc/yum.repos.d/
 sudo dnf install -y sbt
 
@@ -279,7 +279,7 @@ cd glow
 go build
 
 # kubectl
-cat << EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
@@ -354,7 +354,7 @@ mkdir ~/.config/colorls/
 cp $(dirname $(gem which colorls))/yaml/files.yaml ~/.config/colorls/files.yaml
 
 # coursier artifact fetching
-curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
+curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d >cs
 chmod +x cs
 ./cs setup
 
@@ -370,6 +370,7 @@ dnf install qdbm-devel redhat-rpm-config slang-devel sqlite sqlite-devel tar tcl
 dnf install tokyocabinet-devel w3m
 dnf install abook msmtp pass isync
 
+# need to get this to work properly
 gh repo clone neomutt/neomutt
 cd neomutt
 ./configure --notmuch --with-notmuch=/usr/local/lib/notmuch

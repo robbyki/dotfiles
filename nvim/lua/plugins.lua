@@ -538,19 +538,19 @@ return packer.startup(function(use)
   -------------------------------------------------------------------
   --FIXME: this plugin is giving me problems since 0.7. Have some issues open but need to use vim-go for now.
   -- Go
-  -- use({
-  --   "ray-x/go.nvim",
-  --   -- requires = {
-  --   --   "ray-x/guihua.lua",
-  --   --   "theHamsta/nvim-dap-virtual-text",
-  --   -- },
-  --   config = function()
-  --     require("plugins.go")
-  --   end,
-  --   -- ft = { "go" },
-  -- })
-  -- use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
-  use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
+  use({
+    "ray-x/go.nvim",
+    -- requires = {
+    --   "ray-x/guihua.lua",
+    --   "theHamsta/nvim-dap-virtual-text",
+    -- },
+    config = function()
+      require("plugins.go")
+    end,
+    -- ft = { "go" },
+  })
+  use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" })
+  -- use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
 
   ----------------------------------------------------------------------
   --                             Orgmode                              --
