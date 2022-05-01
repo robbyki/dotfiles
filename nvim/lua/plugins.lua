@@ -142,7 +142,14 @@ return packer.startup(function(use)
   })
 
   use("romgrk/fzy-lua-native")
-  use({ "gelguy/wilder.nvim" })
+
+  use({
+    "gelguy/wilder.nvim",
+    config = function()
+      require("plugins.wilder")
+    end,
+  })
+
   use({
     "kyazdani42/nvim-tree.lua",
     requires = {

@@ -9,10 +9,6 @@ vim.cmd([[command! PC packadd packer.nvim | lua require('plugins').clean()]])
 
 vim.cmd([[command! CB :CopyBuffer]])
 
-vim.g.go_fmt_command = "gopls"
-vim.g.go_gopls_gofumpt = 1
--- vim.g.go_doc_popup_window = 1
-
 vim.g.python3_host_prog = "/bin/python3"
 vim.g.loaded_python_provider = 0
 vim.g.loaded_perl_provider = 0 -- To disable Perl support
@@ -134,9 +130,3 @@ vim.cmd([[
     highlight ScrollView ctermbg=159 guibg=LightCyan
 ]])
 vim.g.nvim_tree_respect_buf_cwd = 1
-
-vim.cmd([[
-call wilder#setup({'modes': [':', '/', '?']})
-call wilder#set_option('pipeline', [wilder#branch(wilder#cmdline_pipeline({'use_python': 0,'fuzzy': 1, 'fuzzy_filter': wilder#lua_fzy_filter()}),wilder#vim_search_pipeline(), [wilder#check({_, x -> empty(x)}), wilder#history(), wilder#result({'draw': [{_, x -> ' ' . x}]})])])
-call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_renderer({'highlighter': wilder#lua_fzy_highlighter(), 'left': [wilder#popupmenu_devicons()], 'right': [' ', wilder#popupmenu_scrollbar()]}), '/': wilder#wildmenu_renderer({'highlighter': wilder#lua_fzy_highlighter()})}))
-]])
