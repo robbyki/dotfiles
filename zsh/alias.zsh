@@ -23,7 +23,7 @@ alias kbcfg="$EDITOR ~/.kube/config"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
 alias sl="slides"
-
+alias ghext="cd $HOME/.local/share/gh/extensions"
 # "I didn't say they'll take you places you'd want to go"
 alias rkeeweb="copy ~/Documents/notes/webex-rkee.txt"
 alias util="cd $HOME/dev/aide-utilities"
@@ -49,7 +49,7 @@ alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
 alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
-alias ssx='secrets source ibm-secrets'
+alias ssx='secrets source pawpatrol'
 
 # system helpers
 alias exp='export'
@@ -164,6 +164,7 @@ alias fdf='fd --no-ignore --list-details --hidden'
 alias ghrepo='gh repo-fzf'
 alias ghibm='gh fzrepo'
 alias ghdig='gh repo-fzf Digital-Business-Mgmt-Platform'
+alias ghibmdocs='gh repo-fzf ibm-cloud-docs'
 alias ghaide='gh repo-fzf AIDE'
 alias gistcl='gh gist clone'
 alias gistcr='gh gist create -p -w'

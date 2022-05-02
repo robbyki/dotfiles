@@ -200,7 +200,6 @@ wk.register({
     c = { [[<Cmd>lua require('nvim-comment-frame').add_comment()<CR>]], "comment line" },
     C = { [[<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>]], "comment multi" },
     -- r = { [[<Cmd>lua require('renamer').rename()<CR>]], "rename" },
-    -- i = { [[<Cmd>lua require("go.format").goimport()<CR>]], "go imports" },
   },
   ["<leader>l"] = {
     name = "+lsp",

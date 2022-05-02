@@ -243,3 +243,5 @@ export LF_ICONS
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 export MINIKUBE_IN_STYLE=true
+
+source icutils
