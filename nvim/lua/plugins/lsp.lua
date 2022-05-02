@@ -413,6 +413,7 @@ vim.cmd([[
     augroup Format
       autocmd!
         autocmd BufWritePre *.scala lua vim.lsp.buf.formatting_sync(nil, 1000)
+        autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 1000)
       augroup END
     ]])
 -- autocmd BufWritePre *.graphql lua vim.lsp.buf.formatting_sync(nil, 1000)

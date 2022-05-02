@@ -165,7 +165,7 @@ sh ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 curl -fsSL https://fnm.vercel.app/install | bash
 fnm install --lts
 
-# lsp servers from npm
+# npm installs
 npm install -g prettier
 npm install -g neovim
 npm install -g yaml-language-server
@@ -176,6 +176,7 @@ npm install -g gatsby-cli
 npm install -g typescript-language-server
 npm install -g tree-sitter
 npm install -g dockerfile-language-server-nodejs
+npm install -g vscode-langservers-extracted
 
 # some python packages
 pip install openapi2jsonschema
