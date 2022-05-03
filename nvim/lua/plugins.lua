@@ -454,6 +454,16 @@ return packer.startup(function(use)
       require("plugins.comment-frame")
     end,
   })
+
+  use({
+    "abecodes/tabout.nvim",
+    wants = { "nvim-treesitter" },
+    after = { "nvim-cmp", "copilot.vim" },
+    config = function()
+      require("plugins.tabout")
+    end,
+  })
+
   use({
     "danymat/neogen",
     after = "nvim-treesitter",
@@ -469,6 +479,7 @@ return packer.startup(function(use)
       vim.g.cursorhold_updatetime = 100
     end,
   })
+
   ----------------------------------------------------------------------
   --                               Code                               --
   ----------------------------------------------------------------------

@@ -125,6 +125,7 @@ wk.register({
     k = { [[<Cmd>lua _K9S_TOGGLE()<CR>]], "k9s" },
     h = { [[<Cmd>lua _HTOP_TOGGLE()<CR>]], "htop" },
     t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
+    q = { [[<Cmd>GoTermClose<CR>]], "go term close" },
   },
   ["<leader>h"] = {
     name = "hop",
