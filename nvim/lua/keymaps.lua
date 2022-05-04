@@ -16,7 +16,7 @@ vim.cmd([[
  nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
-map("i", "<a-cr>", "<c-e><cr>")
+map("i", "<a-cr>", "<c-e><cr>") -- allows me to ignore cmp suggestion and create new line
 map("n", "<Space>", "<Nop>")
 map("i", "<C-c>", "<Esc>")
 map("n", "<CR>", "<cmd>FineCmdline<CR>")
