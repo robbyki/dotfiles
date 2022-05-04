@@ -5,75 +5,6 @@ local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
--- I'm fine with lspkind defaults for now
--- local icons = {
---   Class = "",
---   -- Class = " ",
---   Color = " ",
---   Constant = " ",
---   Constructor = " ",
---   Enum = "了 ",
---   EnumMember = " ",
---   Event = "",
---   -- Field = " ",
---   Field = "",
---   -- Field = "ﰠ",
---   -- File = " ",
---   File = "",
---   Folder = " ",
---   Function = " ",
---   Interface = "ﰮ ",
---   Keyword = " ",
---   Method = "ƒ ",
---   Module = " ",
---   Operator = "",
---   Property = "",
---   -- Property = " ",
---   Reference = "",
---   Snippet = "﬌ ",
---   Struct = " ",
---   -- Text = " ",
---   Text = "",
---   TypeParameter = "",
---   -- Unit = " ",
---   Unit = "塞",
---   Value = " ",
---   -- Variable = " ",
---   Variable = "",
--- }
-
--- local kind_icons = {
---   Text = "",
--- Method = "m",
---   Function = "",
---   Constructor = "",
--- Field =
--- "",
---   Variable = "",
---   Interface = "",
---   Module = "",
---   Property = "",
---   Unit = "",
---   Value = "",
---   Enum = "",
---   Keyword = "",
---   Snippet = "",
---   Color = "",
---   File = "",
---   Reference = "",
---   Folder = "",
---   EnumMember = "",
---   Constant = "",
---   Struct = "",
---   Event = "",
---   Operator = "",
---   TypeParameter = "",
--- }
-
--- local function replace_keys(str)
---   return vim.api.nvim_replace_termcodes(str, true, true, true)
--- end
-
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -122,22 +53,6 @@ cmp.setup({
         vsnip = "[SNIP]",
       },
     }),
-    -- fields = { "kind", "abbr", "menu" },
-    -- format = function(entry, vim_item)
-    --   -- Kind icons
-    --   vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-    --   -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-    --   vim_item.menu = ({
-    --     nvim_lsp = "[LSP]",
-    --     buffer = "[BUF]",
-    --     copilot = "[COPILOT]",
-    --     cmp_tabnine = "[TN]",
-    --     path = "[PATH]",
-    --     tmux = "[TMUX]",
-    --     vsnip = "[SNIP]",
-    --   })[entry.source.name]
-    --   return vim_item
-    -- end,
   },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
@@ -166,7 +81,6 @@ cmp.setup({
   },
   experimental = {
     ghost_text = true,
-    -- native_menu = false,
   },
 })
 
