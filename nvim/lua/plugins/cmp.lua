@@ -85,11 +85,16 @@ cmp.setup({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
+    ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-y>"] = cmp.config.disable,
+    -- ["<CR>"] = cmp.mapping.confirm({
+    --   behavior = cmp.ConfirmBehavior.Replace,
+    --   select = false,
+    -- }),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if vim.fn["vsnip#available"](1) == 1 then
@@ -107,16 +112,6 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-    -- ["<CR>"] = cmp.mapping.confirm({
-    --   behavior = cmp.ConfirmBehavior.Replace,
-    --   select = false,
-    -- }),
-    --   if vim.fn["vsnip#available"](1) == 1 then
-    --     feedkey("<Plug>(vsnip-expand-or-jump)", "")
-    --   else
-    --     fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-    --   end
-    -- end, { "i", "s" }),
   },
   formatting = {
     format = require("lspkind").cmp_format({

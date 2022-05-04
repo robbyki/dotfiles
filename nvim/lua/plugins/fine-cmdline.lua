@@ -1,9 +1,9 @@
 require("fine-cmdline").setup({
-  -- cmdline = {
-  --     enable_keymaps = true,
-  --     smart_history = true,
-  --     prompt = ": ",
-  -- },
+  cmdline = {
+    enable_keymaps = true,
+    smart_history = true,
+    prompt = "🦄❯ ",
+  },
   popup = {
     position = {
       row = "50%",

@@ -16,6 +16,7 @@ vim.cmd([[
  nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
+map("i", "<a-cr>", "<c-e><cr>")
 map("n", "<Space>", "<Nop>")
 map("i", "<C-c>", "<Esc>")
 map("n", "<CR>", "<cmd>FineCmdline<CR>")

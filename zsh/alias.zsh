@@ -9,6 +9,7 @@ alias nvim=$EDITOR
 alias pdfedora='pdr -it fedora bash'
 
 # Quick files and directories
+alias br='broot'
 alias nvim=/usr/local/bin/nvim
 alias dots="cd $DOTFILES"
 alias p10cfg="$EDITOR $DOTFILES/zsh/.p10k.zsh"
@@ -41,8 +42,8 @@ alias pics="cd ~/Pictures"
 alias roficonfig="$EDITOR $DOTFILES/rofi/config"
 alias dr="rofi -show drun"
 alias r="rofi -theme Arc-Dark -show window"
-
 alias chx="chmod +x"
+alias qb='/bin/qutebrowser'
 
 # gpg secrets on a per shell basis
 alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
@@ -186,6 +187,7 @@ alias ic='ibmcloud'
 alias ocdelc='ic oc cluster rm -f --force-delete-storage -c'
 alias iccr-rm='ic cr image-rm'
 alias icvars='source ~/bin/icvars'
+alias icplugins="ic plugin repo-plugins -r \"IBM Cloud\" --output json | jq '.\"IBM Cloud\" | .[].name' -r | sort"
 
 # artifactory
 alias jf=jfrog

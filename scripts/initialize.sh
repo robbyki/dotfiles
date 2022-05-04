@@ -150,8 +150,9 @@ sudo mv ./stylua /usr/local/bin
 gh repo clone b4b4r07/enhancd ~/dev/enhancd
 
 # flatpak for obs mostly
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub com.obsproject.Studio
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install --user flathub com.obsproject.Studio
+# flatpak install --user qutebrowser
 
 # shfmt bash formatting
 curl -sS https://webinstall.dev/shfmt | bash
