@@ -6,7 +6,5 @@ require("go").setup({
   max_line_len = 120, -- max line length in goline format
 })
 
--- Format on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
--- Import on save
+-- import and fmt on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
