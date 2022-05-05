@@ -1,285 +1,285 @@
 {
-  "vim.easymotion": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.highlightedyank.enable": true,
-  "vim.highlightedyank.duration": 200,
-  "vim.highlightedyank.color": "#f1fa8c",
-  "vim.highlightedyank.textColor": "#1D2433",
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "<leader>",
-        "d"
-      ],
-      "after": [
-        "d",
-        "d"
-      ]
-    },
-    {
-      "before": [
-        "<C-n>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    }
-  ],
-  "vim.leader": ",",
-  "vim.handleKeys": {
-    "<C-w>": true,
-    "<C-a>": true,
-    "<C-f>": true
-  },
-  "workbench.colorTheme": "One Dark Pro Darker",
-  "workbench.settings.editor": "json",
-  "editor.fontFamily": "Operator Mono SSm Lig Book",
-  "editor.fontSize": 15,
-  "terminal.integrated.fontFamily": "Operator Mono SSm Lig Book",
-  "editor.fontLigatures": true,
-  "security.workspace.trust.untrustedFiles": "open",
-  "yaml.format.enable": true,
-  "yaml.schemaStore.enable": false,
-  "yaml.validate": false,
-  "yaml.completion": true,
-    "yaml.schemas": {
-    "kubernetes": "/*.yaml",
-    "https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json": "/*.yaml"
-  },
-  // "yaml.schemas": {
-  /*  *///   "kubernetes": "/*.k8s.yaml",
-  //   "https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json": "/*.oc.yaml"
-  // },
-  // "yaml.schemas": {
-  //   "kubernetes": [
-  //     "kubernetes/*.yaml",
-  //     "kube/*.yaml",
-  //     "k8s/*.yaml",
-  //     "!k8s/kustomization.yaml"
-  //   ],
-  //   "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json": "**/*argo*.yaml"
-  // },
-  "[yaml]": {
-    "editor.formatOnType": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-  "files.associations": {
-    "*.sc": "scala",
-    "*.conf": "shellscript"
-  },
-  "files.watcherExclude": {
-    "**/.bloop": true,
-    "**/.metals": true,
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/node_modules/**": true,
-    "**/tmp/**": true,
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/node_modules": true,
-    "**/bower_components": true,
-    "**/dist/**": true,
-    "**/log/**": true,
-    "**/logs/**": true,
-    "**/.fdk/**": true,
-    "**/.ammonite": true
-  },
-  "redhat.telemetry.enabled": true,
-  "files.exclude": {
-    "**/.bloop": false,
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/node_modules/**": true,
-    "**/tmp/**": true,
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/node_modules": true,
-    "**/bower_components": true,
-    "**/dist/**": true,
-    "**/log/**": true,
-    "**/.fdk/**": true
-  },
-  "search.exclude": {
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/node_modules/**": true,
-    "**/tmp/**": true,
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/node_modules": true,
-    "**/bower_components": true,
-    "**/dist/**": true,
-    "**/log/**": true,
-    "**/.bsp/**": true,
-    "**/.bloop/**": true,
-    "**/.metals/**": true
-  },
-  "tabnine.experimentalAutoImports": true,
-  "workbench.iconTheme": "vscode-icons",
-  "metals.sbtScript": "/usr/bin/sbt",
-  "metals.serverVersion": "0.11.2",
-  "metals.javaHome": "/usr/lib/jvm/java-11-openjdk",
-  "gitlens.views.repositories.files.layout": "list",
-  "gitlens.gitCommands.skipConfirmations": [
-    "fetch:command",
-    "stash-push:command",
-    "switch:command",
-    "push:menu"
-  ],
-  "gitlens.remotes": [
-    {
-      "domain": "https://github.ibm.com",
-      "type": "GitHub"
-    },
-    {
-      "type": "Custom",
-      "domain": "github.ibm.com",
-      "name": "Origin",
-      "urls": {
-        "repository": "http://github.ibm.com/${repo}",
-        "branches": "http://github.ibm.com/${repo}/branches",
-        "branch": "http://github.ibm.com/${repo}/commits/${branch}",
-        "commit": "http://github.ibm.com/${repo}/commit/${id}",
-        "file": "http://github.ibm.com/${repo}?path=${file}${line}",
-        "fileInBranch": "http://github.ibm.com/${repo}/blob/${branch}/${file}${line}",
-        "fileInCommit": "http://github.ibm.com/${repo}/blob/${id}/${file}${line}",
-        "fileLine": "#L${line}",
-        "fileRange": "#L${start}-L${end}"
-      }
-    }
-  ],
-  "github-enterprise.uri": "https://github.ibm.com/api/v3",
-  "githubIssues.queries": [
-    {
-      "label": "My Issues",
-      "query": "default"
-    },
-    {
-      "label": "Created Issues",
-      "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
-    }
-  ],
-  "git.autofetch": true,
-  "git.enableSmartCommit": true,
-  "git.confirmSync": false,
-  "editor.tabSize": 2,
-  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-  "editor.wordWrap": "off",
-  "editor.rulers": [
-    100
-  ],
-  "editor.renderControlCharacters": true,
-  "editor.minimap.scale": 2,
-  "editor.detectIndentation": true,
-  "editor.lineNumbers": "relative",
-  "editor.suggestSelection": "first",
-  "editor.cursorStyle": "line",
-  "editor.find.cursorMoveOnType": true,
-  "editor.scrollBeyondLastLine": false,
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": [
-          "comment",
-          "entity.name.type.class",
-          "keyword",
-          "constant",
-          "storage.modifier",
-          "storage.type.class.js"
-        ],
-        "settings": {
-          "fontStyle": "italic"
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.duration": 200,
+    "vim.highlightedyank.color": "#f1fa8c",
+    "vim.highlightedyank.textColor": "#1D2433",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
         }
-      },
-      {
-        "scope": [
-          "invalid",
-          "keyword.operator",
-          "constant.numeric.css",
-          "keyword.other.unit.px.css",
-          "constant.numeric.decimal.js",
-          "constant.numeric.json"
-        ],
-        "settings": {
-          "fontStyle": ""
-        }
-      }
-    ]
-  },
-  "[Log]": {
-    "editor.fontSize": 12,
+    ],
+    "vim.leader": ",",
+    "vim.handleKeys": {
+        "<C-w>": true,
+        "<C-a>": true,
+        "<C-f>": true
+    },
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.settings.editor": "json",
     "editor.fontFamily": "Operator Mono SSm Lig Book",
-    "editor.wordWrap": "off"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "workbench.list.automaticKeyboardNavigation": false,
-  "workbench.startupEditor": "welcomePage",
-  "workbench.editor.decorations.badges": true,
-  "workbench.editor.decorations.colors": true,
-  "workbench.editor.showTabs": true,
-  "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.inheritEnv": true,
-  "terminal.integrated.defaultProfile.linux": "tmux",
-  "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.sendKeybindingsToShell": true,
-  "terminal.external.linuxExec": "alacritty",
-  "terminal.integrated.fontSize": 12,
-  "debug.console.fontFamily": "Operator Mono SSm Lig Book",
-  "debug.console.wordWrap": false,
-  "debug.console.fontSize": 12,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": false,
-  "extensions.ignoreRecommendations": false,
-  "window.restoreFullscreen": true,
-  "window.newWindowDimensions": "maximized",
-  "window.titleBarStyle": "custom",
-  "problems.showCurrentInStatus": true,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
-  "explorer.compactFolders": false,
-  "output.smartScroll.enabled": true,
-  "rewrap.wrappingColumn": 80,
-  "go.toolsManagement.autoUpdate": true,
-  "editor.inlineSuggest.enabled": true,
-  "github.copilot.inlineSuggest.enable": true,
-  "github.copilot.enable": {
-    "*": true,
-    "yaml": true,
-    "plaintext": false,
-    "markdown": false
-  },
-  "files.defaultLanguage": "markdown",
-  "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
-  "editor.smoothScrolling": true,
-  "WhiteSource Advise.Diff.BaseBranch": "main",
-  "WhiteSource Advise.includeDevDependencies": true,
-  "window.zoomLevel": 2,
-  "terminal.integrated.commandsToSkipShell": [
-    "workbench.action.toggleMaximizedPanel"
-  ],
-  "editor.unicodeHighlight.invisibleCharacters": false,
-  "vs-kubernetes": {
-    "vscode-kubernetes.minikube-path.linux": "/home/robbyk/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
-  },
-  "WhiteSource Advise.enableAutomaticScanningInWorkspace": false,
-  "go.buildFlags": [
-    "-buildvcs=false"
-  ],
-  "WhiteSource Advise.Diff.NotifyOnNewOS Vulnerabilities": false
+    "editor.fontSize": 15,
+    "terminal.integrated.fontFamily": "Operator Mono SSm Lig Book",
+    "editor.fontLigatures": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "yaml.format.enable": true,
+    "yaml.schemaStore.enable": false,
+    "yaml.validate": false,
+    "yaml.completion": true,
+    "yaml.schemas": {
+        "kubernetes": "/*.yaml",
+        "https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json": "/*.yaml"
+    },
+    // "yaml.schemas": {
+    /*  */ //   "kubernetes": "/*.k8s.yaml",
+    //   "https://raw.githubusercontent.com/robbyki/schemas/1f05c98df4ca8398f502f554734ff5e87acfcc4c/openshift/all.json": "/*.oc.yaml"
+    // },
+    // "yaml.schemas": {
+    //   "kubernetes": [
+    //     "kubernetes/*.yaml",
+    //     "kube/*.yaml",
+    //     "k8s/*.yaml",
+    //     "!k8s/kustomization.yaml"
+    //   ],
+    //   "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json": "**/*argo*.yaml"
+    // },
+    "[yaml]": {
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "files.associations": {
+        "*.sc": "scala",
+        "*.conf": "shellscript"
+    },
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/tmp/**": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist/**": true,
+        "**/log/**": true,
+        "**/logs/**": true,
+        "**/.fdk/**": true,
+        "**/.ammonite": true
+    },
+    "redhat.telemetry.enabled": true,
+    "files.exclude": {
+        "**/.bloop": false,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/tmp/**": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist/**": true,
+        "**/log/**": true,
+        "**/.fdk/**": true
+    },
+    "search.exclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/tmp/**": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist/**": true,
+        "**/log/**": true,
+        "**/.bsp/**": true,
+        "**/.bloop/**": true,
+        "**/.metals/**": true
+    },
+    "tabnine.experimentalAutoImports": true,
+    "workbench.iconTheme": "vscode-icons",
+    "metals.sbtScript": "/usr/bin/sbt",
+    "metals.serverVersion": "0.11.2",
+    "metals.javaHome": "/usr/lib/jvm/java-11-openjdk",
+    "gitlens.views.repositories.files.layout": "list",
+    "gitlens.gitCommands.skipConfirmations": [
+        "fetch:command",
+        "stash-push:command",
+        "switch:command",
+        "push:menu"
+    ],
+    "gitlens.remotes": [
+        {
+            "domain": "https://github.ibm.com",
+            "type": "GitHub"
+        },
+        {
+            "type": "Custom",
+            "domain": "github.ibm.com",
+            "name": "Origin",
+            "urls": {
+                "repository": "http://github.ibm.com/${repo}",
+                "branches": "http://github.ibm.com/${repo}/branches",
+                "branch": "http://github.ibm.com/${repo}/commits/${branch}",
+                "commit": "http://github.ibm.com/${repo}/commit/${id}",
+                "file": "http://github.ibm.com/${repo}?path=${file}${line}",
+                "fileInBranch": "http://github.ibm.com/${repo}/blob/${branch}/${file}${line}",
+                "fileInCommit": "http://github.ibm.com/${repo}/blob/${id}/${file}${line}",
+                "fileLine": "#L${line}",
+                "fileRange": "#L${start}-L${end}"
+            }
+        }
+    ],
+    "github-enterprise.uri": "https://github.ibm.com/api/v3",
+    "githubIssues.queries": [
+        {
+            "label": "My Issues",
+            "query": "default"
+        },
+        {
+            "label": "Created Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
+        }
+    ],
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "editor.tabSize": 2,
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "off",
+    "editor.rulers": [
+        100
+    ],
+    "editor.renderControlCharacters": true,
+    "editor.minimap.scale": 2,
+    "editor.detectIndentation": true,
+    "editor.lineNumbers": "relative",
+    "editor.suggestSelection": "first",
+    "editor.cursorStyle": "line",
+    "editor.find.cursorMoveOnType": true,
+    "editor.scrollBeyondLastLine": false,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "comment",
+                    "entity.name.type.class",
+                    "keyword",
+                    "constant",
+                    "storage.modifier",
+                    "storage.type.class.js"
+                ],
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": [
+                    "invalid",
+                    "keyword.operator",
+                    "constant.numeric.css",
+                    "keyword.other.unit.px.css",
+                    "constant.numeric.decimal.js",
+                    "constant.numeric.json"
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+    "[Log]": {
+        "editor.fontSize": 12,
+        "editor.fontFamily": "Operator Mono SSm Lig Book",
+        "editor.wordWrap": "off"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "workbench.list.automaticKeyboardNavigation": false,
+    "workbench.startupEditor": "welcomePage",
+    "workbench.editor.decorations.badges": true,
+    "workbench.editor.decorations.colors": true,
+    "workbench.editor.showTabs": true,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.inheritEnv": true,
+    "terminal.integrated.defaultProfile.linux": "tmux",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "terminal.external.linuxExec": "alacritty",
+    "terminal.integrated.fontSize": 12,
+    "debug.console.fontFamily": "Operator Mono SSm Lig Book",
+    "debug.console.wordWrap": false,
+    "debug.console.fontSize": 12,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": false,
+    "extensions.ignoreRecommendations": false,
+    "window.restoreFullscreen": true,
+    "window.newWindowDimensions": "maximized",
+    "window.titleBarStyle": "custom",
+    "problems.showCurrentInStatus": true,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "explorer.compactFolders": false,
+    "output.smartScroll.enabled": true,
+    "rewrap.wrappingColumn": 80,
+    "go.toolsManagement.autoUpdate": true,
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.inlineSuggest.enable": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": true,
+        "plaintext": false,
+        "markdown": false
+    },
+    "files.defaultLanguage": "markdown",
+    "vscode-kubernetes.kubectl-path.linux": "/usr/local/bin/kubectl",
+    "editor.smoothScrolling": true,
+    "WhiteSource Advise.Diff.BaseBranch": "main",
+    "WhiteSource Advise.includeDevDependencies": true,
+    "window.zoomLevel": 2,
+    "terminal.integrated.commandsToSkipShell": [
+        "workbench.action.toggleMaximizedPanel"
+    ],
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "vs-kubernetes": {
+        "vscode-kubernetes.minikube-path.linux": "/home/robbyk/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+    },
+    "WhiteSource Advise.enableAutomaticScanningInWorkspace": false,
+    "go.buildFlags": [
+        "-buildvcs=false"
+    ],
+    "WhiteSource Advise.Diff.NotifyOnNewOS Vulnerabilities": false
 }

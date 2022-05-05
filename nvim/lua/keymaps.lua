@@ -1,3 +1,6 @@
+--TODO: new convenience in latest neovim:
+--vim.keymap.set("n", "<leader>H", function() print("Hello world!") end)
+
 local map = require("utils").map
 
 vim.g.mapleader = ","
@@ -23,44 +26,22 @@ map("n", "<CR>", "<cmd>FineCmdline<CR>")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 map("n", "<TAB>", ":bnext<CR>")
-map("n", "<S-TAB>", ":bprevious<CR>")
-map("x", "K", ":move '<-2<CR>gv-gv")
-map("x", "J", ":move '>+1<CR>gv-gv")
-map("n", "<Esc><Esc>", ":nohlsearch<CR>")
+map("n", "<S-TAB>", ":bprevious<cr>")
+map("n", "<esc>", ":noh<CR><esc>", { silent = true })
+map("n", "<leader>so", ":SymbolsOutline<cr>")
+-- map("x", "<space>k", ":move '<-2<cr>gv-gv")
+-- map("x", "<space>J", ":move '>+1<CR>gv-gv")
 map("n", "<leader>n", ":set number! norelativenumber<CR>")
+map("n", "<Esc><Esc>", ":nohlsearch<CR>")
 map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
 map("n", "<leader>ev", ":vs $MYVIMRC<CR>")
 map("n", "<leader>yb", ":CopyBuffer<CR>")
-map("n", "<leader>sv", ":luafile $myvimrc<CR>:echo 'reloaded vimrc!'<CR>")
-map("n", "<esc>", ":noh<CR><esc>", { silent = true })
-map("n", "<Leader>w", ":write<CR>", { noremap = true })
-map("n", "<leader>so", ":SymbolsOutline<CR>")
+map("n", "<leader>sv", ":luafile $MYVIMRC<CR>:echo 'reloaded vimrc!'<CR>")
+map("n", "<leader>w", ":write<CR>", { noremap = true })
 map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
-map("n", "<leader>L", "<Cmd>lua _LF_TOGGLE()<CR>")
-map(
-  "n",
-  "<leader>gO",
-  "<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
-)
-map(
-  "n",
-  "<leader>go",
-  "<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>"
-)
 map("n", "Q", "<Nop>")
-
--- Trouble
-map("n", "<leader>xx", "<cmd>Trouble<cr>")
-map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>")
-map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
-map("n", "<leader>xl", "<cmd>Trouble loclist<cr>")
-map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>")
-map("n", "<leader>xc", "<cmd>:TroubleClose<cr>")
-map("n", "<leader>xr", "<cmd>Trouble refresh<cr>")
-map("n", "<leader>xt", "<cmd>Trouble toggle<cr>")
-map("n", "<leader>gR", "<cmd>Trouble lsp_references<cr>")
 
 vim.g.which_key_display_names = {
   ["<CR>"] = "↵",
@@ -75,19 +56,18 @@ local function cmd(s)
   return "<cmd>" .. s .. "<cr>"
 end
 
--- Important main keymaps I use often
 wk.register({
   ["<leader>"] = { name = "+leader" },
   ["<leader><leader>b"] = { [[<Cmd>lua require('telescope.builtin').builtin()<CR>]], "telescope builtins" },
-  ["<leader>?"] = { [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], "recent files" },
   ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
-  ["<leader>cd"] = { ":cd %:p:h<CR>", "cd to current buffer" },
+  ["<leader>cd"] = { ":cd %:p:h<CR>", "cd to current buffer" }, -- note that other plugins may override this
 })
 
 wk.register({
   ["<leader>f"] = {
     name = "+search",
     ["/"] = { [[<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], "fuzzy find" },
+    ["?"] = { [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], "recent files" },
     B = { [[<Cmd>lua require('telescope.builtin').buffers()<CR>]], "buffers" },
     C = { [[<Cmd>lua require('telescope').extensions.zoxide.list()<CR>]], "zoxide cd" },
     D = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/dev' })<CR>]], "find in dev" },
@@ -127,6 +107,7 @@ wk.register({
     h = { [[<Cmd>lua _HTOP_TOGGLE()<CR>]], "htop" },
     t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
     q = { [[<Cmd>GoTermClose<CR>]], "go term close" },
+    l = { [[<Cmd>lua _LF_TOGGLE()<CR>]], "lfrc" },
   },
   ["<leader>h"] = {
     name = "hop",
@@ -168,6 +149,14 @@ wk.register({
     D = { [[<Cmd>DiffviewClose<CR>]], "diff view close" },
     B = { [[<Cmd>:Telescope git_branches<CR>]], "git branches" },
     f = { [[<Cmd>:Telescope git_files<CR>]], "git files" },
+    L = {
+      [[<Cmd>lua require'gitlinker'.get_repo_url({ action_callback = require'gitlinker.actions'.open_in_browser})<CR>]],
+      "git get link (file)",
+    },
+    l = {
+      [[<Cmd>lua require'gitlinker'.get_buf_range_url('n', { action_callback = require'gitlinker.actions'.open_in_browser})<CR>]],
+      "git get link (range)",
+    },
   },
   ["<leader>P"] = {
     name = "Packer",
@@ -201,7 +190,7 @@ wk.register({
     name = "+code",
     c = { [[<Cmd>lua require('nvim-comment-frame').add_comment()<CR>]], "comment line" },
     C = { [[<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>]], "comment multi" },
-    -- r = { [[<Cmd>lua require('renamer').rename()<CR>]], "rename" },
+    r = { [[<Cmd>lua require('renamer').rename()<CR>]], "rename" },
   },
   ["<leader>l"] = {
     name = "+lsp",
@@ -221,15 +210,27 @@ wk.register({
     i = { [[<Cmd>lua vim.buf.lsp.implementation()<CR>]], "implementation" },
     s = { [[<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>]], "loc list" },
   },
-  ["<leader><leader>l"] = {
+  ["<leader>L"] = {
     i = { [[<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>]], "telescope implementations" },
-    d = { [[<Cmd>lua require'telescope.builtin'.diagnostics()<CR>]], "telescope line diagnostics" },
+    d = { [[<Cmd>lua require'telescope.builtin'.diagnostics()<CR>]], "telescope diagnostics" },
     a = { [[<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>]], "telescope code actions" },
     s = { [[<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>]], "telescope document symbols" },
     S = { [[<Cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>]], "telescope workspace symbols" },
     r = { [[<Cmd>lua require'telescope.builtin'.lsp_references()<CR>]], "telescope references" },
-    f = { [[<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>]], "definitions" },
-    t = { [[<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>]], "type definitions" },
+    f = { [[<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>]], "telescope definitions" },
+    t = { [[<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>]], "telescope type definitions" },
+  },
+  ["<leader>T"] = {
+    name = "+trouble",
+    x = { [[<Cmd>Trouble<CR>]], "trouble" },
+    w = { [[<Cmd>Trouble workspace_diagnostics<CR>]], "trouble workspace" },
+    d = { [[<Cmd>Trouble document_diagnostics<CR>]], "trouble document" },
+    q = { [[<Cmd>Trouble quickfix<CR>]], "trouble quickfix" },
+    l = { [[<Cmd>Trouble loclist<CR>]], "trouble loclist" },
+    c = { [[<Cmd>:TroubleClose<CR>]], "trouble close" },
+    r = { [[<Cmd>Trouble refresh<CR>]], "trouble refresh" },
+    t = { [[<Cmd>Trouble toggle<CR>]], "trouble toggle" },
+    L = { [[<Cmd>Trouble lsp_references<CR>]], "trouble lsp references" },
   },
   ["<leader>D"] = {
     name = "+debug",
