@@ -110,6 +110,7 @@ alias aw='argo watch'
 
 # golang
 alias gomi='go mod init'
+alias gomt='go mod tidy'
 alias gowi='go work init'
 alias gow='go work'
 alias godocs='godoc -http=localhost:6060' # cannot be in module path

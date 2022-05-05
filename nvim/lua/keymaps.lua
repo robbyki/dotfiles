@@ -1,4 +1,5 @@
 --TODO: new convenience in latest neovim:
+-- example since 0.7.0:
 --vim.keymap.set("n", "<leader>H", function() print("Hello world!") end)
 
 local map = require("utils").map
@@ -34,14 +35,20 @@ map("n", "<leader>so", ":SymbolsOutline<cr>")
 map("n", "<leader>n", ":set number! norelativenumber<CR>")
 map("n", "<Esc><Esc>", ":nohlsearch<CR>")
 map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
-map("n", "<leader>ev", ":vs $MYVIMRC<CR>")
 map("n", "<leader>yb", ":CopyBuffer<CR>")
+map("n", "<leader>yd", ":CopyParentDir<CR>")
 map("n", "<leader>sv", ":luafile $MYVIMRC<CR>:echo 'reloaded vimrc!'<CR>")
 map("n", "<leader>w", ":write<CR>", { noremap = true })
 map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
 map("n", "Q", "<Nop>")
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>gr",
+  ':lua require "plugins.go".smart_run()<CR>',
+  { noremap = true, silent = true }
+)
 
 vim.g.which_key_display_names = {
   ["<CR>"] = "↵",
@@ -61,6 +68,7 @@ wk.register({
   ["<leader><leader>b"] = { [[<Cmd>lua require('telescope.builtin').builtin()<CR>]], "telescope builtins" },
   ["<leader>\\"] = { cmd("set wrap!"), "line wrap" },
   ["<leader>cd"] = { ":cd %:p:h<CR>", "cd to current buffer" }, -- note that other plugins may override this
+  ["<leader>?"] = { [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], "recent files" },
 })
 
 wk.register({

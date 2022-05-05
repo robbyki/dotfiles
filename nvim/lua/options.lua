@@ -73,6 +73,9 @@ filetype plugin indent on
 
 -- copy buffer path
 vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
+vim.cmd([[command! CopyParentDir let @+ = expand('%:p:h')]])
+-- vim.cmd([[autocmd FileType go nmap <leader>gr :GoRun %<CR>]])
+-- vim.api.nvim_set_keymap("n", "<leader>gr", "<cmd>GoRun %<cr>", { noremap = true, silent = true })
 
 vim.g["incsearch#auto_nohlsearch"] = 1
 vim.api.nvim_set_keymap("", "n", "<Plug>(incsearch-nohl-n)", {})

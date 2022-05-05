@@ -49,22 +49,6 @@ local function lsp_highlight_document(client)
   end
 end
 
--- local signs = {
---     Error = " ",
---     Warn = " ",
---     Hint = " ",
---     Info = " ",
--- }
-
--- for type, icon in pairs(signs) do
---     local hl = "DiagnosticSign" .. type
---     vim.fn.sign_define(hl, {
---         text = icon,
---         texthl = hl,
---         numhl = hl,
---     })
--- end
-
 function M.show_line_diagnostics()
   local opts = {
     focusable = false,
@@ -78,11 +62,11 @@ end
 vim.cmd([[ autocmd CursorHold <buffer> lua require('plugins.lsp').show_line_diagnostics() ]])
 
 -- Change diagnostic signs.
-vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
-
+--
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
@@ -91,9 +75,19 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.diagnostic.config({
   underline = true,
   virtual_text = true,
-  signs = true,
   severity_sort = true,
-  float = { border = "single" },
+  float = {
+    border = "rounded",
+    source = "always",
+    format = function(d)
+      local t = vim.deepcopy(d)
+      local code = d.code or (d.user_data and d.user_data.lsp.code)
+      if code then
+        t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "")
+      end
+      return t.message
+    end,
+  },
 })
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -305,23 +299,34 @@ lspconfig.gopls.setup({
   settings = {
     gopls = {
       analyses = {
-        unusedparams = true,
-        unreachable = true,
-        nilness = true,
+        -- fieldalignment = true, -- find structs that would use less memory if their fields were sorted
+        nilness = true, -- check for redundant or impossible nil comparisons
+        shadow = true, -- check for possible unintended shadowing of variables
+        unusedparams = true, -- check for unused parameters of functions
+        unusedwrite = true, -- checks for unused writes, an instances of writes to struct fields and arrays that are never read
       },
       codelenses = {
-        tidy = true,
-        upgrade_dependency = true,
-        vendor = true,
-        generate = true,
-        test = true,
+        gc_details = true, -- Toggle the calculation of gc annotations
+        generate = true, -- Runs go generate for a given directory
+        regenerate_cgo = true, -- Regenerates cgo definitions
+        tidy = true, -- Runs go mod tidy for a module
+        upgrade_dependency = true, -- Upgrades a dependency in the go.mod file for a module
+        vendor = true, -- Runs go mod vendor for a module
       },
+      -- codelenses = {
+      --   tidy = true,
+      --   upgrade_dependency = true,
+      --   vendor = true,
+      --   generate = true,
+      --   test = true,
+      -- },
       usePlaceholders = true,
       semanticTokens = true,
       completeUnimported = true,
       staticcheck = true,
       matcher = "Fuzzy",
-      diagnosticsDelay = "500ms",
+      symbolMatcher = "fuzzy",
+      diagnosticsDelay = "300ms",
       experimentalWatchedFileDelay = "100ms",
       gofumpt = true,
       -- buildFlags = { "-tags", "integration", "-buildvcs=false" },
