@@ -139,7 +139,8 @@ wk.register({
   ["<leader>G"] = {
     name = "+go",
     d = { [[<Cmd>:GoDoc<CR>]], "go doc" },
-    r = { [[<Cmd>:GoRun<CR>]], "go run" },
+    r = { [[<Cmd>lua require("go.rename").run()<CR>]], "go rename" },
+    R = { [[<Cmd>:GoRun<CR>]], "go run" },
   },
   ["<leader>g"] = {
     name = "+git",
@@ -192,7 +193,6 @@ wk.register({
     name = "+code",
     c = { [[<Cmd>lua require('nvim-comment-frame').add_comment()<CR>]], "comment line" },
     C = { [[<Cmd>lua require('nvim-comment-frame').add_multiline_comment()<CR>]], "comment multi" },
-    r = { [[<Cmd>lua require('renamer').rename()<CR>]], "rename" },
   },
   ["<leader>l"] = {
     name = "+lsp",

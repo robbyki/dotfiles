@@ -484,12 +484,6 @@ return packer.startup(function(use)
   --                               Code                               --
   ----------------------------------------------------------------------
   use({ "junegunn/vim-easy-align", keys = "<Plug>(EasyAlign)" })
-  -- use({
-  --     "filipdutescu/renamer.nvim",
-  --     config = function()
-  --         require("plugins.renamer")
-  --     end,
-  -- })
   use("tpope/vim-surround")
   use("arthurxavierx/vim-caser")
   use({
