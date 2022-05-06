@@ -548,8 +548,6 @@ return packer.startup(function(use)
   -------------------------------------------------------------------
   --                             Golang                            --
   -------------------------------------------------------------------
-  --FIXME: this plugin is giving me problems since 0.7. Have some issues open but need to use vim-go for now.
-  -- Go
   use({
     "ray-x/go.nvim",
     config = function()
