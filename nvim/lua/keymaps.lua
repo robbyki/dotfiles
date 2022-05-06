@@ -43,12 +43,6 @@ map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
 map("n", "Q", "<Nop>")
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>gr",
-  ':lua require "plugins.go".smart_run()<CR>',
-  { noremap = true, silent = true }
-)
 
 vim.g.which_key_display_names = {
   ["<CR>"] = "↵",

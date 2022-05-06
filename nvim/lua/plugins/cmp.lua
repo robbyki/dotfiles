@@ -58,12 +58,12 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer" },
-    { name = "calc" },
-    { name = "emoji" },
     { name = "cmp_git" },
     { name = "cmp_tabnine" },
     { name = "copilot" },
     { name = "vsnip" }, -- For vsnip users.
+    { name = "calc" },
+    { name = "emoji" },
   }),
   snippet = {
     expand = function(args)
