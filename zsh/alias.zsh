@@ -9,7 +9,7 @@ alias nvim=$EDITOR
 alias pdfedora='pdr -it fedora bash'
 
 # Quick files and directories
-alias br='broot'
+# alias br='broot'
 alias nvim=/usr/local/bin/nvim
 alias dots="cd $DOTFILES"
 alias p10cfg="$EDITOR $DOTFILES/zsh/.p10k.zsh"

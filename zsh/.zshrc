@@ -245,3 +245,5 @@ export LF_ICONS
 export MINIKUBE_IN_STYLE=true
 
 source icutils
+
+source /home/robbyk/.config/broot/launcher/bash/br
