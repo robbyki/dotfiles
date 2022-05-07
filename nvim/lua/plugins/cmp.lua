@@ -11,6 +11,7 @@ local has_words_before = function()
 end
 
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   mapping = {
     ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),

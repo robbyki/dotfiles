@@ -38,12 +38,12 @@ return packer.startup(function(use)
   ----------------------------------------------------------------------
   --                                UI                                --
   ----------------------------------------------------------------------
-  use({
-    "stevearc/aerial.nvim",
-    config = function()
-      require("plugins.aerial")
-    end,
-  })
+  -- use({
+  --   "stevearc/aerial.nvim",
+  --   config = function()
+  --     require("plugins.aerial")
+  --   end,
+  -- })
   use("dstein64/nvim-scrollview")
   use({
     "folke/which-key.nvim",
