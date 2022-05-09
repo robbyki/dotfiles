@@ -185,24 +185,6 @@ for _, lsp in ipairs(servers) do
 end
 
 ----------------------------------------------------------------------
---                              Python                              --
-----------------------------------------------------------------------
--- lspconfig.pyright.setup({
---     on_attach = custom_attach,
---     capabilities = capabilities,
---     settings = {
---         python = {
---             analysis = {
---                 autoSearchPaths = true,
---                 diagnosticMode = "openFilesOnly",
---                 typeCheckingMode = "off",
---                 useLibraryCodeForTypes = true,
---             },
---         },
---     },
--- })
-
-----------------------------------------------------------------------
 --                               YAML                               --
 ----------------------------------------------------------------------
 lspconfig.yamlls.setup({
@@ -299,7 +281,6 @@ lspconfig.gopls.setup({
   settings = {
     gopls = {
       analyses = {
-        -- fieldalignment = true, -- find structs that would use less memory if their fields were sorted
         nilness = true, -- check for redundant or impossible nil comparisons
         shadow = true, -- check for possible unintended shadowing of variables
         unusedparams = true, -- check for unused parameters of functions
@@ -313,20 +294,10 @@ lspconfig.gopls.setup({
         upgrade_dependency = true, -- Upgrades a dependency in the go.mod file for a module
         vendor = true, -- Runs go mod vendor for a module
       },
-      -- codelenses = {
-      --   tidy = true,
-      --   upgrade_dependency = true,
-      --   vendor = true,
-      --   generate = true,
-      --   test = true,
-      -- },
       usePlaceholders = true,
       semanticTokens = true,
       completeUnimported = true,
       staticcheck = true,
-      matcher = "Fuzzy",
-      symbolMatcher = "fuzzy",
-      diagnosticsDelay = "300ms",
       experimentalWatchedFileDelay = "100ms",
       gofumpt = true,
       -- buildFlags = { "-tags", "integration", "-buildvcs=false" },
@@ -335,56 +306,6 @@ lspconfig.gopls.setup({
     },
   },
 })
-
--- function goimports(timeout_ms)
---   local context = { source = { organizeImports = true } }
---   vim.validate({ context = { context, "t", true } })
---
---   local params = vim.lsp.util.make_range_params()
---   params.context = context
---
---   -- See the implementation of the textDocument/codeAction callback
---   -- (lua/vim/lsp/handler.lua) for how to do this properly.
---   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
---   if result == nil or result[1] == nil or not result or next(result) == nil then
---     return
---   end
---   local actions = result[1].result
---   if not actions then
---     return
---   end
---   local action = actions[1]
---   -- print(vim.inspect(action))
---
---   -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
---   -- is a CodeAction, it can have either an edit, a command or both. Edits
---   -- should be executed first.
---   if action.edit or type(action.command) == "table" then
---     if action.edit then
---       if action.kind == "source.organizeImports" then
---         vim.lsp.util.apply_workspace_edit(action.edit, "utf-16")
---       end
---     end
---     if type(action.command) == "table" then
---       if action.command.arguments[1].Fix == "fill_struct" then
---         return
---       end
---       print(vim.inspect(action))
---       -- vim.lsp.buf.execute_command(action.command)
---     end
---   else
---     if action.arguments[1].Fix == "fill_struct" then
---       return
---     end
---     print(vim.inspect(action))
---     -- vim.lsp.buf.execute_command(action)
---   end
--- end
---
--- vim.api.nvim_command("autocmd BufWritePre *.go lua goimports(1000)")
--- vim.api.nvim_command("autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)")
--- vim.api.nvim_command("autocmd BufWritePre go.mod lua vim.lsp.buf.formatting_sync(nil, 1000)")
--- vim.api.nvim_command("autocmd BufWritePost *.go lua vim.lsp.codelens.refresh()")
 
 ----------------------------------------------------------------------
 --                            JAVASCRIPT                            --
@@ -396,24 +317,6 @@ lspconfig.tsserver.setup({
   end,
 })
 
--- lspconfig.tsserver.setup({
---     on_attach = custom_attach,
---     capabilities = capabilities,
---     filetypes = {
---         "javascript",
---         "javascript.jsx",
---         "javascriptreact",
---         "typescript",
---         "typescriptreact",
---         "typescript.tsx",
---     },
---     init_options = {
---         importModuleSpecifierEnding = "auto",
---         importModuleSpecifierPreference = "project-relative",
---         includePackageJsonAutoImports = "auto",
---     },
--- })
---
 vim.cmd([[
     augroup Format
       autocmd!
@@ -587,3 +490,52 @@ return M
 --         pythonPath = "/bin/python3",
 --     },
 -- }
+-- function goimports(timeout_ms)
+--   local context = { source = { organizeImports = true } }
+--   vim.validate({ context = { context, "t", true } })
+--
+--   local params = vim.lsp.util.make_range_params()
+--   params.context = context
+--
+--   -- See the implementation of the textDocument/codeAction callback
+--   -- (lua/vim/lsp/handler.lua) for how to do this properly.
+--   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+--   if result == nil or result[1] == nil or not result or next(result) == nil then
+--     return
+--   end
+--   local actions = result[1].result
+--   if not actions then
+--     return
+--   end
+--   local action = actions[1]
+--   -- print(vim.inspect(action))
+--
+--   -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
+--   -- is a CodeAction, it can have either an edit, a command or both. Edits
+--   -- should be executed first.
+--   if action.edit or type(action.command) == "table" then
+--     if action.edit then
+--       if action.kind == "source.organizeImports" then
+--         vim.lsp.util.apply_workspace_edit(action.edit, "utf-16")
+--       end
+--     end
+--     if type(action.command) == "table" then
+--       if action.command.arguments[1].Fix == "fill_struct" then
+--         return
+--       end
+--       print(vim.inspect(action))
+--       -- vim.lsp.buf.execute_command(action.command)
+--     end
+--   else
+--     if action.arguments[1].Fix == "fill_struct" then
+--       return
+--     end
+--     print(vim.inspect(action))
+--     -- vim.lsp.buf.execute_command(action)
+--   end
+-- end
+--
+-- vim.api.nvim_command("autocmd BufWritePre *.go lua goimports(1000)")
+-- vim.api.nvim_command("autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)")
+-- vim.api.nvim_command("autocmd BufWritePre go.mod lua vim.lsp.buf.formatting_sync(nil, 1000)")
+-- vim.api.nvim_command("autocmd BufWritePost *.go lua vim.lsp.codelens.refresh()")

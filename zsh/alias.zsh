@@ -45,8 +45,7 @@ alias dr="rofi -show drun"
 alias r="rofi -theme Arc-Dark -show window"
 alias chx="chmod +x"
 alias qb='/bin/qutebrowser'
-
-# gpg secrets on a per shell basis
+alias vg='vimgolf'
 alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
 alias sd="secrets decrypt"
 alias se="secrets encrypt"
@@ -109,6 +108,7 @@ alias asw='argo submit --watch'
 alias aw='argo watch'
 
 # golang
+alias golall='go list -m all'
 alias gomi='go mod init'
 alias gomt='go mod tidy'
 alias gowi='go work init'
@@ -342,6 +342,8 @@ alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th
 alias demofont="yq -i '.font.size=22' ~/.dotfiles/alacritty/alacritty.yml"
 alias workfont="yq -i '.font.size=15' ~/.dotfiles/alacritty/alacritty.yml"
 alias slidefont="yq -i '.font.size=30' ~/.dotfiles/alacritty/alacritty.yml"
+alias notp="yq -i '.opacity=1.0' ~/.dotfiles/alacritty/alacritty.yml"
+alias yestp="yq -i '.opacity=0.7' ~/.dotfiles/alacritty/alacritty.yml"
 
 alias resume='python resume.py --no-html'
 alias ok=okular

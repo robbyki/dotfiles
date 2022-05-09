@@ -44,6 +44,7 @@ map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
 map("n", "Q", "<Nop>")
+map("n", "cxr", ":%s/<C-R><C-W>/<C-R><C-W>/gc<Left><Left><Left>")
 
 vim.g.which_key_display_names = {
   ["<CR>"] = "↵",
@@ -57,6 +58,13 @@ local wk = require("which-key")
 local function cmd(s)
   return "<cmd>" .. s .. "<cr>"
 end
+
+vim.api.nvim_set_keymap(
+  "v",
+  "<leader>rr",
+  "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+  { noremap = true }
+)
 
 wk.register({
   ["<leader>"] = { name = "+leader" },
@@ -208,6 +216,7 @@ wk.register({
     C = { [[<Cmd>lua vim.lsp.codelens.run()<CR>]], "code lens run" },
     I = { [[<Cmd>lua vim.lsp.buf.definition()<CR>]], "goto definition" },
     R = { [[<Cmd>lua vim.lsp.buf.references()<CR>]], "references" },
+    r = { [[<Cmd>lua vim.lsp.buf.rename()<CR>]], "rename" },
     D = { [[<Cmd>lua vim.diagnostic.open_float()<CR>]], "open diagnostics" },
     i = { [[<Cmd>lua vim.buf.lsp.implementation()<CR>]], "implementation" },
     s = { [[<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>]], "loc list" },

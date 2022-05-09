@@ -1,46 +1,116 @@
--- vim.opt.foldmethod = "expr"
--- -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- -- require("orgmode").setup_ts_grammar()
-local ts_utils = require("nvim-treesitter.ts_utils")
-ts_utils.get_node_text = vim.treesitter.query.get_node_text
+-- require("orgmode").setup_ts_grammar()
 
-require("nvim-treesitter.configs").setup({
-  -- ensure_installed = "all",
+local treesitter = require("nvim-treesitter.configs")
+
+treesitter.setup({
   ensure_installed = {
-    "go",
-    "gowork",
-    "gomod",
     "bash",
     "dockerfile",
-    -- "typescript",
-    -- "hocon",
-    -- "html",
-    -- "javascript",
-    -- "json5",
-    "scala",
-    "python",
-    -- "http",
+    "erlang",
+    "go",
+    "gomod",
+    "gowork",
+    "html",
+    "javascript",
+    "jsdoc",
     "json",
-    "yaml",
+    "json5",
     "lua",
-  },
-  matchup = {
-    enable = false, -- mandatory, false will disable the whole extension
+    "nix",
+    "python",
+    "rust",
+    "scala",
+    "toml",
+    "typescript",
+    "vim",
+    "yaml",
   },
   highlight = {
     enable = true,
-    -- disable = { 'org' },
+    disable = {},
+    use_languagetree = true,
     additional_vim_regex_highlighting = true,
   },
-  autopairs = {
-    enable = true,
+  incremental_selection = {
+    enable = false,
+    keymaps = {
+      init_selection = "gnn",
+      code_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
   },
   indent = {
-    enable = true,
+    enable = false,
     disable = { "go", "yaml", "yml", "python", "org" },
   },
-  sync_install = false,
-  ignore_install = {},
+  refactor = {
+    highlight_definitions = {
+      enable = true,
+      clear_on_cursor_move = true,
+    },
+    highlight_current_scope = { enable = true },
+    enable = true,
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = "grr",
+      },
+    },
+  },
+  navigation = {
+    enable = true,
+    keymaps = {
+      goto_definition = "'d", -- mapping to go to definition of symbol under cursor
+      list_definitions = "'D", -- mapping to list all definitions in current file
+    },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = {
+          cpp = "{ @class.inner }",
+        },
+        ["at"] = "@tag.outer",
+        ["it"] = "@tag.inner",
+        ["p"] = "@parameter.inner",
+        ["ib"] = "@block.inner",
+        ["ab"] = "@block.outer",
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = { ["<leader>a"] = "@parameter.inner" },
+      swap_previous = { ["<leader>A"] = "@parameter.inner" },
+    },
+    move = {
+      enable = true,
+      goto_next_start = {
+        ["]f"] = "@function.outer",
+        ["]]"] = "@class.outer",
+        ["]p"] = "@parameter.outer",
+        ["]c"] = "@call.outer",
+      },
+      goto_previous_start = {
+        ["[f"] = "@function.outer",
+        ["[["] = "@class.outer",
+        ["[p"] = "@parameter.outer",
+        ["[c"] = "@call.outer",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      peek_definition_code = {
+        ["<Leader>df"] = "@function.outer",
+        ["<Leader>dF"] = "@class.outer",
+      },
+    },
+  },
   textsubjects = {
     enable = true,
     prev_selection = ",", -- (Optional) keymap to select the previous selection
@@ -50,52 +120,15 @@ require("nvim-treesitter.configs").setup({
       ["i;"] = "textsubjects-container-inner",
     },
   },
-  textobjects = {
-    lookahead = true,
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
-    },
-    lsp_interop = {
-      enable = true,
-      border = "none",
-      peek_definition_code = {
-        ["<leader>df"] = "@function.outer",
-        ["<leader>dF"] = "@class.outer",
-      },
-    },
-    select = {
-      enable = true,
-      -- Automatically jump forward to textobj, similar to targets.vim
-      lookahead = true,
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-      },
-    },
+  playground = {
+    enable = true,
   },
-  -- rainbow = {
-  --     enable = true,
-  --     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-  --     max_file_lines = nil, -- Do not enable for files with more than n lines, int
-  -- },
+  autotag = {
+    enable = true,
+  },
+  context_commentstring = { enable = true },
+  matchup = {
+    enable = false,
+    disable = {},
+  },
 })
