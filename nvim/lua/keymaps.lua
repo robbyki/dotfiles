@@ -116,9 +116,11 @@ wk.register({
     b = { [[<Cmd>lua _BROOT_TOGGLE()<CR>]], "broot" },
     k = { [[<Cmd>lua _K9S_TOGGLE()<CR>]], "k9s" },
     h = { [[<Cmd>lua _HTOP_TOGGLE()<CR>]], "htop" },
+    p = { [[<Cmd>lua _PYTHON_TOGGLE()<CR>]], "python" },
+    g = { [[<Cmd>lua _GORE_TOGGLE()<CR>]], "python" },
+    l = { [[<Cmd>lua _LF_TOGGLE()<CR>]], "lfrc" },
     t = { [[<Cmd>ToggleTerm<CR>]], "terminal" },
     q = { [[<Cmd>GoTermClose<CR>]], "go term close" },
-    l = { [[<Cmd>lua _LF_TOGGLE()<CR>]], "lfrc" },
   },
   ["<leader>h"] = {
     name = "hop around",

@@ -1,4 +1,3 @@
-vim.opt.laststatus = 3
 vim.opt.fillchars:append({
   horiz = "━",
   horizup = "┻",
@@ -23,6 +22,14 @@ local overrided_hlgroup = {
 }
 
 require("kanagawa").setup({
+  undercurl = true,
+  commentStyle = "italic",
+  functionStyle = "NONE",
+  statementStyle = "bold",
+  typeStyle = "bold",
+  variablebuiltinStyle = "italic",
+  specialReturn = true,
+  specialException = true,
   transparent = true,
   dimInactive = true,
   overrides = overrided_hlgroup,

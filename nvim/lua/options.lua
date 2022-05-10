@@ -75,7 +75,6 @@ filetype plugin indent on
 vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
 vim.cmd([[command! CopyParentDir let @+ = expand('%:p:h')]])
 -- vim.cmd([[autocmd FileType go nmap <leader>gr :GoRun %<CR>]])
--- vim.api.nvim_set_keymap("n", "<leader>gr", "<cmd>GoRun %<cr>", { noremap = true, silent = true })
 
 vim.g["incsearch#auto_nohlsearch"] = 1
 vim.api.nvim_set_keymap("", "n", "<Plug>(incsearch-nohl-n)", {})
@@ -103,7 +102,6 @@ vim.cmd([[autocmd FileType lua setlocal shiftwidth=2 tabstop=2 expandtab]])
 vim.cmd([[autocmd FileType sh setlocal shiftwidth=2 tabstop=2 expandtab]])
 vim.cmd([[autocmd FileType,BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 vim.cmd([[autocmd BufRead,BufNewFile *Dockerfile* :set ft=dockerfile]])
--- vim.cmd([[autocmd BufRead,BufNewFile ~/.dotfiles/zsh/* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile zsh* :set ft=sh]]) -- this is mostly for vim at command line syntax highlighting
 vim.cmd([[autocmd BufRead,BufNewFile ~/bin/* :set ft=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile */oc-crc-notes.txt :set ft=sh]])
@@ -124,7 +122,7 @@ vim.cmd([[
   endif
 ]])
 
-vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
+-- vim.cmd([[highlight FidgetTitle ctermfg=110 guifg=#6cb6eb]])
 vim.wo.wrap = false
 vim.opt.wrap = false
 vim.opt.textwidth = 0
