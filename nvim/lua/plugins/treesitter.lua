@@ -27,7 +27,6 @@ treesitter.setup({
   },
   highlight = {
     enable = true,
-    disable = {},
     use_languagetree = true,
     additional_vim_regex_highlighting = true,
   },
@@ -65,52 +64,6 @@ treesitter.setup({
       list_definitions = "'D", -- mapping to list all definitions in current file
     },
   },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = {
-          cpp = "{ @class.inner }",
-        },
-        ["at"] = "@tag.outer",
-        ["it"] = "@tag.inner",
-        ["p"] = "@parameter.inner",
-        ["ib"] = "@block.inner",
-        ["ab"] = "@block.outer",
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = { ["<leader>a"] = "@parameter.inner" },
-      swap_previous = { ["<leader>A"] = "@parameter.inner" },
-    },
-    move = {
-      enable = true,
-      goto_next_start = {
-        ["]f"] = "@function.outer",
-        ["]]"] = "@class.outer",
-        ["]p"] = "@parameter.outer",
-        ["]c"] = "@call.outer",
-      },
-      goto_previous_start = {
-        ["[f"] = "@function.outer",
-        ["[["] = "@class.outer",
-        ["[p"] = "@parameter.outer",
-        ["[c"] = "@call.outer",
-      },
-    },
-    lsp_interop = {
-      enable = true,
-      peek_definition_code = {
-        ["<Leader>df"] = "@function.outer",
-        ["<Leader>dF"] = "@class.outer",
-      },
-    },
-  },
   textsubjects = {
     enable = true,
     prev_selection = ",", -- (Optional) keymap to select the previous selection
@@ -120,10 +73,50 @@ treesitter.setup({
       ["i;"] = "textsubjects-container-inner",
     },
   },
-  playground = {
-    enable = true,
+  textobjects = {
+    lookahead = true,
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      border = "none",
+      peek_definition_code = {
+        ["<leader>df"] = "@function.outer",
+        ["<leader>dF"] = "@class.outer",
+      },
+    },
+    select = {
+      enable = true,
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
   },
-  autotag = {
+  autopairs = {
     enable = true,
   },
   context_commentstring = { enable = true },
