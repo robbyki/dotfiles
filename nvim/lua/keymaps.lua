@@ -221,7 +221,7 @@ wk.register({
     r = { [[<Cmd>lua vim.lsp.buf.rename()<CR>]], "rename" },
     D = { [[<Cmd>lua vim.diagnostic.open_float()<CR>]], "open diagnostics" },
     i = { [[<Cmd>lua vim.buf.lsp.implementation()<CR>]], "implementation" },
-    s = { [[<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>]], "loc list" },
+    s = { [[<Cmd>lua vim.lsp.diagnostic.setloclist()<CR>]], "loc list" },
   },
   ["<leader>L"] = {
     i = { [[<Cmd>lua require'telescope.builtin'.lsp_implementations()<CR>]], "telescope implementations" },
