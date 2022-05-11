@@ -40,6 +40,20 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
+    ["<C-l>"] = cmp.mapping(function(fallback)
+      if require("neogen").jumpable() then
+        require("neogen").jump_next()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<C-h>"] = cmp.mapping(function(fallback)
+      if require("neogen").jumpable(true) then
+        require("neogen").jump_prev()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
   },
   formatting = {
     format = require("lspkind").cmp_format({
@@ -49,6 +63,7 @@ cmp.setup({
         buffer = "[BUF]",
         copilot = "[COPILOT]",
         cmp_tabnine = "[TN]",
+        orgmode = "[ORG]",
         path = "[PATH]",
         tmux = "[TMUX]",
         vsnip = "[SNIP]",
@@ -61,6 +76,8 @@ cmp.setup({
     { name = "buffer" },
     { name = "cmp_git" },
     { name = "cmp_tabnine" },
+    { name = "neorg" },
+    { name = "orgmode" },
     { name = "copilot" },
     { name = "vsnip" }, -- For vsnip users.
     { name = "calc" },
@@ -72,12 +89,13 @@ cmp.setup({
     end,
   },
   window = {
-    -- documentation = cmp.config.window.bordered()
+    completion = {
+      border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+      winhighlight = "FloatBorder:FloatBorder",
+    },
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    },
-    completion = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = "Normal:CmpPmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
     },
   },
   experimental = {

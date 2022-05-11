@@ -583,6 +583,14 @@ return packer.startup(function(use)
     end,
   })
 
+  use({
+    "nvim-neorg/neorg",
+    requires = { "nvim-neorg/neorg-telescope" },
+    config = function()
+      require("plugins.neorg")
+    end,
+  })
+
   -- --use({ "maxmellon/vim-jsx-pretty" })
   -- --use({ "yuezk/vim-js" })
   -- --		-- windows
