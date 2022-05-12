@@ -1,7 +1,3 @@
--- require("nvim-autopairs").setup({
---     disable_filetype = { "TelescopePrompt" },
--- })
-
 local npairs = require("nvim-autopairs")
 npairs.setup({
   disable_filetype = { "TelescopePrompt" },
@@ -16,6 +12,7 @@ npairs.setup({
     java = false,
   },
 })
+npairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
 npairs.add_rules(require("nvim-autopairs.rules.endwise-ruby"))
 local endwise = require("nvim-autopairs.ts-rule").endwise
 npairs.add_rules({

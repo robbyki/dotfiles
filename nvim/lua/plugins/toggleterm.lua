@@ -48,6 +48,8 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
 
+local python = Terminal:new({ cmd = "python" })
+
 local lazygit = Terminal:new({
   cmd = "lazygit",
   hidden = true,
@@ -94,13 +96,10 @@ local lf = Terminal:new({
   },
 })
 
-local python = Terminal:new({ cmd = "python", hidden = true, direction = "float" })
-
--- go repl
 local gore = Terminal:new({ cmd = "gore", hidden = true })
 
-function _PYTHON_TOGGLE()
-  python:toggle()
+function _GORE_TOGGLE()
+  gore:toggle()
 end
 
 function _LF_TOGGLE()
@@ -123,6 +122,6 @@ function _K9S_TOGGLE()
   k9s:toggle()
 end
 
-function _GORE_TOGGLE()
-  gore:toggle()
+function _PYTHON_TOGGLE()
+  python:toggle()
 end

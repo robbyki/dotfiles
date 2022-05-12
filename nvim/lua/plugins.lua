@@ -397,6 +397,8 @@ return packer.startup(function(use)
   use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
   use({
     "windwp/nvim-autopairs",
+    wants = "nvim-treesitter",
+    module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
     config = function()
       require("plugins.autopairs")
     end,
