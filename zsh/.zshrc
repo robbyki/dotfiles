@@ -192,7 +192,8 @@ export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
 #
 # used for gpg zsh secrets plugin
 export RECIPIENT="robbmk@gmail.com"
-export GPGKEY=9D0BE3B364886BBCE5C6B4551D020EA33FE2A6A8
+export GPGKEY=D306CF52B506165F
+export GPG_TTY=$(tty)
 
 # deduplicate env paths for now
 typeset -U PATH
@@ -241,3 +242,4 @@ export MINIKUBE_IN_STYLE=true
 source icutils
 
 source /home/robbyk/.config/broot/launcher/bash/br
+

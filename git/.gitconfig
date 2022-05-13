@@ -1,86 +1,87 @@
 [user]
-        name = Robby Kiskanyan
-        email = "rkee@us.ibm.com"
-	signingkey = A4C2EBBBF0CFA8D0
+    name = Robby Kiskanyan
+    email = "robbmk@gmail.com"
+    signingkey = B506165F
 [core]
-        editor = nvim
-        autocrlf = input
-        hooksPath = ~/.githooks
-        pager = delta
+    editor = nvim
+    autocrlf = input
+    hooksPath = ~/.githooks
+    pager = delta
 [pull]
-        rebase = true
+    rebase = true
 [pager]
-        branch = false
-        diff = delta
-        log = delta
-        reflog = delta
-        show = delta
+    branch = false
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
 [url "ssh://git@github.ibm.com/"]
-      insteadOf = https://github.ibm.com/
+    insteadOf = https://github.ibm.com/
 [push]
-        default = matching
+    default = matching
 [color]
-        ui = auto
+    ui = auto
 [color "branch"]
-        current = yellow bold
-        local = green bold
-        remote = cyan bold
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
 [color "diff"]
-        meta = yellow bold
-        frag = magenta bold
-        old = red bold
-        new = green bold
-        whitespace = red reverse
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [color "status"]
-        added = green bold
-        changed = yellow bold
-        untracked = red bold
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
 [diff]
         colorMoved = default
 [filesystem "Oracle Corporation|1.8.0_242|rootfs"]
-        timestampResolution = 1001 microseconds
-        minRacyThreshold = 0 nanoseconds
+    timestampResolution = 1001 microseconds
+    minRacyThreshold = 0 nanoseconds
 [filesystem "Oracle Corporation|1.8.0_252|rootfs"]
-        timestampResolution = 1001 microseconds
-        minRacyThreshold = 0 nanoseconds
+    timestampResolution = 1001 microseconds
+    minRacyThreshold = 0 nanoseconds
 [filesystem "Oracle Corporation|1.8.0_252|tmpfs"]
-        timestampResolution = 1001 microseconds
-        minRacyThreshold = 0 nanoseconds
+    timestampResolution = 1001 microseconds
+    minRacyThreshold = 0 nanoseconds
 [filesystem "Oracle Corporation|11.0.7|rootfs"]
-        timestampResolution = 11000 nanoseconds
-        minRacyThreshold = 976 microseconds
+    timestampResolution = 11000 nanoseconds
+    minRacyThreshold = 976 microseconds
 [credential "https://github.com"]
-        helper = !gh auth git-credential
+    helper = !gh auth git-credential
 [github]
-        user = rkee
+    user = rkee
 [gpg]
-        program = gpg2
+	program = /bin/gpg
 [init]
-        defaultBranch = main
+    defaultBranch = main
 [merge]
-        conflictStyle = diff3
-        summary = true
+    conflictStyle = diff3
+    summary = true
 [delta]
-        paging = auto
-        line-numbers = true
-        syntax-theme = onehalfdark
-        whitespace-error-style = 22 reverse
-        minus-style = syntax "#402529"
-        minus-emph-style = syntax "#662f33"
-        plus-style = syntax "#29342a"
-        plus-emph-style = syntax "#3b5134"
-        hunk-header-style = syntax bold
-        hunk-header-decoration-style = "#4b5263" box
-        file-style = white bold
-        file-decoration-style = "#4b5263" ul
-        line-numbers-zero-style = "#4b5263"
-        line-numbers-left-format = "{nm:^4} "
-        line-numbers-right-format = "{np:^4} "
-        line-numbers-minus-style = "#e06c75"
-        line-numbers-plus-style = "#98c379"
+    paging = auto
+    line-numbers = true
+    syntax-theme = onehalfdark
+    whitespace-error-style = 22 reverse
+    minus-style = syntax "#402529"
+    minus-emph-style = syntax "#662f33"
+    plus-style = syntax "#29342a"
+    plus-emph-style = syntax "#3b5134"
+    hunk-header-style = syntax bold
+    hunk-header-decoration-style = "#4b5263" box
+    file-style = white bold
+    file-decoration-style = "#4b5263" ul
+    line-numbers-zero-style = "#4b5263"
+    line-numbers-left-format = "{nm:^4} "
+    line-numbers-right-format = "{np:^4} "
+    line-numbers-minus-style = "#e06c75"
+    line-numbers-plus-style = "#98c379"
 [delta "decorations"]
-        commit-decoration-style = bold yellow box ul
-        file-style = bold yellow ul
-        file-decoration-style = none
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
 [commit]
-        template = /home/robbyk/.gitmessage
+    template = /home/robbyk/.gitmessage
+	gpgsign = true
