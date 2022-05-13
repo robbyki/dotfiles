@@ -28,6 +28,7 @@ plugins=(
     zsh-better-npm-completion
     zsh-secrets
     zsh-syntax-highlighting
+    wakatime
 )
 
 # # {{{ completions
@@ -47,6 +48,8 @@ source $HOME/dev/enhancd/init.sh
 export ENHANCD_DOT_SHOW_FULLPATH=1
 export ENHANCD_FILTER=fzy:fzf
 export ENHANCD_HOOK_AFTER_CD="ll"
+
+export WAKATIME_HOME=$HOME
 
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
 

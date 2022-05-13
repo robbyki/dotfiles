@@ -1,7 +1,7 @@
 [user]
         name = Robby Kiskanyan
         email = "rkee@us.ibm.com"
-        signingkey = A4C2EBBBF0CFA8D0
+	signingkey = A4C2EBBBF0CFA8D0
 [core]
         editor = nvim
         autocrlf = input
