@@ -33,25 +33,16 @@ plugins=(
 # # {{{ completions
 autoload -U compinit && compinit
 source <(kubectl completion zsh)
+source <(minikube completion zsh)
+source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
 # # source <(tkn completion zsh)
-# # source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
-# source <(minikube completion zsh)
 # # source $ZSH/completions/_helm
-# source $ZSH/completions/_ic
 # source $ZSH/completions/_stern # does not work
-# source $XDG_CONFIG_HOME/broot/launcher/bash/br
 # source <(stern --completion=zsh) # does not work
-# # autoload -U +X bashcompinit && bashcompinit
 # # }}}
-#
+
 source $ZSH/oh-my-zsh.sh
-#
-# # {{{ nvm settings
-# # export NVM_DIR="$HOME/.nvm"
-# # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-# # }}}
-#
+
 source $HOME/dev/enhancd/init.sh
 export ENHANCD_DOT_SHOW_FULLPATH=1
 export ENHANCD_FILTER=fzy:fzf
