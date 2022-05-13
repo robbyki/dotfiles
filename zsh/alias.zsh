@@ -51,6 +51,7 @@ alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
 alias ssx='secrets source pawpatrol'
+alias py='python'
 
 # system helpers
 alias exp='export'

@@ -122,6 +122,7 @@ function _K9S_TOGGLE()
   k9s:toggle()
 end
 
-function _PYTHON_TOGGLE()
-  python:toggle()
+local ipython = Terminal:new({ cmd = "ipython", hidden = true })
+function _IPYTHON_TOGGLE()
+  ipython:toggle()
 end
