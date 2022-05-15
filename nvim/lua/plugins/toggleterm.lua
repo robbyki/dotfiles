@@ -46,6 +46,7 @@ end
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
+-- this `gor` cmd is my alias for `go run` command
 vim.cmd([[autocmd FileType go nnoremap <buffer> <leader><leader>g :2TermExec cmd="gor %:p"<CR>]])
 
 local Terminal = require("toggleterm.terminal").Terminal
