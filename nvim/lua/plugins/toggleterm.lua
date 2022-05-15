@@ -46,6 +46,8 @@ end
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
+vim.cmd([[autocmd FileType go nnoremap <buffer> <leader><leader>g :2TermExec cmd="gor %:p"<CR>]])
+
 local Terminal = require("toggleterm.terminal").Terminal
 
 local python = Terminal:new({ cmd = "python" })

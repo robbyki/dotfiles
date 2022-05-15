@@ -8,7 +8,7 @@ require("utils").create_augroups({
     -- { "BufWritePost", "*/.config/nvim/**", "PackerCompile" },
 
     -- Automatically create parent directories if non existent
-    -- { "BufWritePre", "*", [[lua require('utils').MkNonExDir(vim.fn.expand('<afile>'), vim.fn.expand('<abuf>'))]] },
+    { "BufWritePre", "*", [[lua require('utils').MkNonExDir(vim.fn.expand('<afile>'), vim.fn.expand('<abuf>'))]] },
 
     -- { "BufWritePost", "plugins.lua", [[source <afile> | PackerSync]] },
 
@@ -28,13 +28,8 @@ require("utils").create_augroups({
       "*",
       [[silent! if mode() != 'c' | checktime | endif]],
     },
-    -- Notification after file change
-    -- https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
     -- { "VimEnter", "*", [[lua require('utils').update_plugins_every_day()]] },
-    -- Open read-only automatically if swapfile exists
   },
-  -- Simple one-liner filetype specific things that I don't really want to put
-  -- into ftplugin files for whatever reason
 })
 
 --
