@@ -66,7 +66,17 @@ local lazygit = Terminal:new({
   },
 })
 
-local htop = Terminal:new({ cmd = "htop", hidden = true })
+local htop = Terminal:new({
+  cmd = "htop",
+  hidden = true,
+  direction = "float",
+  close_on_exit = true,
+  float_opts = {
+    border = "curved",
+    width = 120,
+    height = 50,
+  },
+})
 
 local k9s = Terminal:new({
   cmd = "k9s",
@@ -85,6 +95,11 @@ local broot = Terminal:new({
   hidden = true,
   direction = "float",
   close_on_exit = true,
+  float_opts = {
+    border = "curved",
+    width = 100,
+    height = 50,
+  },
 })
 
 local lf = Terminal:new({
@@ -100,6 +115,8 @@ local lf = Terminal:new({
 })
 
 local gore = Terminal:new({ cmd = "gore", hidden = true })
+
+local ipython = Terminal:new({ cmd = "ipython", hidden = true })
 
 function _GORE_TOGGLE()
   gore:toggle()
@@ -125,7 +142,6 @@ function _K9S_TOGGLE()
   k9s:toggle()
 end
 
-local ipython = Terminal:new({ cmd = "ipython", hidden = true })
 function _IPYTHON_TOGGLE()
   ipython:toggle()
 end
