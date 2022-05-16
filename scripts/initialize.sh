@@ -343,6 +343,7 @@ ln -s -f ~/.dotfiles/nvim ~/.config/nvim
 ln -s -f ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ln -s -f ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 ln -s -f ~/.dotfiles/k9s/skin.yml ~/.config/k9s/skin.yml
+ln -s -f ~/.dotfiles/font/fonts.conf ~/.config/fontconfig/fonts.conf
 
 #vscode
 # need to start using built-in vscode sync
