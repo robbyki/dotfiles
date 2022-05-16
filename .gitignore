@@ -91,3 +91,5 @@ nvim/spell/en.utf-8.add.spl
 nvim/lua/compiled.lua
 home/robbyk/.dotfiles/.vscode/diff
 .vscode
+
+.repos.txt
