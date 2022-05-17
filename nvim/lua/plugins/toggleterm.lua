@@ -37,7 +37,7 @@ toggleterm.setup({
 function _G.set_terminal_keymaps()
   local opts = { noremap = true }
   -- vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, "t", "<C-J>", [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
   vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
   vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
@@ -46,12 +46,10 @@ end
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
--- this `gor` cmd is my alias for `go run` command
+-- this `gor` cmd is my alias for `go run` command and works even on single files
 vim.cmd([[autocmd FileType go nnoremap <buffer> <leader><leader>g :2TermExec cmd="gor %:p"<CR>]])
 
 local Terminal = require("toggleterm.terminal").Terminal
-
-local python = Terminal:new({ cmd = "python" })
 
 local lazygit = Terminal:new({
   cmd = "lazygit",
@@ -116,8 +114,19 @@ local lf = Terminal:new({
 
 local gore = Terminal:new({ cmd = "gore", hidden = true })
 
-local ipython = Terminal:new({ cmd = "ipython", hidden = true })
+local ipython = Terminal:new({
+  cmd = "ipython",
+  hidden = true,
+  direction = "float",
+  close_on_exit = true,
+  float_opts = {
+    border = "curved",
+    width = 100,
+    height = 30,
+  },
+})
 
+-- these get called in keymaps
 function _GORE_TOGGLE()
   gore:toggle()
 end
