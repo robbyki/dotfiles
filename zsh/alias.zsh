@@ -351,3 +351,10 @@ alias tpyes="yq -i '.window.opacity=0.7' ~/.dotfiles/alacritty/alacritty.yml"
 alias resume='python resume.py --no-html'
 alias ok=okular
 alias b='buku --suggest'
+
+export RKCV="https://robkiskanyan.s3.amazonaws.com/RobKiskanyanCV.pdf"
+alias getcv="wget $RKCV"
+alias copycv="echo $RKCV | xclip -selection clipboard"
+
+alias getlinkedin="echo https://www.linkedin.com/in/robkiskanyan | xclip -selection clipboard"
+alias getsite="echo https://www.dontgoandpanic.com | xclip -selection clipboard"
