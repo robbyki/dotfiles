@@ -53,6 +53,8 @@ alias ssrc="secrets source"
 alias ssx='secrets source pawpatrol'
 alias py='python'
 
+alias pip='noglob pip'
+
 # system helpers
 alias exp='export'
 alias tch='touch'
@@ -261,7 +263,7 @@ alias la="colorls -lA"
 alias lad="la --sort-dirs"
 alias lag="la --git-status"
 alias less='less -FSRXc'
-alias ll="la -tr --git-status"
+alias ll="ls -tr --git-status"
 alias lld="ll --sort-dirs"
 alias llg="ll --git-status"
 alias llt="ll -tr"
@@ -320,8 +322,8 @@ alias -g @yaml=' | yq eval -P'
 alias -g @json=' | jq'
 
 zrc() {
-	$EDITOR $DOTFILES/zsh/.zshrc
-	source $DOTFILES/zsh/.zshrc
+  $EDITOR $DOTFILES/zsh/.zshrc
+  source $DOTFILES/zsh/.zshrc
 }
 alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 alias ecs=zrc

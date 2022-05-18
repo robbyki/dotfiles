@@ -1,12 +1,17 @@
+# shellcheck disable=2148
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  # shellcheck disable=1090
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# shellcheck disable=2034
 ZSH_THEME="powerlevel10k/powerlevel10k"
+# shellcheck disable=1090
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export ZSH="$HOME/.oh-my-zsh"
 
+# shellcheck disable=2034
 plugins=(
     alias-tips
     autoupdate
@@ -70,12 +75,14 @@ setopt hist_ignore_space      # Do not record an event starting with a space
 setopt hist_reduce_blanks     # Remove superfluous blanks from commands added to history
 setopt hist_verify            # Do not execute immediately upon history expansion
 setopt extended_history       # Show timestamp in history
-zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # Do not store failed commands to history
+# zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # Do not store failed commands to history
 HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
 HISTCONTROL='ignoreboth';
 # }}}
 
 # {{{ applications
+export SPARK_HOME=/usr/local/spark-3.2.1-bin-hadoop3.2
+export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*]}"):$PYTHONPATH
 export EDITOR=/usr/local/bin/nvim
 export IBMCLOUD_TRACE=false
 export IBMCLOUD_COLOR=true
@@ -92,7 +99,7 @@ export CARGO=$HOME/.cargo
 export NPM=${HOME}/.npm
 export FNM=${HOME}/.fnm
 export SCRIPTS=${HOME}/bin
-export GOPATH=${HOME}/go
+export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 export KUBECONFIG=$HOME/.kube/config
 # export LUASERVER=$HOME/tools/lua-language-server
@@ -108,9 +115,11 @@ pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
   zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
 }
+
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
+
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 # }}}
@@ -143,7 +152,7 @@ bindkey -s "^[=" 'k9s^M'
 # }}}
 
 # {{{ FZF Settings
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ${HOME}/.fzf.zsh ] && source "${HOME}/.fzf.zsh"
 
 export FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
@@ -160,17 +169,17 @@ export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 
 #export number of processors on linux
 # cpuinfo
-if [ -f /proc/cpuinfo ]; then
-	export NUM_OF_CORES=$(grep processor /proc/cpuinfo | wc -l)
-else
-	export NUM_OF_CORES=1
-fi
+# if [ -f /proc/cpuinfo ]; then
+# 	export NUM_OF_CORES=$(grep processor /proc/cpuinfo | wc -l)
+# else
+# 	export NUM_OF_CORES=1
+# fi
 
 # better cd
 eval "$(zoxide init zsh)"
 #
 # node manager
-eval "`fnm env`"
+eval "$(fnm env)"
 eval "$(fnm env --use-on-cd)"
 
 # scala

@@ -59,8 +59,8 @@ local lazygit = Terminal:new({
   dir = "git_dir",
   float_opts = {
     border = "curved",
-    width = 100,
-    height = 100,
+    width = 120,
+    height = 70,
   },
 })
 
@@ -96,7 +96,7 @@ local broot = Terminal:new({
   float_opts = {
     border = "curved",
     width = 100,
-    height = 50,
+    height = 70,
   },
 })
 
