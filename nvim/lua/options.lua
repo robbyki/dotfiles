@@ -1,5 +1,6 @@
-vim.o.shortmess = string.gsub(vim.o.shortmess, "F", "") .. "c"
+-- vim.o.shortmess = string.gsub(vim.o.shortmess, "F", "") .. "c"
 vim.o.path = vim.o.path .. "**"
+vim.opt_global.shortmess:remove("F"):append("c")
 
 -- update packer with command mode
 vim.cmd([[command! PU packadd packer.nvim | lua require('plugins').update()]])

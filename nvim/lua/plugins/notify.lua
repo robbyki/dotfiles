@@ -1,6 +1,6 @@
 require("notify").setup({
   stages = "fade_in_slide_out",
-  timeout = 1000,
+  timeout = 200,
   background_colour = "#24292e",
   max_width = 65,
   max_height = 3,

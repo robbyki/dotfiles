@@ -261,9 +261,9 @@ alias l=lf
 # directory listings
 alias la="colorls -lA"
 alias lad="la --sort-dirs"
-alias lag="la --git-status"
+# alias lag="la --git-status"
 alias less='less -FSRXc'
-alias ll="ls -tr --git-status"
+alias ll="la --git-status"
 alias lld="ll --sort-dirs"
 alias llg="ll --git-status"
 alias llt="ll -tr"

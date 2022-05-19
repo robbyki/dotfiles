@@ -14,6 +14,34 @@ end
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
+
 cmp.setup({
   preselect = cmp.PreselectMode.None,
   mapping = {
@@ -60,9 +88,11 @@ cmp.setup({
     end, { "i", "s" }),
   },
   formatting = {
-    format = require("lspkind").cmp_format({
-      with_text = true,
-      menu = {
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+      -- Source
+      vim_item.menu = ({
         nvim_lsp = "[LSP]",
         buffer = "[BUF]",
         copilot = "[COPILOT]",
@@ -71,9 +101,29 @@ cmp.setup({
         path = "[PATH]",
         tmux = "[TMUX]",
         vsnip = "[SNIP]",
-      },
-    }),
+        -- buffer = "[Buffer]",
+        -- nvim_lsp = "[LSP]",
+        -- path = "[Path]",
+        -- latex_symbols = "[LaTeX]",
+      })[entry.source.name]
+      return vim_item
+    end,
   },
+  -- formatting = {
+  --   format = require("lspkind").cmp_format({
+  --     with_text = true,
+  --     menu = {
+  --       nvim_lsp = "[LSP]",
+  --       buffer = "[BUF]",
+  --       copilot = "[COPILOT]",
+  --       cmp_tabnine = "[TN]",
+  --       orgmode = "[ORG]",
+  --       path = "[PATH]",
+  --       tmux = "[TMUX]",
+  --       vsnip = "[SNIP]",
+  --     },
+  --   }),
+  -- },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "path" },
