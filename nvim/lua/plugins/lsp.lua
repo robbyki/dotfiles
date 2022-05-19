@@ -133,13 +133,17 @@ vim.diagnostic.config({
   },
 })
 
---TODO: this needs to move to autocmds dedicated file soon
-vim.cmd([[
-    augroup Format
-      autocmd!
-        autocmd BufWritePre *.yaml lua vim.lsp.buf.formatting_sync(nil, 1000)
-      augroup END
-    ]])
+local events_group = vim.api.nvim_create_augroup("CustomEventsGroup", { clear = true })
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  desc = "Files to format before save",
+  group = events_group,
+  pattern = { "*.scala", "*.sc", "*.yaml", "*.json", "*.sbt" },
+  callback = function()
+    local timeoutMs = 2000
+    local opts = {}
+    vim.lsp.buf.formatting_sync(opts, timeoutMs)
+  end,
+})
 
 ----------------------------------------------------------------------
 --                     Begin Language Settings                      --
@@ -262,12 +266,19 @@ lspconfig.jsonls.setup({
 ----------------------------------------------------------------------
 local metals_config = require("metals").bare_config()
 metals_config.settings = {
+  disabledMode = false,
+  bloopSbtAlreadyInstalled = true,
+  ammoniteJvmProperties = {
+    "-Xmx2G",
+    "-Xms256M",
+  },
   showImplicitArguments = true,
   showInferredType = true,
   excludedPackages = {
     "akka.actor.typed.javadsl",
     "com.github.swagger.akka.javadsl",
     "akka.stream.javadsl",
+    "akka.http.javadsl",
   },
   superMethodLensesEnabled = true,
   -- serverProperties = {"-Xmx3G", "-Xms3G", "-Xss4m"},
@@ -303,7 +314,7 @@ end
 -- Autocmd that will actually be in charging of starting the whole thing
 local nvim_metals_group = api.nvim_create_augroup("nvim-metals", { clear = true })
 api.nvim_create_autocmd("FileType", {
-  pattern = { "scala", "sbt" },
+  pattern = { "scala", "sbt", "sc" },
   callback = function()
     require("metals").initialize_or_attach(metals_config)
   end,
@@ -358,23 +369,6 @@ lspconfig.tsserver.setup({
     client.resolved_capabilities.document_formatting = false
   end,
 })
-
-vim.cmd([[
-    augroup Format
-      autocmd!
-        autocmd BufWritePre *.scala lua vim.lsp.buf.formatting_sync(nil, 1000)
-        autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 1000)
-      augroup END
-    ]])
--- autocmd BufWritePre *.graphql lua vim.lsp.buf.formatting_sync(nil, 1000)
--- autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 1000)
--- autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)
--- autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 1000)
--- autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
--- autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
--- autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
--- autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)
--- autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 --
 -- dap.adapters.python = {
