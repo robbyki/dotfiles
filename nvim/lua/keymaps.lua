@@ -145,6 +145,10 @@ wk.register({
     m = { [[<Cmd>lua require('telescope').extensions.metals.commands()<CR>]], "metals commands" },
     d = { [[<Cmd>lua require('metals').open_all_diagnostics()<CR>]], "metals diagnostics" },
     h = { [[<Cmd>lua require('metals').hover_worksheet()<CR>]], "hover" },
+    t = { [[<Cmd>lua require('metals.tvp').toggle_tree_view()<CR>]], "tree view" },
+    r = { [[<Cmd>lua require('metals.tvp').reveal_tree_view()<CR>]], "reveal in tree" },
+    s = { [[<Cmd>lua require('metals').toggle_setting('showImplicitArguments')<CR>]], "show implicit args" },
+    k = { [[<Cmd>lua require('metals').type_of_range()<CR>]], "show type of range" },
   },
   ["<leader>G"] = {
     name = "+go",

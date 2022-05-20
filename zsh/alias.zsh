@@ -47,6 +47,7 @@ alias chx="chmod +x"
 alias qb='/bin/qutebrowser'
 alias vg='vimgolf'
 alias gpgexp='gpg --output robbmk.pgp --armor --export robbmk@gmail.com'
+alias sepaw='gpg --batch --yes --output ~/.secrets/pawpatrol.gpg --encrypt --recipient $RECIPIENT pawpatrol'
 alias sd="secrets decrypt"
 alias se="secrets encrypt"
 alias ssrc="secrets source"
@@ -358,3 +359,11 @@ alias copycv="echo $RKCV | xclip -selection clipboard"
 
 alias getlinkedin="echo https://www.linkedin.com/in/robkiskanyan | xclip -selection clipboard"
 alias getsite="echo https://www.dontgoandpanic.com | xclip -selection clipboard"
+
+alias dbr='databricks'
+alias dbrw='databricks workspace'
+alias dbrc='databricks clusters'
+alias dbrconf='databricks configure'
+alias dbrp='databricks pipelines'
+alias dbrr='databricks repos'
+alias dbrs='databricks stack'

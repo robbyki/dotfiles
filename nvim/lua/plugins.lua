@@ -317,6 +317,9 @@ return packer.startup(function(use)
       require("plugins.gitsigns")
     end,
   })
+
+  use({ "triglav/vim-visual-increment" })
+
   ----------------------------------------------------------------------
   --                              Metals                              --
   ----------------------------------------------------------------------

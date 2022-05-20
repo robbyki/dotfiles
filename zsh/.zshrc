@@ -41,6 +41,7 @@ autoload -U compinit && compinit
 source <(kubectl completion zsh)
 source <(minikube completion zsh)
 source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
+complete -C '/bin/aws_completer' aws
 # # source <(tkn completion zsh)
 # # source $ZSH/completions/_helm
 # source $ZSH/completions/_stern # does not work
