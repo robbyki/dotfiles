@@ -20,6 +20,7 @@ vim.cmd([[
  nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
+map("n", "<space>o", ":ijump object<CR>:lua vim.lsp.codelens.run()<CR>")
 map("i", "<a-cr>", "<c-e><cr>") -- allows me to ignore cmp suggestion and create new line
 map("n", "<Space>", "<Nop>")
 map("i", "<C-c>", "<Esc>")
