@@ -158,6 +158,7 @@ return packer.startup(function(use)
         require("nvim-web-devicons").setup()
       end,
     },
+    tag = "nightly",
     cmd = { "NvimTreeToggle", "NvimTreeRefresh" },
     config = function()
       require("plugins.nvimtree")
