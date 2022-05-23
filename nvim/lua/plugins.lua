@@ -150,6 +150,8 @@ return packer.startup(function(use)
     end,
   })
 
+  use("nanotee/sqls.nvim")
+
   use({
     "kyazdani42/nvim-tree.lua",
     requires = {

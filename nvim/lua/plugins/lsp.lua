@@ -152,7 +152,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 ----------------------------------------------------------------------
 --                         Language Servers                         --
 ----------------------------------------------------------------------
-local servers = { "tsserver", "dockerls", "pyright" }
+local servers = { "tsserver", "dockerls", "pyright", "sqls" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({
     on_attach = on_attach,
