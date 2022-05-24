@@ -355,7 +355,7 @@ alias b='buku --suggest'
 
 export RKCV="https://robkiskanyan.s3.amazonaws.com/RobKiskanyanCV.pdf"
 alias getcv="wget $RKCV"
-alias copycv="echo $RKCV | xclip -selection clipboard"
+alias getcvlink="echo $RKCV | xclip -selection clipboard"
 
 alias getlinkedin="echo https://www.linkedin.com/in/robkiskanyan | xclip -selection clipboard"
 alias getsite="echo https://www.dontgoandpanic.com | xclip -selection clipboard"
@@ -367,3 +367,6 @@ alias dbrconf='databricks configure'
 alias dbrp='databricks pipelines'
 alias dbrr='databricks repos'
 alias dbrs='databricks stack'
+
+# update packer from command line
+alias pu="nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
