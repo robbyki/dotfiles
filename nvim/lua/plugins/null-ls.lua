@@ -22,6 +22,14 @@ null_ls.setup({
     null_ls.builtins.formatting.prettier.with({
       filetypes = { "javascriptreact", "typescriptreact", "javascript", "typescript" },
     }),
+    -- cannot understand dlt sql from databricks code yet
+    -- null_ls.builtins.formatting.sqlfluff.with({
+    --   extra_args = { "--dialect", "sparksql" },
+    -- }),
+    -- a bit too noisy right now
+    -- null_ls.builtins.diagnostics.sqlfluff.with({
+    --   extra_args = { "--dialect", "sparksql" },
+    -- }),
   },
   on_attach = function(client)
     if client.resolved_capabilities.document_formatting then

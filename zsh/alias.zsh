@@ -264,7 +264,7 @@ alias la="colorls -lA"
 alias lad="la --sort-dirs"
 # alias lag="la --git-status"
 alias less='less -FSRXc'
-alias ll="la --git-status"
+alias ll=" ls -lrt --git-status"
 alias lld="ll --sort-dirs"
 alias llg="ll --git-status"
 alias llt="ll -tr"
@@ -370,3 +370,5 @@ alias dbrs='databricks stack'
 
 # update packer from command line
 alias pu="nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
+
+alias sf='sqlfluff'

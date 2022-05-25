@@ -8,88 +8,88 @@ sudo dnf upgrade --refresh -y
 # install rpmfusion for nvidia and vlc
 # install akmod-nvidia drivers with this
 sudo dnf install -y \
-	https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-	https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+  "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
+  "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 
 #check video driver in use:
 lspci -nnk | egrep -i --color 'vga|3d|2d' -A3 | grep 'in use'
 
 # important base packages I need
 sudo dnf install -y \
-	akmod-nvidia \
-	alacritty \
-	autoconf \
-	automake \
-	bat \
-	buildah \
-	buku \
-	clang \
-	cmake \
-	cmatrix \
-	curl \
-	discord \
-	podman-remote \
-	podman-docker \
-	exa \
-	fd-find \
-	ffmpeg \
-	fontawesome5-fonts-all \
-	fontconfig-devel \
-	freetype-devel \
-	g++ \
-	gcc \
-	gcc-c++ \
-	gettext \
-	gimp \
-	git-delta \
-	gnome-tweaks \
-	gstreamer1-plugins-ugly \
-	helm \
-	htop \
-	java-11-openjdk-src \
-	java-devel \
-	kdenlive \
-	keepassxc \
-	kmod-v4l2loopback \
-	libgnome \
-	libstdc++-static \
-	libtool \
-	libxcb-devel \
-	libxkbcommon-devel \
-	make \
-	ncurses-devel \
-	neofetch \
-	ninja-build \
-	okular \
-	golang-google-protobuf \
-	patch \
-	peek \
-	pkgconfig \
-	plantuml \
-	plazma-breeze \
-	pulseaudio-utils \
-	qutebrowser \
-	rofi \
-	ruby \
-	ruby-devel \
-	screenkey \
-	shutter \
-	skopeo \
-	slack \
-	the_silver_searcher \
-	trash-cli \
-	unzip \
-	util-linux-user \
-	vlc \
-	webex \
-	wget \
-	wmctrl \
-	xclip \
-	xdotool \
-	xorg-x11-drv-nvidia-cuda \
-	xscreensaver \
-	zoxide \
-	zsh
+  akmod-nvidia \
+  alacritty \
+  autoconf \
+  automake \
+  bat \
+  buildah \
+  buku \
+  clang \
+  cmake \
+  cmatrix \
+  curl \
+  discord \
+  exa \
+  fd-find \
+  ffmpeg \
+  fontawesome5-fonts-all \
+  fontconfig-devel \
+  freetype-devel \
+  g++ \
+  gcc \
+  gcc-c++ \
+  gettext \
+  gimp \
+  git-delta \
+  gnome-tweaks \
+  golang-google-protobuf \
+  gstreamer1-plugins-ugly \
+  helm \
+  htop \
+  java-11-openjdk-src \
+  java-devel \
+  kdenlive \
+  keepassxc \
+  kmod-v4l2loopback \
+  libgnome \
+  libstdc++-static \
+  libtool \
+  libxcb-devel \
+  libxkbcommon-devel \
+  make \
+  ncurses-devel \
+  neofetch \
+  ninja-build \
+  okular \
+  patch \
+  peek \
+  pkgconfig \
+  plantuml \
+  plazma-breeze \
+  podman-docker \
+  podman-remote \
+  pulseaudio-utils \
+  qutebrowser \
+  rofi \
+  ruby \
+  ruby-devel \
+  screenkey \
+  shutter \
+  skopeo \
+  slack \
+  the_silver_searcher \
+  trash-cli \
+  unzip \
+  util-linux-user \
+  vlc \
+  webex \
+  wget \
+  wmctrl \
+  xclip \
+  xdotool \
+  xorg-x11-drv-nvidia-cuda \
+  xscreensaver \
+  zoxide \
+  zsh
 
 sudo dnf -y groupinstall "Development Tools" "Development Libraries"
 
@@ -126,6 +126,7 @@ gh extension install mislav/gh-branch
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # broot
+# FIXME: make these a lot nicer
 gh repo clone Canop/broot
 cd broot
 cargo install --path .
@@ -171,6 +172,7 @@ npm install -g prettier
 npm install -g neovim
 npm install -g yaml-language-server
 npm install -g bash-language-server
+npm install -g sql-language-server
 npm install -g vscode-json-languageserver
 npm install -g pyright
 npm install -g gatsby-cli
@@ -186,6 +188,7 @@ pip install buku
 pip install neovim
 pip install pynvim
 pip install git+https://github.com/psf/black
+pip install sqlfluff
 
 # k9s
 gh repo clone derailed/k9s
@@ -266,7 +269,7 @@ sudo yum install https://prerelease.keybase.io/keybase_amd64.rpm
 
 # install sbt
 sudo rm -f /etc/yum.repos.d/bintray-rpm.repo
-curl -L https://www.scala-sbt.org/sbt-rpm.repo >sbt-rpm.repo
+curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
 sudo mv sbt-rpm.repo /etc/yum.repos.d/
 sudo dnf install -y sbt
 
@@ -281,7 +284,7 @@ cd glow
 go build
 
 # kubectl
-cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+cat << EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
@@ -324,26 +327,28 @@ git clone git@github.com:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.
 git clone git@github.com:jeffreytse/zsh-vi-mode.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
 git clone git@github.com:chrissicool/zsh-256color.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-256color
 
+DOTFILES_DIR=${HOME}/.dotfiles
+
 # setup symlinks to configs. obviously there are tools that do this better. maybe one day soon
-ln -s -f ~/.dotfiles/alacritty ~/.config/alacritty
-ln -s -f ~/.dotfiles/bat ~/.config/bat
-ln -s -f ~/.dotfiles/broot ~/.config/broot
-ln -s -f ~/.dotfiles/fzf/key-bindings.zsh ~/.fzf/shell/key-bindings.zsh
-ln -s -f ~/.dotfiles/gh/config.yml ~/.config/gh/config.yml
-ln -s -f ~/.dotfiles/lf ~/.config/lf
-ln -s -f ~/.dotfiles/rofi ~/.config/rofi
-ln -s -f ~/.dotfiles/zsh/alias.zsh ~/.oh-my-zsh/custom/alias.zsh
-ln -s -f ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
-ln -s -f ~/.dotfiles/zsh/functions.zsh ~/.oh-my-zsh/custom/functions.zsh
-ln -s -f ~/.dotfiles/zsh/fzf-tab.zsh ~/.oh-my-zsh/custom/fzf-tab.zsh
-ln -s -f ~/.dotfiles/zsh/completions ~/.oh-my-zsh/completions
-ln -s -f ~/.dotfiles/git/.gitconfig ~/.gitconfig
-ln -s -f ~/.dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
-ln -s -f ~/.dotfiles/nvim ~/.config/nvim
-ln -s -f ~/.dotfiles/zsh/.zshrc ~/.zshrc
-ln -s -f ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
-ln -s -f ~/.dotfiles/k9s/skin.yml ~/.config/k9s/skin.yml
-ln -s -f ~/.dotfiles/font/fonts.conf ~/.config/fontconfig/fonts.conf
+ln -s -f "$DOTFILES_DIR/alacritty" ~/.config/alacritty
+ln -s -f "$DOTFILES_DIR/bat" ~/.config/bat
+ln -s -f "$DOTFILES_DIR/broot" ~/.config/broot
+ln -s -f "$DOTFILES_DIR/fzf/key-bindings.zsh" ~/.fzf/shell/key-bindings.zsh
+ln -s -f "$DOTFILES_DIR/gh/config.yml" ~/.config/gh/config.yml
+ln -s -f "$DOTFILES_DIR/lf" ~/.config/lf
+ln -s -f "$DOTFILES_DIR/rofi" ~/.config/rofi
+ln -s -f "$DOTFILES_DIR/zsh/alias.zsh" ~/.oh-my-zsh/custom/alias.zsh
+ln -s -f "$DOTFILES_DIR/zsh/.p10k.zsh" ~/.p10k.zsh
+ln -s -f "$DOTFILES_DIR/zsh/functions.zsh" ~/.oh-my-zsh/custom/functions.zsh
+ln -s -f "$DOTFILES_DIR/zsh/fzf-tab.zsh" ~/.oh-my-zsh/custom/fzf-tab.zsh
+ln -s -f "$DOTFILES_DIR/zsh/completions" ~/.oh-my-zsh/completions
+ln -s -f "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
+ln -s -f "$DOTFILES_DIR/qutebrowser/config.py" ~/.config/qutebrowser/config.py
+ln -s -f "$DOTFILES_DIR/nvim" ~/.config/nvim
+ln -s -f "$DOTFILES_DIR/zsh/.zshrc" ~/.zshrc
+ln -s -f "$DOTFILES_DIR/tmux/.tmux.conf" ~/.tmux.conf
+ln -s -f "$DOTFILES_DIR/k9s/skin.yml" ~/.config/k9s/skin.yml
+ln -s -f "$DOTFILES_DIR/font/fonts.conf" ~/.config/fontconfig/fonts.conf
 
 #vscode
 # need to start using built-in vscode sync
@@ -353,11 +358,11 @@ dnf check-update
 sudo dnf install code -y
 cp -R User/* ~/.config/Code/User/
 
-mkdir ~/.config/colorls/
-cp $(dirname $(gem which colorls))/yaml/files.yaml ~/.config/colorls/files.yaml
+mkdir "${HOME}/.config/colorls/"
+cp "$(dirname $(gem which colorls))/yaml/files.yaml" "${HOME}/.config/colorls/files.yaml"
 
 # coursier artifact fetching
-curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d >cs
+curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
 chmod +x cs
 ./cs setup
 
@@ -366,20 +371,20 @@ cs install bloop --only-prebuilt=true
 cs install scalafix
 
 # install neomutt
-dnf install cyrus-sasl-devel docbook-dtds docbook-style-xsl elinks gcc
-dnf install gdbm-devel gettext-devel git gnutls-devel gpgme-devel krb5-devel
-dnf install libdb-devel libidn-devel libtdb-devel libxslt libzstd-devel
-dnf install lmdb-devel lua lua-devel lynx lz4-devel ncurses-devel notmuch-devel
-dnf install qdbm-devel redhat-rpm-config slang-devel sqlite sqlite-devel tar tcl
-dnf install tokyocabinet-devel w3m
-dnf install abook msmtp pass isync
+# dnf install cyrus-sasl-devel docbook-dtds docbook-style-xsl elinks gcc
+# dnf install gdbm-devel gettext-devel git gnutls-devel gpgme-devel krb5-devel
+# dnf install libdb-devel libidn-devel libtdb-devel libxslt libzstd-devel
+# dnf install lmdb-devel lua lua-devel lynx lz4-devel ncurses-devel notmuch-devel
+# dnf install qdbm-devel redhat-rpm-config slang-devel sqlite sqlite-devel tar tcl
+# dnf install tokyocabinet-devel w3m
+# dnf install abook msmtp pass isync
 
 # need to get this to work properly
-gh repo clone neomutt/neomutt
-cd neomutt
-./configure --notmuch --with-notmuch=/usr/local/lib/notmuch
-make
-sudo make install
+# gh repo clone neomutt/neomutt
+# cd neomutt
+# ./configure --notmuch --with-notmuch=/usr/local/lib/notmuch
+# make
+# sudo make install
 
 # minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
