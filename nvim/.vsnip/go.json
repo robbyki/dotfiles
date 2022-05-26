@@ -152,5 +152,12 @@
             ""
         ],
         "description": "simple entry point"
+    },
+    "page break comment": {
+        "prefix": "page-break",
+        "body": [
+            "println(strings.Repeat(\"-\", 25))\n\n"
+        ],
+        "description": "convenince for page break"
     }
 }

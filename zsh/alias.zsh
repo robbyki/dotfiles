@@ -372,3 +372,4 @@ alias dbrs='databricks stack'
 alias pu="nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
 
 alias sf='sqlfluff'
+alias gore='gore -autoimport'
