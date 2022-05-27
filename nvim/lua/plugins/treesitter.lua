@@ -41,8 +41,8 @@ treesitter.setup({
     },
   },
   indent = {
-    enable = false,
-    disable = { "go", "yaml", "yml", "python", "org" },
+    enable = true,
+    disable = { "yaml", "yml", "python", "org" },
   },
   refactor = {
     highlight_definitions = {

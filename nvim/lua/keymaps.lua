@@ -45,7 +45,7 @@ map("n", "n", "nzzzv", {})
 map("n", "N", "Nzzzv", {})
 map("n", "<leader>d", ":bd<CR>")
 map("n", "Q", "<Nop>")
-map("n", "cxr", ":%s/<C-R><C-W>/<C-R><C-W>/gc<Left><Left><Left>")
+map("n", "cxr", ":%s<C-R><C-W>/<C-R><C-W>/gc<Left><Left><Left>")
 
 vim.g.which_key_display_names = {
   ["<CR>"] = "↵",

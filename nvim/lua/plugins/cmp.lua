@@ -101,10 +101,6 @@ cmp.setup({
         path = "[PATH]",
         tmux = "[TMUX]",
         vsnip = "[SNIP]",
-        -- buffer = "[Buffer]",
-        -- nvim_lsp = "[LSP]",
-        -- path = "[Path]",
-        -- latex_symbols = "[LaTeX]",
       })[entry.source.name]
       return vim_item
     end,
