@@ -121,7 +121,7 @@ alias godocs='godoc -http=localhost:6060' # cannot be in module path
 
 # bloop Scala
 alias bl='bloop'
-alias blc='bloop compile'
+alias blc='bloop compile --verbose'
 alias blcr='bloop compile root --verbose'
 alias blcv='bloop compile --verbose'
 alias blp='bloop projects'

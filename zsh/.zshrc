@@ -65,6 +65,8 @@ source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=~/.zsh_history
+HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
+HISTCONTROL='ignoreboth';
 setopt bang_hist              # Treat the '!' character specially during expansion
 setopt inc_append_history     # Write to the history file immediately, not when the shell exits
 setopt share_history          # Share history between all sessions
@@ -77,8 +79,6 @@ setopt hist_reduce_blanks     # Remove superfluous blanks from commands added to
 setopt hist_verify            # Do not execute immediately upon history expansion
 setopt extended_history       # Show timestamp in history
 # zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # Do not store failed commands to history
-HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear";
-HISTCONTROL='ignoreboth';
 # }}}
 
 # {{{ applications
@@ -168,14 +168,6 @@ export FZF_TMUX_OPTS="-p 90%,30%"
 export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 # }}}
 
-#export number of processors on linux
-# cpuinfo
-# if [ -f /proc/cpuinfo ]; then
-# 	export NUM_OF_CORES=$(grep processor /proc/cpuinfo | wc -l)
-# else
-# 	export NUM_OF_CORES=1
-# fi
-
 # better cd
 eval "$(zoxide init zsh)"
 #
@@ -253,4 +245,4 @@ source icutils
 
 source /home/robbyk/.config/broot/launcher/bash/br
 
-ssx
+# ssx
