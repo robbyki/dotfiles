@@ -85,7 +85,9 @@ sudo dnf install -y \
   wget \
   wmctrl \
   xclip \
+  rlwrap \
   xdotool \
+  xsel \
   xorg-x11-drv-nvidia-cuda \
   xscreensaver \
   zoxide \
@@ -241,6 +243,15 @@ git clone https://github.com/jfrog/jfrog-cli
 cd jfrog-cli
 CGO_ENABLED=0 go build -o jf -ldflags '-w -extldflags "-static"' main.go
 sudo mv ./jf /usr/local/bin/
+
+# if the above fails
+# echo "[jfrog-cli]" > jfrog-cli.repo
+# echo "name=jfrog-cli" >> jfrog-cli.repo
+# echo "baseurl=https://releases.jfrog.io/artifactory/jfrog-rpms" >> jfrog-cli.repo
+# echo "enabled=1" >> jfrog-cli.repo
+# rpm --import https://releases.jfrog.io/artifactory/jfrog-gpg-public/jfrog_public_gpg.key
+# sudo mv jfrog-cli.repo /etc/yum.repos.d/
+# dnf install -y jfrog-cli-v2-jf --nogpgcheck
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

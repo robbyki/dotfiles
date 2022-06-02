@@ -44,6 +44,14 @@ return packer.startup(function(use)
   --     require("plugins.aerial")
   --   end,
   -- })
+  -- use({
+  --   "sudormrfbin/cheatsheet.nvim",
+  --   requires = {
+  --     { "nvim-telescope/telescope.nvim" },
+  --     { "nvim-lua/popup.nvim" },
+  --     { "nvim-lua/plenary.nvim" },
+  --   },
+  -- })
   use("dstein64/nvim-scrollview")
   use({
     "folke/which-key.nvim",

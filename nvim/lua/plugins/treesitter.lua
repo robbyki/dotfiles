@@ -49,7 +49,7 @@ treesitter.setup({
       enable = true,
       clear_on_cursor_move = true,
     },
-    highlight_current_scope = { enable = false },
+    highlight_current_scope = { enable = true },
     enable = true,
     smart_rename = {
       enable = true,

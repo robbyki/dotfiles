@@ -8,6 +8,11 @@ vim.opt.fillchars:append({
   verthoriz = "╋",
 })
 
+local palette_colors = {
+  teledark = "#191922",
+  teleblack = "#25252E",
+}
+
 local default_colors = require("kanagawa.colors").setup()
 
 local overrided_hlgroup = {
@@ -17,7 +22,8 @@ local overrided_hlgroup = {
   LspReferenceText = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
   LspReferenceRead = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
   LspReferenceWrite = { bg = default_colors.roninYellow, fg = default_colors.sumiInk1 },
-  CursorLine = { bg = default_colors.bg_visual },
+  -- CursorLine = { bg = default_colors.bg_visual },
+  CursorLine = { bg = palette_colors.teledark },
   LineNr = { fg = default_colors.dep },
 }
 

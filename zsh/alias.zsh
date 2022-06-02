@@ -374,3 +374,5 @@ alias pu="nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSyn
 
 alias sf='sqlfluff'
 alias gore='gore -autoimport'
+
+alias cht='cht.sh'
