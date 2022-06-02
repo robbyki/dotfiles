@@ -196,11 +196,11 @@ alias icvars='source ~/bin/icvars'
 alias icplugins="ic plugin repo-plugins -r \"IBM Cloud\" --output json | jq '.\"IBM Cloud\" | .[].name' -r | sort"
 
 # artifactory
-alias jf=jfrog
-alias jfdls="jfrog rt search \"txo-aide-team-cio-docker-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
-alias jfmls="jfrog rt search \"txo-aide-team-cio-maven-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
-alias jfsls="jfrog rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
-alias jfdel="jfrog rt delete"
+# alias jf=jfrog
+alias jfdls="jf rt search \"txo-aide-team-cio-docker-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
+alias jfmls="jf rt search \"txo-aide-team-cio-maven-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
+alias jfsls="jf rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
+alias jfdel="jf rt delete"
 
 # kubernetes
 alias kbclean='kbcleanup --raw > ~/.kube/config.swap;kbswap'
@@ -230,6 +230,7 @@ alias mkstart='minikube start --driver=podman --container-runtime=cri-o'
 alias mkdash='minikube dashboard --url'
 
 # containers
+alias pdlogintxo='pdl $ARTIFACTORY_URL -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY'
 alias docker='podman'
 alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
 alias pdcls='podman container list --all'
