@@ -1,10 +1,10 @@
 require("notify").setup({
   stages = "fade_in_slide_out",
-  timeout = 200,
+  timeout = 5,
   background_colour = "#24292e",
-  max_width = 65,
-  max_height = 3,
-  minimum_width = 35,
+  -- max_width = 65,
+  -- max_height = 3,
+  -- minimum_width = 35,
 
   -- Icons for the different levels
   icons = {

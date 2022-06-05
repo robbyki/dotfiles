@@ -87,7 +87,7 @@ alias sus="systemctl suspend"
 alias hib="systemctl hibernate"
 alias off="systemctl poweroff"
 alias reb="systemctl reboot"
-alias peek="GDK_BACKEND=x11 peek"
+# alias peek="GDK_BACKEND=x11 peek"
 alias ccc="xclip -sel clip"
 alias jqi="jid -q | ccc"
 
