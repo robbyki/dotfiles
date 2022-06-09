@@ -386,6 +386,7 @@ chmod +x cs
 # install bloop toolchain
 cs install bloop --only-prebuilt=true
 cs install scalafix
+cs install giter8
 
 # install neomutt
 # dnf install cyrus-sasl-devel docbook-dtds docbook-style-xsl elinks gcc

@@ -363,15 +363,15 @@ alias getsite="echo https://www.dontgoandpanic.com | xclip -selection clipboard"
 
 alias dbr='databricks'
 alias dbrc='databricks clusters'
-alias dbrcls='databricks clusters list --output json --debug'
+alias dbrcls='databricks clusters list --output json'
 alias dbrfs='databricks fs'
-alias dbrj='databricks jobs --debug'
-alias dbrjls='databricks jobs list --version=2.1 --output json --debug'
-alias dbrl='databricks libraries --debug'
-alias dbrp='databricks pipelines --debug'
-alias dbrr='databricks repos --debug'
-alias dbrrunsls='databricks runs list --version=2.1 --debug'
-alias dbrs='databricks stack --debug'
+alias dbrj='databricks jobs'
+alias dbrjls='databricks jobs list --version=2.1 --output json'
+alias dbrl='databricks libraries'
+alias dbrp='databricks pipelines'
+alias dbrr='databricks repos'
+alias dbrrunsls='databricks runs list --version=2.1'
+alias dbrs='databricks stack'
 alias dbrw='databricks workspace'
 
 # update packer from command line
