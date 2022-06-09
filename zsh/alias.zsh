@@ -177,7 +177,6 @@ alias giste='gh gist edit'
 alias gistl='gh gist list -L 10'
 alias gistv='gh gist view'
 alias grepo='gh grepo'
-alias gtemp='gh gct'
 alias rvwt='gh rvwt 2>/dev/null'
 alias rvwu='gh rvwu 2>/dev/null'
 

@@ -4,7 +4,7 @@ prompt: enabled
 pager: bat
 aliases:
     co: '!id="$(gh pr list -L100 | fzf | cut -f1)"; [ -n "$id" ] && gh pr checkout "$id"'
-    gct: repo create --template="git@github.ibm.com:aide/aide-template.git" "$1" --private
+    gct: repo create --template="git@github.com:robbyki/scala-spark-demo.git" "$1" --private
     grepo: repo view --web
     repos: |
         !gh api --paginate graphql -f owner="$1" -f query='
