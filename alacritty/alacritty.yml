@@ -14,6 +14,7 @@ window:
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
   startup_mode: Fullscreen
+  # startup_mode: Windowed
   title: Alacritty
 scrolling:
   # Maximum number of lines in the scrollback buffer.

@@ -245,4 +245,4 @@ source icutils
 
 source /home/robbyk/.config/broot/launcher/bash/br
 
-# ssx
+ssx

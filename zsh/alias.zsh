@@ -87,7 +87,7 @@ alias sus="systemctl suspend"
 alias hib="systemctl hibernate"
 alias off="systemctl poweroff"
 alias reb="systemctl reboot"
-# alias peek="GDK_BACKEND=x11 peek"
+alias peek="GDK_BACKEND=x11 peek"
 alias ccc="xclip -sel clip"
 alias jqi="jid -q | ccc"
 
@@ -362,12 +362,17 @@ alias getlinkedin="echo https://www.linkedin.com/in/robkiskanyan | xclip -select
 alias getsite="echo https://www.dontgoandpanic.com | xclip -selection clipboard"
 
 alias dbr='databricks'
-alias dbrw='databricks workspace'
 alias dbrc='databricks clusters'
-alias dbrconf='databricks configure'
+alias dbrcls='databricks clusters list --output json'
+alias dbrfs='databricks fs'
+alias dbrj='databricks jobs'
+alias dbrjls='databricks jobs list --version=2.1 --output json'
+alias dbrl='databricks libraries'
 alias dbrp='databricks pipelines'
 alias dbrr='databricks repos'
 alias dbrs='databricks stack'
+alias dbrx='databricks workspace'
+alias dbrw='databricks workspace'
 
 # update packer from command line
 alias pu="nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
@@ -376,3 +381,4 @@ alias sf='sqlfluff'
 alias gore='gore -autoimport'
 
 alias cht='cht.sh'
+alias sfmt='scalafmt'

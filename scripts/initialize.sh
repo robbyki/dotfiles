@@ -220,6 +220,9 @@ go install golang.org/x/tools/gopls@latest
 # kubeclean
 go get github.com/edsoncelio/kubeclean
 
+# interactive jq parser
+go get github.com/fiatjaf/jiq/cmd/jiq
+
 # lf
 env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 

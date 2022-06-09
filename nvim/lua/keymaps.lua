@@ -81,6 +81,7 @@ wk.register({
     ["/"] = { [[<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], "fuzzy find" },
     ["?"] = { [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], "recent files" },
     B = { [[<Cmd>lua require('telescope.builtin').buffers()<CR>]], "buffers" },
+    c = { [[<Cmd>lua require('telescope.builtin').command_history()<CR>]], "command history" },
     C = { [[<Cmd>lua require('telescope').extensions.zoxide.list()<CR>]], "zoxide cd" },
     D = { [[<Cmd>lua require('telescope.builtin').find_files({ cwd = '$HOME/dev' })<CR>]], "find in dev" },
     S = { [[<Cmd>lua require('telescope.builtin').grep_string()<CR>]], "string search" },
