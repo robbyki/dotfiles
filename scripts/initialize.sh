@@ -220,6 +220,9 @@ go install golang.org/x/tools/gopls@latest
 # kubeclean
 go get github.com/edsoncelio/kubeclean
 
+# jid
+go install github.com/simeji/jid/cmd/jid@latest
+
 # interactive jq parser
 go get github.com/fiatjaf/jiq/cmd/jiq
 
