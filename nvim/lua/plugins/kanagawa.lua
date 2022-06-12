@@ -28,11 +28,7 @@ local overrided_hlgroup = {
 
 require("kanagawa").setup({
   undercurl = true,
-  commentStyle = "italic",
-  functionStyle = "NONE",
-  statementStyle = "bold",
-  typeStyle = "bold",
-  variablebuiltinStyle = "italic",
+  -- typeStyle = "bold",
   specialReturn = true,
   specialException = true,
   transparent = true,
