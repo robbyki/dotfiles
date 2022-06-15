@@ -82,6 +82,8 @@ setopt extended_history       # Show timestamp in history
 # }}}
 
 # {{{ applications
+export PYSPARK_PYTHON=python3.9
+export PYSPARK_DRIVER_PYTHON=python3.9
 export SPARK_HOME=/usr/local/spark-3.2.1-bin-hadoop3.2
 export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*]}"):$PYTHONPATH
 export EDITOR=/usr/local/bin/nvim
