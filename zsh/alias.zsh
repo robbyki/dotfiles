@@ -1,4 +1,5 @@
-alias python='/usr/local/bin/python3.9'
+alias python='/usr/bin/python3.9'
+
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
