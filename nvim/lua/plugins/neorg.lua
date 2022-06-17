@@ -77,7 +77,7 @@ neorg.setup({
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "*.org", "*.norg", "*.md" },
   callback = function()
-    vim.opt.conceallevel = 2
+    vim.opt.conceallevel = 0
     --vim.opt.concealcursor = 'n'
     vim.cmd([[
     syn match keyword /@code/ containedin=ALL conceal cchar=[
