@@ -1,4 +1,4 @@
-alias python='/usr/bin/python3.9'
+alias python='/usr/local/bin/python3.9'
 
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
@@ -370,6 +370,9 @@ alias dbrj='databricks jobs'
 alias dbrjls='databricks jobs list --version=2.1 --output json'
 alias dbrl='databricks libraries'
 alias dbrp='databricks pipelines'
+alias dbrpg='databricks pipelines get --pipeline-id'
+alias dbrps='databricks pipelines start --full-refresh=true --pipeline-id'
+alias dbrpd='databricks pipelines delete --pipeline-id'
 alias dbrr='databricks repos'
 alias dbrrunsls='databricks runs list --version=2.1'
 alias dbrs='databricks stack'

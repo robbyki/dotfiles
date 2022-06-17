@@ -19,13 +19,13 @@ toggleterm.setup({
   start_in_insert = true,
   insert_mappings = true,
   persist_size = true,
-  direction = "horizontal",
+  direction = "float",
   close_on_exit = true,
   shell = vim.o.shell,
   float_opts = {
     border = "curved",
     width = 100,
-    height = 20,
+    height = 40,
     winblend = 0,
     highlights = {
       border = "Normal",

@@ -142,12 +142,12 @@ return packer.startup(function(use)
       require("plugins.colorizer")
     end,
   })
-  use({
-    "rcarriga/nvim-notify",
-    config = function()
-      require("plugins.notify")
-    end,
-  })
+  -- use({
+  --   "rcarriga/nvim-notify",
+  --   config = function()
+  --     require("plugins.notify")
+  --   end,
+  -- })
 
   use("romgrk/fzy-lua-native")
 
@@ -498,13 +498,13 @@ return packer.startup(function(use)
     end,
   })
   -- IDE
-  use({
-    "antoinemadec/FixCursorHold.nvim",
-    event = "BufReadPre",
-    config = function()
-      vim.g.cursorhold_updatetime = 100
-    end,
-  })
+  -- use({
+  --   "antoinemadec/FixCursorHold.nvim",
+  --   event = "BufReadPre",
+  --   config = function()
+  --     vim.g.cursorhold_updatetime = 100
+  --   end,
+  -- })
 
   ----------------------------------------------------------------------
   --                               Code                               --

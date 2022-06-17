@@ -1,0 +1,24 @@
+{
+    "dbr-header": {
+        "prefix": [
+            "dbr-header"
+        ],
+        "body": [
+            "# Databricks notebook source"
+        ],
+        "description": [
+            "needed header for ws to interpret file as dbr source for notebooks"
+        ]
+    },
+    "dbr-cell-command": {
+        "prefix": [
+            "dbr-cell-command"
+        ],
+        "body": [
+            "# COMMAND ----------"
+        ],
+        "description": [
+            "command syntax for each new cell"
+        ]
+    }
+}

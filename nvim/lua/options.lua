@@ -99,6 +99,9 @@ vim.g.rainbow_active = 1
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 -- autocommands
+vim.cmd(
+  [[autocmd BufRead,BufNewFile /home/robbyk/dev/databricks/presentation/dbr-demo/notebooks/dbr-demo.py lua vim.diagnostic.disable(0)]]
+)
 vim.cmd([[autocmd FileType lua setlocal shiftwidth=2 tabstop=2 expandtab]])
 vim.cmd([[autocmd FileType sh setlocal shiftwidth=2 tabstop=2 expandtab]])
 vim.cmd([[autocmd FileType,BufEnter,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
