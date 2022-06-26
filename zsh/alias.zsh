@@ -1,4 +1,4 @@
-alias python='/usr/local/bin/python3.9'
+# alias python='/usr/local/bin/python3.9'
 
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
@@ -55,6 +55,7 @@ alias se="secrets encrypt"
 alias ssrc="secrets source"
 alias ssx='secrets source pawpatrol'
 alias py='python'
+alias ow='xdg-open'
 
 alias pip='noglob pip'
 
@@ -368,6 +369,7 @@ alias dbrcls='databricks clusters list --output json'
 alias dbrfs='databricks fs'
 alias dbrj='databricks jobs'
 alias dbrjls='databricks jobs list --version=2.1 --output json'
+alias dbrpls='databricks pipelines list'
 alias dbrl='databricks libraries'
 alias dbrp='databricks pipelines'
 alias dbrpg='databricks pipelines get --pipeline-id'
@@ -377,6 +379,9 @@ alias dbrr='databricks repos'
 alias dbrrunsls='databricks runs list --version=2.1'
 alias dbrs='databricks stack'
 alias dbrw='databricks workspace'
+alias dbrpw='xdg-open "$DBR_HOST/?o=$DBR_WSID#joblist/pipelines/$PIPEID"'
+alias dbrww='xdg-open "$DBR_HOST/?o=$DBR_WSID"'
+alias dbrrw='xdg-open "$DBR_HOST/?o=$DBR_WSID#notebook/1593778391359211/command/1593778391359213"'
 
 # update packer from command line
 alias pu="nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
