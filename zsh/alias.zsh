@@ -373,15 +373,16 @@ alias dbrpls='databricks pipelines list'
 alias dbrl='databricks libraries'
 alias dbrp='databricks pipelines'
 alias dbrpg='databricks pipelines get --pipeline-id'
-alias dbrps='databricks pipelines start --full-refresh=true --pipeline-id'
+alias dbrps='databricks pipelines start --full-refresh --pipeline-id'
 alias dbrpd='databricks pipelines delete --pipeline-id'
 alias dbrr='databricks repos'
 alias dbrrunsls='databricks runs list --version=2.1'
 alias dbrs='databricks stack'
 alias dbrw='databricks workspace'
 alias dbrpw='xdg-open "$DBR_HOST/?o=$DBR_WSID#joblist/pipelines/$PIPEID"'
+alias dbrcw='xdg-open "$DBR_HOST/?o=$DBR_WSID#setting/clusters"'
+alias dbrsw='xdg-open "$DBR_HOST/?o=$DBR_WSID##notebook/4040044488960988/command/4040044488960989"'
 alias dbrww='xdg-open "$DBR_HOST/?o=$DBR_WSID"'
-alias dbrrw='xdg-open "$DBR_HOST/?o=$DBR_WSID#notebook/1593778391359211/command/1593778391359213"'
 
 # update packer from command line
 alias pu="nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"

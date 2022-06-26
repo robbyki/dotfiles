@@ -53,19 +53,19 @@ local function on_attach(client, bufnr) -- function(client, bufnr)
   --   vim.diagnostic.open_float({ scope = "cursor" })
   -- end, opts)
 
-  vim.api.nvim_create_autocmd("CursorHold", {
-    buffer = bufnr,
-    callback = function()
-      local diagnostics_opts = {
-        focusable = false,
-        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        border = "rounded",
-        source = "always", -- show source in diagnostic popup window
-        prefix = " ",
-      }
-      vim.diagnostic.open_float(nil, diagnostics_opts)
-    end,
-  })
+  -- vim.api.nvim_create_autocmd("CursorHold", {
+  --   buffer = bufnr,
+  --   callback = function()
+  --     local diagnostics_opts = {
+  --       focusable = false,
+  --       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+  --       border = "rounded",
+  --       source = "always", -- show source in diagnostic popup window
+  --       prefix = " ",
+  --     }
+  --     vim.diagnostic.open_float(nil, diagnostics_opts)
+  --   end,
+  -- })
 
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.documentHighlightProvider then
