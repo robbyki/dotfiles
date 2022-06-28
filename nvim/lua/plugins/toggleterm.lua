@@ -24,7 +24,7 @@ toggleterm.setup({
   shell = vim.o.shell,
   float_opts = {
     border = "curved",
-    width = 100,
+    width = 150,
     height = 40,
     winblend = 0,
     highlights = {
@@ -107,7 +107,7 @@ local lf = Terminal:new({
   close_on_exit = true,
   float_opts = {
     border = "curved",
-    width = 100,
+    width = 150,
     height = 50,
   },
 })

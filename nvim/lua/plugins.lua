@@ -498,13 +498,13 @@ return packer.startup(function(use)
     end,
   })
   -- IDE
-  -- use({
-  --   "antoinemadec/FixCursorHold.nvim",
-  --   event = "BufReadPre",
-  --   config = function()
-  --     vim.g.cursorhold_updatetime = 100
-  --   end,
-  -- })
+  use({
+    "antoinemadec/FixCursorHold.nvim",
+    event = "BufReadPre",
+    config = function()
+      vim.g.cursorhold_updatetime = 100
+    end,
+  })
 
   ----------------------------------------------------------------------
   --                               Code                               --
@@ -606,27 +606,6 @@ return packer.startup(function(use)
     requires = { "nvim-neorg/neorg-telescope" },
     config = function()
       require("plugins.neorg")
-    end,
-  })
-
-  -- --use({ "maxmellon/vim-jsx-pretty" })
-  -- --use({ "yuezk/vim-js" })
-  -- --		-- windows
-  -- --		--use({
-  -- --		--	"Shatur/neovim-session-manager",
-  -- --		--	setup = function()
-  -- --		--		require("plugins.session-manager")
-  -- --		--	end,
-  -- --		--})
-  --
-  use({
-    "AckslD/nvim-neoclip.lua",
-    disable = true,
-    requires = { "tami5/sqlite.lua", module = "sqlite" },
-    config = function()
-      require("neoclip").setup({
-        enable_persistant_history = true,
-      })
     end,
   })
 

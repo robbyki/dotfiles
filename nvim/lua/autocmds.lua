@@ -23,11 +23,11 @@ require("utils").create_augroups({
     -- Triger `autoread` when files changes on disk
     -- https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
     -- https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
-    -- {
-    --   "FocusGained,BufEnter,CursorHold,CursorHoldI",
-    --   "*",
-    --   [[silent! if mode() != 'c' | checktime | endif]],
-    -- },
+    {
+      "FocusGained,BufEnter,CursorHold,CursorHoldI",
+      "*",
+      [[silent! if mode() != 'c' | checktime | endif]],
+    },
     -- { "VimEnter", "*", [[lua require('utils').update_plugins_every_day()]] },
   },
 })
