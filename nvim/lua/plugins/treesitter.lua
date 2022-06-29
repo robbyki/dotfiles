@@ -41,7 +41,7 @@ treesitter.setup({
     },
   },
   indent = {
-    enable = true,
+    enable = false,
     disable = { "yaml", "yml", "python", "org" },
   },
   refactor = {

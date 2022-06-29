@@ -142,12 +142,12 @@ return packer.startup(function(use)
       require("plugins.colorizer")
     end,
   })
-  -- use({
-  --   "rcarriga/nvim-notify",
-  --   config = function()
-  --     require("plugins.notify")
-  --   end,
-  -- })
+  use({
+    "rcarriga/nvim-notify",
+    config = function()
+      require("plugins.notify")
+    end,
+  })
 
   use("romgrk/fzy-lua-native")
 

@@ -18,7 +18,6 @@ vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 -- vim.opt.spellfile = "~/.dotfiles/nvim/spell/en.utf-8.add"
 -- vim.opt.spell = true
 -- vim.opt.spelllang = "en"
--- vim.o.smartindent = true
 vim.o.autoindent = true
 vim.bo.autoindent = true
 vim.opt.backup = false
