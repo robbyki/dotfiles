@@ -105,8 +105,8 @@ lsp_signature.setup({
   hint_prefix = "🦄 ",
   hint_scheme = "String",
   hi_parameter = "Search",
-  max_height = 22,
-  max_width = 120,
+  -- max_height = 22,
+  -- max_width = 120,
   handler_opts = {
     border = "rounded",
   },
@@ -119,6 +119,7 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
   float = {
+    show_header = true,
     border = "rounded",
     source = "always",
     format = function(d)
