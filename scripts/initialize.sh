@@ -344,28 +344,31 @@ git clone git@github.com:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.
 git clone git@github.com:jeffreytse/zsh-vi-mode.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
 git clone git@github.com:chrissicool/zsh-256color.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-256color
 
-DOTFILES_DIR=${HOME}/.dotfiles
+DOTFILES=${HOME}/.dotfiles
 
 # setup symlinks to configs. obviously there are tools that do this better. maybe one day soon
-ln -s -f "$DOTFILES_DIR/alacritty" ~/.config/alacritty
-ln -s -f "$DOTFILES_DIR/bat" ~/.config/bat
-ln -s -f "$DOTFILES_DIR/broot" ~/.config/broot
-ln -s -f "$DOTFILES_DIR/fzf/key-bindings.zsh" ~/.fzf/shell/key-bindings.zsh
-ln -s -f "$DOTFILES_DIR/gh/config.yml" ~/.config/gh/config.yml
-ln -s -f "$DOTFILES_DIR/lf" ~/.config/lf
-ln -s -f "$DOTFILES_DIR/rofi" ~/.config/rofi
-ln -s -f "$DOTFILES_DIR/zsh/alias.zsh" ~/.oh-my-zsh/custom/alias.zsh
-ln -s -f "$DOTFILES_DIR/zsh/.p10k.zsh" ~/.p10k.zsh
-ln -s -f "$DOTFILES_DIR/zsh/functions.zsh" ~/.oh-my-zsh/custom/functions.zsh
-ln -s -f "$DOTFILES_DIR/zsh/fzf-tab.zsh" ~/.oh-my-zsh/custom/fzf-tab.zsh
-ln -s -f "$DOTFILES_DIR/zsh/completions" ~/.oh-my-zsh/completions
-ln -s -f "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
-ln -s -f "$DOTFILES_DIR/qutebrowser/config.py" ~/.config/qutebrowser/config.py
-ln -s -f "$DOTFILES_DIR/nvim" ~/.config/nvim
-ln -s -f "$DOTFILES_DIR/zsh/.zshrc" ~/.zshrc
-ln -s -f "$DOTFILES_DIR/tmux/.tmux.conf" ~/.tmux.conf
-ln -s -f "$DOTFILES_DIR/k9s/skin.yml" ~/.config/k9s/skin.yml
-ln -s -f "$DOTFILES_DIR/font/fonts.conf" ~/.config/fontconfig/fonts.conf
+ln -s -f "$DOTFILES/alacritty" ~/.config/alacritty
+ln -s -f "$DOTFILES/bat" ~/.config/bat
+ln -s -f "$DOTFILES/broot" ~/.config/broot
+ln -s -f "$DOTFILES/fzf/key-bindings.zsh" ~/.fzf/shell/key-bindings.zsh
+ln -s -f "$DOTFILES/gh/config.yml" ~/.config/gh/config.yml
+ln -s -f "$DOTFILES/lf" ~/.config/lf
+ln -s -f "$DOTFILES/rofi" ~/.config/rofi
+ln -s -f "$DOTFILES/zsh/alias.zsh" ~/.oh-my-zsh/custom/alias.zsh
+ln -s -f "$DOTFILES/zsh/.p10k.zsh" ~/.p10k.zsh
+ln -s -f "$DOTFILES/zsh/functions.zsh" ~/.oh-my-zsh/custom/functions.zsh
+ln -s -f "$DOTFILES/zsh/fzf-tab.zsh" ~/.oh-my-zsh/custom/fzf-tab.zsh
+ln -s -f "$DOTFILES/zsh/completions" ~/.oh-my-zsh/completions
+ln -s -f "$DOTFILES/git/.gitconfig" ~/.gitconfig
+ln -s -f "$DOTFILES/qutebrowser/config.py" ~/.config/qutebrowser/config.py
+ln -s -f "$DOTFILES/nvim" ~/.config/nvim
+ln -s -f "$DOTFILES/zsh/.zshrc" ~/.zshrc
+ln -s -f "$DOTFILES/tmux/.tmux.conf" ~/.tmux.conf
+ln -s -f "$DOTFILES/k9s/skin.yml" ~/.config/k9s/skin.yml
+ln -s -f "$DOTFILES/font/fonts.conf" ~/.config/fontconfig/fonts.conf
+
+# completion files
+ln -s $DOTFILES/zsh/completions/* ~/.oh-my-zsh/completions
 
 #vscode
 # need to start using built-in vscode sync
