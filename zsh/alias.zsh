@@ -167,6 +167,7 @@ alias fa='findalias'
 alias fdf='fd --no-ignore --list-details --hidden'
 
 # git
+alias fpr='gh copr'
 alias ghrepo='gh repo-fzf'
 alias ghibm='gh fzrepo'
 alias ghdig='gh repo-fzf Digital-Business-Mgmt-Platform'

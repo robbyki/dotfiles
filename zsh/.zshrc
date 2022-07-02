@@ -248,3 +248,5 @@ source icutils
 source /home/robbyk/.config/broot/launcher/bash/br
 
 ssx
+
+export PATH="${HOME}/dev/projects/git-fuzzy/bin:$PATH"

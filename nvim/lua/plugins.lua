@@ -295,6 +295,12 @@ return packer.startup(function(use)
   --                               Git                                --
   ----------------------------------------------------------------------
   use({
+    "akinsho/git-conflict.nvim",
+    config = function()
+      require("git-conflict").setup()
+    end,
+  })
+  use({
     "ruifm/gitlinker.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
