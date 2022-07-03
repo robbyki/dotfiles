@@ -87,7 +87,7 @@ telescope.setup({
       "xcf",
       "xls",
     },
-    path_display = { "shorten" },
+    path_display = { "smart" },
     winblend = 15,
     borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
