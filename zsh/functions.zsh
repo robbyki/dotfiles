@@ -416,3 +416,7 @@ ocgetimages() {
 encrypt-secrets() {
   gpg --batch --yes --output ~/.secrets/ibm-secrets.gpg --encrypt --recipient $RECIPIENT ibm-secrets
 }
+
+getkeepass() {
+  echo $KEEPASSXC | keepassxc-cli show -a Password $KEEPASSDB $1 | xclip -sel clip
+}
