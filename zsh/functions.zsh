@@ -280,27 +280,6 @@ mktch() {
 }
 
 #--------------------------------------------------------------------#
-#                      minio mc object storage                       #
-#--------------------------------------------------------------------#
-# use mc to list all files in cos dm location
-mcdmls() {
-  mc ls dm/${1}
-}
-
-# use mc to list files in dm location. seriously needs to pamaterized.
-mcdmfiles() {
-  mc $1 dm/datamaze-dev-analytics-sp-files/${2}
-}
-
-mcdmjars() {
-  mc $1 dm/datamaze-dev-analytics-sp-jars/${2}
-}
-
-mcdmlogs() {
-  mc $1 dm/datamaze-dev-analytics-sp-logs/${2}
-}
-
-#--------------------------------------------------------------------#
 #                             Openshift (Active Development)         #
 #--------------------------------------------------------------------#
 ocgetmaster() {
