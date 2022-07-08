@@ -406,26 +406,31 @@ encrypt-secrets() {
   gpg --batch --yes --output ~/.secrets/ibm-secrets.gpg --encrypt --recipient $RECIPIENT ibm-secrets
 }
 
-kpass-copy() {
+# KeepassXC functions
+kpcopy() {
   echo $KEEPASSXC | keepassxc-cli clip $KEEPASSDB $1 20
 }
 
-kpass-show() {
-  echo $KEEPASSXC | keepassxc-cli show $KEEPASSDB $1
+kpshow() {
+  echo $KEEPASSXC | keepassxc-cli show -q $KEEPASSDB $1
 }
 
-kpass-search() {
-  echo $KEEPASSXC | keepassxc-cli search $KEEPASSDB $1
+kpsearch() {
+  echo $KEEPASSXC | keepassxc-cli search -q $KEEPASSDB $1
 }
 
-kpass-add() {
-  echo $KEEPASSXC | keepassxc-cli add --username $1 --url $2 --generate --lower --upper --numeric --special --length 20 $KEEPASSDB $3
+kpadd() {
+  echo $KEEPASSXC | keepassxc-cli add -q --username $1 --url $2 --generate --lower --upper --numeric --special --length 20 $KEEPASSDB $3
 }
 
-kpass-fzf() {
+kpfzf() {
   echo $KEEPASSXC | keepassxc-cli ls -q -R -f $KEEPASSDB | fzf | xclip -sel clip
 }
 
-kpass-gen() {
+kpgen() {
   keepassxc-cli generate --lower --upper --numeric --special --length 20
+}
+
+kpls() {
+ echo $KEEPASSXC | keepassxc-cli ls -q -R $KEEPASSDB
 }
