@@ -147,26 +147,15 @@ function fzf_alias() {
 }
 
 function fzf_functions() {
-  FZF_TMUX_OPTS="-p 90%,30%"
-  local selection
-  if selection=$(alias | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} \
-    --preview-window=:hidden \
-    --query="$BUFFER" | sed -re 's/=.+$/ /'); then
-    BUFFER=$selection
-  fi
-  zle redisplay
+    FZF_TMUX_OPTS="-p 90%,30%"
+    local selection
+    if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} \
+            --preview-window=:hidden \
+            --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+        BUFFER=$selection
+    fi
+    zle redisplay
 }
-
-# function fzf_functions() {
-#     FZF_TMUX_OPTS="-p 90%,30%"
-#     local selection
-#     if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} \
-#             --preview-window=:hidden \
-#             --query="$BUFFER" | sed -re 's/=.+$/ /'); then
-#         BUFFER=$selection
-#     fi
-#     zle redisplay
-# }
 
 # Usage: Ex <File>
 ex() {
@@ -417,6 +406,26 @@ encrypt-secrets() {
   gpg --batch --yes --output ~/.secrets/ibm-secrets.gpg --encrypt --recipient $RECIPIENT ibm-secrets
 }
 
-getkeepass() {
-  echo $KEEPASSXC | keepassxc-cli show -a Password $KEEPASSDB $1 | xclip -sel clip
+kpass-copy() {
+  echo $KEEPASSXC | keepassxc-cli clip $KEEPASSDB $1 20
+}
+
+kpass-show() {
+  echo $KEEPASSXC | keepassxc-cli show $KEEPASSDB $1
+}
+
+kpass-search() {
+  echo $KEEPASSXC | keepassxc-cli search $KEEPASSDB $1
+}
+
+kpass-add() {
+  echo $KEEPASSXC | keepassxc-cli add --username $1 --url $2 --generate --lower --upper --numeric --special --length 20 $KEEPASSDB $3
+}
+
+kpass-fzf() {
+  echo $KEEPASSXC | keepassxc-cli ls -q -R -f $KEEPASSDB | fzf | xclip -sel clip
+}
+
+kpass-gen() {
+  keepassxc-cli generate --lower --upper --numeric --special --length 20
 }

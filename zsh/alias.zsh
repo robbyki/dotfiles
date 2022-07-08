@@ -257,11 +257,10 @@ alias pds='podman search'
 alias pdif="pdi --format '{{.Repository}}'"
 alias lzd='lazydocker'
 # alias pdremote='podman-remote'
+
 # keepassxc
 alias kpass='/usr/bin/keepassxc-cli'
 alias kpasso='keepassxc-cli open $KEEPASSDB'
-alias genpass='keepassxc-cli generate --lower --upper --numeric --special --length 20'
-alias kpassls='echo $KEEPASSXC | keepassxc-cli ls -q -R -f $KEEPASSDB | fzf | xclip -sel clip'
 
 alias l=lf
 
