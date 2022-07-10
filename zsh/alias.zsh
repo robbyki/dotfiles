@@ -383,7 +383,6 @@ alias dbrs='databricks stack'
 alias dbrw='databricks workspace'
 alias dbrpw='xdg-open "$DBR_HOST/?o=$DBR_WSID#joblist/pipelines/$PIPEID"'
 alias dbrcw='xdg-open "$DBR_HOST/?o=$DBR_WSID#setting/clusters"'
-alias dbrsw='xdg-open "$DBR_HOST/?o=$DBR_WSID##notebook/4040044488960988/command/4040044488960989"'
 alias dbrww='xdg-open "$DBR_HOST/?o=$DBR_WSID"'
 
 # update packer from command line

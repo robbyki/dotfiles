@@ -239,6 +239,6 @@ source ${HOME}/bin/icutils
 
 source ${HOME}/.config/broot/launcher/bash/br
 
-# ssx
+ssx
 
 export PATH="${HOME}/dev/projects/git-fuzzy/bin:$PATH"
