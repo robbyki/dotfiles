@@ -146,16 +146,17 @@ function fzf_alias() {
   zle redisplay
 }
 
-function fzf_functions() {
-    FZF_TMUX_OPTS="-p 90%,30%"
-    local selection
-    if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} \
-            --preview-window=:hidden \
-            --query="$BUFFER" | sed -re 's/=.+$/ /'); then
-        BUFFER=$selection
-    fi
-    zle redisplay
-}
+# this function causes my lsp to stop autoformatting for some reason
+# function fzf_functions() {
+#     FZF_TMUX_OPTS="-p 90%,30%"
+#     local selection
+#     if selection=$(print -rl -- ${(k)functions} | fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} \
+#             --preview-window=:hidden \
+#             --query="$BUFFER" | sed -re 's/=.+$/ /'); then
+#         BUFFER=$selection
+#     fi
+#     zle redisplay
+# }
 
 # Usage: Ex <File>
 ex() {
@@ -310,9 +311,9 @@ ocgethost() {
 
 }
 # colorize oc commands
-ocy() {
-  oc --output yaml $@ | yq eval --colors
-}
+# ocy() {
+#   oc --output yaml $@ | yq eval --colors
+# }
 # ocnodeip() {
 #     oc get nodes -o=jsonpath='{ .items[0].metadata.name }'
 # }
@@ -368,7 +369,7 @@ decryptibm() {
 encryptibm() {
   secrets encrypt ibm-secrets
 }
-
+#
 # ssibm() {
 #   secrets source ibm-secrets 2>/dev/null
 # }
@@ -399,7 +400,7 @@ kpsearch() {
 }
 
 kpadd() {
-  echo $KEEPASSXC | keepassxc-cli add -q --username $1 --url $2 --generate --lower --upper --numeric --special --length 20 $KEEPASSDB $3
+  echo $KEEPASSXC | keepassxc-cli add --username $1 --url $2 --generate --lower --upper --numeric --special --length 20 $KEEPASSDB $3
 }
 
 kpfzf() {
@@ -411,5 +412,9 @@ kpgen() {
 }
 
 kpls() {
- echo $KEEPASSXC | keepassxc-cli ls -q -R $KEEPASSDB
+  echo $KEEPASSXC | keepassxc-cli ls -q -R $KEEPASSDB
+}
+
+kpgetpass() {
+  echo $KEEPASSXC | kpass show -q -a Password $KEEPASSDB $1
 }
