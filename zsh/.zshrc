@@ -36,17 +36,16 @@ plugins=(
     wakatime
 )
 
-# # {{{ completions
+# {{{ completions
 autoload -U compinit && compinit
 source <(kubectl completion zsh)
 source <(minikube completion zsh)
 source <(oc completion zsh | sed -e 's/compdef _kubectl kubectl/compdef _oc oc/' )
 complete -C '/bin/aws_completer' aws
-# # source <(tkn completion zsh)
-# # source $ZSH/completions/_helm
-# source $ZSH/completions/_stern # does not work
-# source <(stern --completion=zsh) # does not work
-# # }}}
+source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
+# source <(tkn completion zsh)
+# source $ZSH/completions/_helm
+# }}}
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,11 +54,7 @@ export ENHANCD_DOT_SHOW_FULLPATH=1
 export ENHANCD_FILTER=fzy:fzf
 export ENHANCD_HOOK_AFTER_CD="ll"
 
-export WAKATIME_HOME=$HOME
-
 export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
-
-source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
 # {{{ history settings
 HISTSIZE=10000000
@@ -82,8 +77,8 @@ setopt extended_history       # Show timestamp in history
 # }}}
 
 # {{{ applications
-export PYSPARK_PYTHON=python3.9
-export PYSPARK_DRIVER_PYTHON=python3.9
+export PYSPARK_PYTHON=python3.10
+export PYSPARK_DRIVER_PYTHON=python3.10
 export SPARK_HOME=/usr/local/spark-3.2.1-bin-hadoop3.2
 export PYTHONPATH=$(ZIPS=("$SPARK_HOME"/python/lib/*.zip); IFS=:; echo "${ZIPS[*]}"):$PYTHONPATH
 export EDITOR=/usr/local/bin/nvim
@@ -107,10 +102,10 @@ export GOROOT=/usr/local/go
 export KUBECONFIG=$HOME/.kube/config
 # export LUASERVER=$HOME/tools/lua-language-server
 # export KUBECONFIG=$KUBECONFIG:my-super-config
-#
+
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${FNM}:${HOME}/.local/bin:${NPM}/bin:${HOME}/.local/share/coursier/bin:${JAVA_HOME}/bin:${MVN_HOME}/bin:${GIT_HOME}/bin:${HOME}/tools/lua-language-server/bin/Linux:${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${HOME}/node_modules/.bin:${CARGO}/bin:${SCRIPTS}:$PATH:/opt:$PATH:/usr/local/bin:$SPARK_HOME/bin:$PATH
 # }}}
-#
+
 # {{{ easier pasting
 zle_highlight+=(paste:none)
 zstyle :prompt:pure:git:stash show yes
@@ -128,7 +123,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # }}}
 
 # I had to do this to fix weird timeouts I was having with my tmux client auto terminating
-export TMOUT=0
+# export TMOUT=0
 
 # color scheme for bat viewer
 export BAT_THEME="OneHalfDark"
@@ -159,7 +154,6 @@ bindkey -s "^[=" 'k9s^M'
 
 # {{{ FZF Settings
 [ -f ${HOME}/.fzf.zsh ] && source "${HOME}/.fzf.zsh"
-
 export FZF_BASE="$HOME/.fzf"
 export FZF_DEFAULT_COMMAND="fd --type file -HL --no-ignore --exclude={'ScalaResources,.metals,.bloop,.git,.dropbox,.gem,.npm,.jfrog,target,.local,.vscode,node_modules'} -i . $HOME"
 export FZF_DEFAULT_OPTS="-i --no-mouse --ansi --layout=default --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
@@ -169,13 +163,12 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--height 80% --preview 'tree -NC {} | head -200'"
 export FZF_TMUX_OPTS="-p 90%,50%"
-
 export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 # }}}
 
 # better cd
 eval "$(zoxide init zsh)"
-#
+
 # node manager
 eval "$(fnm env)"
 eval "$(fnm env --use-on-cd)"
@@ -188,17 +181,17 @@ export UPDATE_ZSH_DAYS=10
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# openshift
 export OCREGISTRY=image-registry.openshift-image-registry.svc:5000
 export OCPSCHEMA=${HOME}/dev/openshift-json-schema
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Robby, stop over-typing: "
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
-#
+
 # #fpath=( ~/.zshfunctions "${fpath[@]}" )
 # #autoload -Uz $fpath[1]/*(.:t)
 #
 # used for gpg zsh secrets plugin
-export RECIPIENT="robbmk@gmail.com"
 export GPGKEY=D306CF52B506165F
 export GPG_TTY=$(tty)
 
@@ -222,12 +215,8 @@ zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200
 zstyle ':notify:*' error-title "wow such #fail"
 zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
 zstyle ':notify:*' success-title "very #success. wow"
-#
-export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
-# enable this to make it easier during demos and creating many tmux panes
-# source ~/dev/tutorial/oc-app-demo/ocvars
-#ssibm
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 export GOOS=linux
 
@@ -246,10 +235,10 @@ export LF_ICONS
 
 export MINIKUBE_IN_STYLE=true
 
-source icutils
+source ${HOME}/bin/icutils
 
-source /home/robbyk/.config/broot/launcher/bash/br
+source ${HOME}/.config/broot/launcher/bash/br
 
-ssx
+# ssx
 
 export PATH="${HOME}/dev/projects/git-fuzzy/bin:$PATH"
