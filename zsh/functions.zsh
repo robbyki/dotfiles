@@ -387,8 +387,12 @@ encrypt-secrets() {
 }
 
 # KeepassXC functions
-kpcopy() {
+kp() {
   echo $KEEPASSXC | keepassxc-cli clip $KEEPASSDB $1 20
+}
+
+kpuser() {
+  echo $KEEPASSXC | keepassxc-cli show -q -a Username $KEEPASSDB $1
 }
 
 kpshow() {

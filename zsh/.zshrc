@@ -129,6 +129,9 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 export BAT_THEME="OneHalfDark"
 
 # {{{ keybindings
+zle -N kpfzf
+bindkey '^q' kpfzf
+
 zle -N fancyctrlz
 zle -N fzf_then_open_in_editor
 zle -N fzf-open-file-current-dir
