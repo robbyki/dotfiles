@@ -415,6 +415,10 @@ kpls() {
   echo $KEEPASSXC | keepassxc-cli ls -q -R $KEEPASSDB
 }
 
-kpgetpass() {
-  echo $KEEPASSXC | kpass show -q -a Password $KEEPASSDB $1
+kpshowpass() {
+  echo $KEEPASSXC | keepassxc-cli show -q -a Password $KEEPASSDB $1
+}
+
+kpshow() {
+  echo $KEEPASSXC | keepassxc-cli show -q $KEEPASSDB $1
 }
