@@ -1,4 +1,3 @@
--- vim.o.shortmess = string.gsub(vim.o.shortmess, "F", "") .. "c"
 vim.o.path = vim.o.path .. "**"
 vim.opt_global.shortmess:remove("F"):append("c")
 
@@ -18,8 +17,8 @@ vim.g.loaded_ruby_provider = 0 -- To disable Ruby support
 -- vim.opt.spellfile = "~/.dotfiles/nvim/spell/en.utf-8.add"
 -- vim.opt.spell = true
 -- vim.opt.spelllang = "en"
-vim.o.autoindent = true
 vim.bo.autoindent = true
+vim.o.autoindent = true
 vim.opt.backup = false
 vim.opt.clipboard = vim.o.clipboard .. "unnamedplus" -- use clipboard on everything
 vim.opt.colorcolumn = "100"
@@ -41,17 +40,17 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ruler = true
 vim.opt.rulerformat = [[%-14.(%l,%c   %o%)]]
+vim.opt.shiftwidth = 4
 vim.opt.showmatch = true
 vim.opt.showmode = true
 vim.opt.showtabline = 2
 vim.opt.smartcase = true
 vim.opt.smarttab = true
+vim.opt.softtabstop = 4
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 1000
 vim.opt.title = false
@@ -74,15 +73,14 @@ filetype plugin indent on
 -- copy buffer path
 vim.cmd([[command! CopyBuffer let @+ = expand('%:p')]])
 vim.cmd([[command! CopyParentDir let @+ = expand('%:p:h')]])
--- vim.cmd([[autocmd FileType go nmap <leader>gr :GoRun %<CR>]])
 
 vim.g["incsearch#auto_nohlsearch"] = 1
-vim.api.nvim_set_keymap("", "n", "<Plug>(incsearch-nohl-n)", {})
-vim.api.nvim_set_keymap("", "N", "<Plug>(incsearch-nohl-N)", {})
-vim.api.nvim_set_keymap("", "*", "<Plug>(incsearch-nohl-*)", {})
-vim.api.nvim_set_keymap("", "#", "<Plug>(incsearch-nohl-#)", {})
-vim.api.nvim_set_keymap("", "g*", "<Plug>(incsearch-nohl-g*)", {})
-vim.api.nvim_set_keymap("", "g#", "<Plug>(incsearch-nohl-g#)", {})
+vim.keymap.set("", "n", "<Plug>(incsearch-nohl-n)", {})
+vim.keymap.set("", "N", "<Plug>(incsearch-nohl-N)", {})
+vim.keymap.set("", "*", "<Plug>(incsearch-nohl-*)", {})
+vim.keymap.set("", "#", "<Plug>(incsearch-nohl-#)", {})
+vim.keymap.set("", "g*", "<Plug>(incsearch-nohl-g*)", {})
+vim.keymap.set("", "g#", "<Plug>(incsearch-nohl-g#)", {})
 
 vim.g.vim_markdown_conceal_code_blocks = 0
 vim.g.vim_markdown_conceal = 0

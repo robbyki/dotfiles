@@ -1,11 +1,4 @@
---TODO: new convenience in latest neovim:
--- example since 0.7.0:
---vim.keymap.set("n", "<leader>H", function() print("Hello world!") end)
-
-local map = require("utils").map
-
 vim.g.mapleader = ","
-
 -- bigger scrolling increments
 vim.cmd([[
  noremap <C-e> 5<C-e>
@@ -20,32 +13,30 @@ vim.cmd([[
  nnoremap <silent> <C-Right> : vertical resize +2<CR>
 ]])
 
-map("n", "<space>o", ":ijump object<CR>:lua vim.lsp.codelens.run()<CR>")
-map("i", "<a-cr>", "<c-e><cr>") -- allows me to ignore cmp suggestion and create new line
-map("n", "<Space>", "<Nop>")
-map("i", "<C-c>", "<Esc>")
-map("n", "<CR>", "<cmd>FineCmdline<CR>")
-map("v", "<", "<gv")
-map("v", ">", ">gv")
-map("n", "<TAB>", ":bnext<CR>")
-map("n", "<S-TAB>", ":bprevious<cr>")
-map("n", "<esc>", ":noh<CR><esc>", { silent = true })
-map("n", "<leader>so", ":SymbolsOutline<cr>")
-map("n", "<leader>sq", ":SymbolsOutlineClose<cr>")
-map("x", "<space>K", ":move '<-2<cr>gv-gv")
-map("x", "<space>J", ":move '>+1<CR>gv-gv")
-map("n", "<leader>n", ":set number! norelativenumber<CR>")
-map("n", "<Esc><Esc>", ":nohlsearch<CR>")
-map("n", "<leader>fo", ":copen<CR>") -- open quickfix window
-map("n", "<leader>yb", ":CopyBuffer<CR>")
-map("n", "<leader>yd", ":CopyParentDir<CR>")
-map("n", "<leader>sv", ":luafile $MYVIMRC<CR>:echo 'reloaded vimrc!'<CR>")
-map("n", "<leader>w", ":write<CR>", { noremap = true })
-map("n", "n", "nzzzv", {})
-map("n", "N", "Nzzzv", {})
-map("n", "<leader>d", ":bd<CR>")
-map("n", "Q", "<Nop>")
-map("n", "cxr", ":%s<C-R><C-W>/<C-R><C-W>/gc<Left><Left><Left>")
+vim.keymap.set("n", "<space>o", ":ijump object<CR>:lua vim.lsp.codelens.run()<CR>")
+vim.keymap.set("i", "<a-cr>", "<c-e><cr>") -- allows me to ignore cmp suggestion and create new line
+vim.keymap.set("n", "<Space>", "<Nop>")
+vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("n", "<CR>", "<cmd>FineCmdline<CR>")
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("n", "<TAB>", ":bnext<CR>")
+vim.keymap.set("n", "<S-TAB>", ":bprevious<cr>")
+vim.keymap.set("n", "<esc>", ":noh<CR><esc>", { silent = true })
+vim.keymap.set("x", "<space>K", ":move '<-2<cr>gv-gv")
+vim.keymap.set("x", "<space>J", ":move '>+1<CR>gv-gv")
+vim.keymap.set("n", "<leader>n", ":set number! norelativenumber<CR>")
+vim.keymap.set("n", "<Esc><Esc>", ":nohlsearch<CR>")
+vim.keymap.set("n", "<leader>fo", ":copen<CR>") -- open quickfix window
+vim.keymap.set("n", "<leader>yb", ":CopyBuffer<CR>")
+vim.keymap.set("n", "<leader>yd", ":CopyParentDir<CR>")
+vim.keymap.set("n", "<leader>sv", ":luafile $MYVIMRC<CR>:echo 'reloaded vimrc!'<CR>")
+vim.keymap.set("n", "<leader>w", ":write<CR>", { noremap = true })
+vim.keymap.set("n", "n", "nzzzv", {})
+vim.keymap.set("n", "N", "Nzzzv", {})
+vim.keymap.set("n", "<leader>d", ":bd<CR>")
+vim.keymap.set("n", "Q", "<Nop>")
+vim.keymap.set("n", "cxr", ":%s<C-R><C-W>/<C-R><C-W>/gc<Left><Left><Left>")
 
 vim.g.which_key_display_names = {
   ["<CR>"] = "↵",
@@ -60,12 +51,7 @@ local function cmd(s)
   return "<cmd>" .. s .. "<cr>"
 end
 
-vim.api.nvim_set_keymap(
-  "v",
-  "<leader>rr",
-  "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-  { noremap = true }
-)
+vim.keymap.set("v", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>")
 
 wk.register({
   ["<leader>"] = { name = "+leader" },
@@ -76,6 +62,11 @@ wk.register({
 })
 
 wk.register({
+  ["<leader>s"] = {
+    name = "+symbols",
+    o = { [[<Cmd>SymbolsOutline<CR>]], "symbols outline" },
+    q = { [[<Cmd>SymbolsOutlineClose<CR>]], "symbols outline close" },
+  },
   ["<leader>f"] = {
     name = "+search",
     ["/"] = { [[<Cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], "fuzzy find" },
@@ -128,12 +119,12 @@ wk.register({
     name = "hop around",
     a = { [[<Cmd>lua require('harpoon.mark').add_file()<CR>]], "harpoon add file" },
     b = { [[<Cmd>lua require'hop'.hint_char2()<CR>]], "Hop to bigram (two characters)" },
-    x = { "<Cmd>lua require('harpoon.mark').clear_all()<CR>", "harpoon clear" },
+    x = { [[<Cmd>lua require('harpoon.mark').clear_all()<CR>]], "harpoon clear" },
     c = { [[<Cmd>lua require'hop'.hint_char1()<CR>]], "Hop to character" },
     l = { [[<Cmd>lua require'hop'.hint_lines()<CR>]], "Hop to line" },
-    m = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "toggle quick menu" },
-    n = { "<Cmd>lua require('harpoon.ui').nav_next()<CR>", "harpoon next" },
-    p = { "<Cmd>lua require('harpoon.ui').nav_prev()<CR>", "harpoon previous" },
+    m = { [[<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>]], "toggle quick menu" },
+    n = { [[<Cmd>lua require('harpoon.ui').nav_next()<CR>]], "harpoon next" },
+    p = { [[<Cmd>lua require('harpoon.ui').nav_prev()<CR>]], "harpoon previous" },
     t = { [[<Cmd>lua require'hop'.hint_patterns()<CR>]], "Hop to pattern" },
     w = { [[<Cmd>lua require'hop'.hint_words()<CR>]], "Hop to word" },
   },
