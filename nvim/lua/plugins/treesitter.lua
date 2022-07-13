@@ -18,6 +18,7 @@ treesitter.setup({
     "json5",
     "lua",
     "nix",
+    "norg",
     "python",
     "rust",
     "scala",

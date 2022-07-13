@@ -101,6 +101,7 @@ cmp.setup({
         path = "[PATH]",
         tmux = "[TMUX]",
         vsnip = "[SNIP]",
+        emoji = "[EMOJI]",
       })[entry.source.name]
       return vim_item
     end,
