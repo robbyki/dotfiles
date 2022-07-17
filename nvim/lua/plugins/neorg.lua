@@ -21,18 +21,11 @@ neorg.setup({
         },
       },
     }, -- Allows for use of icons
-    -- ["core.keybinds"] = {
-    --   config = {
-    --     default_keybinds = false,
-    --   },
-    -- },
-    ["core.norg.dirman"] = { -- Manage your directories with Neorg
-      config = {
-        workspaces = {
-          my_workspace = "~/neorg",
-        },
-      },
+    ["core.norg.dirman"] = {
+      config = { workspaces = { work = "~/dev/org/work", life = "~/dev/org/personal" } },
     },
+    ["core.gtd.base"] = { config = { workspace = "work" } },
+    ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
     ["core.norg.completion"] = {
       config = {
         engine = "nvim-cmp",
@@ -57,18 +50,23 @@ neorg.setup({
         -- Configuration here
       },
     },
-    ["core.integrations.treesitter"] = {
-      config = { -- Note that this table is optional and doesn't need to be provided
-        norg = {
-          url = "https://github.com/nvim-neorg/tree-sitter-norg",
-          files = { "src/parser.c", "src/scanner.cc" },
-          branch = "main",
-        },
-        norg_meta = {
-          url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
+    ["core.integrations.treesitter"] = {},
+    ["core.integrations.telescope"] = {},
+    ["core.keybinds"] = {
+      config = {
+        hook = function(keybinds)
+          keybinds.unmap("norg", "n", "<C-s>")
+          keybinds.map_event_to_mode("norg", {
+            n = { -- Bind keys in normal mode
+              { "<leader>nfl", "core.integrations.telescope.find_linkable" }, -- Keys for managing GTD
+              { "<leader>ntc", "core.gtd.base.capture" },
+              { "<leader>ntv", "core.gtd.base.views" },
+              { "<leader>nte", "core.gtd.base.edit" }, -- Keys for managing notes
+              { "<leader>nnn", "core.norg.dirman.new.note" }, -- mnemonic: markup toggle
+              { "<leader>nmt", "core.norg.concealer.toggle-markup" },
+            },
+          }, { silent = true, noremap = true })
+        end,
       },
     },
   },

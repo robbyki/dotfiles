@@ -35,7 +35,7 @@ telescope.setup({
     initial_mode = "insert",
     selection_strategy = "reset",
     sorting_strategy = "ascending",
-    layout_strategy = "vertical",
+    -- layout_strategy = "vertical",
     -- layout_config = {
     --   horizontal = { width = 0.90, height = 0.70, preview_width = 0.5 },
     --   vertical = { width = 0.90, height = 0.70, preview_height = 0.7 },

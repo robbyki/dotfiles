@@ -591,6 +591,13 @@ return packer.startup(function(use)
   ----------------------------------------------------------------------
   --                             Orgmode                              --
   ----------------------------------------------------------------------
+  -- Lua
+  use({
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup({})
+    end,
+  })
   use({
     "akinsho/org-bullets.nvim",
     config = function()
