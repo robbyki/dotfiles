@@ -217,6 +217,9 @@ go install golang.org/x/tools/...@latest
 # gopls language server for neovim
 go install golang.org/x/tools/gopls@latest
 
+# typioca
+go install github.com/bloznelis/typioca@latest
+
 # kubeclean
 go get github.com/edsoncelio/kubeclean
 

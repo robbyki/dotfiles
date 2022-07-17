@@ -616,7 +616,7 @@ return packer.startup(function(use)
 
   use({
     "nvim-neorg/neorg",
-    requires = { "nvim-neorg/neorg-telescope" },
+    requires = { "nvim-neorg/neorg-telescope", "nvim-lua/plenary.nvim" },
     config = function()
       require("plugins.neorg")
     end,
