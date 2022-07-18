@@ -413,8 +413,6 @@ return packer.startup(function(use)
     end,
   })
 
-  use("wakatime/vim-wakatime")
-
   use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = { "hrsh7th/nvim-cmp" } })
   use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
   use({

@@ -33,7 +33,6 @@ plugins=(
     zsh-better-npm-completion
     zsh-secrets
     zsh-syntax-highlighting
-    wakatime
 )
 
 # {{{ completions
