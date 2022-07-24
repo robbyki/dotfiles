@@ -90,4 +90,3 @@ aliases:
               }
             ' | jq -r ".data.search.nodes[] | [.nameWithOwner,.stargazers.totalCount] | @tsv"
     clone: repo clone
-

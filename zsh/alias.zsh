@@ -1,18 +1,14 @@
-# alias python='/usr/local/bin/python3.9'
-
 export EDITOR="/usr/local/bin/nvim"
 export DOTFILES="$HOME/.dotfiles"
 
+# {{{ Editor settings
 alias vi=$EDITOR
 alias vim=$EDITOR
 alias nvim=$EDITOR
-#
-# container testing
-alias pdfedora='pdr -it fedora bash'
+# }}}
 
-# Quick files and directories
-# alias br='broot'
-alias nvim=/usr/local/bin/nvim
+# {{{ Quick files and directories
+alias nvim=$EDITOR
 alias dots="cd $DOTFILES"
 alias p10cfg="$EDITOR $DOTFILES/zsh/.p10k.zsh"
 alias zshcfg="$EDITOR $DOTFILES/zsh/.zshrc"
@@ -22,27 +18,30 @@ alias nvimcfg="$EDITOR $DOTFILES/nvim/init.lua"
 alias codecfg="$EDITOR $DOTFILES/vscode/settings.json"
 alias alcfg="$EDITOR $DOTFILES/alacritty/alacritty.yml"
 alias tmuxcfg="$EDITOR $DOTFILES/tmux/.tmux.conf"
-alias kbcfg="$EDITOR ~/.kube/config"
+alias kbcfg="$EDITOR ${HOME}/.kube/config"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
 alias sl="slides"
-alias ghext="cd $HOME/.local/share/gh/extensions"
+
 # "I didn't say they'll take you places you'd want to go"
-alias rkeeweb="copy ~/Documents/notes/webex-rkee.txt"
+alias ghext="cd $HOME/.local/share/gh/extensions"
+alias rkeeweb="copy ${HOME}/Documents/notes/webex-rkee.txt"
 alias util="cd $HOME/dev/aide-utilities"
 alias temp="cd $HOME/dev/projects/aide-template/"
 alias nv="cd $HOME/.dotfiles/nvim"
 alias dev="cd $HOME/dev/"
-alias downloads="cd ~/Downloads"
-alias docs="cd ~/Documents"
-alias vids="cd ~/Videos"
-alias blog="cd ~/dev/blog"
-alias cv="cd ~/dev/cv"
-alias snip="cd ~/.dotfiles/nvim/.vsnip"
+alias downloads="cd ${HOME}/Downloads"
+alias docs="cd ${HOME}/Documents"
+alias vids="cd ${HOME}/Videos"
+alias blog="cd ${HOME}/dev/blog"
+alias cv="cd ${HOME}/dev/cv"
+alias snip="cd ${HOME}/.dotfiles/nvim/.vsnip"
 alias snipf="cd $HOME/.local/share/nvim/site/pack/packer/opt/friendly-snippets/snippets/"
 alias ohmyzsh="cd $HOME/.oh-my-zsh"
-alias pics="cd ~/Pictures"
+alias pics="cd ${HOME}/Pictures"
 alias roficonfig="$EDITOR $DOTFILES/rofi/config"
+# }}}
+
 alias dr="rofi -show drun"
 alias r="rofi -theme Arc-Dark -show window"
 alias chx="chmod +x"
@@ -56,10 +55,7 @@ alias ssrc="secrets source"
 alias ssx='secrets source pawpatrol'
 alias py='python'
 alias ow='xdg-open'
-
 alias pip='noglob pip'
-
-# system helpers
 alias exp='export'
 alias tch='touch'
 alias ff='functions'
@@ -67,7 +63,6 @@ alias tarx='tar xvzf'
 alias tarc='tar cvzf'
 alias t='tmux'
 alias am='alsamixer'
-#alias beaver='GTK_THEME=Adwaita:light dbeaver-ce'
 alias c='cat'
 alias cat='bat'
 alias cb='clipboard'
@@ -85,7 +80,7 @@ alias update='dnfu'
 alias vimbak='/usr/bin/vim'
 alias wi='which'
 alias x=exit
-alias zz='source ~/.zshrc'
+alias zz='source ${HOME}/.zshrc'
 alias sus="systemctl suspend"
 alias hib="systemctl hibernate"
 alias off="systemctl poweroff"
@@ -98,7 +93,7 @@ alias jqi="jid -q | ccc"
 alias gat='gatsby'
 alias gatdev="gatsby develop"
 
-# argo
+# {{{ argo ci/cd
 alias acc='argo cron create'
 alias acd='argo cron delete'
 alias acg='argo cron get'
@@ -113,16 +108,18 @@ alias alo='argo logs'
 alias as='argo submit'
 alias asw='argo submit --watch'
 alias aw='argo watch'
+# }}}
 
-# golang
+# {{{ golang
 alias golall='go list -m all'
 alias gomi='go mod init'
 alias gomt='go mod tidy'
 alias gowi='go work init'
 alias gow='go work'
 alias godocs='godoc -http=localhost:6060' # cannot be in module path
+# }}}
 
-# bloop Scala
+# {{{ bloop Scala
 alias bl='bloop'
 alias blc='bloop compile --verbose'
 alias blcr='bloop compile root --verbose'
@@ -132,11 +129,12 @@ alias blrm='bloop run root -m'
 alias blr='bloop run'
 alias blrr='bloop run root'
 alias blrv='bloop run --verbose'
+# }}}
 
-# cockroach
+# cockroach db
 alias crdb='cockroach'
 
-# Buildah
+# {{{ Buildah Containers
 alias bu='buildah'
 alias bub='buildah build' # same as buildah build
 alias buinsp='buildah inspect'
@@ -153,20 +151,23 @@ alias buu='buildah unshare'
 alias burmall='buildah rm --all'
 alias bupush='buildah push'
 alias burm='buildah rm'
+# }}}
 
-# scala
+# {{{ scala
 alias sbi='sbt -Dbloop.export-jar-classifiers=sources bloopInstall'
 alias bb="$EDITOR build.sbt"
 alias bd="$EDITOR project/Dependencies.scala"
 alias bp="$EDITOR project/plugins.sbt"
 alias refconf="$EDITOR src/main/resources/reference.conf"
 alias appconf="$EDITOR src/main/resources/application.conf"
+# }}}
 
-# finders
+# {{{ finders
 alias fa='findalias'
 alias fdf='fd --no-ignore --list-details --hidden'
+# }}}
 
-# git
+# {{{ git
 alias fpr='gh copr'
 alias ghrepo='gh repo-fzf'
 alias ghibm='gh fzrepo'
@@ -183,30 +184,34 @@ alias gistv='gh gist view'
 alias grepo='gh grepo'
 alias rvwt='gh rvwt 2>/dev/null'
 alias rvwu='gh rvwu 2>/dev/null'
+# }}}
 
+# {{{ python
 alias jup='jupyter'
 alias ipy='ipython'
+# }}}
 
 alias glow='glow -p'
 
 alias ski='skopeo inspect --tls-verify=false'
 
-# cloud
+# {{{ ibm cloud
 alias ic='ibmcloud'
 alias ocdelc='ic oc cluster rm -f --force-delete-storage -c'
 alias iccr-rm='ic cr image-rm'
-alias icvars='source ~/bin/icvars'
+alias icvars='source ${HOME}/bin/icvars'
 alias icplugins="ic plugin repo-plugins -r \"IBM Cloud\" --output json | jq '.\"IBM Cloud\" | .[].name' -r | sort"
+# }}}
 
-# artifactory
-# alias jf=jfrog
+# {{{ artifactory
 alias jfdls="jf rt search \"txo-aide-team-cio-docker-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 alias jfmls="jf rt search \"txo-aide-team-cio-maven-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 alias jfsls="jf rt search \"txo-aide-team-cio-sbt-local/*\" | jq '.[]|.path + .props[\"version\"]' -r"
 alias jfdel="jf rt delete"
+# }}}
 
-# kubernetes
-alias kbclean='kbcleanup --raw > ~/.kube/config.swap;kbswap'
+# {{{ kubernetes
+alias kbclean='kbcleanup --raw > ${HOME}/.kube/config.swap;kbswap'
 alias kbver='kubectl version --short --client=true'
 alias kbc='kubecolor'
 alias kb='kubectl'
@@ -227,12 +232,13 @@ alias kval='kubeval --schema-location=file://$OCPSCHEMA'
 alias kx='kubectx'
 alias st='stern'
 alias stt='stern --tail 10'
-
 alias mk='minikube'
 alias mkstart='minikube start --driver=podman --container-runtime=cri-o'
 alias mkdash='minikube dashboard --url'
+# }}}
 
-# containers
+# {{{ containers
+alias pdfedora='podman run -it fedora bash'
 alias pdlogintxo='pdl $ARTIFACTORY_URL -u $ARTIFACTORY_USER -p $ARTIFACTORY_API_KEY'
 alias docker='podman'
 alias pdauth="$EDITOR ${XDG_RUNTIME_DIR}/containers/auth.json"
@@ -256,11 +262,12 @@ alias pdsc='podman stop $(docker ps -aq)'
 alias pds='podman search'
 alias pdif="pdi --format '{{.Repository}}'"
 alias lzd='lazydocker'
-# alias pdremote='podman-remote'
+# }}}
 
-# keepassxc
+# {{{ keepassxc
 alias kpass='/usr/bin/keepassxc-cli'
 alias kpasso='keepassxc-cli open $KEEPASSDB'
+# }}}
 
 alias l=lf
 
@@ -321,11 +328,12 @@ alias tktrb='tekton triggerbinding'
 alias tktrt='tekton triggertemplate'
 alias tlint='tekton-lint'
 
-# yamls
+# {{{ yaml
 alias ylint='yamllint'
 alias -g @yml=' | yq eval -P'
 alias -g @yaml=' | yq eval -P'
 alias -g @json=' | jq'
+# }}}
 
 zrc() {
   $EDITOR $DOTFILES/zsh/.zshrc
@@ -348,11 +356,11 @@ alias ptop='tput cup $((LINES/4)) 0' # Clear quarter
 alias pdown='tput cup $((3*LINES/4)) 0' # Clear 3/4th
 
 # for quickly switching for videos
-alias demofont="yq -i '.font.size=22' ~/.dotfiles/alacritty/alacritty.yml"
-alias workfont="yq -i '.font.size=15' ~/.dotfiles/alacritty/alacritty.yml"
-alias slidefont="yq -i '.font.size=30' ~/.dotfiles/alacritty/alacritty.yml"
-alias tpno="yq -i '.window.opacity=1.0' ~/.dotfiles/alacritty/alacritty.yml"
-alias tpyes="yq -i '.window.opacity=0.7' ~/.dotfiles/alacritty/alacritty.yml"
+alias demofont="yq -i '.font.size=22' ${HOME}/.dotfiles/alacritty/alacritty.yml"
+alias workfont="yq -i '.font.size=15' ${HOME}/.dotfiles/alacritty/alacritty.yml"
+alias slidefont="yq -i '.font.size=30' ${HOME}/.dotfiles/alacritty/alacritty.yml"
+alias tpno="yq -i '.window.opacity=1.0' ${HOME}/.dotfiles/alacritty/alacritty.yml"
+alias tpyes="yq -i '.window.opacity=0.7' ${HOME}/.dotfiles/alacritty/alacritty.yml"
 
 alias resume='python resume.py --no-html'
 alias ok=okular

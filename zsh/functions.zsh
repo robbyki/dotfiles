@@ -403,7 +403,7 @@ kpsearch() {
   echo $KEEPASSXC | keepassxc-cli search -q $KEEPASSDB $1
 }
 
-kpadd() {
+kpaddgen() {
   echo $KEEPASSXC | keepassxc-cli add --username $1 --url $2 --generate --lower --upper --numeric --special --length 20 $KEEPASSDB $3
 }
 
@@ -425,4 +425,8 @@ kpshowpass() {
 
 kpshow() {
   echo $KEEPASSXC | keepassxc-cli show -q $KEEPASSDB $1
+}
+
+kpadd() {
+  echo $KEEPASSXC | keepassxc-cli add --username $1 --url $2 -p $KEEPASSDB $3
 }

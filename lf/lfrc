@@ -94,7 +94,6 @@ map p paste
 map rm sudorm
 map rr rename
 map ss stripspace
-map tc clear_trash
 map tr restore_trash
 map vs push :glob-select<space>*.
 map vu push :glob-unselect<space>*.

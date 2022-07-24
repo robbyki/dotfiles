@@ -69,6 +69,7 @@ sudo dnf install -y \
   podman-remote \
   pulseaudio-utils \
   qutebrowser \
+  rlwrap \
   rofi \
   ruby \
   ruby-devel \
@@ -85,11 +86,10 @@ sudo dnf install -y \
   wget \
   wmctrl \
   xclip \
-  rlwrap \
   xdotool \
-  xsel \
   xorg-x11-drv-nvidia-cuda \
   xscreensaver \
+  xsel \
   zoxide \
   zsh
 
