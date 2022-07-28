@@ -119,6 +119,7 @@ alias gomt='go mod tidy'
 alias gowi='go work init'
 alias gow='go work'
 alias godocs='godoc -http=localhost:6060' # cannot be in module path
+alias gore='gore -autoimport'
 # }}}
 
 # {{{ bloop Scala
@@ -195,8 +196,6 @@ alias ipy='ipython'
 
 alias glow='glow -p'
 
-alias ski='skopeo inspect --tls-verify=false'
-
 # {{{ ibm cloud
 alias ic='ibmcloud'
 alias ocdelc='ic oc cluster rm -f --force-delete-storage -c'
@@ -264,6 +263,7 @@ alias pdsc='podman stop $(docker ps -aq)'
 alias pds='podman search'
 alias pdif="pdi --format '{{.Repository}}'"
 alias lzd='lazydocker'
+alias ski='skopeo inspect --tls-verify=false'
 # }}}
 
 # {{{ keepassxc
@@ -271,24 +271,25 @@ alias kpass='/usr/bin/keepassxc-cli'
 alias kpasso='keepassxc-cli open $KEEPASSDB'
 # }}}
 
+# {{{ lfrc
 alias l=lf
+# }}}
 
 # directory listings
-alias la="colorls -lA"
-alias lad="la --sort-dirs"
+alias la='colorls -lA'
+alias lad='la --sort-dirs'
 # alias lag="la --git-status"
 alias less='less -FSRXc'
-alias ll=" ls -lrt --git-status"
-alias lld="ll --sort-dirs"
-alias llg="ll --git-status"
-alias llt="ll -tr"
-alias ls="colorls -A"
-alias lsd="ls --sort-dirs"
-alias lsg="ls --git-status"
-alias lst="ls -tr"
+alias ll='ls -lrt --git-status'
+alias lld='ll --sort-dirs'
+alias llg='ll --git-status'
+alias llt='ll -tr'
+alias ls='colorls -A'
+alias lsd='ls --sort-dirs'
+alias lsg='ls --git-status'
+alias lst='ls -tr'
 
-# openshift oc
-# alias ocvars='source ~/bin/ocvars'
+# {{{ openshift
 alias ocg='oc get'
 alias ocaf='oc apply -f'
 alias occd='oc create deployment'
@@ -313,8 +314,9 @@ alias ocnp='oc new-project'
 alias ocrf='oc replace --force -f'
 alias octkn='oc whoami -t'
 alias ocwho='oc whoami'
+# }}}
 
-# tekton
+# {{{ tekton
 alias tkb='tekton bundle'
 alias tkclt='tekton clustertask'
 alias tkcltrb='tekton clustertriggerbinding'
@@ -329,6 +331,7 @@ alias tktr='tekton taskrun'
 alias tktrb='tekton triggerbinding'
 alias tktrt='tekton triggertemplate'
 alias tlint='tekton-lint'
+# }}}
 
 # {{{ yaml
 alias ylint='yamllint'
@@ -337,20 +340,23 @@ alias -g @yaml=' | yq eval -P'
 alias -g @json=' | jq'
 # }}}
 
+# {{{ zshrc
 zrc() {
   $EDITOR $DOTFILES/zsh/.zshrc
   source $DOTFILES/zsh/.zshrc
 }
 alias ec="$EDITOR $DOTFILES/zsh/.zshrc"
 alias ecs=zrc
+# }}}
 
-# audio switching between speakers and headphones using pactl util
+# {{{ audio
 alias hp="pactl set-default-sink alsa_output.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.analog-surround-40"
 alias sp="pactl set-default-sink alsa_output.usb-Audioengine_Audioengine_2_-00.analog-stereo"
 alias volu="pactl -- set-sink-volume 0 +5%"
 alias vold="pactl -- set-sink-volume 0 -5%"
 alias mutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 true"
 alias unmutemic="pactl set-source-mute alsa_input.usb-Focusrite_Scarlett_4i4_USB_D86VPBY158CC91-00.pro-input-0 false"
+# }}}
 
 # I don't really need these since I can just use $(magic-enter) but I like them anyway
 alias ptop='tput cup $((LINES/4)) 0' # Clear quarter
@@ -367,7 +373,6 @@ alias tpyes="yq -i '.window.opacity=0.7' ${HOME}/.dotfiles/alacritty/alacritty.y
 alias resume='python resume.py --no-html'
 alias ok=okular
 alias b='buku --suggest'
-
 export RKCV="https://robkiskanyan.s3.amazonaws.com/RobKiskanyanCV.pdf"
 alias getcv="wget $RKCV"
 alias getcvlink="echo $RKCV | xclip -selection clipboard"
@@ -375,6 +380,7 @@ alias getcvlink="echo $RKCV | xclip -selection clipboard"
 alias getlinkedin="echo https://www.linkedin.com/in/robkiskanyan | xclip -selection clipboard"
 alias getsite="echo https://www.dontgoandpanic.com | xclip -selection clipboard"
 
+# {{{ databricks
 alias dbr='databricks'
 alias dbrc='databricks clusters'
 alias dbrcls='databricks clusters list --output json'
@@ -394,12 +400,12 @@ alias dbrw='databricks workspace'
 alias dbrpw='xdg-open "$DBR_HOST/?o=$DBR_WSID#joblist/pipelines/$PIPEID"'
 alias dbrcw='xdg-open "$DBR_HOST/?o=$DBR_WSID#setting/clusters"'
 alias dbrww='xdg-open "$DBR_HOST/?o=$DBR_WSID"'
+# }}}
 
 # update packer from command line
 alias pu="nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
 
 alias sf='sqlfluff'
-alias gore='gore -autoimport'
 
 alias cht='cht.sh'
 alias sfmt='scalafmt'
