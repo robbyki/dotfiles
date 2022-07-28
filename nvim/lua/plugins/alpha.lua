@@ -121,8 +121,8 @@ local buttons = {
     ),
     button(
       "a",
-      "  AIDE",
-      ":cd ~/dev/ibm-projects/aide-template | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
+      "  TBD",
+      ":cd ~/dev/dbr-projects/tbd | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
     ),
     button(
       "D",
