@@ -116,8 +116,8 @@ local buttons = {
     ),
     button(
       "i",
-      "  IBM Projects",
-      ":cd ~/dev/ibm-projects | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
+      "  Databricks Projects",
+      ":cd ~/dev/dbr-projects | Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <CR>"
     ),
     button(
       "a",

@@ -170,6 +170,11 @@ for _, lsp in ipairs(servers) do
   })
 end
 
+lspconfig.sqls.setup({
+  on_attach = function(client, bufnr)
+    require("sqls").on_attach(client, bufnr)
+  end,
+})
 -- require("lspconfig").sqlls.setup({})
 ----------------------------------------------------------------------
 --                               Lua                                --

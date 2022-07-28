@@ -22,6 +22,8 @@ alias kbcfg="$EDITOR ${HOME}/.kube/config"
 alias lfrc="$EDITOR $DOTFILES/lf/lfrc"
 alias funcs="$EDITOR $DOTFILES/zsh/functions.zsh"
 alias sl="slides"
+alias cal='cal -y'
+alias fs='flameshot'
 
 # "I didn't say they'll take you places you'd want to go"
 alias ghext="cd $HOME/.local/share/gh/extensions"

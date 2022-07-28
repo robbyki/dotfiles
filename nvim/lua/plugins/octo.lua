@@ -6,7 +6,7 @@ require("octo").setup({
   timeline_indent = "2", -- timeline indentation
   right_bubble_delimiter = "", -- Bubble delimiter
   left_bubble_delimiter = "", -- Bubble delimiter
-  github_hostname = "github.ibm.com", -- GitHub Enterprise host
+  github_hostname = "github.com", -- GitHub Enterprise host
   snippet_context_lines = 4, -- number or lines around commented lines
   file_panel = {
     size = 10, -- changed files panel rows
