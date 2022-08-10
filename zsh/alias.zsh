@@ -409,3 +409,5 @@ alias sf='sqlfluff'
 
 alias cht='cht.sh'
 alias sfmt='scalafmt'
+
+alias wdpass="kp 'Robby/Databricks/Databricks Workday'"

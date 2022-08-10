@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 export ZSH="$HOME/.oh-my-zsh"
 
-# shellcheck disable=2034
+# {{{ plugins
 plugins=(
     alias-tips
     autoupdate
@@ -34,6 +34,7 @@ plugins=(
     zsh-secrets
     zsh-syntax-highlighting
 )
+# }}}
 
 # {{{ completions
 autoload -U compinit && compinit
@@ -192,7 +193,7 @@ export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=0
 
 # #fpath=( ~/.zshfunctions "${fpath[@]}" )
 # #autoload -Uz $fpath[1]/*(.:t)
-#
+
 # used for gpg zsh secrets plugin
 export GPGKEY=D306CF52B506165F
 export GPG_TTY=$(tty)
@@ -237,6 +238,7 @@ export LF_ICONS
 
 export MINIKUBE_IN_STYLE=true
 
+# I probably should just use zsh startup script locations instead of this
 source ${HOME}/bin/icutils
 
 source ${HOME}/.config/broot/launcher/bash/br

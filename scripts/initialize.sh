@@ -22,7 +22,6 @@ sudo dnf install -y \
   automake \
   bat \
   buildah \
-  buku \
   clang \
   cmake \
   cmatrix \
@@ -123,6 +122,10 @@ sudo dnf install -y gh
 # gh extensions
 gh extension install kavinvalli/gh-repo-fzf
 gh extension install mislav/gh-branch
+
+# install git-fuzzy tool
+git clone https://github.com/bigH/git-fuzzy.git
+mv git-fuzzy/ ~/dev/projects
 
 # rust / cargo etc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
