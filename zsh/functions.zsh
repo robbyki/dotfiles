@@ -412,7 +412,7 @@ kpfzf() {
 }
 
 kpgen() {
-  keepassxc-cli generate --lower --upper --numeric --special --length 20
+  keepassxc-cli generate --lower --upper --numeric --special --length 20 | xclip -sel clip
 }
 
 kpls() {
