@@ -1,7 +1,7 @@
 # env:
 # TERM: xterm-256color
 window:
-  opacity: 0.80
+  opacity: 0.70
   dynamic_padding: true
   # decorations: full
   # Startup Mode (changes require restart)

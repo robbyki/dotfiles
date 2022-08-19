@@ -1,7 +1,7 @@
 [user]
     name = Robby Kiskanyan
     email = "robbmk@gmail.com"
-    signingkey = B506165F
+    ; signingkey = B506165F
 [core]
     editor = nvim
     autocrlf = input
@@ -15,8 +15,8 @@
     log = delta
     reflog = delta
     show = delta
-[url "ssh://git@github.ibm.com/"]
-    insteadOf = https://github.ibm.com/
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
 [push]
     default = matching
 [color]
@@ -84,4 +84,4 @@
     file-decoration-style = none
 [commit]
     template = /home/robbyk/.gitmessage
-	gpgsign = true
+    gpgsign = false

@@ -165,7 +165,7 @@ export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_COMMAND="fd -HL --no-ignore --exclude={'.git,.dropbox,.gem,.npm,.jfrog,target,.vscode,node_modules'} -i . $HOME"
 export FZF_ALT_C_OPTS="--height 80% --preview 'tree -NC {} | head -200'"
-export FZF_TMUX_OPTS="-p 90%,50%"
+export FZF_TMUX_OPTS="-p 90%,55%"
 export _ZO_FZF_OPTS="--height=40% --reverse --preview 'tree -C {2} | head -200'"
 # }}}
 
@@ -243,6 +243,6 @@ source ${HOME}/bin/icutils
 
 source ${HOME}/.config/broot/launcher/bash/br
 
-ssx
+# ssx
 
 export PATH="${HOME}/dev/projects/git-fuzzy/bin:$PATH"
