@@ -188,6 +188,7 @@ alias gistv='gh gist view'
 alias grepo='gh grepo'
 alias rvwt='gh rvwt 2>/dev/null'
 alias rvwu='gh rvwu 2>/dev/null'
+alias ga='git add --verbose'
 # }}}
 
 # {{{ python

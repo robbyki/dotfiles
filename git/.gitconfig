@@ -1,3 +1,5 @@
+[include]
+    path = ~/dev/themes.gitconfig
 [user]
     name = Robby Kiskanyan
     email = "robbmk@gmail.com"
@@ -61,23 +63,25 @@
     conflictStyle = diff3
     summary = true
 [delta]
-    paging = auto
-    line-numbers = true
-    syntax-theme = onehalfdark
-    whitespace-error-style = 22 reverse
-    minus-style = syntax "#402529"
-    minus-emph-style = syntax "#662f33"
-    plus-style = syntax "#29342a"
-    plus-emph-style = syntax "#3b5134"
-    hunk-header-style = syntax bold
-    hunk-header-decoration-style = "#4b5263" box
-    file-style = white bold
-    file-decoration-style = "#4b5263" ul
-    line-numbers-zero-style = "#4b5263"
-    line-numbers-left-format = "{nm:^4} "
-    line-numbers-right-format = "{np:^4} "
-    line-numbers-minus-style = "#e06c75"
-    line-numbers-plus-style = "#98c379"
+    features = decorations navigate
+; [delta]
+;     paging = auto
+;     line-numbers = true
+;     ; syntax-theme = onehalfdark
+;     whitespace-error-style = 22 reverse
+;     minus-style = syntax "#402529"
+;     minus-emph-style = syntax "#662f33"
+;     plus-style = syntax "#29342a"
+;     plus-emph-style = syntax "#3b5134"
+;     hunk-header-style = syntax bold
+;     hunk-header-decoration-style = "#4b5263" box
+;     file-style = white bold
+;     file-decoration-style = "#4b5263" ul
+;     line-numbers-zero-style = "#4b5263"
+;     line-numbers-left-format = "{nm:^4} "
+;     line-numbers-right-format = "{np:^4} "
+;     line-numbers-minus-style = "#e06c75"
+;     line-numbers-plus-style = "#98c379"
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
